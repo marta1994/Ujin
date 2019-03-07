@@ -1,0 +1,7 @@
+<app-mobile *ngIf="showMobile()"></app-mobile>
+<app-desktop *ngIf="showDesktop()"></app-desktop>
+
+<span l10nTranslate>app.test</span>
+<button *ngFor="let language of languages" (click)="setLanguage(language.code)">
+  {{language.displayName}}
+</button>

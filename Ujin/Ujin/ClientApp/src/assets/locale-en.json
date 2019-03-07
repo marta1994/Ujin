@@ -1,0 +1,6 @@
+{
+  "app": {
+    "test": "Test value"
+  },
+  "test":  "Test value simple"
+}

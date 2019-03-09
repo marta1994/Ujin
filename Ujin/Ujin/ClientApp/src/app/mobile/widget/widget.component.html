@@ -6,7 +6,7 @@
     <div class="menu upper-menu">
       <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
            [ngClass]="{'selected': isSelected(item)}">
-        <span l10nTranslate>{{item.nameKey}}</span>
+        <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
     </div>
     <div class="image-wrapper">
@@ -15,7 +15,7 @@
     <div class="menu bottom-menu">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
            [ngClass]="{'selected': isSelected(item)}">
-        <span l10nTranslate>{{item.nameKey}}</span>
+        <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
     </div>
   </div>

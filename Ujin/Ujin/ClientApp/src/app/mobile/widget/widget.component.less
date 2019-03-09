@@ -16,7 +16,7 @@
         border-bottom: @text-color 2px solid;
 
         &.selected {
-          border-bottom: none;
+          border: none;
         }
       }
     }
@@ -32,6 +32,7 @@
 
     .image-wrapper {
       width: ~"calc(100% - 200px)";
+
       img {
         width: 100%;
       }
@@ -41,8 +42,23 @@
       width: @menu-width;
       flex-direction: column;
 
+      .menu-item {
+        position: relative;
+
+        .text {
+          position: absolute;
+          top: 50%;
+          margin-top: -@paragraph-line-height/2;
+        }
+      }
+
       &.upper-menu .menu-item {
         border-right: @text-color 2px solid;
+        text-align: right;
+
+        .text {
+          right: 5px;
+        }
 
         &.selected {
           border: none;
@@ -51,6 +67,11 @@
 
       &.bottom-menu .menu-item {
         border-left: @text-color 2px solid;
+        text-align: left;
+
+        .text {
+          left: 5px;
+        }
 
         &.selected {
           border: none;

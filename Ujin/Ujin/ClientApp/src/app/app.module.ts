@@ -7,16 +7,19 @@ import { L10nLoader, TranslationModule } from 'angular-l10n';
 import { l10nConfig } from './configs/localization.config';
 
 import { DataLoaderService } from './api/data-loader.service';
+import { WidgetService } from './services/widget.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { DesktopComponent } from './desktop/desktop.component';
+import { WidgetComponent } from './mobile/widget/widget.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MobileComponent,
-    DesktopComponent
+    DesktopComponent,
+    WidgetComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,7 +29,8 @@ import { DesktopComponent } from './desktop/desktop.component';
     TranslationModule.forRoot(l10nConfig)
   ],
   providers: [
-    DataLoaderService
+    DataLoaderService,
+    WidgetService
   ],
   bootstrap: [AppComponent]
 })

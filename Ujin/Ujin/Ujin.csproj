@@ -34,6 +34,8 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\mobile\" />
     <Folder Include="ClientApp\src\app\desktop\" />
+    <Folder Include="ClientApp\src\app\services\" />
+    <Folder Include="ClientApp\src\assets\images\" />
   </ItemGroup>
 
   <ItemGroup>

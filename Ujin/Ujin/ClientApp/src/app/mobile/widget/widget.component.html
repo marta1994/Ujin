@@ -1,0 +1,20 @@
+<div class="widget-background">
+  <div class="logo-header">
+    UJIN_LOGO
+  </div>
+  <div class="menu upper-menu">
+    <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
+         [ngClass]="{'selected': isSelected(item)}">
+      <span l10nTranslate>{{item.nameKey}}</span>
+    </div>
+  </div>
+  <div class="image-wrapper">
+    <img src="../../../assets/images/01.png"/>
+  </div>
+  <div class="menu bottom-menu">
+    <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
+         [ngClass]="{'selected': isSelected(item)}">
+      <span l10nTranslate>{{item.nameKey}}</span>
+    </div>
+  </div>
+</div>

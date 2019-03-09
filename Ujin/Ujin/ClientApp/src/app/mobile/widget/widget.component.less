@@ -1,0 +1,35 @@
+@import '../../../variables.less';
+
+.widget-background {
+  background-color: @backround-color;
+  color: @text-color;
+  font-family: Lato, sans-serif;
+
+  img {
+    width: 100%;
+  }
+
+  .logo-header {
+    color: @text-color;
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  .menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+
+    .menu-item {
+      border-bottom: @text-color 2px solid;
+      flex: 1 1 auto;
+      text-align: center;
+
+      &.selected {
+        border-bottom: none;
+      }
+    }
+  }
+}

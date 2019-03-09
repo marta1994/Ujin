@@ -1,6 +1,27 @@
 {
-  "app": {
-    "test": "Test value"
-  },
-  "test":  "Test value simple"
+  "widget": {
+    "metal": {
+      "capture": "Metal",
+      "whitegold": "White gold",
+      "gold": "Gold",
+      "silver": "Silver"
+    },
+    "gemstone": {
+      "capture": "Gemstone",
+      "sapphire": "Sapphire",
+      "ruby": "Ruby",
+      "amethyst": "Amethyst",
+      "emerald": "Emerald"
+    },
+    "covering": {
+      "capture": "Decoration",
+      "feather": "Feather",
+      "bubble": "Bubble",
+      "doodles": "Doodles",
+      "foil": "Foil"
+    },
+    "size": {
+      "capture":  "Size"
+    }
+  }
 }

@@ -1,6 +1,27 @@
 {
-  "app": {
-    "test": "Тестове значення"
-  },
-  "test": "Просте тестове значення"
+  "widget": {
+    "metal": {
+      "capture": "Метал",
+      "whitegold": "Біле золото",
+      "gold": "Золото",
+      "silver": "Срібло"
+    },
+    "gemstone": {
+      "capture": "Камінь",
+      "sapphire": "Сапфір",
+      "ruby": "Рубін",
+      "amethyst": "Аметист",
+      "emerald": "Смарагд"
+    },
+    "covering": {
+      "capture": "Оздоба",
+      "feather": "Перо",
+      "bubble": "Бульбашка",
+      "doodles": "Кльця",
+      "foil": "Фольга"
+    },
+    "size": {
+      "capture": "Розмір"
+    }
+  }
 }

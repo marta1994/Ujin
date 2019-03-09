@@ -5,8 +5,60 @@
   color: @text-color;
   font-family: @font-family;
 
-  img {
-    width: 100%;
+  @media screen and (orientation:portrait) {
+    img {
+      width: 100%;
+    }
+
+    .menu {
+      width: 100%;
+      padding: 10px 0;
+
+      .menu-item {
+        border-bottom: @text-color 2px solid;
+
+        &.selected {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (orientation:landscape) {
+    @menu-width: 70px;
+
+    .widget-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-wrapper {
+      width: ~"calc(100% - 200px)";
+      img {
+        width: 100%;
+      }
+    }
+
+    .menu {
+      width: @menu-width;
+      flex-direction: column;
+
+      &.upper-menu .menu-item {
+        border-right: @text-color 2px solid;
+
+        &.selected {
+          border: none;
+        }
+      }
+
+      &.bottom-menu .menu-item {
+        border-left: @text-color 2px solid;
+
+        &.selected {
+          border: none;
+        }
+      }
+    }
   }
 
   .logo-header {
@@ -18,12 +70,9 @@
 
   .menu {
     display: flex;
-    width: 100%;
     justify-content: space-around;
-    padding: 10px;
 
     .menu-item {
-      border-bottom: @text-color 2px solid;
       flex: 1 1 auto;
       text-align: center;
 

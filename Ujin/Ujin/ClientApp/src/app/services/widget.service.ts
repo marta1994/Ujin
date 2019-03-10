@@ -5,7 +5,12 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class WidgetService {
   public static SIZE_DEFAULT: number = 17;
-  public static SIZE_RANGE = { min: 11.5, max: 24.5 };
+  public static SIZE_CONFIG = {
+    min: 11.5,
+    max: 24.5,
+    step: 0.5,
+    nameKey: "widget.size.capture"
+  };
 
   private _configuration: MenuConfig[] = [];
 
@@ -45,5 +50,5 @@ export class MenuItem {
 export class MenuConfig {
   constructor(
     public nameKey: string,
-    public value: any) {}
+    public value: any) { }
 }

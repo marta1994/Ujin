@@ -10,7 +10,7 @@ export class WidgetComponent implements OnInit {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
-  private selectedItem: MenuItem;
+  private _selectedItem: MenuItem;
 
   constructor(private widgetService: WidgetService) { }
 
@@ -25,17 +25,35 @@ export class WidgetComponent implements OnInit {
         error => console.log(error));
   }
 
+  public get sliderConfig() {
+    return WidgetService.SIZE_CONFIG;
+  }
+
+  public get selectedItem(): MenuItem {
+    return this._selectedItem;
+  }
+
+  public get sliderValue(): number {
+    return this.configuration.find(c => c.nameKey === WidgetService.SIZE_CONFIG.nameKey)
+      .value;
+  }
+
+  public set sliderValue(val: number) {
+    this.configuration.find(c => c.nameKey === WidgetService.SIZE_CONFIG.nameKey)
+      .value = val;
+  }
+
   public selectItem(item: MenuItem) {
-    this.selectedItem = item;
+    this._selectedItem = item;
   }
 
   public selectSubItem(item: MenuItem) {
-    var configSelected = this.configuration.filter(it => it.nameKey === this.selectedItem.nameKey)[0];
+    var configSelected = this.configuration.filter(it => it.nameKey === this._selectedItem.nameKey)[0];
     configSelected.value = item;
   }
 
   public isSelected(item: MenuItem): boolean {
-    if (item === this.selectedItem)
+    if (item === this._selectedItem)
       return true;
     for (let conf of this.configuration) {
       if (conf.value === item)
@@ -45,6 +63,6 @@ export class WidgetComponent implements OnInit {
   }
 
   public getSelectedSubMenu(): MenuItem[] {
-    return this.selectedItem ? this.selectedItem.subItems : []; 
+    return this._selectedItem ? this._selectedItem.subItems : null; 
   }
  }

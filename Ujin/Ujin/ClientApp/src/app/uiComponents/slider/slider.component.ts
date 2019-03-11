@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { WindowScrollService } from '../../services/window-scroll.service';
 
 @Component({
   selector: 'app-slider',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewChild
 })
 export class SliderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _windowScrollService: WindowScrollService) { }
  
   public width: string = '100%';
 
@@ -57,7 +58,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     if (this.value == null) {
-      this.setValue(this.getVal((this.min + this.max) / 2));
+      this.setValue(this.getVal((this.min + this.max) / 2, this.getElemStartEnd()));
     }
   }
 
@@ -74,7 +75,8 @@ export class SliderComponent implements OnInit {
 
   public get thumbStyles(): any {
     var size = this.thickness * 3;
-    var styleAttr = this.direction === Direction.vertical ? 'margin-top' : 'margin-left';
+    var offsetAttr = this.direction === Direction.vertical ? 'top' : 'left';
+    var centerAttr = this.direction === Direction.vertical ? 'left' : 'top';
     var style = {
       'width': size + 'px',
       'height': size + 'px',
@@ -83,7 +85,8 @@ export class SliderComponent implements OnInit {
       '-moz-border-radius': (size / 2) + "px",
       '-o-border-radius': (size / 2) + "px"
     };
-    style[styleAttr] = this._thumbOffset + "px";
+    style[offsetAttr] = this._thumbOffset + "px";
+    style[centerAttr] = (-size / 2 + this.thickness / 2) + "px";
     return style;
   }
 
@@ -93,9 +96,11 @@ export class SliderComponent implements OnInit {
     var thumbSize = this._sliderThumb.nativeElement.offsetWidth;
     if (pos <= elemStartEnd.start) {
       this._thumbOffset = 0;
+      return;
     }
     if (pos >= elemStartEnd.end) {
       this._thumbOffset = elemStartEnd.end - elemStartEnd.start - thumbSize;
+      return;
     }
     this._thumbOffset = pos - elemStartEnd.start - thumbSize;
   }
@@ -119,8 +124,10 @@ export class SliderComponent implements OnInit {
     };
   }
 
-  private getVal(point: number): number {
-    var stepsCount = Math.floor((point - this.min) / this.step);
+  private getVal(point: number, startEnd: { start: number, end: number }): number {
+    let distRatio = (point - startEnd.start) / (startEnd.end - startEnd.start);
+    let pointNormalized = this.min + (this.max - this.min) * distRatio;
+    let stepsCount = Math.floor((pointNormalized - this.min) / this.step);
     return this.min + stepsCount * this.step;
   }
 
@@ -129,19 +136,31 @@ export class SliderComponent implements OnInit {
     var currentPos = this.getMainCoord(pt);
     if (currentPos <= elemStartEnd.start) {
       this.setValue(this.min);
+      return;
     }
     if (currentPos >= elemStartEnd.end) {
-      this.setValue(this.getVal(this.max));
+      this.setValue(this.getVal(elemStartEnd.end, elemStartEnd));
+      return;
     }
-    this.setValue(this.getVal(currentPos));
+    this.setValue(this.getVal(currentPos, elemStartEnd));
   }
 
-  @HostListener('document:mousemove', ['$event'])
+  @HostListener('document:mouseup', ['$event'])
+  @HostListener('document:touchend', ['$event'])
+  public moveStop() {
+    if (!this._currentInteraction.isInteractionStarted) {
+      return;
+    }
+    this._windowScrollService.enableScroll();
+    this._currentInteraction.stopInteraction();
+  }
+
+  @HostListener('document:mousemove', ['$event'], )
+  @HostListener('document:touchmove', ['$event'])
   public moveProgress(event: TouchEvent | MouseEvent) {
     if (!this._currentInteraction.isInteractionStarted) {
       return;
     }
-    event.stopPropagation();
     var pt = this.getPointFromEvent(event);
     this.calculateValue(pt);
     this.calculateThumbPosition(pt);
@@ -151,6 +170,7 @@ export class SliderComponent implements OnInit {
     if (this._currentInteraction.isInteractionStarted) {
       return;
     }
+    this._windowScrollService.disableScroll();
     event.stopPropagation();
     var pt = this.getPointFromEvent(event);
     this._currentInteraction.startInteraction(pt.x, pt.y);

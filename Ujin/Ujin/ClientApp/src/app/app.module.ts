@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { DesktopComponent } from './desktop/desktop.component';
 import { WidgetComponent } from './mobile/widget/widget.component';
+import { SliderComponent } from './uiComponents/slider/slider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MobileComponent,
     DesktopComponent,
-    WidgetComponent
+    WidgetComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -56,7 +56,9 @@ export class SliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setValue(this.getVal((this.min + this.max) / 2));
+    if (this.value == null) {
+      this.setValue(this.getVal((this.min + this.max) / 2));
+    }
   }
 
   public get scaleStyles(): any {
@@ -108,8 +110,8 @@ export class SliderComponent implements OnInit {
       y: this._sliderScale.nativeElement.offsetTop
     };
     var endPt = {
-      x: this._sliderScale.nativeElement.offsetRight,
-      y: this._sliderScale.nativeElement.offsetBottom
+      x: this._sliderScale.nativeElement.offsetLeft + this._sliderScale.nativeElement.offsetWidth,
+      y: this._sliderScale.nativeElement.offsetTop + this._sliderScale.nativeElement.offsetHeight
     };
     return {
       start: this.getMainCoord(startPt),
@@ -160,6 +162,12 @@ export class SliderComponent implements OnInit {
         x: event.targetTouches[0].pageX,
         y: event.targetTouches[0].pageY
       };
+    }
+    if (event instanceof MouseEvent) {
+      return {
+        x: event.pageX,
+        y: event.pageY
+      }
     }
     return null;
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
+import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
 
 @Component({
   selector: 'app-widget',
@@ -12,17 +13,23 @@ export class WidgetComponent implements OnInit {
   public configuration: MenuConfig[];
   private _selectedItem: MenuItem;
 
-  constructor(private widgetService: WidgetService) { }
+  constructor(
+    private _widgetService: WidgetService,
+    private _screenOrientationService: ScreenOrientationService) { }
 
   ngOnInit() {
-    this.widgetService.loadMenuItems()
+    this._widgetService.loadMenuItems()
       .subscribe(
         data => {
           this.menuItems = data;
           this.selectItem(this.menuItems[0]);
-          this.configuration = this.widgetService.configuration;
+          this.configuration = this._widgetService.configuration;
         },
         error => console.log(error));
+  }
+
+  public get sliderDirection(): string {
+    return this._screenOrientationService.orientation === ScreenOrientation.Landscape ? "vertical" : "horizontal";
   }
 
   public get sliderConfig() {

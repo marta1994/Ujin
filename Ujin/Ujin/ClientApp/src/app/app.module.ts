@@ -9,6 +9,7 @@ import { l10nConfig } from './configs/localization.config';
 import { DataLoaderService } from './api/data-loader.service';
 import { WidgetService } from './services/widget.service';
 import { WindowScrollService } from './services/window-scroll.service';
+import { ScreenOrientationService } from './services/screen-orientation.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -34,7 +35,8 @@ import { SliderComponent } from './uiComponents/slider/slider.component';
   providers: [
     DataLoaderService,
     WidgetService,
-    WindowScrollService
+    WindowScrollService,
+    ScreenOrientationService
   ],
   bootstrap: [AppComponent]
 })

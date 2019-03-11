@@ -18,15 +18,12 @@
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
       <div *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey" class="slider">
-        <app-slider
-                    [direction]="'vertical'"
+        <app-slider class="slider-instance"
+                    [direction]="sliderDirection"
                     [min]="sliderConfig.min"
                     [max]="sliderConfig.max"
                     [step]="sliderConfig.step"
-                    [(value)]="sliderValue"
-                    style="height:100%"></app-slider>
-        <!--<input type="range" min="{{sliderConfig.min}}" max="{{sliderConfig.max}}" step="{{sliderConfig.step}}"
-               [(ngModel)]="sliderValue" id="myRange">-->
+                    [(value)]="sliderValue"></app-slider>
         <span class="text">
           {{sliderValue}}
         </span>

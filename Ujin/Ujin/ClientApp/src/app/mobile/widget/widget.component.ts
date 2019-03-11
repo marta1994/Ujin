@@ -40,7 +40,7 @@ export class WidgetComponent implements OnInit {
       name += val.split('.')[2];
       name += i === idArr.length - 1 ? "" : "_";
     }
-    return `../../../assets/images/widget-rings/${name}.png`;
+    return `../../../assets/images/widget-rings/min/${name}-min.png`;
   }
 
   public get sliderDirection(): string {

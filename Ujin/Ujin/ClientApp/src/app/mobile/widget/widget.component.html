@@ -1,6 +1,6 @@
 <div class="widget-background">
   <div class="logo-header">
-    UJIN_LOGO
+    <span [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
   </div>
   <div class="widget-container">
     <div class="menu upper-menu">
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="image-wrapper">
-      <img [src]="imageSrc" />
+      <img *ngIf="imageSrc" [src]="imageSrc" />
     </div>
     <div class="menu bottom-menu">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"

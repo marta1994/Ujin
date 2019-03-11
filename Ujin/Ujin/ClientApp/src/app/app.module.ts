@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { L10nLoader, TranslationModule } from 'angular-l10n';
 import { l10nConfig } from './configs/localization.config';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { DataLoaderService } from './api/data-loader.service';
 import { WidgetService } from './services/widget.service';
@@ -30,7 +31,8 @@ import { SliderComponent } from './uiComponents/slider/slider.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([]),
-    TranslationModule.forRoot(l10nConfig)
+    TranslationModule.forRoot(l10nConfig),
+    InlineSVGModule.forRoot()
   ],
   providers: [
     DataLoaderService,

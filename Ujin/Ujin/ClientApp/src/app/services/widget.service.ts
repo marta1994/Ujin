@@ -11,6 +11,9 @@ export class WidgetService {
     step: 0.5,
     nameKey: "widget.size.capture"
   };
+  public static METAL_KEY: string = "widget.metal.capture";
+  public static GEMSTONE_KEY: string = "widget.gemstone.capture";
+  public static DECORATION_KEY: string = "widget.covering.capture";
 
   private _configuration: MenuConfig[] = [];
 

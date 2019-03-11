@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="image-wrapper">
-      <img src="../../../assets/images/01.png" />
+      <img [src]="imageSrc" />
     </div>
     <div class="menu bottom-menu">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"

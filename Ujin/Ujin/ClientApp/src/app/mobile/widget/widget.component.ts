@@ -28,6 +28,21 @@ export class WidgetComponent implements OnInit {
         error => console.log(error));
   }
 
+  public get imageSrc(): string {
+    if (!this.configuration) return null;
+    var idArr = [
+      this.configuration.find(it => it.nameKey === WidgetService.METAL_KEY),
+      this.configuration.find(it => it.nameKey === WidgetService.GEMSTONE_KEY),
+      this.configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY)];
+    var name: string = "";
+    for (let i = 0; i < idArr.length; ++i) {
+      var val: string = idArr[i].value.nameKey;
+      name += val.split('.')[2];
+      name += i === idArr.length - 1 ? "" : "_";
+    }
+    return `../../../assets/images/widget-rings/${name}.png`;
+  }
+
   public get sliderDirection(): string {
     return this._screenOrientationService.orientation === ScreenOrientation.Landscape ? "vertical" : "horizontal";
   }

@@ -11,6 +11,8 @@ import { DataLoaderService } from './api/data-loader.service';
 import { WidgetService } from './services/widget.service';
 import { WindowScrollService } from './services/window-scroll.service';
 import { ScreenOrientationService } from './services/screen-orientation.service';
+import { SliderHelperService } from './uiComponents/slider/slider-helper.service';
+import { SliderDirectionService } from './uiComponents/slider/slider-direction.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -38,7 +40,9 @@ import { SliderComponent } from './uiComponents/slider/slider.component';
     DataLoaderService,
     WidgetService,
     WindowScrollService,
-    ScreenOrientationService
+    ScreenOrientationService,
+    SliderHelperService,
+    SliderDirectionService
   ],
   bootstrap: [AppComponent]
 })

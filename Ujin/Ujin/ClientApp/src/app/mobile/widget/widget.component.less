@@ -5,6 +5,7 @@
   @slider-width: 4px;
   @slider-color: #d1d1d1;
   @slider-thumb-size: 10px;
+  @menu-border: @text-color 2px solid;
 
   .logo-header {
     color: @text-color;
@@ -38,7 +39,7 @@
       padding: 10px 0;
 
       .menu-item {
-        border-bottom: @text-color 2px solid;
+        border-bottom: @menu-border;
         padding-bottom: 5px;
 
         &.selected {
@@ -97,7 +98,7 @@
       }
 
       &.upper-menu .menu-item {
-        border-right: @text-color 2px solid;
+        border-right: @menu-border;
         text-align: right;
 
         .text {
@@ -110,7 +111,7 @@
       }
 
       &.bottom-menu .menu-item {
-        border-left: @text-color 2px solid;
+        border-left: @menu-border;
         text-align: left;
 
         .text {

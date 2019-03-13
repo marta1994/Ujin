@@ -21,7 +21,11 @@
       "foil": "Foil"
     },
     "size": {
-      "capture":  "Size"
+      "capture": "Size"
     }
+  },
+  "motto": {
+    "threeStepMotto": "Imagine, Choose, And we'll make it!",
+    "pushAction": "Create your own jewelry by yourself!"
   }
 }

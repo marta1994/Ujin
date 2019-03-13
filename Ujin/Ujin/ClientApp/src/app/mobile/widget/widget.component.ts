@@ -29,18 +29,7 @@ export class WidgetComponent implements OnInit {
   }
 
   public get imageSrc(): string {
-    if (!this.configuration) return null;
-    var idArr = [
-      this.configuration.find(it => it.nameKey === WidgetService.METAL_KEY),
-      this.configuration.find(it => it.nameKey === WidgetService.GEMSTONE_KEY),
-      this.configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY)];
-    var name: string = "";
-    for (let i = 0; i < idArr.length; ++i) {
-      var val: string = idArr[i].value.nameKey;
-      name += val.split('.')[2];
-      name += i === idArr.length - 1 ? "" : "_";
-    }
-    return `../../../assets/images/widget-rings/min/${name}-min.png`;
+    return this._widgetService.mobileImage;
   }
 
   public get sliderDirection(): string {

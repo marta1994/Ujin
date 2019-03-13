@@ -7,8 +7,8 @@ export class SliderDirectionService {
   public direction: Direction;
 
   constructor(private _helper: SliderHelperService) {
+  }
   
-
   public getWidth(thickness: number, size: string): string {
     return this.direction === Direction.vertical ?
       this._helper.px(thickness) :

@@ -43,6 +43,29 @@ export class WidgetService {
       this._configuration.push(new MenuConfig(it.nameKey, val));
     });
   }
+
+  public get desktopImage(): string {
+    return this.getImagePath('desktop');
+  }
+
+  public get mobileImage(): string {
+    return this.getImagePath('mobile');
+  }
+
+  private getImagePath(folder: string): string {
+    if (!this._configuration || !this.configuration.length) return null;
+    var idArr = [
+      this._configuration.find(it => it.nameKey === WidgetService.METAL_KEY),
+      this._configuration.find(it => it.nameKey === WidgetService.GEMSTONE_KEY),
+      this._configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY)];
+    var name: string = "";
+    for (let i = 0; i < idArr.length; ++i) {
+      var val: string = idArr[i].value.nameKey;
+      name += val.split('.')[2];
+      name += i === idArr.length - 1 ? "" : "_";
+    }
+    return `../../../assets/images/widget-rings/${folder}/${name}.png`;
+  }
 }
 
 export class MenuItem {

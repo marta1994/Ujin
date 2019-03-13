@@ -24,6 +24,9 @@ export class SliderComponent implements OnInit {
   @Input() value: number;
 
   private setValue(val: number) {
+    if (val === this.value) {
+      return;
+    }
     this.value = val;
     this.valueChange.emit(this.value);
   }

@@ -16,16 +16,23 @@
            [ngClass]="{'selected': isSelected(item)}">
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
-      <div *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey" class="slider">
-        <app-slider class="slider-instance"
-                    [direction]="sliderDirection"
-                    [min]="sliderConfig.min"
-                    [max]="sliderConfig.max"
-                    [step]="sliderConfig.step"
-                    [(value)]="sliderValue"></app-slider>
-        <span class="text">
-          {{sliderValue}}
-        </span>
+      <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">
+        <div *ngIf="sliderDirection === 'horizontal'" class="slider">
+          <app-slider class="slider-instance"
+                      [direction]="sliderDirection"
+                      [min]="sliderConfig.min"
+                      [max]="sliderConfig.max"
+                      [step]="sliderConfig.step"
+                      [(value)]="sliderValue"></app-slider>
+          <span class="text">
+            {{sliderValue}}
+          </span>
+        </div>
+        <app-counter *ngIf="sliderDirection === 'vertical'"
+                     [min]="sliderConfig.min"
+                     [max]="sliderConfig.max"
+                     [step]="sliderConfig.step"
+                     [(value)]="sliderValue"></app-counter>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class NavMenuComponent implements OnInit {
 
   private _menuState: MenuState = MenuState.Closed;
+
+  @Output()
+  public menuStateChange: EventEmitter<MenuState> = new EventEmitter<MenuState>();
 
   constructor() { }
 
@@ -24,11 +27,12 @@ export class NavMenuComponent implements OnInit {
 
   public shwitchMenuState() {
     this._menuState = this._menuState === MenuState.Closed ? MenuState.Opened : MenuState.Closed;
+    this.menuStateChange.emit(this._menuState);
   }
 
 }
 
-enum MenuState {
-  Opened = "opened";
-  Closed = "closed";
+export enum MenuState {
+  Opened = "opened",
+  Closed = "closed"
 }

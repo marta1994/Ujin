@@ -1,0 +1,27 @@
+@import '../../../variables.less';
+
+.header {
+  background-color: @text-color;
+
+  .nav-menu {
+    position: absolute;
+  }
+
+  .logo-header {
+    height: @header-height;
+    padding: 0 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    span {
+      display: block;
+      width: 80px;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+  }
+}

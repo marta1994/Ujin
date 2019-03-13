@@ -19,6 +19,8 @@ import { MobileComponent } from './mobile/mobile.component';
 import { DesktopComponent } from './desktop/desktop.component';
 import { WidgetComponent } from './mobile/widget/widget.component';
 import { SliderComponent } from './uiComponents/slider/slider.component';
+import { HeaderComponent } from './mobile/header/header.component';
+import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SliderComponent } from './uiComponents/slider/slider.component';
     MobileComponent,
     DesktopComponent,
     WidgetComponent,
-    SliderComponent
+    SliderComponent,
+    HeaderComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

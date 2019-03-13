@@ -1,0 +1,13 @@
+@import '../../../variables.less';
+
+.hamburger {
+  margin-top: @header-height / 2 - 28.5px;
+
+  &:focus {
+    outline: none;
+  }
+
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    background-color: @backround-color;
+  }
+}

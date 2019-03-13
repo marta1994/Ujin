@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataLoaderService } from './api/data-loader.service';
-import { LocaleService } from 'angular-l10n';
-import { languages } from './configs/localization.config';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +8,12 @@ import { languages } from './configs/localization.config';
 })
 export class AppComponent implements OnInit {
   public deviceType: DeviceType;
-  public languages = languages;
 
-  constructor(
-    private locale: LocaleService,
-    private dataLoader: DataLoaderService) {
+  constructor(private _dataLoader: DataLoaderService) {
   }
 
   private getDeviceType() {
-    this.dataLoader.loadData<DeviceType>('api/userAgent/DetermineDeviceType').subscribe(result => {
+    this._dataLoader.loadData<DeviceType>('api/userAgent/DetermineDeviceType').subscribe(result => {
       this.deviceType = result;
     }, error => console.error(error));
   }
@@ -33,10 +28,6 @@ export class AppComponent implements OnInit {
 
   public showDesktop(): boolean {
     return this.deviceType === DeviceType.Desktop || this.deviceType === DeviceType.Unknown;
-  }
-
-  public setLanguage(langCode) {
-    this.locale.setCurrentLanguage(langCode);
   }
 }
 

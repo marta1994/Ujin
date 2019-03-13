@@ -1,8 +1,9 @@
 <div class="menu">
-  <button (click)="shwitchMenuState()" [ngClass]="{'is-active': menuOpened}"
-          class="hamburger hamburger--slider" type="button">
-    <span class="hamburger-box">
-      <span class="hamburger-inner"></span>
+  <div class="languages-container">
+    <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
+          *ngFor="let language of languages"
+          (click)="setLanguage(language)">
+      {{language.name}}
     </span>
-  </button>
+  </div>
 </div>

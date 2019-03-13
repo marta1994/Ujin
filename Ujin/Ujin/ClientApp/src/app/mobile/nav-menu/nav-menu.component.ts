@@ -1,4 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { LocaleService } from 'angular-l10n';
+import { languages } from '../../configs/localization.config';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,32 +9,32 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  private _menuState: MenuState = MenuState.Closed;
-
   @Output()
-  public menuStateChange: EventEmitter<MenuState> = new EventEmitter<MenuState>();
+  public menuCloseActionHappened: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private _locale: LocaleService) { }
 
   ngOnInit() {
   }
 
-  public get menuOpened(): boolean {
-    return this._menuState === MenuState.Opened;
+  public get languages(): { name: string, code: string }[] {
+    return languages.map(l => {
+      return {
+        name: l.displayName,
+        code: l.code
+      };
+    });
   }
 
-  public get menuClosed(): boolean {
-    return this._menuState === MenuState.Closed;
+  public isLangSelected(lang: { name: string, code: string }): boolean {
+    return this._locale.getCurrentLanguage() === lang.code;
   }
 
-  public shwitchMenuState() {
-    this._menuState = this._menuState === MenuState.Closed ? MenuState.Opened : MenuState.Closed;
-    this.menuStateChange.emit(this._menuState);
+  public setLanguage(lang: { name: string, code: string }) {
+    if (this.isLangSelected(lang)) {
+      return;
+    }
+    this._locale.setCurrentLanguage(lang.code);
+    this.menuCloseActionHappened.emit();
   }
-
-}
-
-export enum MenuState {
-  Opened = "opened",
-  Closed = "closed"
 }

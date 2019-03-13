@@ -1,7 +1,10 @@
 <div class="header">
-  <app-nav-menu (menuStateChange)="onMenuStateChange($event)"
-                class="nav-menu"
-                [ngClass]="{'opened': menuOpened, 'closed': menuClosed}"></app-nav-menu>
+  <button (click)="shwitchMenuState()" [ngClass]="{'is-active': menuOpened}"
+          class="hamburger hamburger--slider" type="button">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
   <div class="logo-header">
     <span [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
   </div>
@@ -9,3 +12,5 @@
     <span [inlineSVG]="'/assets/images/share.svg'"></span>
   </div>
 </div>
+<app-nav-menu class="nav-menu" (menuCloseActionHappened)="shwitchMenuState()"
+      [ngClass]="{'opened': menuOpened, 'closed': menuClosed}"></app-nav-menu>

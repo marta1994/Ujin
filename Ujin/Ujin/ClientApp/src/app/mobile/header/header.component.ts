@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuState } from '../nav-menu/nav-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +22,12 @@ export class HeaderComponent implements OnInit {
     return this._menuState === MenuState.Closed;
   }
 
-  public onMenuStateChange(menuState: MenuState) {
-    this._menuState = menuState;
+  public shwitchMenuState() {
+    this._menuState = this._menuState === MenuState.Closed ? MenuState.Opened : MenuState.Closed;
   }
+}
 
+enum MenuState {
+  Opened = "opened",
+  Closed = "closed"
 }

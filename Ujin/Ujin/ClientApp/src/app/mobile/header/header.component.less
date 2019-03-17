@@ -27,6 +27,11 @@
     top: @header-height/2 - @share-height/2;
     height: @share-height;
     right: 15px;
+
+    ::ng-deep svg {
+      fill: @backround-color;
+      height: 100%;
+    }
   }
 
   .logo-header {
@@ -44,6 +49,10 @@
       -o-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       transform: rotate(90deg);
+
+      ::ng-deep svg {
+        fill: @backround-color;
+      }
     }
   }
 }

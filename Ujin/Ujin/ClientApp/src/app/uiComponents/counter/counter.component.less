@@ -19,6 +19,12 @@
     height: @arrow-size;
     width: @arrow-size;
 
+    ::ng-deep svg {
+      fill: @text-color;
+      height: 100%;
+      width: 100%;
+    }
+
     &.up-arrow {
       -webkit-transform: rotate(180deg);
       -moz-transform: rotate(180deg);

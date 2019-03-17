@@ -40,7 +40,7 @@ import { CounterComponent } from './uiComponents/counter/counter.component';
     FormsModule,
     RouterModule.forRoot([]),
     TranslationModule.forRoot(l10nConfig),
-    InlineSVGModule.forRoot()
+    InlineSVGModule
   ],
   providers: [
     DataLoaderService,

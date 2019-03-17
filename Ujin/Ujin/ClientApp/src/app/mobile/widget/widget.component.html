@@ -18,12 +18,11 @@
       </div>
       <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">
         <div *ngIf="sliderDirection === 'horizontal'" class="slider">
-          <app-slider class="slider-instance"
-                      [direction]="sliderDirection"
+          <app-slider-regular class="slider-instance"
                       [min]="sliderConfig.min"
                       [max]="sliderConfig.max"
                       [step]="sliderConfig.step"
-                      [(value)]="sliderValue"></app-slider>
+                      [(value)]="sliderValue"></app-slider-regular>
           <span class="text">
             {{sliderValue}}
           </span>

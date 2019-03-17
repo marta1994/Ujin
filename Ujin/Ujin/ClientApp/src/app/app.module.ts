@@ -22,6 +22,7 @@ import { SliderComponent } from './uiComponents/slider/slider.component';
 import { HeaderComponent } from './mobile/header/header.component';
 import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 import { CounterComponent } from './uiComponents/counter/counter.component';
+import { SliderRegularComponent } from './uiComponents/slider-regular/slider-regular.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CounterComponent } from './uiComponents/counter/counter.component';
     SliderComponent,
     HeaderComponent,
     NavMenuComponent,
-    CounterComponent
+    CounterComponent,
+    SliderRegularComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -5,7 +5,9 @@
 
   .hamburger {
     position: absolute;
-    margin-top: @header-height / 2 - 28.5px;
+    margin-top: @header-height / 2 - 12px;
+    margin-left: 15px;
+    padding: 0;
 
     &:focus {
       outline: none;
@@ -13,6 +15,9 @@
 
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
       background-color: @backround-color;
+      height: 2px;
+      border-radius: 1px;
+      width: 30px;
     }
   }
 

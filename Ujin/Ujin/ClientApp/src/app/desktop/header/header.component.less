@@ -50,9 +50,24 @@
       transition: color ease 200ms;
       display: inline-flex;
       align-items: flex-end;
+      position: relative;
+
+      .social-buttons {
+        height: 0;
+        width: 120px;
+        padding-top: 18px;
+        top: @menu-item-size;
+        position: absolute;
+        overflow: hidden;
+        transition: height ease 200ms;
+      }
 
       &:hover {
         color: @light-gey;
+
+        .social-buttons {
+          height: 50px;
+        }
 
         .svg-holder ::ng-deep svg {
           fill: @light-gey;

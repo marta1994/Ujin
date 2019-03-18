@@ -6,6 +6,41 @@
   padding-top: @desktop-header-height;
   background-color: @black-color;
 
+  .widget-and-description {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+
+    .widget-description {
+      width: 400px;
+      margin: 0 30px;
+      font-size: 16px;
+      line-height: 22px;
+
+      .motto {
+        display: block;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .widget-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .menu .menu-item {
+      cursor: pointer;
+      transition: color ease 200ms, border-color ease 200ms;
+      font-weight: 900;
+
+      &:hover {
+        color: @light-gey;
+        border-color: @light-gey;
+      }
+    }
+  }
+
   .widget-menu-holder {
     display: flex;
 
@@ -20,12 +55,62 @@
     .right-menu {
       display: inline-flex;
       flex-direction: column;
+      width: 80px;
 
       .menu-item {
         flex: 1;
-        text-align: right;
         border-right: @menu-border;
-        padding-right: 10px;
+        position: relative;
+
+        .text {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          margin-top: -@paragraph-line-height/2;
+        }
+
+        &.selected {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  .bottom-menu {
+    display: inline-flex;
+    height: 30px;
+    padding-right: 40px;
+
+    .menu-item {
+      flex: 1;
+      padding-bottom: 10px;
+      border-bottom: @menu-border;
+      text-align: center;
+
+      &.selected {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .size-case {
+    width: 100%;
+
+    .slider {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0 25px;
+
+      .slider-instance {
+        width: ~"calc(100% - 50px)";
+      }
+
+      .text {
+        display: inline-block;
+        text-align: right;
+        width: 40px;
       }
     }
   }

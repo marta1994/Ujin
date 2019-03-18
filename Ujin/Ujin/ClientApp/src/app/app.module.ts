@@ -46,7 +46,7 @@ import { SliderRegularComponent } from './uiComponents/slider-regular/slider-reg
     FormsModule,
     RouterModule.forRoot([]),
     TranslationModule.forRoot(l10nConfig),
-    InlineSVGModule
+    InlineSVGModule.forRoot({ baseUrl: '' })
   ],
   providers: [
     DataLoaderService,

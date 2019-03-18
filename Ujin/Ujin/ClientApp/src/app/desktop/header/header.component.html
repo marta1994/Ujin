@@ -1,0 +1,24 @@
+<div class="header">
+  <span class="logo-header" [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
+  <span class="motto-holder" l10nTranslate>motto.threeStepMotto</span>
+  <div class="right-menu-holder">
+    <span class="like-item menu-item">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/heart.svg'"></span>
+      <span l10nTranslate>rightMenu.like</span>
+    </span>
+    <span class="share-item menu-item">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/share.svg'"></span>
+      <span l10nTranslate>rightMenu.share</span>
+    </span>
+    <span class="contacts-item menu-item">
+      <span l10nTranslate>rightMenu.contacts</span>
+    </span>
+  </div>
+  <div class="language-select">
+    <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
+          *ngFor="let language of languages"
+          (click)="setLanguage(language)">
+      {{language.name}}
+    </span>
+  </div>
+</div>

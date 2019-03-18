@@ -19,7 +19,8 @@ import { MobileComponent } from './mobile/mobile.component';
 import { DesktopComponent } from './desktop/desktop.component';
 import { WidgetComponent } from './mobile/widget/widget.component';
 import { SliderComponent } from './uiComponents/slider/slider.component';
-import { HeaderComponent } from './mobile/header/header.component';
+import { HeaderComponent as MobileHeaderComponent } from './mobile/header/header.component';
+import { HeaderComponent as DesktopHeaderComponent } from './desktop/header/header.component';
 import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 import { CounterComponent } from './uiComponents/counter/counter.component';
 import { SliderRegularComponent } from './uiComponents/slider-regular/slider-regular.component';
@@ -31,7 +32,8 @@ import { SliderRegularComponent } from './uiComponents/slider-regular/slider-reg
     DesktopComponent,
     WidgetComponent,
     SliderComponent,
-    HeaderComponent,
+    MobileHeaderComponent,
+    DesktopHeaderComponent,
     NavMenuComponent,
     CounterComponent,
     SliderRegularComponent

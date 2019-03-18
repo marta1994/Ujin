@@ -3,7 +3,7 @@ import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.servi
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
 
 @Component({
-  selector: 'app-widget',
+  selector: 'app-mobile-widget',
   templateUrl: './widget.component.html',
   styleUrls: ['./widget.component.less']
 })

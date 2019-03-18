@@ -1,11 +1,11 @@
 @import '../../../variables.less';
 
 .header {
-  background-color: @text-color;
+  background-color: @white-color;
 
   .hamburger {
     position: absolute;
-    margin-top: @header-height / 2 - 12px;
+    margin-top: @mobile-header-height / 2 - 12px;
     margin-left: 15px;
     padding: 0;
 
@@ -14,7 +14,7 @@
     }
 
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-      background-color: @backround-color;
+      background-color: @black-color;
       height: 2px;
       border-radius: 1px;
       width: 30px;
@@ -24,18 +24,18 @@
   .share-header {
     position: absolute;
     @share-height: 30px;
-    top: @header-height/2 - @share-height/2;
+    top: @mobile-header-height/2 - @share-height/2;
     height: @share-height;
     right: 15px;
 
     ::ng-deep svg {
-      fill: @backround-color;
+      fill: @black-color;
       height: 100%;
     }
   }
 
   .logo-header {
-    height: @header-height;
+    height: @mobile-header-height;
     padding: 0 0;
     display: flex;
     width: 100%;
@@ -43,7 +43,7 @@
 
     span {
       display: block;
-      width: @header-height;
+      width: @mobile-header-height;
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
       -o-transform: rotate(90deg);
@@ -51,7 +51,7 @@
       transform: rotate(90deg);
 
       ::ng-deep svg {
-        fill: @backround-color;
+        fill: @black-color;
       }
     }
   }
@@ -63,7 +63,7 @@
   -webkit-transition: @trans-value;
   -o-transition: @trans-value;
   position: absolute;
-  top: @header-height;
+  top: @mobile-header-height;
   z-index: 10;
   height: 200px;
 

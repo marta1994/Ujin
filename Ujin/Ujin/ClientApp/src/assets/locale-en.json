@@ -27,5 +27,10 @@
   "motto": {
     "threeStepMotto": "Imagine, Choose, And we'll make it!",
     "pushAction": "Create your own jewelry by yourself!"
+  },
+  "rightMenu": {
+    "like": "Like",
+    "share": "Share",
+    "contacts": "Contacts"
   }
 }

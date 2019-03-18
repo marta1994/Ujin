@@ -1,0 +1,96 @@
+@import '../../../variables.less';
+
+.header {
+  background-color: @white-color;
+  color: @black-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .logo-header {
+    display: block;
+    margin-right: 80px;
+    width: @desktop-header-height;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+    ::ng-deep svg {
+      fill: @black-color;
+    }
+  }
+
+  .motto-holder {
+    margin-right: 100px;
+    font-size: 20px;
+  }
+
+  .right-menu-holder {
+    @menu-item-size: 15px;
+    font-size: @menu-item-size;
+    margin-right: 80px;
+    display: inline-flex;
+
+    .menu-item {
+      border-right: 1px solid @black-color;
+      padding: 0 10px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color ease 200ms;
+      display: inline-flex;
+      align-items: flex-end;
+
+      &:hover {
+        color: @light-gey;
+
+        .svg-holder ::ng-deep svg {
+          fill: @light-gey;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .svg-holder {
+        display: inline-block;
+        height: @menu-item-size;
+        width: @menu-item-size;
+        margin-right: 3px;
+
+        ::ng-deep svg {
+          fill: @black-color;
+          transition: fill ease 200ms;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .language-select {
+    display: inline-flex;
+
+    .lang-option {
+      cursor: pointer;
+      transition: color ease 200ms;
+      border-right: 1px solid @black-color;
+      padding: 0 10px;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &.selected {
+        color: @light-gey;
+        cursor: default;
+      }
+
+      &:hover {
+        color: @light-gey;
+      }
+    }
+  }
+}

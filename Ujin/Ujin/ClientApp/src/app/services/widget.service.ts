@@ -45,14 +45,14 @@ export class WidgetService {
   }
 
   public get desktopImage(): string {
-    return this.getImagePath('desktop');
+    return this.getImagePath('desktop', '-min');
   }
 
   public get mobileImage(): string {
     return this.getImagePath('mobile');
   }
 
-  private getImagePath(folder: string): string {
+  private getImagePath(folder: string, suffix: string = ''): string {
     if (!this._configuration || !this.configuration.length) return null;
     var idArr = [
       this._configuration.find(it => it.nameKey === WidgetService.METAL_KEY),
@@ -64,7 +64,7 @@ export class WidgetService {
       name += val.split('.')[2];
       name += i === idArr.length - 1 ? "" : "_";
     }
-    return `../../../assets/images/widget-rings/${folder}/${name}.png`;
+    return `../../../assets/images/widget-rings/${folder}/${name}${suffix}.png`;
   }
 }
 

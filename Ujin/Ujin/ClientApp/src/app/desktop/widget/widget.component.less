@@ -1,0 +1,32 @@
+@import '../../../variables.less';
+
+.widget-background {
+  @image-height: 400px;
+  @menu-border: @white-color 2px solid;
+  padding-top: @desktop-header-height;
+  background-color: @black-color;
+
+  .widget-menu-holder {
+    display: flex;
+
+    .image-wrapper {
+      height: @image-height;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .right-menu {
+      display: inline-flex;
+      flex-direction: column;
+
+      .menu-item {
+        flex: 1;
+        text-align: right;
+        border-right: @menu-border;
+        padding-right: 10px;
+      }
+    }
+  }
+}

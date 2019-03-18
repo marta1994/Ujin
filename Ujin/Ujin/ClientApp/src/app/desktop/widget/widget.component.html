@@ -1,0 +1,33 @@
+<div class="widget-background">
+  <div class="widget-container">
+    <div class="widget-menu-holder">
+      <div class="image-wrapper">
+        <img *ngIf="imageSrc" [src]="imageSrc" />
+      </div>
+      <div class="menu right-menu">
+        <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
+             [ngClass]="{'selected': isSelected(item)}">
+          <span class="text" l10nTranslate>{{item.nameKey}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu bottom-menu">
+      <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
+           [ngClass]="{'selected': isSelected(item)}">
+        <span class="text" l10nTranslate>{{item.nameKey}}</span>
+      </div>
+      <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">
+        <div class="slider">
+          <app-slider-regular class="slider-instance"
+                              [min]="sliderConfig.min"
+                              [max]="sliderConfig.max"
+                              [step]="sliderConfig.step"
+                              [(value)]="sliderValue"></app-slider-regular>
+          <span class="text">
+            {{sliderValue}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

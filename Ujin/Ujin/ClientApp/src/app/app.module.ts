@@ -17,7 +17,8 @@ import { SliderDirectionService } from './uiComponents/slider/slider-direction.s
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
 import { DesktopComponent } from './desktop/desktop.component';
-import { WidgetComponent } from './mobile/widget/widget.component';
+import { WidgetComponent as MobileWidgetComponent } from './mobile/widget/widget.component';
+import { WidgetComponent as DesktopWidgetComponent } from './desktop/widget/widget.component';
 import { SliderComponent } from './uiComponents/slider/slider.component';
 import { HeaderComponent as MobileHeaderComponent } from './mobile/header/header.component';
 import { HeaderComponent as DesktopHeaderComponent } from './desktop/header/header.component';
@@ -30,7 +31,8 @@ import { SliderRegularComponent } from './uiComponents/slider-regular/slider-reg
     AppComponent,
     MobileComponent,
     DesktopComponent,
-    WidgetComponent,
+    MobileWidgetComponent,
+    DesktopWidgetComponent,
     SliderComponent,
     MobileHeaderComponent,
     DesktopHeaderComponent,

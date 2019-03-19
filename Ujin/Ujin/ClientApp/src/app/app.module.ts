@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { L10nLoader, TranslationModule } from 'angular-l10n';
@@ -45,6 +46,7 @@ import { SliderRegularComponent } from './uiComponents/slider-regular/slider-reg
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([]),
+    BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     InlineSVGModule.forRoot({ baseUrl: '' })
   ],

@@ -8,7 +8,7 @@
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
     </div>
-    <div class="image-wrapper">
+    <div class="image-wrapper" (swipeleft)="moveToNextConfig()" (swiperight)="moveToPrevConfig()">
       <img *ngIf="imageSrc" [src]="imageSrc" />
     </div>
     <div class="menu bottom-menu">

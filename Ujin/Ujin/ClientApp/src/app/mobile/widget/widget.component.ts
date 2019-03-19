@@ -5,7 +5,8 @@ import { ScreenOrientationService, ScreenOrientation } from '../../services/scre
 @Component({
   selector: 'app-mobile-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.less']
+  styleUrls: ['./widget.component.less'],
+  animations: []
 })
 export class WidgetComponent implements OnInit {
 
@@ -75,5 +76,21 @@ export class WidgetComponent implements OnInit {
 
   public getSelectedSubMenu(): MenuItem[] {
     return this._selectedItem ? this._selectedItem.subItems : null; 
+  }
+
+  public moveToNextConfig() {
+    if (!this._selectedItem) return;
+    var selectedInd = this._selectedItem.subItems.findIndex(si => this.isSelected(si));
+    if (selectedInd < this._selectedItem.subItems.length - 1) {
+      this.selectSubItem(this._selectedItem.subItems[selectedInd + 1]);
+    }
+  }
+
+  public moveToPrevConfig() {
+    if (!this._selectedItem) return;
+    var selectedInd = this._selectedItem.subItems.findIndex(si => this.isSelected(si));
+    if (selectedInd >= 0) {
+      this.selectSubItem(this._selectedItem.subItems[selectedInd - 1]);
+    }
   }
  }

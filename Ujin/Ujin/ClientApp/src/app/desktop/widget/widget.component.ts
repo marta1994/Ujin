@@ -27,7 +27,7 @@ export class WidgetComponent implements OnInit {
   }
 
   public get imageSrc(): string {
-    return this._widgetService.desktopImage;
+    return this._widgetService.mobileImage;
   }
 
   public get sliderConfig() {

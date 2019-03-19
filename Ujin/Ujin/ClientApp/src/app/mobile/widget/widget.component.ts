@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
+import { trigger, useAnimation, transition } from '@angular/animations';
+import { slideInLeft, slideInRight } from 'ng-animate';
 
 @Component({
   selector: 'app-mobile-widget',
   templateUrl: './widget.component.html',
   styleUrls: ['./widget.component.less'],
-  animations: []
+  animations: [
+    trigger('widgetImg', [
+      transition(':decrement', useAnimation(slideInLeft, { params: { timing: 0.3 } })),
+      transition(':increment', useAnimation(slideInRight, { params: { timing: 0.3 } })),
+      transition('* => select', useAnimation(slideInRight, { params: { timing: 0.3 } }))])
+  ]
 })
 export class WidgetComponent implements OnInit {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
-  private _selectedItem: MenuItem;
+  private _selectedItem: MenuItem;  
 
   constructor(
     private _widgetService: WidgetService,
@@ -55,6 +62,12 @@ export class WidgetComponent implements OnInit {
       .value = val;
   }
 
+  public get selectedSubItemIndex(): number {
+    if (!this.selectedItem || !this.selectedItem.subItems) return null;
+    let configSelected = this.configuration.filter(it => it.nameKey === this._selectedItem.nameKey)[0];
+    return this.selectedItem.subItems.indexOf(configSelected.value);
+  }
+
   public selectItem(item: MenuItem) {
     this._selectedItem = item;
   }
@@ -89,7 +102,7 @@ export class WidgetComponent implements OnInit {
   public moveToPrevConfig() {
     if (!this._selectedItem) return;
     var selectedInd = this._selectedItem.subItems.findIndex(si => this.isSelected(si));
-    if (selectedInd >= 0) {
+    if (selectedInd > 0) {
       this.selectSubItem(this._selectedItem.subItems[selectedInd - 1]);
     }
   }

@@ -9,7 +9,8 @@
       </div>
     </div>
     <div class="image-wrapper" (swipeleft)="moveToNextConfig()" (swiperight)="moveToPrevConfig()">
-      <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="selectedSubItemIndex"/>
+      <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
+           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()"/>
     </div>
     <div class="menu bottom-menu">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"

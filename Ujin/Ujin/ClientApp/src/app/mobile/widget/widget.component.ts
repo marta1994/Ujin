@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
-import { trigger, useAnimation, transition } from '@angular/animations';
-import { slideInLeft, slideInRight } from 'ng-animate';
+import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
+import { fadeIn, fadeOut } from 'ng-animate';
+
+enum ImgAnimateState {
+  In = "in",
+  Out = "out",
+  Loading = "loading",
+  None = "none"
+}
 
 @Component({
   selector: 'app-mobile-widget',
@@ -10,16 +17,23 @@ import { slideInLeft, slideInRight } from 'ng-animate';
   styleUrls: ['./widget.component.less'],
   animations: [
     trigger('widgetImg', [
-      transition(':decrement', useAnimation(slideInLeft, { params: { timing: 0.3 } })),
-      transition(':increment', useAnimation(slideInRight, { params: { timing: 0.3 } })),
-      transition('* => select', useAnimation(slideInRight, { params: { timing: 0.3 } }))])
+      transition(`* => ${ImgAnimateState.Out}`,
+        useAnimation(fadeOut, { params: { timing: 0.3 } })),
+      transition(`* => ${ImgAnimateState.In}`, 
+        useAnimation(fadeIn, { params: { timing: 0.3 } })),
+      state(ImgAnimateState.Loading, style({
+        opacity: 0
+      })),
+      transition(`* => ${ImgAnimateState.Loading}`, [animate(0.3)])])
   ]
 })
 export class WidgetComponent implements OnInit {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
-  private _selectedItem: MenuItem;  
+  private _selectedItem: MenuItem;
+
+  public imgAnimate: ImgAnimateState;
 
   constructor(
     private _widgetService: WidgetService,
@@ -62,19 +76,49 @@ export class WidgetComponent implements OnInit {
       .value = val;
   }
 
-  public get selectedSubItemIndex(): number {
-    if (!this.selectedItem || !this.selectedItem.subItems) return null;
-    let configSelected = this.configuration.filter(it => it.nameKey === this._selectedItem.nameKey)[0];
-    return this.selectedItem.subItems.indexOf(configSelected.value);
+  private get configSelected(): MenuConfig {
+    return this.configuration.find(it => it.nameKey === this._selectedItem.nameKey);
+  }
+
+  private get selectedSubIndex(): number {
+    return this._selectedItem.subItems.findIndex(si => this.isSelected(si));
   }
 
   public selectItem(item: MenuItem) {
     this._selectedItem = item;
   }
 
+  private _tempSelectedItem: MenuItem;
+
   public selectSubItem(item: MenuItem) {
-    var configSelected = this.configuration.filter(it => it.nameKey === this._selectedItem.nameKey)[0];
-    configSelected.value = item;
+    if (this.configSelected.value === item) return;
+    this.imgAnimate = ImgAnimateState.Out;
+    this._tempSelectedItem = item;
+  }
+
+  public imgAnimateDone(event) {
+    switch (event.toState) {
+      case ImgAnimateState.Out:
+        this.configSelected.value = this._tempSelectedItem;
+        this._tempSelectedItem = null;
+        this.imgAnimate = ImgAnimateState.Loading;
+        this.trySartInAnimation();
+        break;
+      case ImgAnimateState.In:
+        this.imgAnimate = ImgAnimateState.None;
+        break;
+    }
+  }
+
+  public onImageLoded() {
+    this.trySartInAnimation();
+  }
+
+  private trySartInAnimation() {
+    let img = new Image();
+    img.src = this.imageSrc;
+    if (!img.complete) return;
+    this.imgAnimate = ImgAnimateState.In;
   }
 
   public isSelected(item: MenuItem): boolean {
@@ -93,17 +137,16 @@ export class WidgetComponent implements OnInit {
 
   public moveToNextConfig() {
     if (!this._selectedItem) return;
-    var selectedInd = this._selectedItem.subItems.findIndex(si => this.isSelected(si));
-    if (selectedInd < this._selectedItem.subItems.length - 1) {
-      this.selectSubItem(this._selectedItem.subItems[selectedInd + 1]);
+    if (this.selectedSubIndex < this._selectedItem.subItems.length - 1) {
+      this.selectSubItem(this._selectedItem.subItems[this.selectedSubIndex + 1]);
     }
   }
 
   public moveToPrevConfig() {
     if (!this._selectedItem) return;
-    var selectedInd = this._selectedItem.subItems.findIndex(si => this.isSelected(si));
-    if (selectedInd > 0) {
-      this.selectSubItem(this._selectedItem.subItems[selectedInd - 1]);
+    if (this.selectedSubIndex > 0) {
+      this.selectSubItem(this._selectedItem.subItems[this.selectedSubIndex - 1]);
     }
   }
- }
+}
+

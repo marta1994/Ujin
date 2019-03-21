@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,13 @@ import { HeaderComponent as DesktopHeaderComponent } from './desktop/header/head
 import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 import { CounterComponent } from './uiComponents/counter/counter.component';
 import { SliderRegularComponent } from './uiComponents/slider-regular/slider-regular.component';
+
+export class FixVericalScrollHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    'pinch': { enable: false },
+    'rotate': { enable: false }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -56,7 +63,11 @@ import { SliderRegularComponent } from './uiComponents/slider-regular/slider-reg
     WindowScrollService,
     ScreenOrientationService,
     SliderHelperService,
-    SliderDirectionService
+    SliderDirectionService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: FixVericalScrollHammerConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

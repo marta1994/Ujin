@@ -4,7 +4,9 @@
   background-color: @black-color;
   padding-top: @mobile-header-height;
   overflow: hidden;
-  @menu-border: @white-color 2px solid;
+  @menu-border-style: solid @white-color;
+  @menu-border-width: 2px;
+  @menu-border: @menu-border-width @menu-border-style;
 
   .motto {
     text-align: center;
@@ -32,14 +34,19 @@
 
     .menu {
       width: 100%;
-      padding: 10px 0;
+      border-bottom: 1px solid @grey-minor-color;
+      color: @grey-minor-color;
+      @padding: 10px;
 
       .menu-item {
-        border-bottom: @menu-border;
-        padding-bottom: 5px;
+        border-bottom: 0 @menu-border-style;
+        padding: @padding 0;
+        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
 
         &.selected {
-          border: none;
+          border-bottom-width: @menu-border-width;
+          color: @white-color;
+          padding-bottom: @padding - @menu-border-width;
         }
       }
 
@@ -152,10 +159,6 @@
       flex: 1 1 auto;
       text-align: center;
       font-weight: 900;
-
-      &.selected {
-        border-bottom: none;
-      }
     }
   }
 }

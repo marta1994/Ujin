@@ -17,11 +17,11 @@ enum ImgAnimateState {
   styleUrls: ['./widget.component.less'],
   animations: [
     trigger('widgetImg', [
-      transition(`* => ${ImgAnimateState.Out}`,
+      transition(`* => out`,
         useAnimation(fadeOut, { params: { timing: 0.3 } })),
-      transition(`* => ${ImgAnimateState.In}`, 
+      transition(`* => in`, 
         useAnimation(fadeIn, { params: { timing: 0.3 } })),
-      state(ImgAnimateState.Loading, style({
+      state('loading', style({
         opacity: 0
       })),
       transition(`* => ${ImgAnimateState.Loading}`, [animate(0.3)])])

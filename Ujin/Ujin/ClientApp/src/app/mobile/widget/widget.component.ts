@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
-import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
+import { trigger, useAnimation, transition, state, style, animate, query } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 
 enum ImgAnimateState {
@@ -19,12 +19,19 @@ enum ImgAnimateState {
     trigger('widgetImg', [
       transition(`* => out`,
         useAnimation(fadeOut, { params: { timing: 0.3 } })),
-      transition(`* => in`, 
+      transition(`* => in`,
         useAnimation(fadeIn, { params: { timing: 0.3 } })),
       state('loading', style({
         opacity: 0
       })),
-      transition(`* => ${ImgAnimateState.Loading}`, [animate(0.3)])])
+      transition(`* => ${ImgAnimateState.Loading}`, [animate(0.3)])]),
+    trigger('bottomMenu', [
+      transition('* => *',
+        animate('0.3s ease', style({
+          borderBottomColor: '#f5f5f5',
+          backgroundImage: 'linear-gradient(#212121, #212121, #212121, #747474)'
+          })),
+      )])
   ]
 })
 export class WidgetComponent implements OnInit {

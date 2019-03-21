@@ -34,13 +34,13 @@
 
     .menu {
       width: 100%;
-      border-bottom: 1px solid @grey-minor-color;
-      color: @grey-minor-color;
+      border-bottom: 1px solid @grey-minor-color;      
       @padding: 10px;
 
       .menu-item {
         border-bottom: 0 @menu-border-style;
         padding: @padding 0;
+        color: @grey-minor-color;
         transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
 
         &.selected {
@@ -58,7 +58,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        padding: 0 25px;
+        padding: 10px 25px;
 
         .slider-instance {
           width: ~"calc(100% - 50px)";

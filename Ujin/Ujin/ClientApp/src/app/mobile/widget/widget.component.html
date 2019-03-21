@@ -12,9 +12,9 @@
       <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
            (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()"/>
     </div>
-    <div class="menu bottom-menu">
+    <div class="menu bottom-menu" [@bottomMenu]="selectedItem">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
-           [ngClass]="{'selected': isSelected(item)}">
+           [ngClass]="{'selected': isSelected(item)}" >
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
       <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">

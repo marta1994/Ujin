@@ -24,8 +24,14 @@ export class CallMeComponent implements OnInit, OnAction {
     return this.callMeService.user;
   }
 
-  public get validationObj(): ValidationResult {
-    return this.callMeService.validationResult;
+  public get isNameValid(): boolean {
+    if (!this.callMeService.validationResult) return true;
+    return this.callMeService.validationResult.isNameValid;
+  }
+
+  public get isPhoneValid(): boolean {
+    if (!this.callMeService.validationResult) return true;
+    return this.callMeService.validationResult.isPhoneValid;
   }
 
   public onSubmit() {

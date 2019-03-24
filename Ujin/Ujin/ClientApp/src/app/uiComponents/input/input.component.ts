@@ -10,6 +10,9 @@ export class InputComponent implements OnInit {
   @Input()
   public type: string = "text";
 
+  @Input()
+  public errorState: boolean = false;
+
   private _value: any;
   public get value(): any {
     return this._value;

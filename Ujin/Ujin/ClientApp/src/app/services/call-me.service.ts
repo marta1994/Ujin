@@ -30,21 +30,23 @@ export class CallMeService {
   }
 
   private validateName() {
-    this._validationRes.isNameValid = !!this._user.name;
+    var name = this._user.name.replace(/ /g, "");
+    this._validationRes.isNameValid = !!name;
   }
 
   private validatePhone() {
     this._validationRes.isPhoneValid = false;
-    var phone = this._user.phone.replace(" ", "");
+    var phone = this._user.phone.replace(/ /g, "");
     if (phone.length != CallMeService.phoneLength) return;
-    var numbReg = /[0-9]/g;
+    var numbReg = /^\d+$/;
     if (!numbReg.test(phone)) return;
     this._validationRes.isPhoneValid = true;
   }
 
   public postCallMeData() {
+    this._user.phone = this._user.phone.replace(/ /g, "");
     this.dataLoaderService.postData("api/CallMe/PostCallMeData", this._user)
-      .subscribe(result => { }, error => console.log(error));
+      .subscribe(() => { }, error => console.log(error));
   }
 }
 

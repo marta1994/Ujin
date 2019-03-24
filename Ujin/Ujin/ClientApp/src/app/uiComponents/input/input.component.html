@@ -1,1 +1,2 @@
-<input class="ujin-input" type="{{type}}" [(ngModel)]="value" />
+<input [ngClass]="{'error-state': errorState}" class="ujin-input"
+       type="{{type}}" [(ngModel)]="value" />

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Ujin.Data.Enums;
 
 namespace Ujin.Data.Models
@@ -22,5 +24,11 @@ namespace Ujin.Data.Models
         public UserCreationSource CreationSource { get; set; }
 
         public SubscriptionOption SubscriptionOptions { get; set; }
+        
+        public DateTime DateCreated { get; set; }
+
+        public DateTime? DateModified { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

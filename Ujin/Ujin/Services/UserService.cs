@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Ujin.Data;
 using Ujin.Data.Enums;
 using Ujin.Data.Models;
@@ -22,7 +23,8 @@ namespace Ujin.Services
                 Name = user.Name,
                 Phone = user.Phone,
                 CreationSource = UserCreationSource.RequestedCallBack,
-                SubscriptionOptions = SubscriptionOption.Viber
+                SubscriptionOptions = SubscriptionOption.Viber,
+                DateCreated = DateTime.Now
             };
             ujinContext.Users.Add(efUser);
             await ujinContext.SaveChangesAsync();

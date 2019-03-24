@@ -30,13 +30,13 @@ export class CallMeService {
   }
 
   private validateName() {
-    var name = this._user.name.replace(/ /g, "");
+    var name = this._user.name ? this._user.name.replace(/ /g, "") : this._user.name;
     this._validationRes.isNameValid = !!name;
   }
 
   private validatePhone() {
     this._validationRes.isPhoneValid = false;
-    var phone = this._user.phone.replace(/ /g, "");
+    var phone = this._user.phone ? this._user.phone.replace(/ /g, "") : this._user.phone;
     if (phone.length != CallMeService.phoneLength) return;
     var numbReg = /^\d+$/;
     if (!numbReg.test(phone)) return;

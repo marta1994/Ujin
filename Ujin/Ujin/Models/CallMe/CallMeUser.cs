@@ -12,7 +12,7 @@
         {
             get
             {
-                return !string.IsNullOrEmpty(Name.Trim())
+                return !string.IsNullOrEmpty(Name?.Trim())
                     && IsPhoneValid();
             }
         }

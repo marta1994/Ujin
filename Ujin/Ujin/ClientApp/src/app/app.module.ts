@@ -31,6 +31,7 @@ import { FixedCallButtonComponent } from './mobile/fixed-call-button/fixed-call-
 import { PopupComponent } from './uiComponents/popup/popup.component';
 import { InsertionDirective } from './uiComponents/popup/insertion.directive';
 import { CallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
+import { InputComponent } from './uiComponents/input/input.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -55,7 +56,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     FixedCallButtonComponent,
     PopupComponent,
     InsertionDirective,
-    CallMeComponent
+    CallMeComponent,
+    InputComponent
   ],
   entryComponents: [
     PopupComponent,

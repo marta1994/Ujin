@@ -2,13 +2,19 @@
 
 .call-button {
   @margin: 5px;
+  @shadow-size: 1px;
+  @shadow-outline: 1px;
 
   display: inline-block;
   position: fixed;
   bottom: @margin;
   right: @margin;
   background-color: @light-gey;
-  box-shadow: 2px 2px 2px @grey-minor-color, -2px -2px 2px @grey-minor-color;
+  box-shadow:
+    @shadow-size @shadow-size @shadow-outline @white-color,
+    @shadow-size -@shadow-size @shadow-outline @white-color,
+    -@shadow-size @shadow-size @shadow-outline @white-color,
+    -@shadow-size -@shadow-size @shadow-outline @white-color;
 
   .image {
     @size: 80%;

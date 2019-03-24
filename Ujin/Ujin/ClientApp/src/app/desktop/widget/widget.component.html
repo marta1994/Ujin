@@ -9,7 +9,8 @@
     <div class="widget-container">
       <div class="widget-menu-holder">
         <div class="image-wrapper">
-          <img *ngIf="imageSrc" [src]="imageSrc" />
+          <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
+           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()"/>
         </div>
         <div class="menu right-menu">
           <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"

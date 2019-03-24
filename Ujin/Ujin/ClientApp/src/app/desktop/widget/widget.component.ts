@@ -1,16 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
+import { trigger, useAnimation, transition, state, style, animate, query } from '@angular/animations';
+import { fadeIn, fadeOut } from 'ng-animate';
+
+enum ImgAnimateState {
+  In = "in",
+  Out = "out",
+  Loading = "loading",
+  None = "none"
+}
 
 @Component({
   selector: 'app-desktop-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.less']
+  styleUrls: ['./widget.component.less'],
+  animations: [
+    trigger('widgetImg', [
+      transition('* => out',
+        useAnimation(fadeOut, { params: { timing: 0.3 } })),
+      transition('* => in',
+        useAnimation(fadeIn, { params: { timing: 0.3 } })),
+      state('loading', style({
+        opacity: 0
+      })),
+      transition('* => loading', [animate(0.3)])])
+  ]
 })
 export class WidgetComponent implements OnInit {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
   private _selectedItem: MenuItem;
+
+  public imgAnimate: ImgAnimateState = ImgAnimateState.None;
 
   constructor(
     private _widgetService: WidgetService) { }
@@ -52,9 +74,41 @@ export class WidgetComponent implements OnInit {
     this._selectedItem = item;
   }
 
+  private get configSelected(): MenuConfig {
+    return this.configuration.find(it => it.nameKey === this._selectedItem.nameKey);
+  }
+
+  private _tempSelectedItem: MenuItem;
+
   public selectSubItem(item: MenuItem) {
-    var configSelected = this.configuration.filter(it => it.nameKey === this._selectedItem.nameKey)[0];
-    configSelected.value = item;
+    if (this.configSelected.value === item) return;
+    this.imgAnimate = ImgAnimateState.Out;
+    this._tempSelectedItem = item;
+  }
+
+  public imgAnimateDone(event) {
+    switch (event.toState) {
+      case ImgAnimateState.Out:
+        this.configSelected.value = this._tempSelectedItem;
+        this._tempSelectedItem = null;
+        this.imgAnimate = ImgAnimateState.Loading;
+        this.tryStartInAnimation();
+        break;
+      case ImgAnimateState.In:
+        this.imgAnimate = ImgAnimateState.None;
+        break;
+    }
+  }
+
+  public onImageLoded() {
+    this.tryStartInAnimation();
+  }
+
+  private tryStartInAnimation() {
+    let img = new Image();
+    img.src = this.imageSrc;
+    if (!img.complete) return;
+    this.imgAnimate = ImgAnimateState.In;
   }
 
   public isSelected(item: MenuItem): boolean {

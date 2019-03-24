@@ -2,7 +2,10 @@
 
 .widget-background {
   @image-height: 400px;
-  @menu-border: @white-color 2px solid;
+  @menu-border-style: solid @white-color;
+  @menu-border-width: 2px;
+  @menu-border: @menu-border-width @menu-border-style;
+
   padding-top: @desktop-header-height;
   background-color: @black-color;
 
@@ -56,11 +59,14 @@
       display: inline-flex;
       flex-direction: column;
       width: 80px;
+      border-right: 1px solid @grey-minor-color;
 
       .menu-item {
         flex: 1;
-        border-right: @menu-border;
+        border-right: 0 @menu-border-style;
         position: relative;
+        color: @grey-minor-color;
+        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
 
         .text {
           position: absolute;
@@ -70,7 +76,8 @@
         }
 
         &.selected {
-          border-right: none;
+          border-right-width: @menu-border-width;
+          color: @white-color;
         }
       }
     }
@@ -80,15 +87,19 @@
     display: inline-flex;
     height: 30px;
     padding-right: 40px;
+    border-bottom: 1px solid @grey-minor-color;
 
     .menu-item {
       flex: 1;
       padding-bottom: 10px;
-      border-bottom: @menu-border;
+      border-bottom: 0 @menu-border-style;
+      color: @grey-minor-color;
+      transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
       text-align: center;
 
       &.selected {
-        border-bottom: none;
+        border-bottom-width: @menu-border-width;
+        color: @white-color;
       }
     }
   }

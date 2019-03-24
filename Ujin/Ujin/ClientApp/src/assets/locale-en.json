@@ -39,7 +39,7 @@
   "callMe": {
     "callPromice": "Want us to call you?",
     "enterPhone": "Enter your phone number:",
-    "enterName": "How should we call you?",
+    "enterName": "What is your name?",
     "submit": "Call me"
   }
 }

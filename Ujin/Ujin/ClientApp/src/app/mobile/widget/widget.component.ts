@@ -17,14 +17,14 @@ enum ImgAnimateState {
   styleUrls: ['./widget.component.less'],
   animations: [
     trigger('widgetImg', [
-      transition(`* => out`,
+      transition('* => out',
         useAnimation(fadeOut, { params: { timing: 0.3 } })),
-      transition(`* => in`,
+      transition('* => in',
         useAnimation(fadeIn, { params: { timing: 0.3 } })),
       state('loading', style({
         opacity: 0
       })),
-      transition(`* => ${ImgAnimateState.Loading}`, [animate(0.3)])]),
+      transition('* => loading', [animate(0.3)])]),
     trigger('bottomMenu', [
       transition('* => *',
         animate('0.3s ease', style({
@@ -39,7 +39,7 @@ export class WidgetComponent implements OnInit {
   public configuration: MenuConfig[];
   private _selectedItem: MenuItem;
 
-  public imgAnimate: ImgAnimateState;
+  public imgAnimate: ImgAnimateState = ImgAnimateState.None;
 
   constructor(
     private _widgetService: WidgetService,
@@ -108,7 +108,7 @@ export class WidgetComponent implements OnInit {
         this.configSelected.value = this._tempSelectedItem;
         this._tempSelectedItem = null;
         this.imgAnimate = ImgAnimateState.Loading;
-        this.trySartInAnimation();
+        this.tryStartInAnimation();
         break;
       case ImgAnimateState.In:
         this.imgAnimate = ImgAnimateState.None;
@@ -117,10 +117,10 @@ export class WidgetComponent implements OnInit {
   }
 
   public onImageLoded() {
-    this.trySartInAnimation();
+    this.tryStartInAnimation();
   }
 
-  private trySartInAnimation() {
+  private tryStartInAnimation() {
     let img = new Image();
     img.src = this.imageSrc;
     if (!img.complete) return;

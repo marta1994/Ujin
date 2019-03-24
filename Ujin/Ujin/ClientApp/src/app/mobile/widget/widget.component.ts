@@ -28,8 +28,7 @@ enum ImgAnimateState {
     trigger('bottomMenu', [
       transition('* => *',
         animate('0.3s ease', style({
-          borderBottomColor: '#f5f5f5',
-          backgroundImage: 'linear-gradient(#212121, #212121, #212121, #747474)'
+          boxShadow: '0 2px 2px 0 #f5f5f5'
           })),
       )])
   ]

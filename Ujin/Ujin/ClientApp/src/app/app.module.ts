@@ -14,6 +14,7 @@ import { WindowScrollService } from './services/window-scroll.service';
 import { ScreenOrientationService } from './services/screen-orientation.service';
 import { SliderHelperService } from './uiComponents/slider/slider-helper.service';
 import { SliderDirectionService } from './uiComponents/slider/slider-direction.service';
+import { PopupService } from './uiComponents/popup/popup.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -26,6 +27,10 @@ import { HeaderComponent as DesktopHeaderComponent } from './desktop/header/head
 import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 import { CounterComponent } from './uiComponents/counter/counter.component';
 import { SliderRegularComponent } from './uiComponents/slider-regular/slider-regular.component';
+import { FixedCallButtonComponent } from './mobile/fixed-call-button/fixed-call-button.component';
+import { PopupComponent } from './uiComponents/popup/popup.component';
+import { InsertionDirective } from './uiComponents/popup/insertion.directive';
+import { CallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -46,7 +51,15 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     DesktopHeaderComponent,
     NavMenuComponent,
     CounterComponent,
-    SliderRegularComponent
+    SliderRegularComponent,
+    FixedCallButtonComponent,
+    PopupComponent,
+    InsertionDirective,
+    CallMeComponent
+  ],
+  entryComponents: [
+    PopupComponent,
+    CallMeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -64,6 +77,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     ScreenOrientationService,
     SliderHelperService,
     SliderDirectionService,
+    PopupService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig

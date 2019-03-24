@@ -1,0 +1,12 @@
+<div class="form">
+  <span class="call-promise" l10nTranslate>callMe.callPromice</span>
+  <div class="phone group">
+    <span class="phone-label" l10nTranslate>callMe.enterPhone</span>
+    <input class="phone-input" type="tel" [(ngModel)]="user.phone" placeholder="93 123 45 67" />
+  </div>
+  <div class="name group">
+    <span class="name-label" l10nTranslate>callMe.enterName</span>
+    <input class="name-input" [(ngModel)]="user.name" type="text" />
+  </div>
+  <span class="submit" l10nTranslate (click)="onSubmit()">callMe.submit</span>
+</div>

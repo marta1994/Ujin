@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ujin.Data;
+using Ujin.Services;
 using Ujin.UserAgent;
 
 namespace Ujin
@@ -21,6 +24,10 @@ namespace Ujin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UjinContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), 
+            ServiceLifetime.Scoped);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
@@ -29,7 +36,8 @@ namespace Ujin
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSingleton<IUserAgentHelper, UserAgentHelper>();
+            services.AddScoped<IUserAgentHelper, UserAgentHelper>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

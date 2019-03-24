@@ -13,4 +13,8 @@ export class DataLoaderService {
   public loadData<T>(url: string): Observable<T> {
     return this.http.get<T>(this.baseUrl + url);
   }
+
+  public postData<T, TR>(url: string, data: T): Observable<TR> {
+    return this.http.post<TR>(this.baseUrl + url, data);
+  }
 }

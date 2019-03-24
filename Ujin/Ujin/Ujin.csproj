@@ -29,6 +29,7 @@
     <None Remove="ClientApp\src\app\.gitignore" />
     <None Remove="ClientApp\src\app\api\data-loader.service.ts" />
     <None Remove="ClientApp\src\app\configs\localization.config.ts" />
+    <None Remove="ClientApp\src\app\uiComponents\popup\OnAction.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\.gitignore" />
     <TypeScriptCompile Include="ClientApp\src\app\api\data-loader.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\configs\localization.config.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\uiComponents\popup\OnAction.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

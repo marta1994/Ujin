@@ -36,7 +36,8 @@ export class CallMeService {
 
   private validatePhone() {
     this._validationRes.isPhoneValid = false;
-    var phone = this._user.phone ? this._user.phone.replace(/ /g, "") : this._user.phone;
+    if (!this._user.phone) return;
+    var phone = this._user.phone.replace(/ /g, "");
     if (phone.length != CallMeService.phoneLength) return;
     var numbReg = /^\d+$/;
     if (!numbReg.test(phone)) return;

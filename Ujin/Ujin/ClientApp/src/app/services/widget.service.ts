@@ -45,7 +45,7 @@ export class WidgetService {
   }
 
   public get desktopImage(): string {
-    return this.getImagePath('desktop', '-min');
+    return this.getImagePath('desktop');
   }
 
   public get mobileImage(): string {

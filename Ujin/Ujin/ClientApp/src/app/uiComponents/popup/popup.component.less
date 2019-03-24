@@ -25,11 +25,16 @@
       display: inline-block;
       width: @button-size;
       height: @button-size;
+      cursor: pointer;
 
       ::ng-deep svg {
         width: 100%;
         height: 100%;
         fill: @black-color;
+
+        &:hover {
+            fill: @grey-minor-color;
+        }
       }
     }
   }

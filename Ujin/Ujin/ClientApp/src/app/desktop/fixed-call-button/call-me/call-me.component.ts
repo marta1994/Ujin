@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { CallMeService, CallMeUser, ValidationResult } from '../../../services/call-me.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { OnAction } from '../../../uiComponents/popup/OnAction';
+import { CallMeService, CallMeUser } from '../../../services/call-me.service';
 
 @Component({
-  selector: 'app-mobile-call-me',
+  selector: 'app-call-me',
   templateUrl: './call-me.component.html',
   styleUrls: ['./call-me.component.less'],
   providers: [
@@ -39,4 +39,5 @@ export class CallMeComponent implements OnInit, OnAction {
     this.callMeService.postCallMeData();
     this.actionHappened.emit();
   }
+
 }

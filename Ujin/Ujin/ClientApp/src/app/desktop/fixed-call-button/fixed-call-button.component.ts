@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopupService } from '../../uiComponents/popup/popup.service';
-import { CallMeComponent } from './call-me/call-me.component';
+import { CallMeComponent } from '../../desktop/fixed-call-button/call-me/call-me.component';
 
 @Component({
-  selector: 'app-mobile-fixed-call-button',
+  selector: 'app-desktop-fixed-call-button',
   templateUrl: './fixed-call-button.component.html',
   styleUrls: ['./fixed-call-button.component.less']
 })
@@ -26,6 +26,7 @@ export class FixedCallButtonComponent implements OnInit {
   }
 
   public openCallMeDialog() {
-    this.popupService.open(CallMeComponent, { showCloseButton: true, width: "100%", height: "340px" });
+    this.popupService.open(CallMeComponent, { showCloseButton: true, width: "400px", height: "340px" });
   }
+
 }

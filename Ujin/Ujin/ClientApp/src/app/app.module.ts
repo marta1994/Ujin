@@ -27,10 +27,12 @@ import { HeaderComponent as DesktopHeaderComponent } from './desktop/header/head
 import { NavMenuComponent } from './mobile/nav-menu/nav-menu.component';
 import { CounterComponent } from './uiComponents/counter/counter.component';
 import { SliderRegularComponent } from './uiComponents/slider-regular/slider-regular.component';
-import { FixedCallButtonComponent } from './mobile/fixed-call-button/fixed-call-button.component';
+import { FixedCallButtonComponent as MobileCallButtonComponent } from './mobile/fixed-call-button/fixed-call-button.component';
+import { FixedCallButtonComponent as DesktopCallButtonComponent } from './desktop/fixed-call-button/fixed-call-button.component';
 import { PopupComponent } from './uiComponents/popup/popup.component';
 import { InsertionDirective } from './uiComponents/popup/insertion.directive';
-import { CallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
+import { CallMeComponent as DesktopCallMeComponent } from './desktop/fixed-call-button/call-me/call-me.component';
+import { CallMeComponent as MobileCallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
 import { InputComponent } from './uiComponents/input/input.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
@@ -53,15 +55,18 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     NavMenuComponent,
     CounterComponent,
     SliderRegularComponent,
-    FixedCallButtonComponent,
+    MobileCallButtonComponent,
+    DesktopCallButtonComponent,
     PopupComponent,
     InsertionDirective,
-    CallMeComponent,
+    MobileCallMeComponent,
+    DesktopCallMeComponent,
     InputComponent
   ],
   entryComponents: [
     PopupComponent,
-    CallMeComponent
+    DesktopCallMeComponent,
+    MobileCallMeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

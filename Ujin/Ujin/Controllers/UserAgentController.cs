@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ujin.UserAgent;
+using Ujin.Interfaces;
 
 namespace Ujin.Controllers
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Ujin.Interfaces;
 using Ujin.Models.CallMe;
-using Ujin.Services;
 
 namespace Ujin.Controllers
 {

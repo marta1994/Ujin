@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Ujin.UserAgent
+namespace Ujin.Interfaces
 {
     public interface IUserAgentHelper
     {

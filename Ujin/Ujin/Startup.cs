@@ -1,14 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Ujin.Data;
+using Ujin.Interfaces;
 using Ujin.Services;
-using Ujin.UserAgent;
+using Ujin.Services.Mail;
+using Ujin.Services.UserAgent;
 
 namespace Ujin
 {
@@ -36,8 +38,12 @@ namespace Ujin
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+
             services.AddScoped<IUserAgentHelper, UserAgentHelper>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMailSender, MailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

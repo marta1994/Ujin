@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Ujin.Models.CallMe;
 
-namespace Ujin.Services
+namespace Ujin.Interfaces
 {
     public interface IUserService
     {

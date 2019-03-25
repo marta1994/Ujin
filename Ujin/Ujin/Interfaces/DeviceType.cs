@@ -1,4 +1,4 @@
-﻿namespace Ujin.UserAgent
+﻿namespace Ujin.Interfaces
 {
     public enum DeviceType
     {

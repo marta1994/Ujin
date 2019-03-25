@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Text.RegularExpressions;
+using Ujin.Interfaces;
 
-namespace Ujin.UserAgent
+namespace Ujin.Services.UserAgent
 {
     public class UserAgentHelper : IUserAgentHelper
     {

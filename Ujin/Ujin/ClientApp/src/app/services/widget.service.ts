@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 export class WidgetService {
   public static SIZE_DEFAULT: number = 17;
   public static SIZE_CONFIG = {
-    min: 11.5,
-    max: 24.5,
+    min: 15,
+    max: 22,
     step: 0.5,
     nameKey: "widget.size.capture"
   };

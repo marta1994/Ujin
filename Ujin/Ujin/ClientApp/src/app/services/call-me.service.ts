@@ -5,6 +5,7 @@ import { DataLoaderService } from '../api/data-loader.service';
 export class CallMeService {
 
   private static phoneLength: number = 9;
+  private static phonePrefix: string = "+380";
 
   private _user: CallMeUser = new CallMeUser();
   private _validationRes: ValidationResult;
@@ -45,7 +46,7 @@ export class CallMeService {
   }
 
   public postCallMeData() {
-    this._user.phone = this._user.phone.replace(/ /g, "");
+    this._user.phone = CallMeService.phonePrefix + this._user.phone.replace(/ /g, "");
     this.dataLoaderService.postData("api/CallMe/PostCallMeData", this._user)
       .subscribe(() => { }, error => console.log(error));
   }

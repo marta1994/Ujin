@@ -7,7 +7,7 @@
   -webkit-appearance: none;
   width: 100%;
   height: @slider-thickness;
-  border-radius: @slider-thickness/2;
+  .set-border-radius(@slider-thickness/2);
   background: @white-color;
   outline: none;
 
@@ -25,7 +25,7 @@
   &::-moz-range-thumb {
     width: @thumb-size;
     height: @thumb-size;
-    border-radius: @thumb-size / 2;
+    .set-border-radius(@thumb-size / 2);
     background: @grey-minor-color;
     border: 1px solid @light-gey;
     cursor: pointer;

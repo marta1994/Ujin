@@ -9,3 +9,15 @@
 @paragraph-font-size:         14px;
 @mobile-header-height:        60px;
 @desktop-header-height:       90px;
+
+.set-border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.set-box-shadow (@shadow) {
+  box-shadow: @shadow;
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+}

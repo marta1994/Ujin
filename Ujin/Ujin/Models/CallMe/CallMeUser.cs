@@ -2,7 +2,7 @@
 {
     public class CallMeUser
     {
-        private const int PHONE_LENGTH = 9;
+        private const int PHONE_LENGTH = 13;
 
         public string Name { get; set; }
 
@@ -19,7 +19,10 @@
 
         private bool IsPhoneValid()
         {
-            return !string.IsNullOrEmpty(Phone) && Phone.Length == PHONE_LENGTH && ContainsNumbersOnly(Phone);
+            return !string.IsNullOrEmpty(Phone) 
+                && Phone.Length == PHONE_LENGTH 
+                && Phone.StartsWith('+')
+                && ContainsNumbersOnly(Phone.Substring(1));
         }
 
         private bool ContainsNumbersOnly(string s)

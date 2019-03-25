@@ -10,15 +10,11 @@
   bottom: @margin;
   right: @margin;
   background-color: @light-gey;
-  box-shadow: 0 0 @shadow-outline @shadow-size @white-color;
-  -webkit-box-shadow: 0 0 @shadow-outline @shadow-size @white-color;
-  -moz-box-shadow: 0 0 @shadow-outline @shadow-size @white-color;
+  .set-box-shadow(0 0 @shadow-outline @shadow-size @white-color);
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @white-color;
-    -webkit-box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @white-color;
-    -moz-box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @white-color;
+    .set-box-shadow(0 0 @shadow-outline+2px @shadow-size+2px @white-color);
   }
 
   .image {

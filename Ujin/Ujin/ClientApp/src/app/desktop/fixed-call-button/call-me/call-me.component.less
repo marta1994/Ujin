@@ -47,16 +47,12 @@
     font-size: 20px;
     line-height: 20px;
     padding: 10px 20px;
-    border-radius: 3px;
-    box-shadow: 0 0 @shadow-outline @shadow-size @grey-minor-color;
-    -webkit-box-shadow: 0 0 @shadow-outline @shadow-size @grey-minor-color;
-    -moz-box-shadow: 0 0 @shadow-outline @shadow-size @grey-minor-color;
+    .set-border-radius(3px);
+    .set-box-shadow(0 0 @shadow-outline @shadow-size @grey-minor-color);
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @grey-minor-color;
-      -webkit-box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @grey-minor-color;
-      -moz-box-shadow: 0 0 @shadow-outline+2px @shadow-size+2px @grey-minor-color;
+      .set-box-shadow(0 0 @shadow-outline+2px @shadow-size+2px @grey-minor-color);
     }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ujin.Data.Models
 {
@@ -14,6 +15,7 @@ namespace Ujin.Data.Models
 
         public DateTime? DateModified { get; set; }
 
+        [Required]
         public string Definition { get; set; }
     }
 }

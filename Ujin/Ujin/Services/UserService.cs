@@ -3,11 +3,11 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ujin.Controllers.Models.CallMe;
 using Ujin.Data;
 using Ujin.Data.Enums;
 using Ujin.Data.Models;
 using Ujin.Interfaces;
-using Ujin.Models.CallMe;
 
 namespace Ujin.Services
 {
@@ -42,6 +42,11 @@ namespace Ujin.Services
 
             await Task.WhenAll(SaveUser(efUser), SendMessageAboutUser(efUser));
         }
+
+        //public async Task ProcessUserOrder()
+        //{
+
+        //}
 
         private async Task SaveUser(User efUser)
         {

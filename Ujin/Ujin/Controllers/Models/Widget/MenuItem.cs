@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ujin.Models.Widget
+namespace Ujin.Controllers.Models.Widget
 {
     public class MenuItem
     {

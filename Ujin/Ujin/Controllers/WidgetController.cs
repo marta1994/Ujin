@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Ujin.Models.Widget;
+using Ujin.Controllers.Models.Widget;
 
 namespace Ujin.Controllers
 {

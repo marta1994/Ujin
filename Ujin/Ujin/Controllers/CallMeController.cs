@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Ujin.Controllers.Models.CallMe;
 using Ujin.Interfaces;
-using Ujin.Models.CallMe;
 
 namespace Ujin.Controllers
 {
@@ -20,8 +20,6 @@ namespace Ujin.Controllers
         [HttpPost("[action]")]
         public async Task PostCallMeData(CallMeUser user)
         {
-            if (user == null || !user.IsValid)
-                throw new InvalidOperationException($"Invalid user param! {user}");
             await userService.ProcessCallMeUser(user);
         }
     }

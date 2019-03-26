@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Ujin.Models.CallMe;
+using Ujin.Controllers.Models.CallMe;
 
 namespace Ujin.Interfaces
 {

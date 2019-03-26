@@ -44,6 +44,7 @@ namespace Ujin
             services.AddScoped<IUserAgentHelper, UserAgentHelper>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMailSender, MailSender>();
+            services.AddScoped<IPriceService, PriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

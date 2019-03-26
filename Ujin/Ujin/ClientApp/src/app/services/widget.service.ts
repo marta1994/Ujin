@@ -44,6 +44,22 @@ export class WidgetService {
     });
   }
 
+  public get metalSelectedItem(): MenuItem {
+    return this._configuration.find(it => it.nameKey === WidgetService.METAL_KEY).value;
+  }
+
+  public get gemstoneSelectedItem(): MenuItem {
+    return this._configuration.find(it => it.nameKey === WidgetService.GEMSTONE_KEY).value;
+  }
+
+  public get decorationSelectedItem(): MenuItem {
+    return this._configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY).value;
+  }
+
+  public get selectedSize(): number {
+    return this._configuration.find(it => it.nameKey === WidgetService.SIZE_CONFIG.nameKey).value;
+  }
+
   public get desktopImage(): string {
     return this.getImagePath('desktop');
   }
@@ -52,23 +68,21 @@ export class WidgetService {
     return this.getImagePath('mobile');
   }
 
-  private getImagePath(folder: string, suffix: string = ''): string {
+  private getImagePath(folder: string): string {
     if (!this._configuration || !this.configuration.length) return null;
-    var idArr = [
-      this._configuration.find(it => it.nameKey === WidgetService.METAL_KEY),
-      this._configuration.find(it => it.nameKey === WidgetService.GEMSTONE_KEY),
-      this._configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY)];
+    var idArr = [ this.metalSelectedItem, this.gemstoneSelectedItem, this.decorationSelectedItem];
     var name: string = "";
     for (let i = 0; i < idArr.length; ++i) {
-      var val: string = idArr[i].value.nameKey;
+      var val: string = idArr[i].nameKey;
       name += val.split('.')[2];
       name += i === idArr.length - 1 ? "" : "_";
     }
-    return `../../../assets/images/widget-rings/${folder}/${name}${suffix}.png`;
+    return `../../../assets/images/widget-rings/${folder}/${name}.png`;
   }
 }
 
 export class MenuItem {
+  public id: number;
   public nameKey: string;
   public subItems: MenuItem[];
 }

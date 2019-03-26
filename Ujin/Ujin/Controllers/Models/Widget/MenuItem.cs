@@ -4,7 +4,7 @@ namespace Ujin.Controllers.Models.Widget
 {
     public class MenuItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string NameKey { get; set; }
 

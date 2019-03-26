@@ -15,6 +15,7 @@ import { ScreenOrientationService } from './services/screen-orientation.service'
 import { SliderHelperService } from './uiComponents/slider/slider-helper.service';
 import { SliderDirectionService } from './uiComponents/slider/slider-direction.service';
 import { PopupService } from './uiComponents/popup/popup.service';
+import { PriceService } from './services/price.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -34,6 +35,7 @@ import { InsertionDirective } from './uiComponents/popup/insertion.directive';
 import { CallMeComponent as DesktopCallMeComponent } from './desktop/fixed-call-button/call-me/call-me.component';
 import { CallMeComponent as MobileCallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
 import { InputComponent } from './uiComponents/input/input.component';
+import { PriceComponent as MobilePriceComponent } from './mobile/price/price.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -61,7 +63,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     InsertionDirective,
     MobileCallMeComponent,
     DesktopCallMeComponent,
-    InputComponent
+    InputComponent,
+    MobilePriceComponent
   ],
   entryComponents: [
     PopupComponent,
@@ -85,6 +88,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     SliderHelperService,
     SliderDirectionService,
     PopupService,
+    PriceService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ujin.Controllers.Models.CallMe;
+using Ujin.Controllers.Models.Discount;
+using Ujin.Controllers.Models.Order;
 using Ujin.Data;
 using Ujin.Data.Enums;
 using Ujin.Data.Models;
@@ -43,10 +45,39 @@ namespace Ujin.Services
             await Task.WhenAll(SaveUser(efUser), SendMessageAboutUser(efUser));
         }
 
-        //public async Task ProcessUserOrder()
-        //{
+        public async Task ProcessDiscountUser(DiscountUser user)
+        {
+            var efUser = new User
+            {
+                Name = user.Name,
+                Phone = user.Phone,
+                Email = user.Email,
+                SubscriptionOptions = SubscriptionOption.Viber | SubscriptionOption.Email,
+                DateCreated = DateTime.Now
+            };
 
-        //}
+            await SaveUser(efUser);
+        }
+
+        public async Task ProcessUserOrder(OrderUser user)
+        {
+            var efUser = new User
+            {
+                Name = user.Name,
+                Phone = user.Phone,
+                Email = user.Email,
+                CreationSource = UserCreationSource.MadeOrder,
+                SubscriptionOptions = SubscriptionOption.Viber | SubscriptionOption.Email,
+                DateCreated = DateTime.Now
+            };
+            efUser.Orders.Add(new Data.Models.Order
+            {
+                User = efUser,
+                Definition = user.Order.Definition
+            });
+
+            await Task.WhenAll(SaveUser(efUser), SendMessageAboutUser(efUser));
+        }
 
         private async Task SaveUser(User efUser)
         {

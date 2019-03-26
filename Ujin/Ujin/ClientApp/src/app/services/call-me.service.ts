@@ -47,7 +47,7 @@ export class CallMeService {
 
   public postCallMeData() {
     this._user.phone = CallMeService.phonePrefix + this._user.phone.replace(/ /g, "");
-    this.dataLoaderService.postData("api/CallMe/PostCallMeData", this._user)
+    this.dataLoaderService.postData("api/User/PostCallMeData", this._user)
       .subscribe(() => { }, error => console.log(error));
   }
 }

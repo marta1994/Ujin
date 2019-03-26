@@ -19,7 +19,8 @@ namespace Ujin.Controllers.Attributes
 
             if (!IsPhoneValid(phone))
             {
-                return new ValidationResult($"value of property '{validationContext.DisplayName}' is invalid!");
+                return new ValidationResult(
+                    $"value of property '{validationContext.DisplayName}' is not a valid phone number!");
             }
 
             return ValidationResult.Success;

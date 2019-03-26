@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Ujin.Controllers.Attributes;
+﻿using Ujin.Controllers.Attributes;
 
-namespace Ujin.Controllers.Models.Order
+namespace Ujin.Controllers.Models.Discount
 {
-    public class OrderUser
+    public class DiscountUser
     {
         [NonEmptyString]
         public string Name { get; set; }
@@ -13,8 +12,5 @@ namespace Ujin.Controllers.Models.Order
 
         [ValidEmail]
         public string Email { get; set; }
-
-        [Required]
-        public Order Order { get; set; }
     }
 }

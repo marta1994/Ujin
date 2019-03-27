@@ -1,19 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { trigger, useAnimation, transition, state, style, animate, query } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
-
-enum ImgAnimateState {
-  In = "in",
-  Out = "out",
-  Loading = "loading",
-  None = "none"
-}
+import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
 
 @Component({
   selector: 'app-desktop-widget',
   templateUrl: './widget.component.html',
   styleUrls: ['./widget.component.less'],
+  providers: [ WidgetSelectedStateService ],
   animations: [
     trigger('widgetImg', [
       transition('* => out',
@@ -32,10 +27,10 @@ export class WidgetComponent implements OnInit {
   public configuration: MenuConfig[];
   private _selectedItem: MenuItem;
 
-  public imgAnimate: ImgAnimateState = ImgAnimateState.None;
-
   constructor(
-    private _widgetService: WidgetService) { }
+    private _widgetService: WidgetService,
+    private changeDetector: ChangeDetectorRef,
+    public selectedStateService: WidgetSelectedStateService) { }
 
   ngOnInit() {
     this._widgetService.loadMenuItems()
@@ -45,7 +40,11 @@ export class WidgetComponent implements OnInit {
           this.selectItem(this.menuItems[0]);
           this.configuration = this._widgetService.configuration;
         },
-        error => console.log(error));
+      error => console.log(error));
+    this.selectedStateService.init(
+      () => this.configSelected,
+      () => this.changeDetector.detectChanges(),
+      () => this.imageSrc);
   }
 
   public get imageSrc(): string {
@@ -78,37 +77,20 @@ export class WidgetComponent implements OnInit {
     return this.configuration.find(it => it.nameKey === this._selectedItem.nameKey);
   }
 
-  private _tempSelectedItem: MenuItem;
-
   public selectSubItem(item: MenuItem) {
-    if (this.configSelected.value === item) return;
-    this.imgAnimate = ImgAnimateState.Out;
-    this._tempSelectedItem = item;
+    this.selectedStateService.selectSubItem(item);
+  }
+
+  public get imgAnimate(): ImgAnimateState {
+    return this.selectedStateService.imgAnimate;
   }
 
   public imgAnimateDone(event) {
-    switch (event.toState) {
-      case ImgAnimateState.Out:
-        this.configSelected.value = this._tempSelectedItem;
-        this._tempSelectedItem = null;
-        this.imgAnimate = ImgAnimateState.Loading;
-        this.tryStartInAnimation();
-        break;
-      case ImgAnimateState.In:
-        this.imgAnimate = ImgAnimateState.None;
-        break;
-    }
+    this.selectedStateService.imgAnimateDone(event);
   }
 
   public onImageLoded() {
-    this.tryStartInAnimation();
-  }
-
-  private tryStartInAnimation() {
-    let img = new Image();
-    img.src = this.imageSrc;
-    if (!img.complete) return;
-    this.imgAnimate = ImgAnimateState.In;
+    this.selectedStateService.onImageLoded();
   }
 
   public isSelected(item: MenuItem): boolean {
@@ -124,5 +106,4 @@ export class WidgetComponent implements OnInit {
   public getSelectedSubMenu(): MenuItem[] {
     return this._selectedItem ? this._selectedItem.subItems : null;
   }
-
 }

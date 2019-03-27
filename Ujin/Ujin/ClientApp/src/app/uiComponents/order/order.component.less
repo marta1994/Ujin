@@ -11,11 +11,9 @@
   text-align: center;
 
   .call-promise {
-    display: inline-block;
-    margin: 30px 0;
-    font-size: 25px;
-    line-height: 25px;
-    width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 40px 40px 20px;
   }
 
   .group {
@@ -34,20 +32,23 @@
     .form-label {
       display: block;
       display: block;
-      font-size: 18px;
+      font-size: 14px;
       margin-bottom: 5px;
     }
   }
 
   .submit {
-    @shadow-size: 1px;
-    @shadow-outline: 1px;
     background-color: @light-gey;
     display: inline-block;
     font-size: 20px;
     line-height: 20px;
     padding: 10px 20px;
     .set-border-radius(3px);
-    .set-box-shadow(0 0 @shadow-outline @shadow-size @grey-minor-color);
+    .set-box-shadow(0 0 1px 1px @grey-minor-color);
+    cursor: pointer;
+
+    &:hover {
+      .set-box-shadow(0 0 2px 2px @grey-minor-color);
+    }
   }
 }

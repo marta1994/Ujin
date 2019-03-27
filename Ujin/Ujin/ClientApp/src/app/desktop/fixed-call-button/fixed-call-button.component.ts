@@ -26,7 +26,7 @@ export class FixedCallButtonComponent implements OnInit {
   }
 
   public openCallMeDialog() {
-    this.popupService.open(CallMeComponent, { showCloseButton: true, width: "400px", height: "340px" });
+    this.popupService.open(CallMeComponent, { showCloseButton: true, width: "400px", height: "360px" });
   }
 
 }

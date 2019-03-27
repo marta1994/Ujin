@@ -1,15 +1,17 @@
 <div class="call-me-form">
   <span class="call-promise" l10nTranslate>callMe.callPromice</span>
-  <div class="phone group">
-    <span class="phone-label form-label" l10nTranslate>callMe.enterPhone</span>
-    <span class="phone-hint">+380</span>
-    <app-input class="phone-input" [errorState]="!isPhoneValid"
-               [type]="'tel'" [(value)]="user.phone"></app-input>
-  </div>
-  <div class="name group">
-    <span class="name-label form-label" l10nTranslate>callMe.enterName</span>
-    <app-input class="name-input" [errorState]="!isNameValid"
-               [(value)]="user.name" [type]="'text'"></app-input>
+  <div class="form-group">
+    <div class="phone group">
+      <span class="phone-label form-label" l10nTranslate>callMe.enterPhone</span>
+      <span class="phone-hint">+380</span>
+      <app-input class="phone-input" [errorState]="!isPhoneValid"
+                 [type]="'tel'" [(value)]="user.phone"></app-input>
+    </div>
+    <div class="name group">
+      <span class="name-label form-label" l10nTranslate>callMe.enterName</span>
+      <app-input class="name-input" [errorState]="!isNameValid"
+                 [(value)]="user.name" [type]="'text'"></app-input>
+    </div>
   </div>
   <span class="submit" l10nTranslate (click)="onSubmit()">callMe.submit</span>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PriceService } from '../../services/price.service';
 import { PopupService } from '../popup/popup.service';
 import { OrderComponent } from '../order/order.component';
@@ -9,6 +9,9 @@ import { OrderComponent } from '../order/order.component';
   styleUrls: ['./price.component.less']
 })
 export class PriceComponent implements OnInit {
+
+  @Input()
+  public popupWidth: string = "100%";
 
   constructor(
     private priceService: PriceService,
@@ -23,7 +26,7 @@ export class PriceComponent implements OnInit {
   }
 
   public openOrderDialog() {
-    this.popupService.open(OrderComponent, { showCloseButton: true, width: "100%", height: "400px" });
+    this.popupService.open(OrderComponent, { showCloseButton: true, width: this.popupWidth, height: "420px" });
   }
 
 }

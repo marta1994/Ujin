@@ -1,20 +1,22 @@
 <div class="order-container">
-  <span class="call-promice" l10nTranslate>order.callPromice</span>
-  <div class="name group">
-    <span class="name-label form-label" l10nTranslate>order.enterName</span>
-    <app-input class="name-input" [errorState]="!isNameValid"
-               [(value)]="user.name" [type]="'text'"></app-input>
-  </div>
-  <div class="phone group">
-    <span class="phone-label form-label" l10nTranslate>order.enterPhone</span>
-    <span class="phone-hint">+380</span>
-    <app-input class="phone-input" [errorState]="!isPhoneValid"
-               [type]="'tel'" [(value)]="user.phone"></app-input>
-  </div>
-  <div class="email group">
-    <span class="email-label form-label" l10nTranslate>order.enterEmail</span>
-    <app-input class="email-input" [errorState]="!isEmailValid"
-               [(value)]="user.email" [type]="'text'"></app-input>
+  <span class="call-promise" l10nTranslate>order.callPromice</span>
+  <div class="form-group">
+    <div class="name group">
+      <span class="name-label form-label" l10nTranslate>order.enterName</span>
+      <app-input class="name-input" [errorState]="!isNameValid"
+                 [(value)]="user.name" [type]="'text'"></app-input>
+    </div>
+    <div class="phone group">
+      <span class="phone-label form-label" l10nTranslate>order.enterPhone</span>
+      <span class="phone-hint">+380</span>
+      <app-input class="phone-input" [errorState]="!isPhoneValid"
+                 [type]="'tel'" [(value)]="user.phone"></app-input>
+    </div>
+    <div class="email group">
+      <span class="email-label form-label" l10nTranslate>order.enterEmail</span>
+      <app-input class="email-input" [errorState]="!isEmailValid"
+                 [(value)]="user.email" [type]="'text'"></app-input>
+    </div>
   </div>
   <span class="submit" l10nTranslate (click)="onSubmit()">order.submit</span>
 </div>

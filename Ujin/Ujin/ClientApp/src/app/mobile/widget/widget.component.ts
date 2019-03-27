@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
 import { trigger, useAnimation, transition, state, style, animate, query } from '@angular/animations';
@@ -43,7 +43,8 @@ export class WidgetComponent implements OnInit {
 
   constructor(
     private _widgetService: WidgetService,
-    private _screenOrientationService: ScreenOrientationService) { }
+    private _screenOrientationService: ScreenOrientationService,
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     this._widgetService.loadMenuItems()
@@ -109,6 +110,7 @@ export class WidgetComponent implements OnInit {
         this._tempSelectedItem = null;
         this.imgAnimate = ImgAnimateState.Loading;
         this.tryStartInAnimation();
+        this.changeDetector.detectChanges();
         break;
       case ImgAnimateState.In:
         this.imgAnimate = ImgAnimateState.None;

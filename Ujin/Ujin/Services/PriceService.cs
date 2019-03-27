@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Ujin.Services
 {
     public class PriceService: IPriceService
     {
-        private const decimal GEMSTONE_COEF = (decimal)1.5;
+        private const decimal GEMSTONE_COEF = 1.5m;
 
         private const decimal WORK_COEF = 2;
 
@@ -44,6 +45,7 @@ namespace Ujin.Services
                 .Sum(it => it.ItemPrice);
 
             var resultPrice = (weight * pricePerGram + additionalPrice) * WORK_COEF + gemPrice * GEMSTONE_COEF;
+            resultPrice = Math.Floor(resultPrice / 10 + 0.5m) * 10;
             return resultPrice;
         }
     }

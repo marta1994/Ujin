@@ -13,12 +13,15 @@
     padding: 40px 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 
     .widget-description {
       width: 400px;
       margin: 0 30px;
       font-size: 16px;
       line-height: 22px;
+      padding-bottom: 100px;
+      position: relative;
 
       .motto {
         display: block;
@@ -42,6 +45,13 @@
         border-color: @light-gey;
       }
     }
+  }
+
+  app-price {
+    position: absolute;
+    bottom: 20px;
+    /* left: 50%; */
+    width: 100%;
   }
 
   .widget-menu-holder {

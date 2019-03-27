@@ -4,13 +4,14 @@
     <div class="widget-description" l10nTranslate>
       content.intro
       <span class="motto" l10nTranslate>motto.threeStepMotto</span>
+      <app-price></app-price>
     </div>
 
     <div class="widget-container">
       <div class="widget-menu-holder">
         <div class="image-wrapper">
           <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
-           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()"/>
+               (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
         </div>
         <div class="menu right-menu">
           <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"

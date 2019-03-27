@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataLoaderService } from '../api/data-loader.service';
 import { PhoneValidatorService } from './phone-validator.service';
 import { EmailValidatorService } from './email-validator.service';
-import { WidgetService, MenuConfig, MenuItem } from './widget.service';
+import { WidgetService, MenuConfig } from './widget.service';
 import { PriceService } from './price.service';
 
 @Injectable()

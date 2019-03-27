@@ -16,6 +16,9 @@ import { SliderHelperService } from './uiComponents/slider/slider-helper.service
 import { SliderDirectionService } from './uiComponents/slider/slider-direction.service';
 import { PopupService } from './uiComponents/popup/popup.service';
 import { PriceService } from './services/price.service';
+import { EmailValidatorService } from './services/email-validator.service';
+import { PhoneValidatorService } from './services/phone-validator.service';
+import { OrderService } from './services/order.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -35,7 +38,8 @@ import { InsertionDirective } from './uiComponents/popup/insertion.directive';
 import { CallMeComponent as DesktopCallMeComponent } from './desktop/fixed-call-button/call-me/call-me.component';
 import { CallMeComponent as MobileCallMeComponent } from './mobile/fixed-call-button/call-me/call-me.component';
 import { InputComponent } from './uiComponents/input/input.component';
-import { PriceComponent as MobilePriceComponent } from './mobile/price/price.component';
+import { PriceComponent } from './uiComponents/price/price.component';
+import { OrderComponent } from './uiComponents/order/order.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -64,12 +68,14 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     MobileCallMeComponent,
     DesktopCallMeComponent,
     InputComponent,
-    MobilePriceComponent
+    PriceComponent,
+    OrderComponent
   ],
   entryComponents: [
     PopupComponent,
     DesktopCallMeComponent,
-    MobileCallMeComponent
+    MobileCallMeComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -89,6 +95,9 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     SliderDirectionService,
     PopupService,
     PriceService,
+    EmailValidatorService,
+    PhoneValidatorService,
+    OrderService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig

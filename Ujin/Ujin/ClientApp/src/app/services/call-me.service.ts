@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { DataLoaderService } from '../api/data-loader.service';
+import { PhoneValidatorService } from './phone-validator.service';
 
 @Injectable()
 export class CallMeService {
-
-  private static phoneLength: number = 9;
-  private static phonePrefix: string = "+380";
-
   private _user: CallMeUser = new CallMeUser();
   private _validationRes: ValidationResult;
 
-  constructor(private dataLoaderService: DataLoaderService) { }
+  constructor(
+    private dataLoaderService: DataLoaderService,
+    private phoneValidator: PhoneValidatorService) { }
 
   public get user(): CallMeUser {
     return this._user;
@@ -36,17 +35,11 @@ export class CallMeService {
   }
 
   private validatePhone() {
-    this._validationRes.isPhoneValid = false;
-    if (!this._user.phone) return;
-    var phone = this._user.phone.replace(/ /g, "");
-    if (phone.length != CallMeService.phoneLength) return;
-    var numbReg = /^\d+$/;
-    if (!numbReg.test(phone)) return;
-    this._validationRes.isPhoneValid = true;
+    this._validationRes.isPhoneValid = this.phoneValidator.isValidPhone(this._user.phone);
   }
 
   public postCallMeData() {
-    this._user.phone = CallMeService.phonePrefix + this._user.phone.replace(/ /g, "");
+    this._user.phone = this.phoneValidator.normalizePhone(this._user.phone);
     this.dataLoaderService.postData("api/User/PostCallMeData", this._user)
       .subscribe(() => { }, error => console.log(error));
   }

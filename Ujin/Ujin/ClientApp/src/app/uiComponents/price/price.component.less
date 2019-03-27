@@ -1,0 +1,26 @@
+@import '../../../variables.less';
+
+.compnent-holder {
+  width: 100%;
+  background-color: @black-color;
+  color: @white-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+
+  .price-holder {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+  }
+
+  .order-button {
+    display: inline-block;
+    .set-border-radius(3px);
+    .set-box-shadow(0 0 2px 1px @white-color);
+    background-color: @light-gey;
+    padding: 10px 20px;
+    color: @black-color;
+  }
+}

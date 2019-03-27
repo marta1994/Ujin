@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,7 +69,8 @@ namespace Ujin.Services
                 Email = user.Email,
                 CreationSource = UserCreationSource.MadeOrder,
                 SubscriptionOptions = SubscriptionOption.Viber | SubscriptionOption.Email,
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                Orders = new List<Data.Models.Order>()
             };
             efUser.Orders.Add(new Data.Models.Order
             {

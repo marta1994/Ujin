@@ -1,0 +1,16 @@
+<div class="compnent-holder">
+  <div class="price-holder">
+    <span class="price" *ngIf="price != null">
+      <span class="number-part">
+        {{price}}
+      </span>
+      <span class="measure-part" l10nTranslate>
+        price.currency.uah
+      </span>
+    </span>
+    <span *ngIf="price == null" class="loading-state" l10nTranslate>
+      price.loading
+    </span>
+  </div>
+  <span class="order-button" l10nTranslate (click)="openOrderDialog()">price.paceOrder</span>
+</div>

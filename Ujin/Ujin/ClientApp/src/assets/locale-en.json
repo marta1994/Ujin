@@ -41,5 +41,19 @@
     "enterPhone": "Enter your phone number:",
     "enterName": "What is your name?",
     "submit": "Call me"
+  },
+  "price": {
+    "currency": {
+      "uah": " uah"
+    },
+    "loading": "calculating a price...",
+    "paceOrder": "Order"
+  },
+  "order": {
+    "callPromice": "Please enter your contacts so we could reach out for order details negotiation",
+    "enterName": "Enter your name",
+    "enterPhone": "Enter your phone",
+    "enterEmail": "Enter your email",
+    "submit":  "Send the order"
   }
 }

@@ -49,7 +49,20 @@ export class WidgetGaService extends BaseGaService {
 
     this.addEvent($(".widget-background .size-case .slider-input"), "change", (event: JQuery.ChangeEvent) => {
       var endPos = event.currentTarget.value;
-      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeChange, endPos);
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeSliderChange, endPos);
+    });
+
+    this.addEvent($(".widget-background .size-case app-counter .counter-input"), "change", (event: JQuery.ChangeEvent) => {
+      var endPos = event.currentTarget.value;
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeCounterInput, endPos);
+    });
+
+    this.addEvent($(".widget-background .size-case app-counter .up-arrow"), "click", () => {
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeCounterUp);
+    });
+
+    this.addEvent($(".widget-background .size-case app-counter .down-arrow"), "click", () => {
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeCounterDown);
     });
   }
 }
@@ -59,5 +72,8 @@ enum WidgetEvtCat {
   imgSwipe = "imgSwipe",
   categoryMenuClick = "categoryMenuClick",
   configMenuClick = "configMenuClick",
-  sizeChange = "sizeChange"
+  sizeSliderChange = "sizeSliderChange",
+  sizeCounterInput = "sizeCounterInput",
+  sizeCounterUp = "sizeCounterUp",
+  sizeCounterDown = "sizeCounterDown"
 }

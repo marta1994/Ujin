@@ -1,14 +1,11 @@
 @import '../../../variables.less';
 
 .call-button {
-  @margin: 15px;
   @shadow-size: 1px;
   @shadow-outline: 1px;
 
   display: inline-block;
-  position: fixed;
-  bottom: @margin;
-  right: @margin;
+  position: relative;
   background-color: @light-gey;
   .set-box-shadow(0 0 @shadow-outline @shadow-size @white-color);
   cursor: pointer;

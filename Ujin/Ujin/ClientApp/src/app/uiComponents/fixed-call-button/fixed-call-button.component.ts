@@ -3,7 +3,7 @@ import { PopupService } from '../../uiComponents/popup/popup.service';
 import { CallMeComponent } from './call-me/call-me.component';
 
 @Component({
-  selector: 'app-mobile-fixed-call-button',
+  selector: 'app-fixed-call-button',
   templateUrl: './fixed-call-button.component.html',
   styleUrls: ['./fixed-call-button.component.less']
 })
@@ -11,6 +11,9 @@ export class FixedCallButtonComponent implements OnInit {
 
   @Input()
   public size: string = "40px";
+
+  @Input()
+  public popupWidth: string = "300px";
 
   constructor(private popupService: PopupService) { }
 
@@ -26,6 +29,7 @@ export class FixedCallButtonComponent implements OnInit {
   }
 
   public openCallMeDialog() {
-    this.popupService.open(CallMeComponent, { showCloseButton: true, width: "100%", height: "360px" });
+    this.popupService.open(CallMeComponent, { showCloseButton: true, width: this.popupWidth, height: "360px" });
   }
+
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { OnAction } from '../../../uiComponents/popup/OnAction';
 import { CallMeService, CallMeUser } from '../../../services/call-me.service';
+import { CallMeGaService } from '../../../googleAnalytics/call-me-ga.service';
 
 @Component({
   selector: 'app-call-me',
@@ -10,14 +11,24 @@ import { CallMeService, CallMeUser } from '../../../services/call-me.service';
     CallMeService
   ]
 })
-export class CallMeComponent implements OnInit, OnAction {
+export class CallMeComponent implements OnInit, OnAction, AfterViewInit, OnDestroy {
 
   @Output()
   public actionHappened: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private callMeService: CallMeService) { }
+  constructor(
+    private callMeService: CallMeService,
+    private gaService: CallMeGaService) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public get user(): CallMeUser {

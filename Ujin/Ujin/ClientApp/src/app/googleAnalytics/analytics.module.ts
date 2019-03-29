@@ -6,6 +6,7 @@ import { GoogleAnalyticsProdService } from './google-analytics-prod.service';
 import { GoogleAnalyticsDevService } from './google-analytics-dev.service';
 import { WidgetGaService } from './widget-ga.service';
 import { CallButtonGaService } from './call-button-ga.service';
+import { CallMeGaService } from './call-me-ga.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CallButtonGaService } from './call-button-ga.service';
       useClass: environment.production ? GoogleAnalyticsProdService : GoogleAnalyticsDevService
     },
     WidgetGaService,
-    CallButtonGaService
+    CallButtonGaService,
+    CallMeGaService
   ],
   declarations: [],
   exports: [

@@ -13,7 +13,7 @@ export class CallMeGaService extends BaseGaService {
   public registerEvents() {
     var sendEvent = this.gaService.sendEvent;
     this.addEvent(
-      $(".phone-input input"),
+      $(".call-me-form .phone-input input"),
       "focus",
       () => {
         sendEvent(CallMeEvtCat.NAME, CallMeEvtCat.phoneFocus);
@@ -21,7 +21,7 @@ export class CallMeGaService extends BaseGaService {
     );
 
     this.addEvent(
-      $(".phone-input input"),
+      $(".call-me-form .phone-input input"),
       "change",
       (evt: JQuery.ChangeEvent) => {
         var val = evt.currentTarget.value;
@@ -30,7 +30,7 @@ export class CallMeGaService extends BaseGaService {
     );
 
     this.addEvent(
-      $(".name-input input"),
+      $(".call-me-form .name-input input"),
       "focus",
       () => {
         sendEvent(CallMeEvtCat.NAME, CallMeEvtCat.nameFocus);
@@ -38,7 +38,7 @@ export class CallMeGaService extends BaseGaService {
     );
 
     this.addEvent(
-      $(".name-input input"),
+      $(".call-me-form .name-input input"),
       "change",
       (evt: JQuery.ChangeEvent) => {
         var val = evt.currentTarget.value;
@@ -47,7 +47,7 @@ export class CallMeGaService extends BaseGaService {
     );
 
     this.addEvent(
-      $(".submit"),
+      $(".call-me-form .submit"),
       "click",
       () => {
         sendEvent(CallMeEvtCat.NAME, CallMeEvtCat.submit);

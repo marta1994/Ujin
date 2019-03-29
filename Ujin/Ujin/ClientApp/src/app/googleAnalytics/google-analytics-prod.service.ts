@@ -16,7 +16,7 @@ export class GoogleAnalyticsProdService extends GoogleAnalyticsService {
     return (<any>window).gtag;
   }
 
-  protected sendEvent(evtCat: string, event: string, label: string = "", value: number = null) {
+  public sendEvent(evtCat: string, event: string, label: string = "", value: number = null) {
     if (!this.gtag) return;
     this.gtag('event', event, {
       'event_category': evtCat,

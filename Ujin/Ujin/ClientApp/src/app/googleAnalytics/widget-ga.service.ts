@@ -1,11 +1,14 @@
+import { Injectable } from '@angular/core';
+import { BaseGaService } from './base-ga.service';
+import { GoogleAnalyticsService } from './google-analytics.service';
 import * as $ from 'jquery';
 import 'hammerjs';
-import { ComponentBaseGa } from './component-base.ga';
 
-export class WidgetGa extends ComponentBaseGa {
-  
-  constructor(sendEvent: (evtCat: string, event: string, label?: string, value?: number) => void) {
-    super(sendEvent);
+@Injectable()
+export class WidgetGaService extends BaseGaService {
+
+  constructor(gaService: GoogleAnalyticsService) {
+    super(gaService);
   }
 
   public registerEvents() {
@@ -24,7 +27,7 @@ export class WidgetGa extends ComponentBaseGa {
   private subscribeEvents() {
     this.clearAllEvents();
 
-    var sendEvent = this.sendEvent;
+    var sendEvent = this.gaService.sendEvent;
 
     this.addHammerEvent($(".widget-background .image-wrapper"), "swipeleft", () => {
       sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.imgSwipe, "left");

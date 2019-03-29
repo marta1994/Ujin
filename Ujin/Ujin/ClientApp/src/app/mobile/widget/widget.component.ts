@@ -4,7 +4,7 @@ import { ScreenOrientationService, ScreenOrientation } from '../../services/scre
 import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
-import { GoogleAnalyticsService } from '../../googleAnalytics/google-analytics.service';
+import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
 
 @Component({
   selector: 'app-mobile-widget',
@@ -40,7 +40,7 @@ export class WidgetComponent implements OnInit, AfterViewInit {
     private _screenOrientationService: ScreenOrientationService,
     private changeDetector: ChangeDetectorRef,
     public selectedStateService: WidgetSelectedStateService,
-    private gaService: GoogleAnalyticsService) { }
+    private gaService: WidgetGaService) { }
 
   ngOnInit() {
     this._widgetService.loadMenuItems()
@@ -58,7 +58,7 @@ export class WidgetComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.gaService.registerWidgetEvents();
+    this.gaService.registerEvents();
   }
 
   public get imageSrc(): string {

@@ -3,7 +3,7 @@ import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.servi
 import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
-import { GoogleAnalyticsService } from '../../googleAnalytics/google-analytics.service';
+import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
 
 @Component({
   selector: 'app-desktop-widget',
@@ -32,7 +32,7 @@ export class WidgetComponent implements OnInit, AfterViewInit {
     private _widgetService: WidgetService,
     private changeDetector: ChangeDetectorRef,
     public selectedStateService: WidgetSelectedStateService,
-    private gaService: GoogleAnalyticsService) { }
+    private gaService: WidgetGaService) { }
 
   ngOnInit() {
     this._widgetService.loadMenuItems()
@@ -50,7 +50,7 @@ export class WidgetComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.gaService.registerWidgetEvents();
+    this.gaService.registerEvents();
   }
 
   public get imageSrc(): string {

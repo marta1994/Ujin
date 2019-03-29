@@ -1,8 +1,16 @@
-export abstract class ComponentBaseGa {
+import { Injectable } from '@angular/core';
+import { GoogleAnalyticsService } from './google-analytics.service';
+
+@Injectable()
+export abstract class BaseGaService {
+
   private events: IEventInfo[] = [];
   private hammerEvents: IHammerEventInfo[] = [];
 
-  constructor(protected sendEvent: (evtCat: string, event: string, label?: string, value?: number) => void) { }
+  constructor(
+    protected gaService: GoogleAnalyticsService) { }
+
+  public abstract registerEvents();
 
   protected getObserver(handler: (mutations: MutationRecord[]) => void): MutationObserver {
     MutationObserver = MutationObserver || (<any>window).WebKitMutationObserver;

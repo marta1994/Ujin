@@ -8,7 +8,7 @@ export class GoogleAnalyticsDevService extends GoogleAnalyticsService{
     super();
   }
 
-  protected sendEvent(evtCat: string, event: string, label: string = "", value: number = null) {
+  public sendEvent(evtCat: string, event: string, label: string = "", value: number = null) {
     console.log(`event sent: \r\n evtCat: '${evtCat}', \r\n event: '${event}' \r\n label: '${label}' \r\n value: ${value}`);
   }
 

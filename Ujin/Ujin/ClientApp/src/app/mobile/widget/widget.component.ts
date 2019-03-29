@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
-import { trigger, useAnimation, transition, state, style, animate, query } from '@angular/animations';
+import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
+import { GoogleAnalyticsService } from '../../googleAnalytics/google-analytics.service';
 
 @Component({
   selector: 'app-mobile-widget',
@@ -28,7 +29,7 @@ import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widg
       )])
   ]
 })
-export class WidgetComponent implements OnInit {
+export class WidgetComponent implements OnInit, AfterViewInit {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
@@ -38,7 +39,8 @@ export class WidgetComponent implements OnInit {
     private _widgetService: WidgetService,
     private _screenOrientationService: ScreenOrientationService,
     private changeDetector: ChangeDetectorRef,
-    public selectedStateService: WidgetSelectedStateService) { }
+    public selectedStateService: WidgetSelectedStateService,
+    private gaService: GoogleAnalyticsService) { }
 
   ngOnInit() {
     this._widgetService.loadMenuItems()
@@ -53,6 +55,10 @@ export class WidgetComponent implements OnInit {
       () => this.configSelected,
       () => this.changeDetector.detectChanges(),
       () => this.imageSrc);
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerWidgetEvents();
   }
 
   public get imageSrc(): string {

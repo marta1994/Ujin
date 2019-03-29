@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { environment } from './../environments/environment';
 import { L10nLoader, TranslationModule } from 'angular-l10n';
 import { l10nConfig } from './configs/localization.config';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -19,6 +20,9 @@ import { PriceService } from './services/price.service';
 import { EmailValidatorService } from './services/email-validator.service';
 import { PhoneValidatorService } from './services/phone-validator.service';
 import { OrderService } from './services/order.service';
+import { GoogleAnalyticsService } from './googleAnalytics/google-analytics.service';
+import { GoogleAnalyticsProdService } from './googleAnalytics/google-analytics-prod.service';
+import { GoogleAnalyticsDevService } from './googleAnalytics/google-analytics-dev.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -101,6 +105,10 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig
+    },
+    {
+      provide: GoogleAnalyticsService,
+      useClass: environment.production ? GoogleAnalyticsProdService : GoogleAnalyticsDevService
     }
   ],
   bootstrap: [AppComponent]

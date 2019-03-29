@@ -13,16 +13,16 @@
           <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
                (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
         </div>
-        <div class="menu right-menu">
+        <div class="menu right-menu category-menu">
           <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
-               [ngClass]="{'selected': isSelected(item)}">
+               [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
             <span class="text" l10nTranslate>{{item.nameKey}}</span>
           </div>
         </div>
       </div>
-      <div class="menu bottom-menu">
+      <div class="menu bottom-menu config-menu">
         <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
-             [ngClass]="{'selected': isSelected(item)}">
+             [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
           <span class="text" l10nTranslate>{{item.nameKey}}</span>
         </div>
         <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">

@@ -48,6 +48,10 @@ export abstract class BaseGaService {
     this.events = [];
     this.hammerEvents = [];
   }
+
+  public dispose() {
+    this.clearAllEvents();
+  }
 }
 
 interface IEventInfo {

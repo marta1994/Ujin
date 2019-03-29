@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
 import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
@@ -29,7 +29,7 @@ import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
       )])
   ]
 })
-export class WidgetComponent implements OnInit, AfterViewInit {
+export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public menuItems: MenuItem[];
   public configuration: MenuConfig[];
@@ -59,6 +59,10 @@ export class WidgetComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public get imageSrc(): string {

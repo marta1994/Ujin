@@ -54,7 +54,7 @@ export class WidgetGaService extends BaseGaService {
   }
 }
 
-export enum WidgetEvtCat {
+enum WidgetEvtCat {
   NAME = "widget",
   imgSwipe = "imgSwipe",
   categoryMenuClick = "categoryMenuClick",

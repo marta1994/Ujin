@@ -1,20 +1,31 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { OnAction } from '../popup/OnAction';
 import { OrderService, OrderUser } from '../../services/order.service';
+import { OrderGaService } from '../../googleAnalytics/order-ga.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.less']
 })
-export class OrderComponent implements OnInit, OnAction {
+export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestroy {
 
   @Output()
   public actionHappened: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private orderService: OrderService) { }
+  constructor(
+    private orderService: OrderService,
+    private gaService: OrderGaService) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public get user(): OrderUser {

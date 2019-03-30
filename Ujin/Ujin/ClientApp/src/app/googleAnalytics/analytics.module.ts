@@ -8,6 +8,7 @@ import { WidgetGaService } from './widget-ga.service';
 import { CallButtonGaService } from './call-button-ga.service';
 import { CallMeGaService } from './call-me-ga.service';
 import { PriceGaService } from './price-ga.service';
+import { OrderGaService } from './order-ga.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { PriceGaService } from './price-ga.service';
     WidgetGaService,
     CallButtonGaService,
     CallMeGaService,
-    PriceGaService
+    PriceGaService,
+    OrderGaService
   ],
   declarations: [],
   exports: [

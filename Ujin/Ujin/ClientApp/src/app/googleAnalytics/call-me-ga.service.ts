@@ -54,6 +54,11 @@ export class CallMeGaService extends BaseGaService {
       }
     );
   }
+
+  public dispose() {
+    super.dispose();
+    this.gaService.sendEvent(CallMeEvtCat.NAME, CallMeEvtCat.close);
+  }
 }
 
 enum CallMeEvtCat {
@@ -62,5 +67,6 @@ enum CallMeEvtCat {
   phoneChange = "phoneChange",
   nameFocus = "nameFocus",
   nameChange = "nameChange",
-  submit = "submit"
+  submit = "submit",
+  close = "close"
 }

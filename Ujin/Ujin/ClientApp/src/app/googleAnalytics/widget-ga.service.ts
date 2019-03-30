@@ -26,7 +26,8 @@ export class WidgetGaService extends BaseGaService {
   private subscribeEvents() {
     this.clearAllEvents();
 
-    var sendEvent = this.gaService.sendEvent;
+    var sendEvent = (evtCat: string, event: string, label?: string, value?: number) =>
+      this.gaService.sendEvent(evtCat, event, label, value);
 
     this.addHammerEvent($(".widget-background .image-wrapper"), "swipeleft", () => {
       sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.imgSwipe, "left");

@@ -11,7 +11,8 @@ export class PriceGaService extends BaseGaService {
   }
 
   public registerEvents() {
-    var sendEvent = this.gaService.sendEvent;
+    var sendEvent = (evtCat: string, event: string, label?: string, value?: number) =>
+      this.gaService.sendEvent(evtCat, event, label, value);
 
     this.addEvent(
       $("app-price .order-button"),

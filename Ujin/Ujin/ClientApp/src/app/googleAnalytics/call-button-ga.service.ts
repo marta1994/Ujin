@@ -11,7 +11,9 @@ export class CallButtonGaService extends BaseGaService {
   }
 
   public registerEvents() {
-    var sendEvent = this.gaService.sendEvent;
+    var sendEvent = (evtCat: string, event: string, label?: string, value?: number) =>
+      this.gaService.sendEvent(evtCat, event, label, value);
+
     this.addEvent(
       $(".call-button"),
       "click",

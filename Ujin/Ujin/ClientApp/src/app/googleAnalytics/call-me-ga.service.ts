@@ -11,7 +11,9 @@ export class CallMeGaService extends BaseGaService {
   }
 
   public registerEvents() {
-    var sendEvent = this.gaService.sendEvent;
+    var sendEvent = (evtCat: string, event: string, label?: string, value?: number) =>
+      this.gaService.sendEvent(evtCat, event, label, value);
+
     this.addEvent(
       $(".call-me-form .phone-input input"),
       "focus",

@@ -7,6 +7,7 @@ import { GoogleAnalyticsDevService } from './google-analytics-dev.service';
 import { WidgetGaService } from './widget-ga.service';
 import { CallButtonGaService } from './call-button-ga.service';
 import { CallMeGaService } from './call-me-ga.service';
+import { PriceGaService } from './price-ga.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CallMeGaService } from './call-me-ga.service';
     },
     WidgetGaService,
     CallButtonGaService,
-    CallMeGaService
+    CallMeGaService,
+    PriceGaService
   ],
   declarations: [],
   exports: [

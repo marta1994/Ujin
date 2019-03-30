@@ -6,13 +6,14 @@ export abstract class BaseGaService {
 
   private events: IEventInfo[] = [];
   private hammerEvents: IHammerEventInfo[] = [];
+  private observers: MutationObserver[] = [];
 
   constructor(
     protected gaService: GoogleAnalyticsService) { }
 
   public abstract registerEvents();
 
-  protected getObserver(handler: (mutations: MutationRecord[]) => void): MutationObserver {
+  private getObserver(handler: (mutations: MutationRecord[]) => void): MutationObserver {
     MutationObserver = MutationObserver || (<any>window).WebKitMutationObserver;
     return new MutationObserver(handler);
   }
@@ -27,6 +28,17 @@ export abstract class BaseGaService {
         handler: handler
       });
     }
+  }
+
+  protected addMutationObserver(
+    selector: string,
+    handler: (mutations: MutationRecord[]) => void,
+    options?: MutationObserverInit) {
+
+    const node = document.querySelector(selector);
+    var observer = this.getObserver(handler);
+    observer.observe(node, options);
+    this.observers.push(observer);
   }
 
   protected addEvent(el: JQuery<HTMLElement>, evt: string, handler: (evt: JQuery.Event) => void) {
@@ -49,8 +61,14 @@ export abstract class BaseGaService {
     this.hammerEvents = [];
   }
 
+  private clearAllObservers() {
+    this.observers.forEach(ob => ob.disconnect());
+    this.observers = [];
+  }
+
   public dispose() {
     this.clearAllEvents();
+    this.clearAllObservers();
   }
 }
 

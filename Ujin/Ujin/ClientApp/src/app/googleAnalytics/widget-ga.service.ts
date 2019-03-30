@@ -12,16 +12,15 @@ export class WidgetGaService extends BaseGaService {
   }
 
   public registerEvents() {
-    const node = document.querySelector('.widget-background');
 
-    const observer = this.getObserver((mutations) => {
-      this.subscribeEvents();
-    });
-
-    observer.observe(node, {
-      subtree: true,
-      childList: true
-    });
+    this.addMutationObserver(
+      '.widget-background',
+      (mutations) => {
+        this.subscribeEvents();
+      }, {
+        subtree: true,
+        childList: true
+      });
   }
 
   private subscribeEvents() {

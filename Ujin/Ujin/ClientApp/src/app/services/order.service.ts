@@ -53,11 +53,14 @@ export class OrderService {
   }
 
   public makeAnOrder() {
-    this._user.phone = this.phoneValidator.normalizePhone(this._user.phone);
-    this._user.email = this.emailValidator.normalizeEmail(this._user.email);
-    this._user.order = new Order(this.priceService.price, this.widgetService.configuration);
+    var user = {
+      name: this._user.name,
+      phone: this.phoneValidator.normalizePhone(this._user.phone),
+      email: this.emailValidator.normalizeEmail(this._user.email),
+      order: new Order(this.priceService.price, this.widgetService.configuration)
+    };
 
-    this.dataLoader.postData("api/User/PostOrderData", this._user)
+    this.dataLoader.postData("api/User/PostOrderData", user)
       .subscribe(() => { }, error => console.log(error));
   }
 

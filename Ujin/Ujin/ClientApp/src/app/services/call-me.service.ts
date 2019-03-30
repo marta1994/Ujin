@@ -39,8 +39,11 @@ export class CallMeService {
   }
 
   public postCallMeData() {
-    this._user.phone = this.phoneValidator.normalizePhone(this._user.phone);
-    this.dataLoaderService.postData("api/User/PostCallMeData", this._user)
+    var user = {
+      phone: this.phoneValidator.normalizePhone(this._user.phone),
+      name: this._user.name
+    };
+    this.dataLoaderService.postData("api/User/PostCallMeData", user)
       .subscribe(() => { }, error => console.log(error));
   }
 }

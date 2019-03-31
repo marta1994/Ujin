@@ -28,13 +28,19 @@
   }
 
   @media screen and (orientation:portrait) {
-    img {
-      width: 100%;
+    .image-wrapper {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        max-width: 340px;
+      }
     }
 
     .menu {
       width: 100%;
-      border-bottom: 1px solid @grey-minor-color;      
+      border-bottom: 1px solid @grey-minor-color;
       @padding: 10px;
 
       .menu-item {

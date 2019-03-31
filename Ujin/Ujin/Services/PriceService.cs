@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Controllers.Models.Price;
@@ -15,11 +14,7 @@ namespace Ujin.Services
 
         private const decimal WORK_COEF = 2;
 
-        private const string METAL_PRICE_NAME = "GramPrice";
-
-        private readonly HashSet<string> additionalServices = new HashSet<string> {
-            "Casting", "Processing", "Fixing", "Printing"
-        };
+        private const int ZIRCONIUM_ID = 5;
 
         private readonly UjinContext ujinContext;
 
@@ -33,18 +28,20 @@ namespace Ujin.Services
             var ringWeight = await ujinContext.RingWeights
                 .FindAsync(config.MetalId, config.DecorationId, config.Size);
             var gemstonePrice = await ujinContext.GemstonePrices
-                .FindAsync(config.GemstoneId);
+                .FindAsync(config.UseZirconium ? ZIRCONIUM_ID : config.GemstoneId);
             var metalPrices = await ujinContext.PricePerMetals
                 .Where(mp => mp.MetalId == config.MetalId)
+                .ToListAsync();
+            var addServices = await ujinContext.AdditionalServices
                 .ToListAsync();
 
             var gemPrice = gemstonePrice.Price;
             var weight = ringWeight.WeightGrams;
-            var pricePerGram = metalPrices.First(it => it.ItemName == METAL_PRICE_NAME).ItemPrice;
-            var additionalPrice = metalPrices.Where(it => additionalServices.Contains(it.ItemName))
-                .Sum(it => it.ItemPrice);
+            var metalPrice = metalPrices.Sum(it => it.ItemPrice);
+            var addServicePrice = addServices.Sum(p => p.Price);
 
-            var resultPrice = (weight * pricePerGram + additionalPrice) * WORK_COEF + gemPrice * GEMSTONE_COEF;
+            var resultPrice = (weight * metalPrice + addServicePrice) * WORK_COEF 
+                + gemPrice * GEMSTONE_COEF;
             resultPrice = Math.Floor(resultPrice / 10 + 0.5m) * 10;
             return resultPrice;
         }

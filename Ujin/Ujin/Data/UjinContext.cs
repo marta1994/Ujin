@@ -26,6 +26,8 @@ namespace Ujin.Data
 
         public DbSet<RingWeight> RingWeights { get; set; }
 
+        public DbSet<AdditionalService> AdditionalServices { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
@@ -36,6 +38,7 @@ namespace Ujin.Data
             modelBuilder.Entity<GemstonePrice>().ToTable("GemstonePrice");
             modelBuilder.Entity<PricePerMetal>().ToTable("PricePerMetal");
             modelBuilder.Entity<RingWeight>().ToTable("RingWeight");
+            modelBuilder.Entity<AdditionalService>().ToTable("AdditionalService");
 
             modelBuilder.Entity<User>()
             .Property(u => u.DateCreated)

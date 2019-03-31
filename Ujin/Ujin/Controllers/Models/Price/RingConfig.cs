@@ -15,5 +15,7 @@ namespace Ujin.Controllers.Models.Price
 
         [RangeNumber(min: 15, max: 22)]
         public decimal Size { get; set; }
+
+        public bool UseZirconium { get; set; }
     }
 }

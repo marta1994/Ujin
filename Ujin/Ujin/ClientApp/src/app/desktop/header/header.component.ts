@@ -11,7 +11,16 @@ export class HeaderComponent implements OnInit {
 
   public likeButtonsVisible: boolean = false;
 
-  constructor(private _locale: LocaleService) { }
+  public languages: { name: string, code: string }[];
+
+  constructor(private _locale: LocaleService) {
+    this.languages = languages.map(l => {
+      return {
+        name: l.displayName,
+        code: l.code
+      };
+    });
+  }
 
   ngOnInit() {
   }
@@ -22,15 +31,6 @@ export class HeaderComponent implements OnInit {
 
   likeButtonsLeave() {
     this.likeButtonsVisible = false;
-  }
-
-  public get languages(): { name: string, code: string }[] {
-    return languages.map(l => {
-      return {
-        name: l.displayName,
-        code: l.code
-      };
-    });
   }
 
   public isLangSelected(lang: { name: string, code: string }): boolean {

@@ -5,13 +5,18 @@
   background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px solid @light-gey;
   outline: none;
+  padding: 2px 0;
   .set-border-radius(0);
 
   &.error-state {
-    border-bottom: 2px solid @red-color;
+    border-bottom-width: 2px;
+    border-bottom-color: @red-color;
+    padding-bottom: 1px;
   }
 
   &:focus {
-    border-bottom: 2px solid @black-color;
+    border-bottom-width: 2px;
+    border-bottom-color: @black-color;
+    padding-bottom: 1px;
   }
 }

@@ -36,7 +36,7 @@ export class PriceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public openOrderDialog() {
-    this.popupService.open(OrderComponent, { showCloseButton: true, width: this.popupWidth, height: "420px" });
+    this.popupService.open(OrderComponent, { showCloseButton: true, width: this.popupWidth });
   }
 
 }

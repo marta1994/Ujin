@@ -22,7 +22,7 @@ export class PopupComponent implements AfterViewInit, OnDestroy {
   public width: string = "400px";
 
   @Input()
-  public height: string = "300px";
+  public height: string = "auto";
 
   private componentRef: ComponentRef<OnAction>;
   public childComponentType: Type<OnAction>;
@@ -59,9 +59,7 @@ export class PopupComponent implements AfterViewInit, OnDestroy {
   public get popupStyle(): object {
     return {
       "width": this.width,
-      "height": this.height,
-      "margin-top": `calc(-${this.height}/2)`,
-      "margin-left": `calc(-${this.width}/2)`
+      "height": this.height
     }
   }
 

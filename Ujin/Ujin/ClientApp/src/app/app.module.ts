@@ -39,6 +39,7 @@ import { InputComponent } from './uiComponents/input/input.component';
 import { PriceComponent } from './uiComponents/price/price.component';
 import { OrderComponent } from './uiComponents/order/order.component';
 import { AnalyticsModule } from './googleAnalytics/analytics.module';
+import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -66,12 +67,14 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     CallMeComponent,
     InputComponent,
     PriceComponent,
-    OrderComponent
+    OrderComponent,
+    PlainTextComponent
   ],
   entryComponents: [
     PopupComponent,
     CallMeComponent,
-    OrderComponent
+    OrderComponent,
+    PlainTextComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

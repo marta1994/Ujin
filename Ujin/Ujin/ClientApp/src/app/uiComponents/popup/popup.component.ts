@@ -26,6 +26,7 @@ export class PopupComponent implements AfterViewInit, OnDestroy {
 
   private componentRef: ComponentRef<OnAction>;
   public childComponentType: Type<OnAction>;
+  public childComponentConfig: ChildComponentConfig;
 
   // add this:
   @ViewChild(InsertionDirective)
@@ -48,6 +49,18 @@ export class PopupComponent implements AfterViewInit, OnDestroy {
     this.componentRef.instance.actionHappened.subscribe(() => {
       this.closeAction.emit();
     });
+    this.injectChildComponentData();
+  }
+
+  private injectChildComponentData() {
+    if (!this.childComponentConfig || !this.childComponentConfig.inputData)
+      return;
+    var component = this.componentRef.instance;
+    for (let key in this.childComponentConfig.inputData) {
+      if (component.hasOwnProperty(key)) {
+        component[key] = this.childComponentConfig.inputData[key];
+      }
+    }
   }
 
   ngOnDestroy() {
@@ -78,4 +91,8 @@ export class PopupComponent implements AfterViewInit, OnDestroy {
   public onCloseClicked(evt: MouseEvent) {
     this.closePopup();
   }
+}
+
+export interface ChildComponentConfig {
+  inputData?: object;
 }

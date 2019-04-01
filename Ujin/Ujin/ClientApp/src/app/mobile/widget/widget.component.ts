@@ -5,6 +5,8 @@ import { trigger, useAnimation, transition, state, style, animate } from '@angul
 import { fadeIn, fadeOut } from 'ng-animate';
 import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
 import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
+import { PopupService } from '../../uiComponents/popup/popup.service';
+import { PlainTextComponent } from '../../uiComponents/plain-text/plain-text.component';
 
 @Component({
   selector: 'app-mobile-widget',
@@ -40,6 +42,7 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
     private _screenOrientationService: ScreenOrientationService,
     private changeDetector: ChangeDetectorRef,
     public selectedStateService: WidgetSelectedStateService,
+    private popupService: PopupService,
     private gaService: WidgetGaService) { }
 
   ngOnInit() {
@@ -159,6 +162,10 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.selectedSubIndex > 0) {
       this.selectSubItem(this._selectedItem.subItems[this.selectedSubIndex - 1]);
     }
+  }
+
+  public showGemstoneInfo() {
+    this.popupService.open(PlainTextComponent, { showCloseButton: true, width: '100%' }, { inputData: { textKey: 'widget.gemstone.story' } });
   }
 }
 

@@ -2,7 +2,7 @@ import {
   Injectable, ComponentFactoryResolver,
   ApplicationRef, Injector, EmbeddedViewRef, ComponentRef, Type
 } from '@angular/core';
-import { PopupComponent } from './popup.component';
+import { PopupComponent, ChildComponentConfig } from './popup.component';
 import { OnAction } from './OnAction';
 
 @Injectable()
@@ -13,13 +13,17 @@ export class PopupService {
     private appRef: ApplicationRef,
     private injector: Injector) { }
 
-  public open(componentType: Type<OnAction>, config: PopupConfig = {}): ComponentRef<PopupComponent> {
+  public open(
+    componentType: Type<OnAction>,
+    config: PopupConfig = {},
+    childConfig: ChildComponentConfig = {}): ComponentRef<PopupComponent> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(PopupComponent);
     const componentRef = componentFactory.create(this.injector);
     this.appRef.attachView(componentRef.hostView);
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);
     componentRef.instance.childComponentType = componentType;
+    componentRef.instance.childComponentConfig = childConfig;
     componentRef.instance.closeAction.subscribe(() => {
       this.close(componentRef);
     });

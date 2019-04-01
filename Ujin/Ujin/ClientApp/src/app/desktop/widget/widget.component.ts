@@ -4,6 +4,8 @@ import { trigger, useAnimation, transition, state, style, animate } from '@angul
 import { fadeIn, fadeOut } from 'ng-animate';
 import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
 import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
+import { PlainTextComponent } from '../../uiComponents/plain-text/plain-text.component';
+import { PopupService } from '../../uiComponents/popup/popup.service';
 
 @Component({
   selector: 'app-desktop-widget',
@@ -32,6 +34,7 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
     private _widgetService: WidgetService,
     private changeDetector: ChangeDetectorRef,
     public selectedStateService: WidgetSelectedStateService,
+    private popupService: PopupService,
     private gaService: WidgetGaService) { }
 
   ngOnInit() {
@@ -129,5 +132,9 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public getSelectedSubMenu(): MenuItem[] {
     return this._selectedItem ? this._selectedItem.subItems : null;
+  }
+
+  public showGemstoneInfo() {
+    this.popupService.open(PlainTextComponent, { showCloseButton: true, width: '350px'}, { inputData: { textKey: 'widget.gemstone.story' } });
   }
 }

@@ -77,8 +77,22 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
     return WidgetService.SIZE_CONFIG;
   }
 
+  public get gemstoneName(): string {
+    return WidgetService.GEMSTONE_KEY;
+  }
+
   public get selectedItem(): MenuItem {
     return this._selectedItem;
+  }
+
+  public get useZirconium(): boolean {
+    return this._widgetService.useZirconiumItem ? this._widgetService.useZirconiumItem.value : false;
+  }
+
+  public set useZirconium(val: boolean) {
+    if (this._widgetService.useZirconiumItem) {
+      this._widgetService.useZirconiumItem.value = val;
+    }
   }
 
   public get sliderValue(): number {

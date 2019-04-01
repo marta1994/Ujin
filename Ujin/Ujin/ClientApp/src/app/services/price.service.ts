@@ -29,7 +29,8 @@ export class PriceService {
       this.widgetService.metalSelectedItem.id,
       this.widgetService.decorationSelectedItem.id,
       this.widgetService.gemstoneSelectedItem.id,
-      this.widgetService.selectedSize
+      this.widgetService.selectedSize,
+      this.widgetService.useZirconiumItem.value
     );
   }
 
@@ -49,13 +50,15 @@ class RingConfiguration {
     public metalId: number,
     public decorationId: number,
     public gemstoneId: number,
-    public size: number) { }
+    public size: number,
+    public useZirconium: boolean) { }
 
   public isEqual(config: RingConfiguration): boolean {
     return config != null
       && config.metalId === this.metalId
       && config.decorationId === this.decorationId
-      && config.gemstoneId === this.gemstoneId
+      && config.useZirconium === this.useZirconium
+      && ((config.gemstoneId === this.gemstoneId) || this.useZirconium)
       && config.size === this.size;
   }
 }

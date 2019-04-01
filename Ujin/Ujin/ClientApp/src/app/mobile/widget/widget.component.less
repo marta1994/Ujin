@@ -7,6 +7,7 @@
   @menu-border-style: solid @white-color;
   @menu-border-width: 2px;
   @menu-border: @menu-border-width @menu-border-style;
+  padding-bottom: 30px;
 
   .motto {
     text-align: center;
@@ -23,8 +24,43 @@
     }
   }
 
-  .widget-container {
-    padding: 0 0 30px 0;
+  .gemstone-case {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 0;
+    overflow: hidden;
+    transition: height ease 300ms;
+    border-bottom: 0 solid @grey-minor-color;
+
+    &.visible {
+      height: 40px;
+      border-bottom-width: 1px;
+    }
+
+    .gem-label {
+      flex: 1;
+      color: @grey-minor-color;
+      display: inline-block;
+      height: 100%;
+      transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
+      padding-top: 17px;
+      font-weight: 900;
+
+      &.selected {
+        color: @white-color;
+        border-bottom: 2px @menu-border-style;
+      }
+    }
+
+    .gem-info {
+      color: @white-color;
+      display: inline-block;
+      padding-top: 17px;
+      height: 100%;
+      width: 30px;
+      border-left: 1px solid @grey-minor-color;
+    }
   }
 
   @media screen and (orientation:portrait) {

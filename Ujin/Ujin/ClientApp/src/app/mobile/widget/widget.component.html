@@ -3,27 +3,27 @@
   <p class="motto bottom-motto" l10nTranslate>motto.pushAction</p>
   <div class="widget-container">
     <div class="menu upper-menu category-menu">
-      <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)" 
+      <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
            [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
     </div>
     <div class="image-wrapper" (swipeleft)="moveToNextConfig()" (swiperight)="moveToPrevConfig()">
       <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
-           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()"/>
+           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
     </div>
     <div class="menu bottom-menu config-menu" [@bottomMenu]="selectedItem">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
-           [ngClass]="{'selected': isSelected(item)}"  id="{{item.nameKey}}">
+           [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
         <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
       <div class="size-case" *ngIf="selectedItem && selectedItem.nameKey === sliderConfig.nameKey">
         <div *ngIf="sliderDirection === 'horizontal'" class="slider">
           <app-slider-regular class="slider-instance"
-                      [min]="sliderConfig.min"
-                      [max]="sliderConfig.max"
-                      [step]="sliderConfig.step"
-                      [(value)]="sliderValue"></app-slider-regular>
+                              [min]="sliderConfig.min"
+                              [max]="sliderConfig.max"
+                              [step]="sliderConfig.step"
+                              [(value)]="sliderValue"></app-slider-regular>
           <span class="text">
             {{sliderValue}}
           </span>
@@ -36,4 +36,13 @@
       </div>
     </div>
   </div>
+  <div class="gemstone-case" [ngClass]="{ 'visible': selectedItem && selectedItem.nameKey === gemstoneName}">
+      <span class="gem-label" l10nTranslate [ngClass]="{'selected': !useZirconium}" (click)="useZirconium=false">
+        widget.gemstone.genuine
+      </span>
+      <span class="gem-label" l10nTranslate [ngClass]="{'selected': useZirconium}" (click)="useZirconium=true">
+        widget.gemstone.zirconium
+      </span>
+      <span class="gem-info">?</span>
+    </div>
 </div>

@@ -9,6 +9,8 @@ export class HeaderComponent implements OnInit {
 
   private _menuState: MenuState = MenuState.Closed;
 
+  public buttonsVisible: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

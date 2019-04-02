@@ -32,6 +32,26 @@
       fill: @black-color;
       height: 100%;
     }
+
+    .social-buttons {
+      height: auto;
+      transform: scaleY(0);
+      transform-origin: top;
+      overflow-y: hidden;
+      position: absolute;
+      left: -10px;
+      top: @share-height;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      transition: transform ease 0.3s;
+    }
+
+    &.open {
+      .social-buttons {
+        transform: scaleY(1);
+      }
+    }
   }
 
   .logo-header {

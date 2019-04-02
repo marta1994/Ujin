@@ -8,8 +8,11 @@
   <div class="logo-header">
     <span [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
   </div>
-  <div class="share-header">
-    <span [inlineSVG]="'/assets/images/share.svg'"></span>
+  <div class="share-header" [ngClass]="{'open': buttonsVisible}">
+    <span [inlineSVG]="'/assets/images/share.svg'" (click)="buttonsVisible = !buttonsVisible"></span>
+    <div class="social-buttons">
+      <app-social-share></app-social-share>
+    </div>
   </div>
 </div>
 <app-nav-menu class="nav-menu" (menuCloseActionHappened)="shwitchMenuState()"

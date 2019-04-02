@@ -1,0 +1,26 @@
+<div class="social-share-holder">
+  <div class="social-button facebook" *ngIf="facebookShareUrl">
+    <a target="_blank" class="share-link"
+       [href]="facebookShareUrl">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/facebook.svg'"></span>
+    </a>
+  </div>
+  <div class="social-button viber" *ngIf="viberShareUrl">
+    <a target="_blank" class="share-link"
+       [href]="viberShareUrl">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/viber.svg'"></span>
+    </a>
+  </div>
+  <div class="social-button messanger" *ngIf="messangerShareUrl">
+    <a target="_blank" class="share-link"
+       [href]="messangerShareUrl">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/messanger.svg'"></span>
+    </a>
+  </div>
+  <div class="social-button telegram" *ngIf="telegramShareUrl">
+    <a target="_blank" class="share-link"
+       [href]="telegramShareUrl">
+      <span class="svg-holder" [inlineSVG]="'/assets/images/telegram.svg'"></span>
+    </a>
+  </div>
+</div>

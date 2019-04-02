@@ -5,17 +5,12 @@
     <span class="like-item menu-item">
       <span class="svg-holder" [inlineSVG]="'/assets/images/heart.svg'"></span>
       <span l10nTranslate>rightMenu.like</span>
-      <div class="social-buttons">
-        <div class="sharethis-inline-follow-buttons"></div>
-      </div>
     </span>
     <span class="share-item menu-item">
       <span class="svg-holder" [inlineSVG]="'/assets/images/share.svg'"></span>
       <span l10nTranslate>rightMenu.share</span>
       <div class="social-buttons">
-        <div class="fb-like" data-href="http://ujin.pp.ua/" data-width="30"
-             data-layout="button" data-action="like" data-size="small"
-             data-show-faces="false" data-share="false"></div>
+        <app-social-share></app-social-share>
       </div>
     </span>
     <span class="contacts-item menu-item">

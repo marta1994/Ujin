@@ -9,8 +9,6 @@ import { languages } from '../../configs/localization.config';
 })
 export class HeaderComponent implements OnInit {
 
-  public likeButtonsVisible: boolean = false;
-
   public languages: { name: string, code: string }[];
 
   constructor(private _locale: LocaleService) {
@@ -23,14 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  likeButtonsHover() {
-    this.likeButtonsVisible = true;
-  }
-
-  likeButtonsLeave() {
-    this.likeButtonsVisible = false;
   }
 
   public isLangSelected(lang: { name: string, code: string }): boolean {

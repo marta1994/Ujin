@@ -7,6 +7,8 @@ namespace Ujin
         public string Host { get; set; }
 
         public MailSettings MailSettings { get; set; }
+
+        public SocialReferences SocialReferences { get; set; }
     }
 
     public class MailSettings
@@ -29,5 +31,16 @@ namespace Ujin
         public string Username { get; set; }
 
         public string Password { get; set; }
+    }
+
+    public class SocialReferences
+    {
+        public string Facebook { get; set; }
+
+        public string Instagram { get; set; }
+
+        public string Pinterest { get; set; }
+
+        public string FacebookAppId { get; set; }
     }
 }

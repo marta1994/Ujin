@@ -54,19 +54,21 @@
 
       .social-buttons {
         height: 0;
-        width: 120px;
-        padding-top: 18px;
         top: @menu-item-size;
         position: absolute;
         overflow: hidden;
-        transition: height ease 200ms;
+        transition: height ease 300ms;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: center;
       }
 
       &:hover {
         color: @light-gey;
 
         .social-buttons {
-          height: 50px;
+          height: auto;
         }
 
         .svg-holder ::ng-deep svg {

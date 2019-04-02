@@ -19,6 +19,8 @@ import { PriceService } from './services/price.service';
 import { EmailValidatorService } from './services/email-validator.service';
 import { PhoneValidatorService } from './services/phone-validator.service';
 import { OrderService } from './services/order.service';
+import { SocialService } from './services/social.service';
+import { DeviceTypeService } from './services/device-type.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -40,6 +42,7 @@ import { PriceComponent } from './uiComponents/price/price.component';
 import { OrderComponent } from './uiComponents/order/order.component';
 import { AnalyticsModule } from './googleAnalytics/analytics.module';
 import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
+import { SocialShareComponent } from './uiComponents/social-share/social-share.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -68,7 +71,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     InputComponent,
     PriceComponent,
     OrderComponent,
-    PlainTextComponent
+    PlainTextComponent,
+    SocialShareComponent
   ],
   entryComponents: [
     PopupComponent,
@@ -98,6 +102,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     EmailValidatorService,
     PhoneValidatorService,
     OrderService,
+    SocialService,
+    DeviceTypeService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig

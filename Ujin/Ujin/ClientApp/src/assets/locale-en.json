@@ -13,7 +13,7 @@
       "amethyst": "Amethyst",
       "emerald": "Emerald",
       "genuine": "Genuine gemstone",
-      "zirconium":  "Zirconium"
+      "zirconium": "Zirconium"
     },
     "covering": {
       "capture": "Decoration",
@@ -56,6 +56,6 @@
     "enterName": "Enter your name",
     "enterPhone": "Enter your phone",
     "enterEmail": "Enter your email",
-    "submit":  "Send the order"
+    "submit": "Send the order"
   }
 }

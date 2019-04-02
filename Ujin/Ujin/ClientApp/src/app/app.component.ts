@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataLoaderService } from './api/data-loader.service';
+import { DeviceTypeService, DeviceType } from './services/device-type.service';
 
 @Component({
   selector: 'app-root',
@@ -7,32 +7,19 @@ import { DataLoaderService } from './api/data-loader.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  public deviceType: DeviceType;
 
-  constructor(private _dataLoader: DataLoaderService) {
-  }
-
-  private getDeviceType() {
-    this._dataLoader.loadData<DeviceType>('api/userAgent/DetermineDeviceType').subscribe(result => {
-      this.deviceType = result;
-    }, error => console.error(error));
+  constructor(private deviceTypeService: DeviceTypeService) {
   }
 
   ngOnInit() {
-    this.getDeviceType();
   }
 
   public showMobile(): boolean {
-    return this.deviceType === DeviceType.Mobile;
+    return this.deviceTypeService.deviceType === DeviceType.Mobile;
   }
 
   public showDesktop(): boolean {
-    return this.deviceType === DeviceType.Desktop || this.deviceType === DeviceType.Unknown;
+    return this.deviceTypeService.deviceType === DeviceType.Desktop
+      || this.deviceTypeService.deviceType === DeviceType.Unknown;
   }
-}
-
-enum DeviceType {
-  Unknown = 0,
-  Desktop = 1,
-  Mobile = 2,
 }

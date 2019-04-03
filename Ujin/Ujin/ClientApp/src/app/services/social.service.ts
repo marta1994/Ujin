@@ -37,14 +37,6 @@ export class SocialService {
     return this.socialRefs ? this.socialRefs.facebookAppId : null;
   }
 
-  public get formattedSelfHost(): string {
-    let selfHost = this.selfHost;
-    if (!selfHost) return null;
-    let formatted = selfHost.replace(/\/\/\:/g, '%3A%2F%2F').replace(/\//g, '%2F');
-    formatted += formatted.endsWith('%2F') ? '&amp' : '%2F&amp';
-    return formatted;
-  }
-
   public get facebookShareUrl(): string {
     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.selfHost)};src=sdkpreparse`
   }
@@ -55,7 +47,12 @@ export class SocialService {
   }
 
   public get messangerShareUrl(): string {
-    if (this.deviceTypeService.deviceType !== DeviceType.Mobile) return null;
+    if (this.deviceTypeService.deviceType !== DeviceType.Mobile) {
+      return "http://www.facebook.com/dialog/send?" +
+        "app_id=" + this.facebookAppId +
+        "&link=" + encodeURIComponent(this.selfHost) +
+        "&redirect_uri=" + encodeURIComponent(this.selfHost);
+    }
     return 'fb-messenger://share?link=' + encodeURIComponent(this.selfHost) + '&app_id=' + encodeURIComponent(this.facebookAppId);
   }
 

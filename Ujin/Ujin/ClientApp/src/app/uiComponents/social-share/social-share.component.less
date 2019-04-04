@@ -4,6 +4,8 @@
 @viber-color: #574e92 ;
 @messanger-color: #0084ff;
 @telegram-color: #0088cc;
+@pinterest-color: #e60023;
+@instagram-color: #e1306c;
 
 .social-share-holder {
   display: flex;
@@ -97,6 +99,28 @@
     &:hover, &:active {
       .share-link .svg-holder ::ng-deep svg {
         fill: @telegram-color;
+      }
+    }
+  }
+
+  .pinterest {
+    background-color: @pinterest-color;
+    border-color: @pinterest-color;
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @pinterest-color;
+      }
+    }
+  }
+
+  .instagram {
+    background-color: @instagram-color;
+    border-color: @instagram-color;
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @instagram-color;
       }
     }
   }

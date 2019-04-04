@@ -3,6 +3,7 @@ import { DataLoaderService } from '../api/data-loader.service';
 import { DeviceTypeService, DeviceType } from './device-type.service';
 import 'rxjs/add/observable/empty';
 import { Observable } from 'rxjs/Observable';
+import { share } from 'rxjs/operators';
 
 @Injectable()
 export class SocialService {
@@ -23,10 +24,11 @@ export class SocialService {
   public loadSocialRefs(): Observable<SocialRefs> {
     if (this._currenctObservable) return this._currenctObservable;
     this._currenctObservable =
-      this.dataLoader.loadData<SocialRefs>('api/Social/SocialReferences').map(
+      this.dataLoader.loadData<SocialRefs>('api/Social/SocialReferences')
+      .pipe(share())
+      .map(
         data => {
           this._socialRefs = data;
-          this._currenctObservable = null;
           return data;
         });
     return this._currenctObservable;

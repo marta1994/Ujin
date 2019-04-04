@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SocialService } from '../../services/social.service';
 
 @Component({
@@ -7,6 +7,12 @@ import { SocialService } from '../../services/social.service';
   styleUrls: ['./social-share.component.less']
 })
 export class SocialShareComponent implements OnInit {
+
+  @Input()
+  public direction: Direction = Direction.vertical;
+
+  @Input()
+  public size: string = '40px';
 
   private _socialButtons: SocialButtonConfig[];
 
@@ -40,6 +46,10 @@ export class SocialShareComponent implements OnInit {
     });
   }
 
+  public get flexDirection(): string {
+    return this.direction === Direction.horizontal ? 'row' : 'column';
+  }
+
   public get socialButtons(): SocialButtonConfig[] {
     return this._socialButtons;
   }
@@ -53,4 +63,9 @@ interface SocialButtonConfig {
   url: string;
   className: string;
   imagePath: string;
+}
+
+enum Direction {
+  vertical = "vertical",
+  horizontal = "horizontal"
 }

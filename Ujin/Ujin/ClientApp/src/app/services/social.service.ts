@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { DataLoaderService } from '../api/data-loader.service';
 import { DeviceTypeService, DeviceType } from './device-type.service';
+import 'rxjs/add/observable/empty';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SocialService {
 
   private _socialRefs: SocialRefs;
-  private _areRefsLoading: boolean = false;
+  private _currenctObservable: Observable<SocialRefs>;
 
   constructor(
     private dataLoader: DataLoaderService,
@@ -18,15 +20,16 @@ export class SocialService {
     return null;
   }
 
-  private loadSocialRefs() {
-    if (this._areRefsLoading) return;
-    this._areRefsLoading = true;
-    this.dataLoader.loadData<SocialRefs>('api/Social/SocialReferences').subscribe(
-      data => {
-        this._socialRefs = data;
-      },
-      error => console.log(error),
-      () => this._areRefsLoading = false);
+  public loadSocialRefs(): Observable<SocialRefs> {
+    if (this._currenctObservable) return this._currenctObservable;
+    this._currenctObservable =
+      this.dataLoader.loadData<SocialRefs>('api/Social/SocialReferences').map(
+        data => {
+          this._socialRefs = data;
+          this._currenctObservable = null;
+          return data;
+        });
+    return this._currenctObservable;
   }
 
   public get selfHost(): string {

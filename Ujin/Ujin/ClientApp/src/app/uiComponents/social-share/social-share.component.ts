@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SocialService } from '../../services/social.service';
 
 @Component({
@@ -9,30 +8,49 @@ import { SocialService } from '../../services/social.service';
 })
 export class SocialShareComponent implements OnInit {
 
+  private _socialButtons: SocialButtonConfig[];
+
   constructor(
-    private socialService: SocialService,
-    private domSanitizer: DomSanitizer) { }
+    private socialService: SocialService) { }
 
   ngOnInit() {
+    this.socialService.loadSocialRefs().subscribe(() => {
+      this._socialButtons = [
+        {
+          url: this.socialService.facebookShareUrl,
+          className: "facebook",
+          imagePath: "/assets/images/facebook.svg"
+        },
+        {
+          url: this.socialService.viberShareUrl,
+          className: "viber",
+          imagePath: "/assets/images/viber.svg"
+        },
+        {
+          url: this.socialService.messangerShareUrl,
+          className: "messanger",
+          imagePath: "/assets/images/messanger.svg"
+        },
+        {
+          url: this.socialService.telegramShareUrl,
+          className: "telegram",
+          imagePath: "/assets/images/telegram.svg"
+        }];
+      this._socialButtons = this._socialButtons.filter(el => el.url);
+    });
   }
 
-  public get facebookShareUrl(): SafeUrl {
-    if (!this.socialService.facebookShareUrl) return null;
-    return this.domSanitizer.bypassSecurityTrustUrl(this.socialService.facebookShareUrl);
+  public get socialButtons(): SocialButtonConfig[] {
+    return this._socialButtons;
   }
 
-  public get viberShareUrl(): SafeUrl {
-    if (!this.socialService.viberShareUrl) return null;
-    return this.domSanitizer.bypassSecurityTrustUrl(this.socialService.viberShareUrl);
+  public goToLink(link: string) {
+    window.open(link, '_blank');
   }
+}
 
-  public get messangerShareUrl(): SafeUrl {
-    if (!this.socialService.messangerShareUrl) return null;
-    return this.domSanitizer.bypassSecurityTrustUrl(this.socialService.messangerShareUrl);
-  }
-
-  public get telegramShareUrl(): SafeUrl {
-    if (!this.socialService.telegramShareUrl) return null;
-    return this.domSanitizer.bypassSecurityTrustUrl(this.socialService.telegramShareUrl);
-  }
+interface SocialButtonConfig {
+  url: string;
+  className: string;
+  imagePath: string;
 }

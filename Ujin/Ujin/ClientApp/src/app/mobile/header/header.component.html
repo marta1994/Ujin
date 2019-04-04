@@ -10,7 +10,7 @@
   </div>
   <div class="share-header" [ngClass]="{'open': buttonsVisible}">
     <span [inlineSVG]="'/assets/images/share.svg'" (click)="buttonsVisible = !buttonsVisible"></span>
-    <div class="social-buttons">
+    <div class="social-buttons" (click)="buttonsVisible = false">
       <app-social-share></app-social-share>
     </div>
   </div>

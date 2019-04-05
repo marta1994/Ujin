@@ -57,5 +57,9 @@
     "enterPhone": "Enter your phone",
     "enterEmail": "Enter your email",
     "submit": "Send the order"
+  },
+  "navMenu": {
+    "socialLinks": "Our social networks",
+    "share": "Share this width your friends"
   }
 }

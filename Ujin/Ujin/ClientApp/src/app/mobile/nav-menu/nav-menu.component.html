@@ -1,4 +1,12 @@
 <div class="menu">
+  <div class="social social-share">
+    <span class="share-text" l10nTranslate>navMenu.share</span>
+    <app-social-share [direction]="'horizontal'" [size]="'30px'"></app-social-share>
+  </div>
+  <div class="social social-links">
+    <span class="share-text" l10nTranslate>navMenu.socialLinks</span>
+    <app-social-share [purpose]="'simpleLink'" [direction]="'horizontal'" [size]="'30px'"></app-social-share>
+  </div>
   <div class="languages-container">
     <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
           *ngFor="let language of languages"

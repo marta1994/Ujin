@@ -1,12 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { WidgetService, MenuItem, MenuConfig } from '../../services/widget.service';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { WidgetService } from '../../services/widget.service';
 import { ScreenOrientationService, ScreenOrientation } from '../../services/screen-orientation.service';
-import { trigger, useAnimation, transition, state, style, animate } from '@angular/animations';
-import { fadeIn, fadeOut } from 'ng-animate';
-import { WidgetSelectedStateService, ImgAnimateState } from '../../services/widget-selected-state.service';
+import { WidgetSelectedStateService } from '../../services/widget-selected-state.service';
 import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
 import { PopupService } from '../../uiComponents/popup/popup.service';
-import { PlainTextComponent } from '../../uiComponents/plain-text/plain-text.component';
+import { BaseWidgetComponent, WidgetAnimations } from '../../uiComponents/widget/base-widget.component';
+import { EnumService } from '../../services/enum.service';
 
 @Component({
   selector: 'app-mobile-widget',
@@ -14,58 +13,21 @@ import { PlainTextComponent } from '../../uiComponents/plain-text/plain-text.com
   styleUrls: ['./widget.component.less'],
   providers: [  WidgetSelectedStateService ],
   animations: [
-    trigger('widgetImg', [
-      transition('* => out',
-        useAnimation(fadeOut, { params: { timing: 0.3 } })),
-      transition('* => in',
-        useAnimation(fadeIn, { params: { timing: 0.3 } })),
-      state('loading', style({
-        opacity: 0
-      })),
-      transition('* => loading', [animate(0.3)])]),
-    trigger('bottomMenu', [
-      transition('* => *',
-        animate('0.3s ease', style({
-          boxShadow: '0 2px 2px 0 #f5f5f5'
-          })),
-      )])
+    WidgetAnimations.widgetImgTrigger,
+    WidgetAnimations.bottomMenuTrigger
   ]
 })
-export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  public menuItems: MenuItem[];
-  public configuration: MenuConfig[];
-  private _selectedItem: MenuItem;
+export class WidgetComponent extends BaseWidgetComponent {
 
   constructor(
-    private _widgetService: WidgetService,
-    private _screenOrientationService: ScreenOrientationService,
-    private changeDetector: ChangeDetectorRef,
-    public selectedStateService: WidgetSelectedStateService,
-    private popupService: PopupService,
-    private gaService: WidgetGaService) { }
-
-  ngOnInit() {
-    this._widgetService.loadMenuItems()
-      .subscribe(
-        data => {
-          this.menuItems = data;
-          this.selectItem(this.menuItems[0]);
-          this.configuration = this._widgetService.configuration;
-        },
-      error => console.log(error));
-    this.selectedStateService.init(
-      () => this.configSelected,
-      () => this.changeDetector.detectChanges(),
-      () => this.imageSrc);
-  }
-
-  ngAfterViewInit() {
-    this.gaService.registerEvents();
-  }
-
-  ngOnDestroy() {
-    this.gaService.dispose();
+     _widgetService: WidgetService,
+    changeDetector: ChangeDetectorRef,
+    selectedStateService: WidgetSelectedStateService,
+    popupService: PopupService,
+    gaService: WidgetGaService,
+    _enumService: EnumService,
+    private _screenOrientationService: ScreenOrientationService) {
+    super(_widgetService, changeDetector, selectedStateService, popupService, gaService, _enumService);
   }
 
   public get imageSrc(): string {
@@ -76,79 +38,9 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
     return this._screenOrientationService.orientation === ScreenOrientation.Landscape ? "vertical" : "horizontal";
   }
 
-  public get sliderConfig() {
-    return WidgetService.SIZE_CONFIG;
-  }
-
-  public get gemstoneName(): string {
-    return WidgetService.GEMSTONE_KEY;
-  }
-
-  public get selectedItem(): MenuItem {
-    return this._selectedItem;
-  }
-
-  public get useZirconium(): boolean {
-    return this._widgetService.useZirconiumItem ? this._widgetService.useZirconiumItem.value : false;
-  }
-
-  public set useZirconium(val: boolean) {
-    if (this._widgetService.useZirconiumItem) {
-      this._widgetService.useZirconiumItem.value = val;
-    }
-  }
-
-  public get sliderValue(): number {
-    return this.configuration.find(c => c.nameKey === WidgetService.SIZE_CONFIG.nameKey)
-      .value;
-  }
-
-  public set sliderValue(val: number) {
-    this.configuration.find(c => c.nameKey === WidgetService.SIZE_CONFIG.nameKey)
-      .value = val;
-  }
-
-  private get configSelected(): MenuConfig {
-    return this.configuration.find(it => it.nameKey === this._selectedItem.nameKey);
-  }
-
   private get selectedSubIndex(): number {
     return this._selectedItem.subItems.findIndex(si => this.isSelected(si));
   }  
-
-  public selectItem(item: MenuItem) {
-    this._selectedItem = item;
-  }
-
-  public selectSubItem(item: MenuItem) {
-    this.selectedStateService.selectSubItem(item);
-  }
-
-  public get imgAnimate(): ImgAnimateState {
-    return this.selectedStateService.imgAnimate;
-  }
-
-  public imgAnimateDone(event) {
-    this.selectedStateService.imgAnimateDone(event);
-  }
-
-  public onImageLoded() {
-    this.selectedStateService.onImageLoded();
-  }
-
-  public isSelected(item: MenuItem): boolean {
-    if (item === this._selectedItem)
-      return true;
-    for (let conf of this.configuration) {
-      if (conf.value === item)
-        return true;
-    }
-    return false;
-  }
-
-  public getSelectedSubMenu(): MenuItem[] {
-    return this._selectedItem ? this._selectedItem.subItems : null; 
-  }
 
   public moveToNextConfig() {
     if (!this._selectedItem) return;
@@ -165,7 +57,7 @@ export class WidgetComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public showGemstoneInfo() {
-    this.popupService.open(PlainTextComponent, { showCloseButton: true, width: '100%' }, { inputData: { textKey: 'widget.gemstone.story' } });
+    this.showGemstoneInfoOnWidth('100%');
   }
 }
 

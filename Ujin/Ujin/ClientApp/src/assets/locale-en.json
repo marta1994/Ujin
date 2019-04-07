@@ -12,7 +12,8 @@
       "ruby": "Ruby",
       "amethyst": "Amethyst",
       "emerald": "Emerald",
-      "genuine": "Genuine gemstone",
+      "genuine": "Genuine",
+      "artifical": "Artificial",
       "zirconium": "Zirconium"
     },
     "covering": {

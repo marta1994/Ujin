@@ -65,12 +65,9 @@ export class WidgetGaService extends BaseGaService {
       sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.sizeCounterDown);
     });
 
-    this.addEvent($(".widget-background .gemstone-case .genuine"), "click", () => {
-      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.genuineClick);
-    });
-
-    this.addEvent($(".widget-background .gemstone-case .zirconium"), "click", () => {
-      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.zirconiumClick);
+    this.addEvent($(".widget-background .gemstone-case .gem-label"), "click", (evt: JQuery.ClickEvent) => {
+      var label = evt.currentTarget.getAttribute("id");
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.gemstoneOptionClick, label);
     });
 
     this.addEvent($(".widget-background .gemstone-case .gem-info"), "click", () => {
@@ -88,7 +85,6 @@ enum WidgetEvtCat {
   sizeCounterInput = "sizeCounterInput",
   sizeCounterUp = "sizeCounterUp",
   sizeCounterDown = "sizeCounterDown",
-  zirconiumClick = "zirconiumClick",
-  genuineClick = "genuineClick",
-  gemInfoClick = "gemInfoClick"
+  gemInfoClick = "gemInfoClick",
+  gemstoneOptionClick = "gemstoneOptionClick",
 }

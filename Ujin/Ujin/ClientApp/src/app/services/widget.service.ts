@@ -14,7 +14,7 @@ export class WidgetService {
   public static METAL_KEY: string = "widget.metal.capture";
   public static GEMSTONE_KEY: string = "widget.gemstone.capture";
   public static DECORATION_KEY: string = "widget.covering.capture";
-  public static USE_ZIRCONIUM_KEY: string = "useZirconium";
+  public static GEMSTONE_OPTION_KEY: string = "gemstoneOption";
 
   private _configuration: MenuConfig[] = [];
 
@@ -43,7 +43,7 @@ export class WidgetService {
       var val = it.subItems && it.subItems.length ? it.subItems[0] : WidgetService.SIZE_DEFAULT;
       this._configuration.push(new MenuConfig(it.nameKey, val));
     });
-    this._configuration.push(new MenuConfig(WidgetService.USE_ZIRCONIUM_KEY, true));
+    this._configuration.push(new MenuConfig(WidgetService.GEMSTONE_OPTION_KEY, GemstoneOption.Artifical));
   }
 
   public get metalSelectedItem(): MenuItem {
@@ -58,8 +58,8 @@ export class WidgetService {
     return this._configuration.find(it => it.nameKey === WidgetService.DECORATION_KEY).value;
   }
 
-  public get useZirconiumItem(): MenuConfig {
-    return this._configuration.find(it => it.nameKey === WidgetService.USE_ZIRCONIUM_KEY);
+  public get gemstoneOptionItem(): MenuConfig {
+    return this._configuration.find(it => it.nameKey === WidgetService.GEMSTONE_OPTION_KEY);
   }
 
   public get selectedSize(): number {
@@ -97,4 +97,10 @@ export class MenuConfig {
   constructor(
     public nameKey: string,
     public value: any) { }
+}
+
+export enum GemstoneOption {
+  Genuine = 0,
+  Artifical = 1,
+  Zirconium = 2
 }

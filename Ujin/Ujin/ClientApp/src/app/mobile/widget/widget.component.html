@@ -37,12 +37,10 @@
     </div>
   </div>
   <div class="gemstone-case" [ngClass]="{ 'visible': selectedItem && selectedItem.nameKey === gemstoneName}">
-      <span class="gem-label genuine" l10nTranslate [ngClass]="{'selected': !useZirconium}" (click)="useZirconium=false">
-        widget.gemstone.genuine
-      </span>
-      <span class="gem-label zirconium" l10nTranslate [ngClass]="{'selected': useZirconium}" (click)="useZirconium=true">
-        widget.gemstone.zirconium
-      </span>
-      <span class="gem-info" (click)="showGemstoneInfo()">?</span>
-    </div>
+    <span *ngFor="let option of gemstoneOptions" class="gem-label" l10nTranslate id="{{option.key}}"
+          [ngClass]="{'selected': (option.value == gemstoneOption)}" (click)="gemstoneOption=option.value">
+      widget.gemstone.{{option.key}}
+    </span>
+    <span class="gem-info" (click)="showGemstoneInfo()">?</span>
+  </div>
 </div>

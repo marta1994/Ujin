@@ -43,6 +43,7 @@ import { OrderComponent } from './uiComponents/order/order.component';
 import { AnalyticsModule } from './googleAnalytics/analytics.module';
 import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
 import { SocialShareComponent } from './uiComponents/social-share/social-share.component';
+import { EnumService } from './services/enum.service';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -104,6 +105,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     OrderService,
     SocialService,
     DeviceTypeService,
+    EnumService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: FixVericalScrollHammerConfig

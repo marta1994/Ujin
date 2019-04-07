@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WidgetService } from './widget.service';
+import { WidgetService, GemstoneOption } from './widget.service';
 import { DataLoaderService } from '../api/data-loader.service';
 
 @Injectable()
@@ -30,7 +30,7 @@ export class PriceService {
       this.widgetService.decorationSelectedItem.id,
       this.widgetService.gemstoneSelectedItem.id,
       this.widgetService.selectedSize,
-      this.widgetService.useZirconiumItem.value
+      this.widgetService.gemstoneOptionItem.value
     );
   }
 
@@ -51,14 +51,14 @@ class RingConfiguration {
     public decorationId: number,
     public gemstoneId: number,
     public size: number,
-    public useZirconium: boolean) { }
+    public gemstoneOption: GemstoneOption) { }
 
   public isEqual(config: RingConfiguration): boolean {
     return config != null
       && config.metalId === this.metalId
       && config.decorationId === this.decorationId
-      && config.useZirconium === this.useZirconium
-      && ((config.gemstoneId === this.gemstoneId) || this.useZirconium)
+      && config.gemstoneOption === this.gemstoneOption
+      && ((config.gemstoneId === this.gemstoneId) || this.gemstoneOption == GemstoneOption.Zirconium)
       && config.size === this.size;
   }
 }

@@ -10,7 +10,11 @@ export class DeviceTypeService {
   constructor(private dataLoader: DataLoaderService) { }
 
   public get deviceType(): DeviceType {
-    if (this._deviceType != null) return this._deviceType;
+    if (this._deviceType != null) {
+      if (this._deviceType == DeviceType.Desktop)
+        return window.innerWidth < 780 ? DeviceType.Tablet : DeviceType.Desktop;
+      return this._deviceType;
+    }
     this.loadDeviceType();
     return null;
   }
@@ -31,4 +35,5 @@ export enum DeviceType {
   Unknown = 0,
   Desktop = 1,
   Mobile = 2,
+  Tablet = 3
 }

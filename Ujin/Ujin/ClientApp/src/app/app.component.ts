@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   }
 
   public showMobile(): boolean {
-    return this.deviceTypeService.deviceType === DeviceType.Mobile;
+    return this.deviceTypeService.deviceType === DeviceType.Mobile
+      || this.deviceTypeService.deviceType === DeviceType.Tablet;
   }
 
   public showDesktop(): boolean {

@@ -125,9 +125,13 @@
 
     .image-wrapper {
       width: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       img {
         width: 100%;
+        max-width: 340px;
       }
     }
 
@@ -137,6 +141,8 @@
 
       .menu-item {
         position: relative;
+        color: @grey-minor-color;
+        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
 
         .text {
           position: absolute;
@@ -145,29 +151,39 @@
         }
       }
 
-      &.upper-menu .menu-item {
-        border-right: @menu-border;
-        text-align: right;
+      &.upper-menu {
+        border-right: 1px solid @grey-minor-color;
 
-        .text {
-          right: 10px;
-        }
+        .menu-item {
+          text-align: right;
+          border-right: 0 @menu-border-style;
 
-        &.selected {
-          border: none;
+          .text {
+            right: 10px;
+          }
+
+          &.selected {
+            border-right-width: @menu-border-width;
+            color: @white-color;
+          }
         }
       }
 
-      &.bottom-menu .menu-item {
-        border-left: @menu-border;
-        text-align: left;
+      &.bottom-menu {
+        border-left: 1px solid @grey-minor-color;
 
-        .text {
-          left: 10px;
-        }
+        .menu-item {
+          text-align: left;
+          border-left: 0 @menu-border-style;
 
-        &.selected {
-          border: none;
+          .text {
+            left: 10px;
+          }
+
+          &.selected {
+            border-left-width: @menu-border-width;
+            color: @white-color;
+          }
         }
       }
     }

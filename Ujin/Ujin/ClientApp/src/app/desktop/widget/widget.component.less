@@ -1,7 +1,6 @@
 @import '../../../variables.less';
 
 .widget-background {
-  @image-height: 400px;
   @menu-border-style: solid @white-color;
   @menu-border-width: 2px;
   @menu-border: @menu-border-width @menu-border-style;
@@ -10,18 +9,19 @@
   background-color: @black-color;
 
   .widget-and-description {
-    padding: 40px 0;
+    padding: 40px 80px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
     .widget-description {
-      width: 400px;
+      min-width: 300px;
       margin: 0 30px;
       font-size: 16px;
       line-height: 22px;
       padding-bottom: 100px;
       position: relative;
+      flex: 7;
 
       .motto {
         display: block;
@@ -84,6 +84,7 @@
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
+    flex: 9;
 
     .menu .menu-item {
       cursor: pointer;
@@ -108,10 +109,15 @@
     display: flex;
 
     .image-wrapper {
-      height: @image-height;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       img {
-        height: 100%;
+        width: 100%;
+        max-width: 670px;
+        min-width: 400px;
       }
     }
 

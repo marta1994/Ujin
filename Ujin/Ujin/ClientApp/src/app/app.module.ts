@@ -21,6 +21,7 @@ import { PhoneValidatorService } from './services/phone-validator.service';
 import { OrderService } from './services/order.service';
 import { SocialService } from './services/social.service';
 import { DeviceTypeService } from './services/device-type.service';
+import { EnumService } from './services/enum.service';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -43,7 +44,7 @@ import { OrderComponent } from './uiComponents/order/order.component';
 import { AnalyticsModule } from './googleAnalytics/analytics.module';
 import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
 import { SocialShareComponent } from './uiComponents/social-share/social-share.component';
-import { EnumService } from './services/enum.service';
+import { AdventagesComponent } from './uiComponents/adventages/adventages.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -73,7 +74,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     RingInfoComponent,
     OrderComponent,
     PlainTextComponent,
-    SocialShareComponent
+    SocialShareComponent,
+    AdventagesComponent
   ],
   entryComponents: [
     PopupComponent,

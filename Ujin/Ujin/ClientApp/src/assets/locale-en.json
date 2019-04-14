@@ -58,7 +58,7 @@
     "measure": {
       "grams": "g",
       "milimeters": "mm",
-      "carats":  "ct"
+      "carats": "ct"
     }
   },
   "order": {
@@ -71,5 +71,24 @@
   "navMenu": {
     "socialLinks": "Our social networks",
     "share": "Share this width your friends"
+  },
+  "adventages": {
+    "header": "Our adventsges:",
+    "adv1": {
+      "title": "Individual approach",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv2": {
+      "title": "Creativity",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv3": {
+      "title": "Comfort",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv4": {
+      "title": "Handiwork",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    }
   }
 }

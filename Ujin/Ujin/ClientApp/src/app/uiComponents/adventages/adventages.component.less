@@ -1,0 +1,65 @@
+@import '../../../variables.less';
+
+.adven-wrapper {
+  background-color: @white-color;
+  color: @black-color;
+
+  .adven-header {
+    font-size: 24px;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .adven-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: 780px) {
+      flex-direction: row;
+    }
+
+    @media screen and (max-width: 780px) {
+      flex-direction: column;
+    }
+
+    .adventage {
+      display: inline-flex;
+      flex-direction: row;
+      padding: 20px;
+
+      .order-holder {
+        padding: 10px;
+
+        .order-circle {
+          @circle-size: 30px;
+          @circle-font-size: @paragraph-font-size;
+          display: inline-block;
+          width: @circle-size;
+          height: @circle-size;
+          .set-border-radius(50%);
+          padding: (@circle-size - @circle-font-size) / 2;
+          text-align: center;
+          background-color: @grey-minor-color;
+          color: @white-color;
+        }
+      }
+
+      .text {
+        display: inline-flex;
+        flex-direction: column;
+
+        .adven-title {
+          font-weight: 900;
+          padding: 10px 0;
+          font-size: 16px;
+        }
+
+        .adven-description {
+        }
+      }
+    }
+  }
+}

@@ -71,5 +71,24 @@
   "navMenu": {
     "socialLinks": "Ми у соціальних мережах",
     "share": "Поділися з друзями"
+  },
+  "adventages": {
+    "header": "Наші переваги:",
+    "adv1": {
+      "title": "Індивідуальний підхід",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv2": {
+      "title": "Креативність",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv3": {
+      "title": "Зручність",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    },
+    "adv4": {
+      "title": "Ручна робота",
+      "description": "sdgsfdn dffhxdfxdfhdf"
+    }
   }
 }

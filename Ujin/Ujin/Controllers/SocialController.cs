@@ -10,11 +10,14 @@ namespace Ujin.Controllers
     {
         private readonly SocialReferences socialRefs;
 
+        private readonly Contacts contacts;
+
         private readonly string host;
 
         public SocialController(IOptions<AppSettings> appSettingsOptions)
         {
             socialRefs = appSettingsOptions.Value.SocialReferences;
+            contacts = appSettingsOptions.Value.Contacts;
             host = appSettingsOptions.Value.Host;
         }
 
@@ -27,7 +30,10 @@ namespace Ujin.Controllers
                 Instagram = socialRefs.Instagram,
                 Pinterest = socialRefs.Pinterest,
                 FacebookAppId = socialRefs.FacebookAppId,
-                SelfHost = "http://" + host + "/"
+                SelfHost = "http://" + host + "/",
+                Phone = contacts.Phone,
+                Email = contacts.Email,
+                DiscountHref = contacts.DiscountHref
             };
         }
     }

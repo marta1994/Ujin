@@ -1,0 +1,91 @@
+@import '../../../variables.less';
+
+.footer-wrapper {
+  background-color: @black-color;
+  color: @white-color;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  .description-and-discount {
+    display: flex;
+
+    @media screen and (min-width: 780px) {
+      flex-direction: row;
+    }
+
+    @media screen and (max-width: 780px) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .description {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+
+    .description-content {
+      display: inline-block;
+      max-width: 400px;
+      text-align: justify;
+    }
+  }
+
+  .discount {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    line-height: 20px;
+
+    .discount-description {
+      max-width: 400px;
+    }
+
+    .discount-action {
+      color: @black-color;
+      text-decoration: none;
+      margin: 20px;
+      padding: 10px;
+      background-color: @white-color;
+      .set-border-radius(3px);
+    }
+  }
+
+  .contacts {
+     @media screen and (max-width: 780px) {
+        margin-top: 30px;
+     }
+
+    .contacts-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @media screen and (min-width: 780px) {
+        width: 50%;
+      }
+
+      @media screen and (max-width: 780px) {
+        width: 100%;
+      }
+
+      .contact-prop {
+        margin-top: 15px;
+        display: flex;
+        width: 300px;
+
+        .contact-label {
+          flex: 1;
+        }
+
+        .contact-href {
+          width: 130px;
+          color: @white-color;
+        }
+      }
+    }
+  }
+}

@@ -45,6 +45,7 @@ import { AnalyticsModule } from './googleAnalytics/analytics.module';
 import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
 import { SocialShareComponent } from './uiComponents/social-share/social-share.component';
 import { AdventagesComponent } from './uiComponents/adventages/adventages.component';
+import { FooterComponent } from './uiComponents/footer/footer.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -75,7 +76,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     OrderComponent,
     PlainTextComponent,
     SocialShareComponent,
-    AdventagesComponent
+    AdventagesComponent,
+    FooterComponent
   ],
   entryComponents: [
     PopupComponent,

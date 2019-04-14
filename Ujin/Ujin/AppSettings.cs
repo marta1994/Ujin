@@ -9,6 +9,8 @@ namespace Ujin
         public MailSettings MailSettings { get; set; }
 
         public SocialReferences SocialReferences { get; set; }
+
+        public Contacts Contacts { get; set; }
     }
 
     public class MailSettings
@@ -42,5 +44,14 @@ namespace Ujin
         public string Pinterest { get; set; }
 
         public string FacebookAppId { get; set; }
+    }
+
+    public class Contacts
+    {
+        public string Phone { get; set; }
+
+        public string Email { get; set; }
+
+        public string DiscountHref { get; set; }
     }
 }

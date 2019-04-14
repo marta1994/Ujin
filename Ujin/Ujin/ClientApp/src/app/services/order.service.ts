@@ -3,7 +3,7 @@ import { DataLoaderService } from '../api/data-loader.service';
 import { PhoneValidatorService } from './phone-validator.service';
 import { EmailValidatorService } from './email-validator.service';
 import { WidgetService, MenuConfig } from './widget.service';
-import { PriceService } from './price.service';
+import { RingInfoService } from './ring-info.service';
 
 @Injectable()
 export class OrderService {
@@ -16,7 +16,7 @@ export class OrderService {
     private phoneValidator: PhoneValidatorService,
     private emailValidator: EmailValidatorService,
     private widgetService: WidgetService,
-    private priceService: PriceService) {
+    private ringInfoService: RingInfoService) {
   }
 
   public get user(): OrderUser {
@@ -57,7 +57,7 @@ export class OrderService {
       name: this._user.name,
       phone: this.phoneValidator.normalizePhone(this._user.phone),
       email: this.emailValidator.normalizeEmail(this._user.email),
-      order: new Order(this.priceService.price, this.widgetService.configuration)
+      order: new Order(this.ringInfoService.price, this.widgetService.configuration)
     };
 
     this.dataLoader.postData("api/User/PostOrderData", user)

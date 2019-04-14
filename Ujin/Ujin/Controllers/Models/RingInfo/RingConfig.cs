@@ -1,6 +1,6 @@
 ﻿using Ujin.Controllers.Attributes;
 
-namespace Ujin.Controllers.Models.Price
+namespace Ujin.Controllers.Models.RingInfo
 {
     public class RingConfig
     {

@@ -45,12 +45,21 @@
     "enterName": "Як до вас звертатися?",
     "submit": "Зателефонуйте мені"
   },
-  "price": {
+  "ringInfo": {
     "currency": {
       "uah": " грн"
     },
-    "loading": "рахуємо ціну...",
-    "paceOrder": "Замовити"
+    "loading": "завантажуємо інформацію...",
+    "placeOrder": "Замовити",
+    "priceLabel": "Ціна",
+    "metalWeightLabel": "Вага кільця",
+    "gemstoneSizeLabel": "Розмір каменю",
+    "gemstoneWeightLabel": "Вага каменю",
+    "measure": {
+      "grams": "г",
+      "milimeters": "мм",
+      "carats": "кар"
+    }
   },
   "order": {
     "callPromice": "Будь ласка, введіть свої дані, щоб ми могли зв'язатися і уточнити деталі замовлення",

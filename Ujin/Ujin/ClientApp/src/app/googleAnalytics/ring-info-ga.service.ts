@@ -4,7 +4,7 @@ import { GoogleAnalyticsService } from './google-analytics.service';
 import * as $ from 'jquery';
 
 @Injectable()
-export class PriceGaService extends BaseGaService {
+export class RingInfoGaService extends BaseGaService {
 
   constructor(gaService: GoogleAnalyticsService) {
     super(gaService);
@@ -15,16 +15,16 @@ export class PriceGaService extends BaseGaService {
       this.gaService.sendEvent(evtCat, event, label, value);
 
     this.addEvent(
-      $("app-price .order-button"),
+      $("app-ring-info .order-button"),
       "click",
       () => {
-        sendEvent(PriceEvtCat.NAME, PriceEvtCat.orderClick)
+        sendEvent(RingInfoEvtCat.NAME, RingInfoEvtCat.orderClick)
       }
     );
   }
 }
 
-enum PriceEvtCat {
+enum RingInfoEvtCat {
   NAME = "price",
   orderClick = "orderClick"
 }

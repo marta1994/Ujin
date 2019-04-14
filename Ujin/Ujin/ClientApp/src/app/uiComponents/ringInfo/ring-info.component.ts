@@ -1,23 +1,23 @@
 import { Component, OnInit, Input, AfterViewInit, OnDestroy } from '@angular/core';
-import { PriceService } from '../../services/price.service';
+import { RingInfoService, RingInfo } from '../../services/ring-info.service';
 import { PopupService } from '../popup/popup.service';
 import { OrderComponent } from '../order/order.component';
-import { PriceGaService } from '../../googleAnalytics/price-ga.service';
+import { RingInfoGaService } from '../../googleAnalytics/ring-info-ga.service';
 
 @Component({
-  selector: 'app-price',
-  templateUrl: './price.component.html',
-  styleUrls: ['./price.component.less']
+  selector: 'app-ring-info',
+  templateUrl: './ring-info.component.html',
+  styleUrls: ['./ring-info.component.less']
 })
-export class PriceComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RingInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
   public popupWidth: string = "100%";
 
   constructor(
-    private priceService: PriceService,
+    private ringInfoService: RingInfoService,
     private popupService: PopupService,
-    private gaService: PriceGaService) {
+    private gaService: RingInfoGaService) {
   }
 
   ngOnInit() {
@@ -31,8 +31,8 @@ export class PriceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gaService.dispose();
   }
 
-  public get price(): number {
-    return this.priceService.price;
+  public get ringInfo(): RingInfo {
+    return this.ringInfoService.ringInfo;
   }
 
   public openOrderDialog() {

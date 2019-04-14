@@ -15,7 +15,7 @@ import { ScreenOrientationService } from './services/screen-orientation.service'
 import { SliderHelperService } from './uiComponents/slider/slider-helper.service';
 import { SliderDirectionService } from './uiComponents/slider/slider-direction.service';
 import { PopupService } from './uiComponents/popup/popup.service';
-import { PriceService } from './services/price.service';
+import { RingInfoService } from './services/ring-info.service';
 import { EmailValidatorService } from './services/email-validator.service';
 import { PhoneValidatorService } from './services/phone-validator.service';
 import { OrderService } from './services/order.service';
@@ -38,7 +38,7 @@ import { PopupComponent } from './uiComponents/popup/popup.component';
 import { InsertionDirective } from './uiComponents/popup/insertion.directive';
 import { CallMeComponent } from './uiComponents/fixed-call-button/call-me/call-me.component';
 import { InputComponent } from './uiComponents/input/input.component';
-import { PriceComponent } from './uiComponents/price/price.component';
+import { RingInfoComponent } from './uiComponents/ringInfo/ring-info.component';
 import { OrderComponent } from './uiComponents/order/order.component';
 import { AnalyticsModule } from './googleAnalytics/analytics.module';
 import { PlainTextComponent } from './uiComponents/plain-text/plain-text.component';
@@ -70,7 +70,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     InsertionDirective,
     CallMeComponent,
     InputComponent,
-    PriceComponent,
+    RingInfoComponent,
     OrderComponent,
     PlainTextComponent,
     SocialShareComponent
@@ -99,7 +99,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     SliderHelperService,
     SliderDirectionService,
     PopupService,
-    PriceService,
+    RingInfoService,
     EmailValidatorService,
     PhoneValidatorService,
     OrderService,

@@ -11,6 +11,8 @@ namespace Ujin.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public GemstonePrice Price { get; set; }
+        public decimal? Weight { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

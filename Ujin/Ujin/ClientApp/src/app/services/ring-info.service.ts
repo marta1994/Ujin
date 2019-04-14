@@ -3,23 +3,28 @@ import { WidgetService, GemstoneOption } from './widget.service';
 import { DataLoaderService } from '../api/data-loader.service';
 
 @Injectable()
-export class PriceService {
+export class RingInfoService {
   
-  private _configPrices: RingConfigurationPrice[] = [];
+  private _configInfos: RingConfigurationPrice[] = [];
 
   constructor(
     private widgetService: WidgetService,
     private dataLoderService: DataLoaderService) { }
 
   public get price(): number {
+    var ringInfo = this.ringInfo;
+    return ringInfo == null ? null : ringInfo.price;
+  }
+
+  public get ringInfo(): RingInfo {
     var currConfig = this.currentConfig;
     if (currConfig == null) return null;
-    var existingPriceConf = this._configPrices.find(p => p.ringConfig.isEqual(currConfig));
-    if (existingPriceConf) return existingPriceConf.price;
+    var existingPriceConf = this._configInfos.find(p => p.ringConfig.isEqual(currConfig));
+    if (existingPriceConf) return existingPriceConf.info;
     existingPriceConf = new RingConfigurationPrice();
     existingPriceConf.ringConfig = currConfig;
-    this._configPrices.push(existingPriceConf);
-    this.calculatePrice(existingPriceConf);
+    this._configInfos.push(existingPriceConf);
+    this.loadRingInfo(existingPriceConf);
   }
 
   private get currentConfig(): RingConfiguration {
@@ -34,13 +39,13 @@ export class PriceService {
     );
   }
 
-  private calculatePrice(priceConfig: RingConfigurationPrice) {
-    var url = "api/Price/RingPrice/";
+  private loadRingInfo(priceConfig: RingConfigurationPrice) {
+    var url = "api/RingInfo/RingInfo/";
     var params = Object.keys(priceConfig.ringConfig).map(k => `${k}=${priceConfig.ringConfig[k]}`);
     url = `${url}?${params.join('&')}`;
-    this.dataLoderService.loadData<number>(url)
+    this.dataLoderService.loadData<RingInfo>(url)
       .subscribe(
-      res => priceConfig.price = res,
+      res => priceConfig.info = res,
       error => console.log(error));    
   }
 }
@@ -65,8 +70,16 @@ class RingConfiguration {
 
 class RingConfigurationPrice {
   public ringConfig: RingConfiguration;
-  public price: number;
+  public info: RingInfo;
   public get isLoading(): boolean {
-    return this.price == null;
+    return this.info == null;
   }
+}
+
+export interface RingInfo {
+  price: number;
+  metalWeight: number;
+  gemstoneWeight?: number;
+  gemstoneLengthMm: number;
+  gemstoneWidthMm: number;
 }

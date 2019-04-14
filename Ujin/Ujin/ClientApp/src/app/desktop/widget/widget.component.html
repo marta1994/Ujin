@@ -4,12 +4,12 @@
     <div class="widget-description" l10nTranslate>
       content.intro
       <span class="motto" l10nTranslate>motto.threeStepMotto</span>
-      <app-price [popupWidth]="'450px'"></app-price>
+      <app-ring-info [popupWidth]="'450px'"></app-ring-info>
     </div>
 
     <div class="widget-container">
       <div class="widget-menu-holder">
-        <div class="image-wrapper">
+        <div class="image-wrapper">  
           <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
                (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
         </div>

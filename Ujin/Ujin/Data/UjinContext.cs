@@ -20,8 +20,6 @@ namespace Ujin.Data
 
         public DbSet<Metal> Metals { get; set; }
 
-        public DbSet<GemstonePrice> GemstonePrices { get; set; }
-
         public DbSet<PricePerMetal> PricePerMetals { get; set; }
 
         public DbSet<RingWeight> RingWeights { get; set; }
@@ -35,7 +33,6 @@ namespace Ujin.Data
             modelBuilder.Entity<Decoration>().ToTable("Decoration");
             modelBuilder.Entity<Gemstone>().ToTable("Gemstone");
             modelBuilder.Entity<Metal>().ToTable("Metal");
-            modelBuilder.Entity<GemstonePrice>().ToTable("GemstonePrice");
             modelBuilder.Entity<PricePerMetal>().ToTable("PricePerMetal");
             modelBuilder.Entity<RingWeight>().ToTable("RingWeight");
             modelBuilder.Entity<AdditionalService>().ToTable("AdditionalService");
@@ -53,11 +50,6 @@ namespace Ujin.Data
             modelBuilder.Entity<Order>()
                 .Property(o => o.DateCreated)
                 .HasDefaultValue(new DateTime(2019, 1, 1));
-
-            modelBuilder.Entity<Gemstone>()
-                .HasOne(g => g.Price)
-                .WithOne(gp => gp.Gemstone)
-                .HasForeignKey<GemstonePrice>(gp => gp.GemstoneId);
 
             modelBuilder.Entity<RingWeight>()
                 .HasOne(pm => pm.Metal);

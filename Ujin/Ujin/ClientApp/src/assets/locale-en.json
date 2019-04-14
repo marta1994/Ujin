@@ -45,12 +45,21 @@
     "enterName": "What is your name?",
     "submit": "Call me"
   },
-  "price": {
+  "ringInfo": {
     "currency": {
       "uah": " uah"
     },
-    "loading": "calculating a price...",
-    "paceOrder": "Order"
+    "loading": "loading information...",
+    "placeOrder": "Order",
+    "priceLabel": "Price",
+    "metalWeightLabel": "Ring weight",
+    "gemstoneSizeLabel": "Gemstone size",
+    "gemstoneWeightLabel": "Gemstone weight",
+    "measure": {
+      "grams": "g",
+      "milimeters": "mm",
+      "carats":  "ct"
+    }
   },
   "order": {
     "callPromice": "Please enter your contacts so we could reach out for order details negotiation",

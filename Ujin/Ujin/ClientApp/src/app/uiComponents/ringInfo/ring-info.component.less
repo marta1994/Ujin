@@ -7,12 +7,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20px;
+  padding: 30px;
 
-  .price-holder {
-    display: inline-block;
-    width: 100px;
-    text-align: center;
+  .info-holder {
+    display: inline-flex;
+    width: 250px;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: 18px;
+
+    .property {
+      display: flex;
+
+      .info-label {
+        width: 150px;
+      }
+
+      .measure-part {
+        padding-left: 5px;
+      }
+
+      .number-part {
+        font-weight: 900;
+      }
+    }
   }
 
   .order-button {

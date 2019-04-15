@@ -26,6 +26,10 @@ export class NavMenuComponent implements OnInit {
     });
   }
 
+  public actionHappened() {
+    this.menuCloseActionHappened.emit();
+  }
+
   public isLangSelected(lang: { name: string, code: string }): boolean {
     return this._locale.getCurrentLanguage() === lang.code;
   }

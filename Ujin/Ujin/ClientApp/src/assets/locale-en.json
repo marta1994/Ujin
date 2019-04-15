@@ -70,10 +70,11 @@
   },
   "navMenu": {
     "socialLinks": "Our social networks",
-    "share": "Share this width your friends"
+    "share": "Share this width your friends",
+    "contacts":  "Contacts"
   },
   "adventages": {
-    "header": "Our adventsges:",
+    "header": "Our adventages:",
     "adv1": {
       "title": "Individual approach",
       "description": "sdgsfdn dffhxdfxdfhdf"

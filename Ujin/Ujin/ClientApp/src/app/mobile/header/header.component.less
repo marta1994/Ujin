@@ -80,19 +80,21 @@
 }
 
 .nav-menu {
-  @trans-value: width ease 400ms;
+  @trans-value: transform ease 400ms;
   transition: @trans-value;
   -webkit-transition: @trans-value;
   -o-transition: @trans-value;
   position: absolute;
   top: @mobile-header-height;
   z-index: 10;
+  width: 100%;
+  transform-origin: left;
 
   &.opened {
-    width: 100%;
+    transform: scaleX(1);
   }
 
   &.closed {
-    width: 0;
+    transform: scaleX(0);
   }
 }

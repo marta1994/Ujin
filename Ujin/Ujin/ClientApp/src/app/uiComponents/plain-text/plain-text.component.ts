@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OnAction } from '../popup/OnAction';
+import { TranslationService } from 'angular-l10n';
 
 @Component({
   selector: 'app-plain-text',
@@ -14,9 +15,12 @@ export class PlainTextComponent implements OnInit, OnAction {
   @Input()
   public textKey: string = "";
 
-  constructor() { }
+  public text;
+
+  constructor(private translation: TranslationService) { }
 
   ngOnInit() {
+    this.text = this.translation.translate(this.textKey);
   }
 
 }

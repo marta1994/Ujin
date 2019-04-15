@@ -32,6 +32,6 @@ export class WidgetComponent extends BaseWidgetComponent {
   }
 
   public showGemstoneInfo() {
-    this.showGemstoneInfoOnWidth('350px');
+    this.showGemstoneInfoOnWidth('900px');
   }
 }

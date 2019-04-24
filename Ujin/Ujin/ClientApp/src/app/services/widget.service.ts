@@ -40,10 +40,23 @@ export class WidgetService {
 
   private initConfiguration(menuItems: MenuItem[]) {
     menuItems.forEach(it => {
-      var val = it.subItems && it.subItems.length ? it.subItems[0] : WidgetService.SIZE_DEFAULT;
+      var val = this.getMenuItemVal(it);
       this._configuration.push(new MenuConfig(it.nameKey, val));
     });
-    this._configuration.push(new MenuConfig(WidgetService.GEMSTONE_OPTION_KEY, GemstoneOption.Artifical));
+    this._configuration.push(new MenuConfig(WidgetService.GEMSTONE_OPTION_KEY, GemstoneOption.Zirconium));
+  }
+
+  private getMenuItemVal(it: MenuItem): MenuItem | number {
+    switch (it.nameKey) {
+      case WidgetService.METAL_KEY:
+        return it.subItems.find(i => i.id === 3);//silver
+      case WidgetService.GEMSTONE_KEY:
+        return it.subItems.find(i => i.id === 2);//ruby
+      case WidgetService.DECORATION_KEY:
+        return it.subItems.find(i => i.id === 3);//doodles
+      case WidgetService.SIZE_CONFIG.nameKey:
+        return WidgetService.SIZE_DEFAULT;
+    }
   }
 
   public get metalSelectedItem(): MenuItem {

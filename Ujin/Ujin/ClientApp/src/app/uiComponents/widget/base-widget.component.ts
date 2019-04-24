@@ -27,7 +27,7 @@ export abstract class BaseWidgetComponent implements OnInit, AfterViewInit, OnDe
       .subscribe(
         data => {
           this.menuItems = data;
-          this.selectItem(this.menuItems[0]);
+          this.selectItem(this.menuItems[2]);
           this.configuration = this._widgetService.configuration;
         },
         error => console.log(error));

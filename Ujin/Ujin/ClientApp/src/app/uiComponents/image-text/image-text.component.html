@@ -1,0 +1,13 @@
+<div class="images-text-container">
+  <div class="text-holder" *ngIf="startTextKey" l10nTranslate>
+    {{startTextKey}}
+  </div>
+  <div class="images-holder">
+    <div class="image-wrapper" *ngFor="let image of images">
+      <img [src]="'/assets/images/' + image"/>
+    </div>
+  </div>
+  <div class="text-holder" *ngIf="endTextKey" l10nTranslate>
+    {{endTextKey}}
+  </div>
+</div>

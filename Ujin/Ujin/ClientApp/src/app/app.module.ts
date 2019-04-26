@@ -46,6 +46,7 @@ import { PlainTextComponent } from './uiComponents/plain-text/plain-text.compone
 import { SocialShareComponent } from './uiComponents/social-share/social-share.component';
 import { AdventagesComponent } from './uiComponents/adventages/adventages.component';
 import { FooterComponent } from './uiComponents/footer/footer.component';
+import { ImageTextComponent } from './uiComponents/image-text/image-text.component';
 
 export class FixVericalScrollHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -77,7 +78,8 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     PlainTextComponent,
     SocialShareComponent,
     AdventagesComponent,
-    FooterComponent
+    FooterComponent,
+    ImageTextComponent
   ],
   entryComponents: [
     PopupComponent,

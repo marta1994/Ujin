@@ -97,7 +97,7 @@ export class WidgetService {
       name += i === idArr.length - 1 ? "" : "_";
     }
 
-    return `/api/image/widgetimage/?folderName=${folder}&fileName=${name}`;
+    return `../../../assets/images/widget-rings/${folder}/${name}.png`;
   }
 }
 

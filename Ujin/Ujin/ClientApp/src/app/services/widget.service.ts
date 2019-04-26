@@ -96,7 +96,8 @@ export class WidgetService {
       name += val.split('.')[2];
       name += i === idArr.length - 1 ? "" : "_";
     }
-    return `../../../assets/images/widget-rings/${folder}/${name}.png`;
+
+    return `/api/image/widgetimage/?folderName=${folder}&fileName=${name}`;
   }
 }
 

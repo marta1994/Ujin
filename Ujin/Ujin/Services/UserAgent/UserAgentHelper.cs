@@ -29,5 +29,13 @@ namespace Ujin.Services.UserAgent
 
             return DeviceType.Unknown;
         }
+
+        public string GetBrowserName(HttpContext httpContext)
+        {
+            if (httpContext.Request == null || !httpContext.Request.Headers.ContainsKey(userAgentHeaderName))
+                return string.Empty;
+            var ua = UserAgentParser.UserAgent.Parse(httpContext.Request.Headers[userAgentHeaderName].ToString());
+            return ua.Browser;
+        }
     }
 }

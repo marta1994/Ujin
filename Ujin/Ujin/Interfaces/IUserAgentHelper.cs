@@ -5,5 +5,7 @@ namespace Ujin.Interfaces
     public interface IUserAgentHelper
     {
         DeviceType DetermineDeviceType(HttpContext httpContext);
+
+        string GetBrowserName(HttpContext httpContext);
     }
 }

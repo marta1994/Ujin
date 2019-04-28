@@ -4,7 +4,7 @@
   </div>
   <div class="images-holder">
     <div class="image-wrapper" *ngFor="let image of images">
-      <img [src]="'/assets/images/' + image"/>
+      <img [lazyLoad]="'/assets/images/' + image" [offset]="100"/>
     </div>
   </div>
   <div class="text-holder" *ngIf="endTextKey" l10nTranslate>

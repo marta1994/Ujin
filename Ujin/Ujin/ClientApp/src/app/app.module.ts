@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { L10nLoader, TranslationModule } from 'angular-l10n';
 import { l10nConfig } from './configs/localization.config';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { DataLoaderService } from './api/data-loader.service';
 import { WidgetService } from './services/widget.service';
@@ -95,6 +96,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     InlineSVGModule.forRoot({ baseUrl: '' }),
+    LazyLoadImageModule,
     AnalyticsModule
   ],
   providers: [

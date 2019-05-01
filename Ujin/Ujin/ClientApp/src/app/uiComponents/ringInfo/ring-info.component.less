@@ -9,6 +9,11 @@
   justify-content: center;
   flex-direction: column;
   padding: 30px;
+  margin-top: -1px;
+
+  @media screen and (max-width: 780px) {
+    padding-top: 5px;
+  }
 
   .info-holder {
     display: inline-flex;
@@ -17,6 +22,8 @@
     align-items: stretch;
     line-height: 18px;
     margin-right: 10px;
+    background-color: #444444;
+    padding: 15px;
 
     .property {
       display: flex;
@@ -43,7 +50,7 @@
     padding: 15px 40px;
     color: @black-color;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 15px;
     font-size: 18px;
     font-weight: 900;
 

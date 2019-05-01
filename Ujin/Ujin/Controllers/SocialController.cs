@@ -31,7 +31,7 @@ namespace Ujin.Controllers
                 Pinterest = socialRefs.Pinterest,
                 FacebookAppId = socialRefs.FacebookAppId,
                 SelfHost = "http://" + host + "/",
-                Phone = contacts.Phone,
+                Phones = contacts.Phones,
                 Email = contacts.Email,
                 DiscountHref = contacts.DiscountHref
             };

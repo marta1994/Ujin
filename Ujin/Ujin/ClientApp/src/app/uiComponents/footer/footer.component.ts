@@ -10,7 +10,7 @@ export class FooterComponent implements OnInit {
 
   public email: string;
 
-  public phone: string;
+  public phones: string[];
 
   public discountHref: string;
 
@@ -19,14 +19,14 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.socialService.loadSocialRefs().subscribe((res) => {
       this.email = res.email;
-      this.phone = res.phone;
+      this.phones = res.phones;
       this.discountHref = res.discountHref;
     });
   }
 
-  public get phoneHref(): string {
-    if (!this.phone) return "";
-    return `tel:${this.phone.replace(/ /g, "").replace(/-/g, "")}`;
+  public phoneHref(phone): string {
+    if (!phone) return "";
+    return `tel:${phone.replace(/ /g, "").replace(/-/g, "")}`;
   }
 
   public get emailHref(): string {

@@ -1,4 +1,6 @@
-﻿namespace Ujin.Controllers.Models.Social
+﻿using System.Collections.Generic;
+
+namespace Ujin.Controllers.Models.Social
 {
     public class SocialRefs
     {
@@ -12,7 +14,7 @@
 
         public string FacebookAppId { get; set; }
 
-        public string Phone { get; set; }
+        public List<string> Phones { get; set; }
 
         public string Email { get; set; }
 

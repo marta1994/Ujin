@@ -76,6 +76,15 @@
         display: flex;
         width: 260px;
 
+        .phones-containers {
+          display: inline-flex;
+          flex-direction: column;
+
+          .contact-href:last-child {
+            padding-top: 10px;
+          }
+        }
+
         .contact-label {
           flex: 1;
         }
@@ -83,6 +92,7 @@
         .contact-href {
           width: 130px;
           color: @white-color;
+          text-decoration: underline;
         }
       }
     }

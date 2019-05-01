@@ -73,7 +73,7 @@ export interface SocialRefs {
   pinterest: string;
   selfHost: string;
   facebookAppId: string;
-  phone: string;
+  phones: string[];
   email: string;
   discountHref: string;
 }

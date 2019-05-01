@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-mobile-header',
@@ -25,7 +25,23 @@ export class HeaderComponent implements OnInit {
   }
 
   public shwitchMenuState() {
+    this.buttonsVisible = false;
     this._menuState = this._menuState === MenuState.Closed ? MenuState.Opened : MenuState.Closed;
+  }
+
+  public switchButtonsState() {
+    this._menuState = MenuState.Closed;
+    this.buttonsVisible = !this.buttonsVisible;
+  }
+
+  @HostListener('document:click')
+  public clickout() {
+    this._menuState = MenuState.Closed;
+    this.buttonsVisible = false;
+  }
+
+  public openedItemClick(event: MouseEvent) {
+    event.stopPropagation();
   }
 }
 

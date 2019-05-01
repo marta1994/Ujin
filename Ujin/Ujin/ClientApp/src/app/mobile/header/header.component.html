@@ -1,5 +1,5 @@
 <div class="header">
-  <button (click)="shwitchMenuState()" [ngClass]="{'is-active': menuOpened}"
+  <button (click)="shwitchMenuState();openedItemClick($event)" [ngClass]="{'is-active': menuOpened}"
           class="hamburger hamburger--slider" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
@@ -9,11 +9,11 @@
     <span [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
   </div>
   <div class="share-header" [ngClass]="{'open': buttonsVisible}">
-    <span [inlineSVG]="'/assets/images/share.svg'" (click)="buttonsVisible = !buttonsVisible"></span>
+    <span [inlineSVG]="'/assets/images/share.svg'" (click)="switchButtonsState();openedItemClick($event)"></span>
     <div class="social-buttons" (click)="buttonsVisible = false">
       <app-social-share></app-social-share>
     </div>
   </div>
 </div>
-<app-nav-menu class="nav-menu" (menuCloseActionHappened)="shwitchMenuState()"
+<app-nav-menu class="nav-menu" (menuCloseActionHappened)="shwitchMenuState()" (click)="openedItemClick($event)"
       [ngClass]="{'opened': menuOpened, 'closed': menuClosed}"></app-nav-menu>

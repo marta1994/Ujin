@@ -31,7 +31,7 @@ export class WidgetComponent extends BaseWidgetComponent {
   }
 
   public get imageSrc(): string {
-    return this._widgetService.mobileImage;
+    return this._widgetService.desktopImage;
   }
 
   public get sliderDirection(): string {

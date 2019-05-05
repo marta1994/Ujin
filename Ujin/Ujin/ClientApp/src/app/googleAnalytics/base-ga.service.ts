@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GoogleAnalyticsService } from './google-analytics.service';
+import { Element } from '@angular/compiler';
 
 @Injectable()
 export abstract class BaseGaService {
@@ -11,7 +12,7 @@ export abstract class BaseGaService {
   constructor(
     protected gaService: GoogleAnalyticsService) { }
 
-  public abstract registerEvents();
+  public abstract registerEvents(element?: HTMLElement);
 
   private getObserver(handler: (mutations: MutationRecord[]) => void): MutationObserver {
     MutationObserver = MutationObserver || (<any>window).WebKitMutationObserver;
@@ -33,9 +34,10 @@ export abstract class BaseGaService {
   protected addMutationObserver(
     selector: string,
     handler: (mutations: MutationRecord[]) => void,
-    options?: MutationObserverInit) {
-
-    const node = document.querySelector(selector);
+    options?: MutationObserverInit,
+    element?: HTMLElement) {
+    if (element == null) element = document as any as HTMLElement;
+    const node = selector ? element.querySelector(selector) : element;
     var observer = this.getObserver(handler);
     observer.observe(node, options);
     this.observers.push(observer);

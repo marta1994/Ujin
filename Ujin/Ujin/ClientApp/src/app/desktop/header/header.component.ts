@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { languages } from '../../configs/localization.config';
+import { HeaderGaService } from '../../googleAnalytics/header-ga.service';
 
 @Component({
   selector: 'app-desktop-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public languages: { name: string, code: string }[];
 
-  constructor(private _locale: LocaleService) {
+  constructor(private _locale: LocaleService, private gaService: HeaderGaService) {
     this.languages = languages.map(l => {
       return {
         name: l.displayName,
@@ -21,6 +22,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public isLangSelected(lang: { name: string, code: string }): boolean {

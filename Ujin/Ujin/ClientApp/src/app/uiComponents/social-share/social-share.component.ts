@@ -1,12 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { SocialService } from '../../services/social.service';
+import { SocialLinksGaService } from '../../googleAnalytics/social-links-ga.service';
 
 @Component({
   selector: 'app-social-share',
   templateUrl: './social-share.component.html',
-  styleUrls: ['./social-share.component.less']
+  styleUrls: ['./social-share.component.less'],
+  providers: [
+    SocialLinksGaService
+  ]
 })
-export class SocialShareComponent implements OnInit {
+export class SocialShareComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   public direction: Direction = Direction.vertical;
@@ -19,14 +23,25 @@ export class SocialShareComponent implements OnInit {
 
   private _socialButtons: SocialButtonConfig[];
 
+  @ViewChild('socialshare')
+  public self: ElementRef;
+
   constructor(
-    private socialService: SocialService) { }
+    private socialService: SocialService, private gaService: SocialLinksGaService) { }
 
   ngOnInit() {
     this.socialService.loadSocialRefs().subscribe(() => {
       this._socialButtons = this.purpose === Purpose.share ? this.shareButtons : this.simpleLinkButtons;
       this._socialButtons = this._socialButtons.filter(el => el.url);
     });
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents(this.self.nativeElement);
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   private get simpleLinkButtons(): SocialButtonConfig[] {

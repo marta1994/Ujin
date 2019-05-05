@@ -9,6 +9,8 @@ import { CallButtonGaService } from './call-button-ga.service';
 import { CallMeGaService } from './call-me-ga.service';
 import { RingInfoGaService } from './ring-info-ga.service';
 import { OrderGaService } from './order-ga.service';
+import { HeaderGaService } from './header-ga.service';
+import { SocialLinksGaService } from './social-links-ga.service';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { OrderGaService } from './order-ga.service';
     CallButtonGaService,
     CallMeGaService,
     RingInfoGaService,
-    OrderGaService
+    OrderGaService,
+    HeaderGaService,
+    SocialLinksGaService
   ],
   declarations: [],
   exports: [

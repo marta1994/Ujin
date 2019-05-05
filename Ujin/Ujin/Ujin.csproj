@@ -31,6 +31,8 @@
     <None Remove="ClientApp\src\app\.gitignore" />
     <None Remove="ClientApp\src\app\api\data-loader.service.ts" />
     <None Remove="ClientApp\src\app\configs\localization.config.ts" />
+    <None Remove="ClientApp\src\app\googleAnalytics\header-ga.service.ts" />
+    <None Remove="ClientApp\src\app\googleAnalytics\social-links-ga.service.ts" />
     <None Remove="ClientApp\src\app\uiComponents\popup\OnAction.ts" />
     <None Remove="ClientApp\src\app\uiComponents\widget\base-widget.component.ts" />
   </ItemGroup>
@@ -44,6 +46,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\.gitignore" />
     <TypeScriptCompile Include="ClientApp\src\app\api\data-loader.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\configs\localization.config.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\googleAnalytics\header-ga.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\googleAnalytics\social-links-ga.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\uiComponents\popup\OnAction.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\uiComponents\widget\base-widget.component.ts" />
   </ItemGroup>

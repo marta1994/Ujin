@@ -1,19 +1,28 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
+import { HeaderGaService } from '../../googleAnalytics/header-ga.service';
 
 @Component({
   selector: 'app-mobile-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private _menuState: MenuState = MenuState.Closed;
 
   public buttonsVisible: boolean = false;
 
-  constructor() { }
+  constructor(private gaService: HeaderGaService) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public get menuOpened(): boolean {

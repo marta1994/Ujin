@@ -1,6 +1,6 @@
-<div class="social-share-holder" [ngStyle]="{'flex-direction': flexDirection}">
+<div class="social-share-holder" [ngStyle]="{'flex-direction': flexDirection}" #socialshare>
   <div *ngFor="let button of socialButtons" [ngStyle]="{'width': size, 'height': size}"
-       class="social-button" [ngClass]="button.className" >
+       class="social-button" [ngClass]="button.className" [attr.name]="button.className">
     <span class="share-link" (click)="goToLink(button.url)">
       <span class="svg-holder" [inlineSVG]="button.imagePath"></span>
     </span>

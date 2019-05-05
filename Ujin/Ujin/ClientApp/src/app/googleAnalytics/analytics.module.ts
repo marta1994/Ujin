@@ -11,6 +11,7 @@ import { RingInfoGaService } from './ring-info-ga.service';
 import { OrderGaService } from './order-ga.service';
 import { HeaderGaService } from './header-ga.service';
 import { SocialLinksGaService } from './social-links-ga.service';
+import { FooterGaService } from './footer-ga.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SocialLinksGaService } from './social-links-ga.service';
     RingInfoGaService,
     OrderGaService,
     HeaderGaService,
-    SocialLinksGaService
+    SocialLinksGaService,
+    FooterGaService
   ],
   declarations: [],
   exports: [

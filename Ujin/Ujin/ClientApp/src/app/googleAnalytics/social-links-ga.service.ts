@@ -47,7 +47,7 @@ export class SocialLinksGaService extends BaseGaService {
     }
 
     this.addEvent(
-      $(element).find(".share-link"),
+      $(element).find(".social-button"),
       "click", (event: JQuery.ClickEvent) => {
         var label = getLabel(event);
         sendEvent(SocialLinksEvtCat.NAME, SocialLinksEvtCat.socialClick, label);

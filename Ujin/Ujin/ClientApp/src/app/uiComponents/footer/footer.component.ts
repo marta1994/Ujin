@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { SocialService } from '../../services/social.service';
+import { FooterGaService } from '../../googleAnalytics/footer-ga.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.less']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public email: string;
 
@@ -14,7 +15,7 @@ export class FooterComponent implements OnInit {
 
   public discountHref: string;
 
-  constructor(private socialService: SocialService) { }
+  constructor(private socialService: SocialService, private gaService: FooterGaService) { }
 
   ngOnInit() {
     this.socialService.loadSocialRefs().subscribe((res) => {
@@ -22,6 +23,14 @@ export class FooterComponent implements OnInit {
       this.phones = res.phones;
       this.discountHref = res.discountHref;
     });
+  }
+
+  ngAfterViewInit() {
+    this.gaService.registerEvents();
+  }
+
+  ngOnDestroy() {
+    this.gaService.dispose();
   }
 
   public phoneHref(phone): string {

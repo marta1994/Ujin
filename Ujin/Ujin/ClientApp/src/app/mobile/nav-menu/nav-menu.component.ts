@@ -12,18 +12,18 @@ export class NavMenuComponent implements OnInit {
   @Output()
   public menuCloseActionHappened: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private _locale: LocaleService) { }
+  public languages: { name: string, code: string }[];
 
-  ngOnInit() {
-  }
-
-  public get languages(): { name: string, code: string }[] {
-    return languages.map(l => {
+  constructor(private _locale: LocaleService) {
+    this.languages = languages.map(l => {
       return {
         name: l.displayName,
         code: l.code
       };
     });
+  }
+
+  ngOnInit() {
   }
 
   public actionHappened() {

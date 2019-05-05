@@ -59,6 +59,21 @@ export class HeaderGaService extends BaseGaService {
         sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.contactsClick);
       }
     );
+
+    this.addEvent(
+      $("app-desktop-header .language-select .lang-option"),
+      "click", (event: JQuery.ClickEvent) => {
+        var name = $(event.currentTarget).attr("name");
+        sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.langChangeClick, `desktop_${name}`);
+      }
+    );
+    this.addEvent(
+      $("app-mobile-header .languages-container .lang-option"),
+      "click", (event: JQuery.ClickEvent) => {
+        var name = $(event.currentTarget).attr("name");
+        sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.langChangeClick, `mobile_${name}`);
+      }
+    );
   }
 }
 

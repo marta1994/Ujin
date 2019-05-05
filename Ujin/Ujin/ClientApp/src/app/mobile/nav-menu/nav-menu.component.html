@@ -12,7 +12,7 @@
   </div>
   <div class="languages-container">
     <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
-          *ngFor="let language of languages"
+          *ngFor="let language of languages" [attr.name]="language.name"
           (click)="setLanguage(language)">
       {{language.name}}
     </span>

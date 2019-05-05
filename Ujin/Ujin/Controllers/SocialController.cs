@@ -30,7 +30,7 @@ namespace Ujin.Controllers
                 Instagram = socialRefs.Instagram,
                 Pinterest = socialRefs.Pinterest,
                 FacebookAppId = socialRefs.FacebookAppId,
-                SelfHost = "http://" + host + "/",
+                SelfHost = "https://" + host + "/",
                 Phones = contacts.Phones,
                 Email = contacts.Email,
                 DiscountHref = contacts.DiscountHref

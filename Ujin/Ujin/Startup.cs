@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -83,6 +84,9 @@ namespace Ujin
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            var rewriteOptions = new RewriteOptions().AddRedirectToHttpsPermanent();
+            app.UseRewriter(rewriteOptions);
         }
     }
 }

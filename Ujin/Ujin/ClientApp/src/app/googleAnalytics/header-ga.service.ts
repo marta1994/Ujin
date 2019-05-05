@@ -74,6 +74,14 @@ export class HeaderGaService extends BaseGaService {
         sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.langChangeClick, `mobile_${name}`);
       }
     );
+
+    this.addEvent(
+      $("app-mobile-header .hamburger"),
+      "click", (event: JQuery.ClickEvent) => {
+        var isOpen = $(event.currentTarget).hasClass("is-active");
+        sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.menuOpenClose, isOpen ? "open" : "close");
+      }
+    );
   }
 }
 

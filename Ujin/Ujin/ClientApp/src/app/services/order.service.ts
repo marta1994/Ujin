@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataLoaderService } from '../api/data-loader.service';
 import { PhoneValidatorService } from './phone-validator.service';
 import { EmailValidatorService } from './email-validator.service';
-import { WidgetService, MenuConfig } from './widget.service';
+import { WidgetService, MenuConfig, GemstoneOption } from './widget.service';
 import { RingInfoService } from './ring-info.service';
 import { TranslationService } from 'angular-l10n';
 
@@ -38,6 +38,8 @@ export class OrderService {
       name: tr("ringInfo.gemstoneSizeLabel"),
       value: this.ringInfoService.ringInfo.gemstoneLengthMm + " X " + this.ringInfoService.ringInfo.gemstoneWidthMm + " " + tr("ringInfo.measure.milimeters")
     });
+    var opKey = GemstoneOption[this.widgetService.gemstoneOptionItem.value].toLocaleLowerCase();
+    this._properties.push({ name: tr(WidgetService.GEMSTONE_OPTION_KEY), value: tr("widget.gemstone." + opKey) });
     if (this.ringInfoService.ringInfo.gemstoneWeight != null) {
       this._properties.push({ name: tr("ringInfo.gemstoneWeightLabel"), value: this.ringInfoService.ringInfo.gemstoneWeight + " " + tr("ringInfo.measure.carats") });
     }

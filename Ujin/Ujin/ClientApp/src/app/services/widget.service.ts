@@ -14,7 +14,7 @@ export class WidgetService {
   public static METAL_KEY: string = "widget.metal.capture";
   public static GEMSTONE_KEY: string = "widget.gemstone.capture";
   public static DECORATION_KEY: string = "widget.covering.capture";
-  public static GEMSTONE_OPTION_KEY: string = "gemstoneOption";
+  public static GEMSTONE_OPTION_KEY: string = "widget.gemstone.gemstoneOption";
 
   private _configuration: MenuConfig[] = [];
 

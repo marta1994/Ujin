@@ -6,7 +6,10 @@ import { OrderGaService } from '../../googleAnalytics/order-ga.service';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  styleUrls: ['./order.component.less'],
+  providers: [
+    OrderService
+  ]
 })
 export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestroy {
 

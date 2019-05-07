@@ -1,4 +1,11 @@
 <div class="order-container">
+  <div class="order-description">
+    <span class="description-tittle" l10nTranslate>order.descriptionTittle</span>
+    <div *ngFor="let item of properties" class="prop-name-value">
+      <span class="prop-name">{{item.name}}:</span>
+      <span class="prop-value">{{item.value}}</span>
+    </div>
+  </div>
   <span class="call-promise" l10nTranslate>order.callPromice</span>
   <div class="form-group">
     <div class="name group">

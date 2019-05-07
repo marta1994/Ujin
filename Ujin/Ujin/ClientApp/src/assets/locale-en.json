@@ -67,7 +67,8 @@
     "enterName": "Enter your name",
     "enterPhone": "Enter your phone",
     "enterEmail": "Enter your email",
-    "submit": "Send the order"
+    "submit": "Send the order",
+    "descriptionTittle":  "Your order"
   },
   "navMenu": {
     "socialLinks": "Our social networks",

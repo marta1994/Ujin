@@ -4,23 +4,49 @@ import { PhoneValidatorService } from './phone-validator.service';
 import { EmailValidatorService } from './email-validator.service';
 import { WidgetService, MenuConfig } from './widget.service';
 import { RingInfoService } from './ring-info.service';
+import { TranslationService } from 'angular-l10n';
 
 @Injectable()
 export class OrderService {
 
   private _user: OrderUser = new OrderUser();
   private _validationRes: ValidationResult;
+  private _properties: Property[];
 
   constructor
     (private dataLoader: DataLoaderService,
     private phoneValidator: PhoneValidatorService,
     private emailValidator: EmailValidatorService,
     private widgetService: WidgetService,
-    private ringInfoService: RingInfoService) {
+    private ringInfoService: RingInfoService,
+    private translation: TranslationService) {
   }
 
   public get user(): OrderUser {
     return this._user;
+  }
+
+  public get properties(): Property[] {
+    if (this._properties != null) return this._properties;
+
+    var tr = v => this.translation.translate(v);
+
+    this._properties = [];
+    this._properties.push({ name: tr(WidgetService.METAL_KEY), value: tr(this.widgetService.metalSelectedItem.nameKey) });
+    this._properties.push({ name: tr(WidgetService.GEMSTONE_KEY), value: tr(this.widgetService.gemstoneSelectedItem.nameKey) });
+    this._properties.push({
+      name: tr("ringInfo.gemstoneSizeLabel"),
+      value: this.ringInfoService.ringInfo.gemstoneLengthMm + " X " + this.ringInfoService.ringInfo.gemstoneWidthMm + " " + tr("ringInfo.measure.milimeters")
+    });
+    if (this.ringInfoService.ringInfo.gemstoneWeight != null) {
+      this._properties.push({ name: tr("ringInfo.gemstoneWeightLabel"), value: this.ringInfoService.ringInfo.gemstoneWeight + " " + tr("ringInfo.measure.carats") });
+    }
+    this._properties.push({ name: tr(WidgetService.DECORATION_KEY), value: tr(this.widgetService.decorationSelectedItem.nameKey) });
+    this._properties.push({ name: tr(WidgetService.SIZE_CONFIG.nameKey), value: this.widgetService.selectedSize + "" });
+    this._properties.push({ name: tr("ringInfo.metalWeightLabel"), value: this.ringInfoService.ringInfo.metalWeight + " " + tr("ringInfo.measure.grams") });
+    this._properties.push({ name: tr("ringInfo.priceLabel"), value: this.ringInfoService.ringInfo.price + " " + tr("ringInfo.currency.uah") });
+
+    return this._properties;
   }
 
   public get validationResult(): ValidationResult {
@@ -59,6 +85,8 @@ export class OrderService {
       email: this.emailValidator.normalizeEmail(this._user.email),
       order: new Order(this.ringInfoService.price, this.widgetService.configuration)
     };
+
+    user.order.definition += `\r\n Showed to user: ${JSON.stringify(this.properties)}`
 
     this.dataLoader.postData("api/User/PostOrderData", user)
       .subscribe(() => { }, error => console.log(error));
@@ -99,4 +127,9 @@ export class ValidationResult {
   public isNameValid: boolean;
   public isPhoneValid: boolean;
   public isEmailValid: boolean;
+}
+
+export interface Property {
+  name: string;
+  value: string;
 }

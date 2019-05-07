@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { OnAction } from '../popup/OnAction';
-import { OrderService, OrderUser } from '../../services/order.service';
+import { OrderService, OrderUser, Property } from '../../services/order.service';
 import { OrderGaService } from '../../googleAnalytics/order-ga.service';
 
 @Component({
@@ -26,6 +26,10 @@ export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestro
 
   ngOnDestroy() {
     this.gaService.dispose();
+  }
+
+  public get properties(): Property[] {
+    return this.orderService.properties;
   }
 
   public get user(): OrderUser {
@@ -54,3 +58,5 @@ export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestro
   }
 
 }
+
+

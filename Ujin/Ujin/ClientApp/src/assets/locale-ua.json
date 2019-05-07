@@ -67,7 +67,8 @@
     "enterName": "Ваше ім'я",
     "enterPhone": "Номер телефону",
     "enterEmail": "Електронна адреса",
-    "submit": "Замовити"
+    "submit": "Замовити",
+    "descriptionTittle":  "Ваше замовлення"
   },
   "navMenu": {
     "socialLinks": "Ми у соціальних мережах",

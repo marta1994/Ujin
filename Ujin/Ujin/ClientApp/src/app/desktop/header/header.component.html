@@ -1,30 +1,35 @@
 <div class="header">
-  <span class="logo-header" [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
-  <span class="motto-holder" l10nTranslate>motto.threeStepMotto</span>
-  <div class="right-menu-holder">
-    <span class="like-item menu-item">
-      <span class="svg-holder" [inlineSVG]="'/assets/images/heart.svg'"></span>
-      <span l10nTranslate>rightMenu.like</span>
-      <div class="social-buttons">
-        <app-social-share [purpose]="'simpleLink'"></app-social-share>
-      </div>
-    </span>
-    <span class="share-item menu-item">
-      <span class="svg-holder" [inlineSVG]="'/assets/images/share.svg'"></span>
-      <span l10nTranslate>rightMenu.share</span>
-      <div class="social-buttons">
-        <app-social-share></app-social-share>
-      </div>
-    </span>
-    <span class="contacts-item menu-item">
-      <a href="#contacts" l10nTranslate>rightMenu.contacts</a>
-    </span>
+  <div class="header-part">
+    <span class="logo-header" [inlineSVG]="'/assets/images/Ujin_logo.svg'"></span>
+    <span class="motto-holder" l10nTranslate>motto.threeStepMotto</span>
+    <div class="right-menu-holder">
+      <span class="like-item menu-item">
+        <span class="svg-holder" [inlineSVG]="'/assets/images/heart.svg'"></span>
+        <span l10nTranslate>rightMenu.like</span>
+        <div class="social-buttons">
+          <app-social-share [purpose]="'simpleLink'"></app-social-share>
+        </div>
+      </span>
+      <span class="share-item menu-item">
+        <span class="svg-holder" [inlineSVG]="'/assets/images/share.svg'"></span>
+        <span l10nTranslate>rightMenu.share</span>
+        <div class="social-buttons">
+          <app-social-share></app-social-share>
+        </div>
+      </span>
+      <span class="contacts-item menu-item">
+        <a href="#contacts" l10nTranslate>rightMenu.contacts</a>
+      </span>
+    </div>
+    <div class="language-select">
+      <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
+            *ngFor="let language of languages" [attr.name]="language.name"
+            (click)="setLanguage(language)">
+        {{language.name}}
+      </span>
+    </div>
   </div>
-  <div class="language-select">
-    <span class="lang-option" [ngClass]="{'selected': isLangSelected(language)}"
-          *ngFor="let language of languages" [attr.name]="language.name"
-          (click)="setLanguage(language)">
-      {{language.name}}
-    </span>
+  <div class="discount-link" l10nTranslate>
+    rightMenu.discount
   </div>
 </div>

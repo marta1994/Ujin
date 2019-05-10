@@ -1,18 +1,42 @@
 @import '../../../variables.less';
 
 .header {
-  background-color: @white-color;
-  color: @black-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: @desktop-header-height;
-  justify-content: space-around;
   .set-box-shadow(0 2px 5px @grey-minor-color);
+
+  .discount-link {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: @black-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffddd1;
+    cursor: pointer;
+
+    &:hover {
+      color: @grey-minor-color;
+      text-decoration: underline;
+    }
+  }
+
+  @actual-header-height: @desktop-header-height - 30px;
+
+  .header-part {
+    background-color: @white-color;
+    color: @black-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: @actual-header-height;
+    justify-content: space-around;
+  }
 
   .logo-header {
     display: block;
-    width: @desktop-header-height;
+    width: @actual-header-height;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -50,6 +74,7 @@
       display: inline-flex;
       align-items: flex-end;
       position: relative;
+
       a {
         color: inherit;
       }

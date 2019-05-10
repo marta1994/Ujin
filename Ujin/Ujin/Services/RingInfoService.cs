@@ -22,6 +22,8 @@ namespace Ujin.Services
 
         private const decimal WORK_COEF = 2;
 
+        private const decimal PRICE_COEF = 1.15m;
+
         private const int ZIRCONIUM_ID = 5;
 
         private const string ARTIFICAL_SUFFIX = "Artifical";
@@ -65,6 +67,7 @@ namespace Ujin.Services
 
             var resultPrice = (weight * metalPrice + addServicePrice) * WORK_COEF
                 + gemPrice * GEMSTONE_COEF;
+            resultPrice *= PRICE_COEF;
             info.Price = Math.Floor(resultPrice / 10 + 0.5m) * 10;
         }
 

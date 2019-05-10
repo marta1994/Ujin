@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
 import { HeaderGaService } from '../../googleAnalytics/header-ga.service';
+import { SocialService } from '../../services/social.service';
 
 @Component({
   selector: 'app-mobile-header',
@@ -12,9 +13,16 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public buttonsVisible: boolean = false;
 
-  constructor(private gaService: HeaderGaService) { }
+  public discountHref: string;
+
+  constructor(
+    private socialService: SocialService,
+    private gaService: HeaderGaService) { }
 
   ngOnInit() {
+    this.socialService.loadSocialRefs().subscribe((res) => {
+      this.discountHref = res.discountHref;
+    });
   }
 
   ngAfterViewInit() {

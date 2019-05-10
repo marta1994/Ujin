@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { languages } from '../../configs/localization.config';
 import { HeaderGaService } from '../../googleAnalytics/header-ga.service';
+import { SocialService } from '../../services/social.service';
 
 @Component({
   selector: 'app-desktop-header',
@@ -12,7 +13,12 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public languages: { name: string, code: string }[];
 
-  constructor(private _locale: LocaleService, private gaService: HeaderGaService) {
+  public discountHref: string;
+
+  constructor(
+    private _locale: LocaleService,
+    private socialService: SocialService,
+    private gaService: HeaderGaService) {
     this.languages = languages.map(l => {
       return {
         name: l.displayName,
@@ -22,6 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    this.socialService.loadSocialRefs().subscribe((res) => {
+      this.discountHref = res.discountHref;
+    });
   }
 
   ngAfterViewInit() {

@@ -3,36 +3,61 @@
 .order-container {
   background-color: @white-color;
   color: @black-color;
-  width: 100%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  width: 100%;
   padding: 20px;
+  overflow-y: auto;
+
+  @media screen and (min-width: 780px) {
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    max-height: 400px;
+  }
+
+  .form-and-submit {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   .order-description {
+    flex: 1;
     text-align: left;
     width: 100%;
-    padding: 30px 40px 0;
+    padding: 30px 20px 0;
+    font-size: 16px;
 
     .description-tittle {
       display: inline-block;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       font-weight: @bold-font;
     }
 
     .prop-name-value {
-      line-height: 17px;
+      line-height: 18px;
+      display: flex;
+      padding-bottom: 5px;
 
       .prop-name {
         display: inline-block;
         padding-right: 5px;
+        flex: 1;
       }
 
       .prop-value {
         font-weight: @bold-font;
+        flex: 1;
       }
+    }
+
+    .order-conditions {
+      padding-top: 30px;
+      font-size: 14px;
     }
   }
 

@@ -69,7 +69,8 @@
     "enterPhone": "Enter your phone",
     "enterEmail": "Enter your email",
     "submit": "Send the order",
-    "descriptionTittle":  "Your order"
+    "descriptionTittle": "Your order",
+    "conditions": "Some order conditions"
   },
   "navMenu": {
     "socialLinks": "Our social networks",

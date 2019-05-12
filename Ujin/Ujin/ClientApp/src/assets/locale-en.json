@@ -71,7 +71,9 @@
     "enterEmail": "Enter your email",
     "submit": "Send the order",
     "descriptionTittle": "Your order",
-    "conditions": "Some order conditions"
+    "conditions": "Some order conditions",
+    "next": "Next",
+    "previous": "Previous"
   },
   "navMenu": {
     "socialLinks": "Our social networks",

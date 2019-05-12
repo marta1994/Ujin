@@ -7,14 +7,10 @@
   width: 100%;
   padding: 20px;
   overflow-y: auto;
-
-  @media screen and (min-width: 780px) {
-    flex-direction: row;
-  }
+  flex-direction: row;
 
   @media screen and (max-width: 780px) {
-    flex-direction: column;
-    max-height: 400px;
+    max-height: 500px;
   }
 
   .form-and-submit {
@@ -31,6 +27,24 @@
     width: 100%;
     padding: 30px 20px 0;
     font-size: 16px;
+
+    .next-view-wrapper {
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+
+      .next-view {
+        display: inline-block;
+        background-color: @black-color;
+        color: @white-color;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 10px 20px;
+        .set-border-radius(3px);
+        .set-box-shadow(0 0 4px 1px @grey-minor-color);
+        cursor: pointer;
+      }
+    }
 
     .description-tittle {
       display: inline-block;
@@ -89,7 +103,8 @@
   }
 
   .submit {
-    background-color: @light-gey;
+    background-color: @black-color;
+    color: @white-color;
     display: inline-block;
     font-size: 20px;
     line-height: 20px;
@@ -101,5 +116,12 @@
     &:hover {
       .set-box-shadow(0 0 6px 3px @grey-minor-color);
     }
+  }
+
+  .prev-view {
+    display: inline-block;
+    text-decoration: underline;
+    margin-top: 10px;
+    padding-bottom: 10px;
   }
 }

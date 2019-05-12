@@ -1,13 +1,16 @@
 <div class="order-container">
-  <div class="order-description">
+  <div class="order-description" *ngIf="showLeft">
     <span class="description-tittle" l10nTranslate>order.descriptionTittle</span>
     <div *ngFor="let item of properties" class="prop-name-value">
       <span class="prop-name">{{item.name}}:</span>
       <span class="prop-value">{{item.value}}</span>
     </div>
     <div class="order-conditions" l10nTranslate>order.conditions</div>
+    <div class="next-view-wrapper">
+      <span *ngIf="!show2Views" l10nTranslate (click)="switchShow()" class="next-view">order.next</span>
+    </div>
   </div>
-  <div class="form-and-submit">
+  <div class="form-and-submit" *ngIf="showRight">
     <span class="call-promise" l10nTranslate>order.callPromice</span>
     <div class="form-group">
       <div class="name group">
@@ -28,5 +31,6 @@
       </div>
     </div>
     <span class="submit" l10nTranslate (click)="onSubmit()">order.submit</span>
+    <span *ngIf="!show2Views" l10nTranslate (click)="switchShow()" class="prev-view">order.previous</span>
   </div>
 </div>

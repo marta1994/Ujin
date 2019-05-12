@@ -1,8 +1,8 @@
 import { L10nConfig, StorageStrategy, ProviderType } from 'angular-l10n';
 
 export const languages = [
-  { code: 'ua', dir: 'ltr', displayName: 'українська' },
-  { code: 'en', dir: 'ltr', displayName: 'english' }
+  { code: 'ua', dir: 'ltr', displayName: 'українська' }
+  //{ code: 'en', dir: 'ltr', displayName: 'english' }
 ];
 
 export const l10nConfig: L10nConfig = {

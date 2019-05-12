@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     private _locale: LocaleService,
     private socialService: SocialService,
     private gaService: HeaderGaService) {
-    this.languages = languages.map(l => {
+    this.languages = languages.length <= 1 ? [] : languages.map(l => {
       return {
         name: l.displayName,
         code: l.code

@@ -36,7 +36,7 @@ export class OrderService {
     this._properties.push({ name: tr(WidgetService.GEMSTONE_KEY), value: tr(this.widgetService.gemstoneSelectedItem.nameKey) });
     this._properties.push({
       name: tr("ringInfo.gemstoneSizeLabel"),
-      value: this.ringInfoService.ringInfo.gemstoneLengthMm + " X " + this.ringInfoService.ringInfo.gemstoneWidthMm + " " + tr("ringInfo.measure.milimeters")
+      value: this.ringInfoService.ringInfo.gemstoneLengthMm + " x " + this.ringInfoService.ringInfo.gemstoneWidthMm + " " + tr("ringInfo.measure.milimeters")
     });
     var opKey = GemstoneOption[this.widgetService.gemstoneOptionItem.value].toLocaleLowerCase();
     this._properties.push({ name: tr(WidgetService.GEMSTONE_OPTION_KEY), value: tr("widget.gemstone." + opKey) });

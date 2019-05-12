@@ -15,7 +15,7 @@ export class NavMenuComponent implements OnInit {
   public languages: { name: string, code: string }[];
 
   constructor(private _locale: LocaleService) {
-    this.languages = languages.map(l => {
+    this.languages = languages.length <= 1 ? [] : languages.map(l => {
       return {
         name: l.displayName,
         code: l.code

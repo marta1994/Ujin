@@ -1,5 +1,5 @@
 <div class="order-container">
-  <div class="order-description" *ngIf="showLeft">
+  <div class="order-description" [hidden]="!showLeft">
     <span class="description-tittle" l10nTranslate>order.descriptionTittle</span>
     <div *ngFor="let item of properties" class="prop-name-value">
       <span class="prop-name">{{item.name}}:</span>
@@ -10,7 +10,7 @@
       <span *ngIf="!show2Views" l10nTranslate (click)="switchShow()" class="next-view">order.next</span>
     </div>
   </div>
-  <div class="form-and-submit" *ngIf="showRight">
+  <div class="form-and-submit" [hidden]="!showRight">
     <span class="call-promise" l10nTranslate>order.callPromice</span>
     <div class="form-group">
       <div class="name group">

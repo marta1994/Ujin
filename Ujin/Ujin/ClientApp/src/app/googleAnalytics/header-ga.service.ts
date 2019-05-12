@@ -82,6 +82,20 @@ export class HeaderGaService extends BaseGaService {
         sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.menuOpenClose, isOpen ? "open" : "close");
       }
     );
+
+    this.addEvent(
+      $("app-mobile-header .discount-link"),
+      "click", (event: JQuery.ClickEvent) => {
+        sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.discountClick, "mobile");
+      }
+    );
+
+    this.addEvent(
+      $("app-desktop-header .discount-link"),
+      "click", (event: JQuery.ClickEvent) => {
+        sendEvent(HeaderEvtCat.NAME, HeaderEvtCat.discountClick, "desktop");
+      }
+    );
   }
 }
 
@@ -91,5 +105,6 @@ enum HeaderEvtCat {
   shareOpenClose = "shareOpenClose",
   contactsClick = "contactsClick",
   langChangeClick = "langChangeClick",
-  menuOpenClose = "menuOpenClose"
+  menuOpenClose = "menuOpenClose",
+  discountClick = "discountClick"
 }

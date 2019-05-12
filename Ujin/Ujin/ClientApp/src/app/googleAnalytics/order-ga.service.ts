@@ -72,6 +72,22 @@ export class OrderGaService extends BaseGaService {
         sendEvent(OrderEvtCat.NAME, OrderEvtCat.submit);
       }
     );
+
+    this.addEvent(
+      $(".order-container .next-view"),
+      "click",
+      () => {
+        sendEvent(OrderEvtCat.NAME, OrderEvtCat.nextViewClick);
+      }
+    );
+
+    this.addEvent(
+      $(".order-container .prev-view"),
+      "click",
+      () => {
+        sendEvent(OrderEvtCat.NAME, OrderEvtCat.prevViewClick);
+      }
+    );
   }
 
   public dispose() {
@@ -88,6 +104,8 @@ enum OrderEvtCat {
   nameChange = "nameChange",
   emailFocus = "emailFocus",
   emailChange = "emailChange",
+  nextViewClick = "nextViewClick",
+  prevViewClick = "prevViewClick",
   submit = "submit",
   close = "close"
 }

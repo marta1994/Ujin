@@ -44,16 +44,14 @@ export class WidgetComponent extends BaseWidgetComponent {
 
   public moveToNextConfig() {
     if (!this._selectedItem) return;
-    if (this.selectedSubIndex < this._selectedItem.subItems.length - 1) {
-      this.selectSubItem(this._selectedItem.subItems[this.selectedSubIndex + 1]);
-    }
+    var length = this._selectedItem.subItems.length;
+    this.selectSubItem(this._selectedItem.subItems[(this.selectedSubIndex + 1) % length]);
   }
 
   public moveToPrevConfig() {
     if (!this._selectedItem) return;
-    if (this.selectedSubIndex > 0) {
-      this.selectSubItem(this._selectedItem.subItems[this.selectedSubIndex - 1]);
-    }
+    var length = this._selectedItem.subItems.length;
+    this.selectSubItem(this._selectedItem.subItems[(length + this.selectedSubIndex - 1) % length]);
   }
 
   public showGemstoneInfo() {

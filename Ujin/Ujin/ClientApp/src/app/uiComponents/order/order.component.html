@@ -20,8 +20,8 @@
       </div>
       <div class="phone group">
         <span class="phone-label form-label" l10nTranslate>order.enterPhone</span>
-        <span class="phone-hint">+380</span>
-        <app-input class="phone-input" [errorState]="!isPhoneValid"
+        <!--<span class="phone-hint">+380</span>-->
+        <app-input class="phone-input" [errorState]="!isPhoneValid" [placeholder]="'+38 093 777 77 77'"
                    [type]="'tel'" [(value)]="user.phone"></app-input>
       </div>
       <div class="email group">

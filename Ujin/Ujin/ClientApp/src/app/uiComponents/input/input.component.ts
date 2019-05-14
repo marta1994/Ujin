@@ -13,6 +13,9 @@ export class InputComponent implements OnInit {
   @Input()
   public errorState: boolean = false;
 
+  @Input()
+  public placeholder: string = "";
+
   private _value: any;
   public get value(): any {
     return this._value;

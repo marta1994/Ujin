@@ -14,13 +14,13 @@ namespace Ujin.Controllers.Attributes
         protected override ValidationResult IsValid(
             object value, ValidationContext validationContext)
         {
-            string email = (string)value;
+            //string email = (string)value;
 
-            if (!IsEmailValid(email))
-            {
-                return new ValidationResult(
-                    $"value of property '{validationContext.DisplayName}' is not a valid email!");
-            }
+            //if (!IsEmailValid(email))
+            //{
+            //    return new ValidationResult(
+            //        $"value of property '{validationContext.DisplayName}' is not a valid email!");
+            //}
 
             return ValidationResult.Success;
         }

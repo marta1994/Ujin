@@ -18,7 +18,7 @@ export abstract class BaseWidgetComponent implements OnInit, AfterViewInit, OnDe
     protected _widgetService: WidgetService,
     private changeDetector: ChangeDetectorRef,
     public selectedStateService: WidgetSelectedStateService,
-    private popupService: PopupService,
+    protected popupService: PopupService,
     private gaService: WidgetGaService,
     private _enumService: EnumService) { }
 

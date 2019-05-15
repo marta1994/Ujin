@@ -6,6 +6,7 @@ import { WidgetGaService } from '../../googleAnalytics/widget-ga.service';
 import { PopupService } from '../../uiComponents/popup/popup.service';
 import { BaseWidgetComponent, WidgetAnimations } from '../../uiComponents/widget/base-widget.component';
 import { EnumService } from '../../services/enum.service';
+import { OrderComponent } from '../../uiComponents/order/order.component';
 
 @Component({
   selector: 'app-mobile-widget',
@@ -56,6 +57,10 @@ export class WidgetComponent extends BaseWidgetComponent {
 
   public showGemstoneInfo() {
     this.showGemstoneInfoOnWidth('100%');
+  }
+
+  public openOrderDialog() {
+    this.popupService.open(OrderComponent, { showCloseButton: true, width: "100%" });
   }
 }
 

@@ -44,19 +44,9 @@
   }
 
   .order-button {
-    display: inline-block;
-    .set-border-radius(3px);
-    .set-box-shadow(0 0 5px 2px @grey-minor-color);
-    background-color: @white-color;
-    padding: 15px 40px;
-    color: @black-color;
-    cursor: pointer;
     margin-top: 15px;
     font-size: 18px;
-    font-weight: @bold-font;
 
-    &:hover {
-      .set-box-shadow(0 0 8px 3px @grey-minor-color);
-    }
+    .set-button-style(@white-color, @black-color)
   }
 }

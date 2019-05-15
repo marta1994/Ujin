@@ -23,3 +23,18 @@
   -webkit-box-shadow: @shadow;
   -moz-box-shadow: @shadow;
 }
+
+.set-button-style(@background-color, @color, @padding: 40px) {
+  .set-border-radius(3px);
+  .set-box-shadow(0 0 5px 2px @grey-minor-color);
+  background-color: @background-color;
+  padding: 15px @padding;
+  color: @color;
+  font-weight: @bold-font;
+  cursor: pointer;
+  display: inline-block;
+
+  &:hover {
+    .set-box-shadow(0 0 8px 3px @grey-minor-color);
+  }
+}

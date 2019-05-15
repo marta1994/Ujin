@@ -9,18 +9,32 @@
   @menu-border: @menu-border-width @menu-border-style;
   padding-bottom: 30px;
 
-  .motto {
-    text-align: center;
+  .upper-widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
-    &.upper-motto {
-      font-size: 13px;
-      font-weight: @bold-font;
-      margin-top: 10px;
+    .left-text {
+
+      .motto {
+        text-align: left;
+        display: block;
+
+        &.upper-motto {
+          font-size: 13px;
+          font-weight: @bold-font;
+          margin-top: 20px;
+        }
+
+        &.bottom-motto {
+          font-size: 13px;
+          margin: 10px 0 20px;
+        }
+      }
     }
 
-    &.bottom-motto {
-      font-size: 13px;
-      margin: 10px 0 20px;
+    .right-order-button {
+      .set-button-style(@white-color, @black-color, 20px);
     }
   }
 

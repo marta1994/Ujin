@@ -2,16 +2,6 @@
   <p class="motto upper-motto" l10nTranslate>motto.threeStepMotto</p>
   <p class="motto bottom-motto" l10nTranslate>motto.pushAction</p>
   <div class="widget-container">
-    <div class="menu upper-menu category-menu">
-      <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
-           [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
-        <span class="text" l10nTranslate>{{item.nameKey}}</span>
-      </div>
-    </div>
-    <div class="image-wrapper" (swipeleft)="moveToNextConfig()" (swiperight)="moveToPrevConfig()">
-      <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
-           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
-    </div>
     <div class="menu bottom-menu config-menu" [@bottomMenu]="selectedItem">
       <div *ngFor="let item of getSelectedSubMenu()" class="menu-item" (click)="selectSubItem(item)"
            [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
@@ -33,6 +23,16 @@
                      [max]="sliderConfig.max"
                      [step]="sliderConfig.step"
                      [(value)]="sliderValue"></app-counter>
+      </div>
+    </div>
+    <div class="image-wrapper" (swipeleft)="moveToNextConfig()" (swiperight)="moveToPrevConfig()">
+      <img *ngIf="imageSrc" [src]="imageSrc" [@widgetImg]="imgAnimate"
+           (@widgetImg.done)="imgAnimateDone($event)" (load)="onImageLoded()" />
+    </div>
+    <div class="menu upper-menu category-menu">
+      <div *ngFor="let item of menuItems" class="menu-item" (click)="selectItem(item)"
+           [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+        <span class="text" l10nTranslate>{{item.nameKey}}</span>
       </div>
     </div>
   </div>

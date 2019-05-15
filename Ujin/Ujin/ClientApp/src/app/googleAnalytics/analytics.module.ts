@@ -12,6 +12,7 @@ import { OrderGaService } from './order-ga.service';
 import { HeaderGaService } from './header-ga.service';
 import { SocialLinksGaService } from './social-links-ga.service';
 import { FooterGaService } from './footer-ga.service';
+import { MobileGaService } from './mobile.ga.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { FooterGaService } from './footer-ga.service';
     OrderGaService,
     HeaderGaService,
     SocialLinksGaService,
-    FooterGaService
+    FooterGaService,
+    MobileGaService
   ],
   declarations: [],
   exports: [

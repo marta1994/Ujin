@@ -73,6 +73,10 @@ export class WidgetGaService extends BaseGaService {
     this.addEvent($(".widget-background .gemstone-case .gem-info"), "click", () => {
       sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.gemInfoClick);
     });
+
+    this.addEvent($(".widget-background .right-order-button"), "click", () => {
+      sendEvent(WidgetEvtCat.NAME, WidgetEvtCat.orderClick);
+    });
   }
 }
 
@@ -87,4 +91,5 @@ enum WidgetEvtCat {
   sizeCounterDown = "sizeCounterDown",
   gemInfoClick = "gemInfoClick",
   gemstoneOptionClick = "gemstoneOptionClick",
+  orderClick = "orderClick"
 }

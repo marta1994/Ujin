@@ -81,13 +81,13 @@ namespace Ujin.Services
             await Task.WhenAll(SaveUser(efUser), SendMessageAboutUser(efUser));
         }
 
-        private async Task SaveUser(User efUser)
+        private Task SaveUser(User efUser)
         {
             ujinContext.Users.Add(efUser);
-            await ujinContext.SaveChangesAsync();
+            return ujinContext.SaveChangesAsync();
         }
 
-        private async Task SendMessageAboutUser(User efUser)
+        private Task SendMessageAboutUser(User efUser)
         {
             var mail = new SimpleMail
             {
@@ -96,7 +96,7 @@ namespace Ujin.Services
                 Body = UserToString(efUser),
                 To = settings.MailSettings.MailTo.ToList()
             };
-            await mailSender.SendMessage(mail);
+            return mailSender.SendMessage(mail);
         }
 
         private string UserToString(User efUser)

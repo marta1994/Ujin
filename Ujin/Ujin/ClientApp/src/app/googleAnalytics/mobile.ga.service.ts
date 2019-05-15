@@ -18,7 +18,7 @@ export class MobileGaService extends BaseGaService {
 
     var allElements = $(".scroll-point").toArray();
 
-    this.addEvent($(window), "scroll", () => {
+    this.addEvent($(window) as any, "scroll", () => {
       if (allElements.length == 0) return;
       const scrollPosition = window.pageYOffset;
       for (var el of allElements) {

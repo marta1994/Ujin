@@ -64,7 +64,7 @@ export class OrderService {
     this.validateName();
     this.validatePhone();
     this.validateEmail();
-    return this._validationRes.isPhoneValid && this._validationRes.isNameValid;
+    return this._validationRes.isPhoneValid && this._validationRes.isNameValid && this._validationRes.isEmailValid;
   }
 
   private validateName() {

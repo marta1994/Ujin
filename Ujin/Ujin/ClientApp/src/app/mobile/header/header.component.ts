@@ -2,8 +2,6 @@ import {
   Component, OnInit, HostListener, OnDestroy, AfterViewInit,
   trigger, state, style, transition, animate, HostBinding
 } from '@angular/core';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { throttleTime, map, distinctUntilChanged, pairwise, share, filter } from 'rxjs/operators';
 import { HeaderGaService } from '../../googleAnalytics/header-ga.service';
 import { SocialService } from '../../services/social.service';
 
@@ -47,29 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.gaService.registerEvents();
-
-    const scroll = fromEvent(window, 'scroll').pipe(
-      throttleTime(10),
-      map(() => window.pageYOffset),
-      pairwise(),
-      map(([y1, y2]): Direction => (y2 < y1 ? Direction.Up : Direction.Down)),
-      distinctUntilChanged(),
-      share()
-    );
-
-    const scrollUp = scroll.pipe(
-      filter(direction => direction === Direction.Up)
-    );
-
-    const scrollDown = scroll.pipe(
-      filter(direction => direction === Direction.Down)
-    );
-
-    scrollUp.subscribe(() => this._headerVisibility = VisibilityState.Visible);
-    scrollDown.subscribe(() => {
-      this._headerVisibility = VisibilityState.Hidden;
-      this.clickout();
-    });
   }
 
   ngOnDestroy() {
@@ -99,6 +74,24 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     this.buttonsVisible = !this.buttonsVisible;
   }
 
+  private _currScrollPosition: number;
+
+  @HostListener('window:scroll')
+  public scroll() {
+    if (this._currScrollPosition == null) this._currScrollPosition = window.pageYOffset;
+    if (Math.abs(this._currScrollPosition - window.pageYOffset) < 150) return;
+    if (this._currScrollPosition > window.pageYOffset) {
+      this._headerVisibility = VisibilityState.Visible;
+      console.log("header visible");
+    }
+    if (this._currScrollPosition < window.pageYOffset) {
+      this._headerVisibility = VisibilityState.Hidden;
+      this.clickout();
+      console.log("header hidden");
+    }
+    this._currScrollPosition = window.pageYOffset;
+  }
+
   @HostListener('document:click')
   public clickout() {
     this._menuState = MenuState.Closed;
@@ -118,9 +111,4 @@ enum MenuState {
 enum VisibilityState {
   Visible = 'visible',
   Hidden = 'hidden'
-}
-
-enum Direction {
-  Up = 'Up',
-  Down = 'Down'
 }

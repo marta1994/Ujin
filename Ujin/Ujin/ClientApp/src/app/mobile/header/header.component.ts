@@ -13,7 +13,7 @@ import { SocialService } from '../../services/social.service';
     trigger('toggle', [
       state(
         "hidden",
-        style({ transform: 'translateY(-100%)' })
+        style({ transform: 'translateY(calc(-100% + 40px))' })
       ),
       state(
         "visible",

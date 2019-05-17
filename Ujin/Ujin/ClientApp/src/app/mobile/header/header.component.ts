@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostListener('window:scroll')
   public scroll() {
     if (this._currScrollPosition == null) this._currScrollPosition = window.pageYOffset;
-    if (Math.abs(this._currScrollPosition - window.pageYOffset) < 150) return;
+    if (Math.abs(this._currScrollPosition - window.pageYOffset) < 50) return;
     if (this._currScrollPosition > window.pageYOffset) {
       this._headerVisibility = VisibilityState.Visible;
       console.log("header visible");

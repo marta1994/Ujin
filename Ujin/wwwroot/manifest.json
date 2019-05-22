@@ -1,0 +1,9 @@
+{
+  "name": "Ujin Jewelry",
+  "short_name": "ujin-jewelry",
+  "description": "Ujin jewelry - unique jewelry made in individual order",
+  "background_color": "#F5F5F5",
+  "theme_color": "#212121",
+  "display": "standalone",
+  "start_url": "/"
+}

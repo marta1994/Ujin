@@ -1,9 +1,0 @@
-<div class="overlay" (click)="onOverlayClicked($event)">
-  <div class="popup" [ngStyle]="popupStyle" (click)="onPopupClicked($event)">
-    <span class="close-button" *ngIf="showCloseButton" (click)="onCloseClicked($event)">
-      <span [inlineSVG]="'/assets/images/close.svg'"></span>
-    </span>
-    <ng-template appInsertion>
-    </ng-template>
-  </div>
-</div>

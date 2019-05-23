@@ -1,9 +1,0 @@
-D:\Ujin\Storage\bin\Debug\netcoreapp2.1\Storage.deps.json
-D:\Ujin\Storage\bin\Debug\netcoreapp2.1\Storage.dll
-D:\Ujin\Storage\bin\Debug\netcoreapp2.1\Storage.pdb
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.csprojAssemblyReference.cache
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.csproj.CoreCompileInputs.cache
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.AssemblyInfoInputs.cache
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.AssemblyInfo.cs
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.dll
-D:\Ujin\Storage\obj\Debug\netcoreapp2.1\Storage.pdb

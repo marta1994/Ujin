@@ -2,3 +2,7 @@
 /Obj
 /bin
 /Bin
+
+#Application settings
+appsettings.json
+appsettings.Development.json

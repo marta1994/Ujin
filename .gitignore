@@ -3,3 +3,7 @@
 *.dll
 *.exe
 *.pdb
+*/obj
+*/bin
+/obj
+/bin

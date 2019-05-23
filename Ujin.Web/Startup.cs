@@ -1,19 +1,20 @@
 ﻿using System;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.Webpack;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using Swashbuckle.AspNetCore.Swagger;
+using Ujin.Storage;
 using WebEssentials.AspNetCore.Pwa;
 
 namespace AspCoreServer {
+
     public class Startup {
+
         public Startup (IHostingEnvironment env) {
             var builder = new ConfigurationBuilder ()
                 .SetBasePath (env.ContentRootPath)
@@ -33,12 +34,12 @@ namespace AspCoreServer {
             services.AddHttpContextAccessor ();
             services.AddProgressiveWebApp (new PwaOptions { Strategy = ServiceWorkerStrategy.CacheFirst, RegisterServiceWorker = true, RegisterWebmanifest = true }, "manifest.json");
 
-            var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = "spa.db" };
-            var connectionString = connectionStringBuilder.ToString();
+            StorageRegistrator.RegisterStorage(services, Configuration);
+
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen (c => {
-                c.SwaggerDoc ("v1", new Info { Title = "Angular 7.0 Universal & ASP.NET Core advanced starter-kit web API", Version = "v1" });
+                c.SwaggerDoc ("v1", new Info { Title = "Ujin jewelry", Version = "v2" });
             });
         }
 

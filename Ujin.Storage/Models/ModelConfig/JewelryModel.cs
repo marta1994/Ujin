@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Ujin.Storage.Models.ModelConfig
 {
-    public class JewelryModel: NamedModel
+    public class JewelryModel : NamedModel
     {
         public virtual List<ModelConfiguration> Configurations { get; set; }
 

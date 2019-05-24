@@ -12,6 +12,8 @@ namespace Ujin.Storage
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<AdminUser> AdminUsers { get; set; }
+
         public DbSet<Color> Colors { get; set; }
 
         public DbSet<Gemstone> Gemstones { get; set; }
@@ -30,6 +32,9 @@ namespace Ujin.Storage
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AdminUser>()
+                .HasIndex(u => u.Username);
+
             modelBuilder.Entity<JewelryModel>()
                 .HasMany(m => m.Configurations)
                 .WithOne(m => m.JewelryModel)

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ujin.Domain\Ujin.Domain.csproj" />
+    <ProjectReference Include="..\Ujin.Interfaces\Ujin.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

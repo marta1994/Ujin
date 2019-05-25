@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ujin.Admin.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
@@ -14,8 +15,7 @@ namespace Ujin.Admin.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
-
-        [Authorize]
+        
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {

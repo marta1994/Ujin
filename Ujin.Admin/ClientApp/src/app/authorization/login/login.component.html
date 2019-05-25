@@ -1,0 +1,12 @@
+<div class="conatiner">
+  <span class="header">Введіть логін і пароль, щоб увійти у систему</span>
+  <div class="user-name holder">
+    <span class="user-name-label label">Логін</span>
+    <input class="user-name-input" type="text" [(ngModel)]="user.username" />
+  </div>
+  <div class="password holder">
+    <span class="password-label label">Пароль</span>
+    <input class="password-input" type="password" [(ngModel)]="user.password" />
+  </div>
+  <button (click)="signin()">Увійти</button>
+</div>

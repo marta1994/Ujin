@@ -25,7 +25,15 @@ namespace Ujin.Admin.Controllers
             try
             {
                 var user = await _userService.Authenticate(userParam.Username, userParam.Password);
-                return Ok(user);
+                return Ok(new
+                {
+                    user.Email,
+                    user.Phone,
+                    user.Username,
+                    user.FirstName,
+                    user.LastName,
+                    user.Token
+                });
             }
             catch(AuthenticationException ex)
             {

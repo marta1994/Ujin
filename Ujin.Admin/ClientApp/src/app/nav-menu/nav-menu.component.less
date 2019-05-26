@@ -1,18 +1,24 @@
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
+@import '../../common.less';
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+.navbar {
+  padding: 30px;
+  border-right: 1px solid @black-color;
+  background-color: @light-pearl;
+
+  .navbar-brand {
+    font-size: 2em;
+    .set-link-style();
   }
-}
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  .content-menu {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-link {
+    margin: 10px;
+    font-size: 1.5em;
+    .set-link-style();
+  }
 }

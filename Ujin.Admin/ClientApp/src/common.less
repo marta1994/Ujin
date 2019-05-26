@@ -1,0 +1,28 @@
+@mobile: ~'(min-width: 768px)';
+
+@black-color: #222222;
+@grey-color: #949494;
+@light-pearl: #fff2ec;
+
+.set-link-style() {
+  color: @black-color;
+  border-color: @black-color;
+  text-decoration: none;
+  transition: color ease 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: @grey-color;
+    border-color: @grey-color;
+  }
+
+  &.link-active {
+    text-decoration: underline;
+  }
+}
+
+.set-border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}

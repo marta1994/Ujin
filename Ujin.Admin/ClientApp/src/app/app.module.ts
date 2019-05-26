@@ -7,19 +7,18 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ContentComponent } from './content/content.component';
 import { AuthGuardService } from './authorization/auth-guard.service';
 import { LoginComponent } from './authorization/login/login.component';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { ApiModule } from './api/api.module';
+import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
     ContentComponent
   ],
   imports: [
@@ -33,14 +32,15 @@ import { ApiModule } from './api/api.module';
         canActivate: [AuthGuardService],
         children: [
           { path: '', component: HomeComponent },
-          { path: 'fetch-data', component: FetchDataComponent }
+          GemstoneRouteProvider.getRoute()
         ]
       },
       { path: 'login', component: LoginComponent },
       { path: '**', redirectTo: '' }
     ]),
     ApiModule,
-    AuthorizationModule
+    AuthorizationModule,
+    GemstoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]

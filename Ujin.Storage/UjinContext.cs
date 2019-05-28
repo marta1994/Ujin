@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 
@@ -29,6 +32,40 @@ namespace Ujin.Storage
         public DbSet<Metal> Metals { get; set; }
 
         public DbSet<ModelConfiguration> ModelConfigurations { get; set; }
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            OnBeforeSaving();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            OnBeforeSaving();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void OnBeforeSaving()
+        {
+            var entries = ChangeTracker.Entries();
+            var now = DateTime.UtcNow;
+            foreach (var entry in entries)
+            {
+                if (entry.Entity is BaseModel baseModel)
+                {
+                    switch (entry.State)
+                    {
+                        case EntityState.Modified:
+                            baseModel.DateModified = now;
+                            break;
+
+                        case EntityState.Added:
+                            baseModel.DateCreated = now;
+                            break;
+                    }
+                }
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

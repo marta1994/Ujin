@@ -1,14 +1,16 @@
 @mobile: ~'(min-width: 768px)';
 
+@white-color: white;
 @black-color: #222222;
 @grey-color: #949494;
+@light-grey-color: #dcdada;
 @light-pearl: #fff2ec;
 
 .set-link-style() {
   color: @black-color;
   border-color: @black-color;
   text-decoration: none;
-  transition: color ease 0.3s;
+  transition: color ease 0.3s, text-decoration ease 0.3s;
   cursor: pointer;
 
   &:hover {
@@ -25,4 +27,45 @@
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
   border-radius: @radius;
+}
+
+.set-box-shadow (@shadow) {
+  box-shadow: @shadow;
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+}
+
+.set-button-style() {
+  .set-border-radius(3px);
+  cursor: pointer;
+  padding: 5px;
+  background-color: @light-grey-color;
+  border: 1px solid @grey-color;
+  .set-box-shadow(0 1px 6px 0 @grey-color);
+  color: @black-color;
+  transition: background-color ease 0.3s;
+
+  &:hover {
+    background-color: @grey-color;
+  }
+}
+
+.set-input-style(@background: @white-color, @text-color: @black-color) {
+  border: none;
+  border-bottom: 1px solid @text-color;
+  color: @text-color;
+  padding: 0;
+  padding-bottom: 1px;
+  transition: border-bottom-width ease 0.3s, padding-bottom ease 0.3s;
+  outline: none;
+
+  &:hover {
+    padding-bottom: 0px;
+    border-bottom-width: 2px;
+  }
+
+  &:focus {
+    padding-bottom: 0px;
+    border-bottom-width: 2px;
+  }
 }

@@ -20,6 +20,7 @@ namespace Ujin.Storage
                     builder => builder.MigrationsAssembly(typeof(UjinContext).Assembly.FullName)));
 
             services.AddScoped<IAdminUserDao, AdminUserDao>();
+            services.AddScoped<IGemSourceDao, GemSourceDao>();
         }
     }
 }

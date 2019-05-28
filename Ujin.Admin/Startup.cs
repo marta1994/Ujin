@@ -50,6 +50,7 @@ namespace Ujin.Admin
             StorageRegistrator.RegisterStorage(services, Configuration);
 
             services.AddScoped<IAdminUserService, AdminUserService>();
+            services.AddScoped<IGemstoneService, GemstoneService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

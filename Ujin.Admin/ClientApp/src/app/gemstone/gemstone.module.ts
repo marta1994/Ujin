@@ -4,6 +4,7 @@ import { GemSourceComponent } from './gem-source/gem-source.component';
 import { GemstoneComponent } from './gemstone.component';
 import { Route, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ApiModule } from '../api/api.module';
 
 export class GemstoneRouteProvider {
   public static getRoute(): Route {
@@ -25,7 +26,8 @@ export class GemstoneRouteProvider {
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ApiModule
   ],
   declarations: [
     GemSourceComponent,

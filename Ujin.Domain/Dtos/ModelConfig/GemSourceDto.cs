@@ -1,4 +1,4 @@
-﻿namespace Ujin.Domain.ModelConfig
+namespace Ujin.Domain.Dtos.ModelConfig
 {
     public class GemSourceDto
     {

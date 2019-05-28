@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Ujin.Domain.Admin;
-using Ujin.Domain.ModelConfig;
+using Ujin.Domain.Dtos.Admin;
+using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 

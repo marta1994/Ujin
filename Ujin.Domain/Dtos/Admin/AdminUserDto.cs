@@ -1,4 +1,4 @@
-﻿namespace Ujin.Domain.Admin
+namespace Ujin.Domain.Dtos.Admin
 {
     public class AdminUserDto
     {

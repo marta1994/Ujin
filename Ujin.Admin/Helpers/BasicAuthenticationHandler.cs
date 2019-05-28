@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Ujin.Domain.Admin;
+using Ujin.Domain.Dtos.Admin;
 using Ujin.Interfaces;
 
 namespace Ujin.Admin.Helpers

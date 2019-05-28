@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Ujin.Domain.Admin;
+using Ujin.Domain.Dtos.Admin;
 
 namespace Ujin.Interfaces
 {

@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Ujin.Domain.Admin;
+using Ujin.Domain.Dtos.Admin;
 using Ujin.Interfaces;
 
 namespace Ujin.BusinessLogic.Services.Admin

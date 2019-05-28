@@ -57,10 +57,13 @@ namespace Ujin.Storage
                     {
                         case EntityState.Modified:
                             baseModel.DateModified = now;
+                            var dt = entry.GetDatabaseValues().GetValue<DateTime>(nameof(baseModel.DateCreated));
+                            baseModel.DateCreated = dt;
                             break;
 
                         case EntityState.Added:
                             baseModel.DateCreated = now;
+                            baseModel.DateModified = null;
                             break;
                     }
                 }

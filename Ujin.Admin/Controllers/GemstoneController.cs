@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Ujin.Domain.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Interfaces;
 
 namespace Ujin.Admin.Controllers

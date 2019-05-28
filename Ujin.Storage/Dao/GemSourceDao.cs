@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ujin.Domain.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Interfaces;
 using Ujin.Storage.Models.ModelConfig;
 

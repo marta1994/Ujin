@@ -1,0 +1,21 @@
+{
+  "gemstone": {
+    "gemSource": {
+      "genuine": "Натуральний",
+      "artifical": "Вирощений"
+    },
+    "gemCut": {
+      "oval": "Овал",
+      "round": "Круг",
+      "baguette": "Багет",
+      "square": "Квадрат"
+    },
+    "gemClass": {
+      "zirconium": "Цирконій",
+      "sapphire": "Сапфір",
+      "emerald": "Смарагд",
+      "ruby": "Рубін",
+      "amethyst": "Аметист"
+    }
+  }
+}

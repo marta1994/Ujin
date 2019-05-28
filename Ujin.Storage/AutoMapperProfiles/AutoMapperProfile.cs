@@ -14,6 +14,10 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<AdminUserDto, AdminUser>();
             CreateMap<GemstoneSource, GemSourceDto>();
             CreateMap<GemSourceDto, GemstoneSource>();
+            CreateMap<GemstoneClass, GemClassDto>();
+            CreateMap<GemClassDto, GemstoneClass>();
+            CreateMap<GemstoneCut, GemCutDto>();
+            CreateMap<GemCutDto, GemstoneCut>();
         }
     }
 }

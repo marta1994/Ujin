@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GemSourceComponent } from './gem-source/gem-source.component';
 import { GemstoneComponent } from './gemstone.component';
 import { Route, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiModule } from '../api/api.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
+import { HttpClient } from '@angular/common/http';
+import { NamedEntityEditorComponent } from './named-entity-editor/named-entity-editor.component';
 
 export class GemstoneRouteProvider {
   public static getRoute(): Route {
@@ -13,10 +16,30 @@ export class GemstoneRouteProvider {
       component: GemstoneComponent,
       children: [
         {
-          path: 'gem-source',
-          component: GemSourceComponent
+          path: 'gem-class',
+          component: NamedEntityEditorComponent,
+          data: {
+            placeholder: "Тип каменя (сапфір, рубін, жовтий сапфір, ...)",
+            entityType: "GemClasses"
+          }
         },
-        { path: '**', redirectTo: 'gem-source' }
+        {
+          path: 'gem-cut',
+          component: NamedEntityEditorComponent,
+          data: {
+            placeholder: "Ограновування каменя (овал, квадрат, ...)",
+            entityType: "GemCuts"
+          }
+        },
+        {
+          path: 'gem-source',
+          component: NamedEntityEditorComponent,
+          data: {
+            placeholder: "Походження каменю (натуральний, вироблений, ...)",
+            entityType: "GemSources"
+          }
+        },
+        { path: '**', redirectTo: 'gem-class' }
       ]
     };
   }
@@ -27,10 +50,17 @@ export class GemstoneRouteProvider {
     CommonModule,
     FormsModule,
     RouterModule,
-    ApiModule
+    ApiModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
-    GemSourceComponent,
+    NamedEntityEditorComponent,
     GemstoneComponent
   ]
 })

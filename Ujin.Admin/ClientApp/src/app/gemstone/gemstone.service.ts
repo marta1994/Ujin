@@ -6,35 +6,45 @@ import { ApiService } from '../api/api.service';
 })
 export class GemstoneService {
 
-  private _gemSourcesPromice: Promise<GemSource[]>;
+  private _entityPromices: { [key: string]: Promise<NamedEntity[]> } = { };
 
-  constructor(private _api: ApiService) { }
-
-  public loadGemSources(): Promise<GemSource[]> {
-    if (this._gemSourcesPromice)
-      return this._gemSourcesPromice;
-    this._gemSourcesPromice = new Promise((resolve, reject) =>
-      this._api.loadData<GemSource[]>('api/Gemstone/GemSources')
-        .subscribe(
-          g => resolve(g.map(gs => new GemSource(gs))),
-          err => reject(err)));
-    return this._gemSourcesPromice;
+  constructor(private _api: ApiService) {
+    this._entityPromices[GemNamedEntity.GemSource] = null;
+    this._entityPromices[GemNamedEntity.GemClass] = null;
+    this._entityPromices[GemNamedEntity.GemCut] = null;
   }
 
-  public saveGemSources(gemSources: GemSource[]): Promise<any> {
+  public loadGemSources(entityType: GemNamedEntity): Promise<NamedEntity[]> {
+    if (this._entityPromices[entityType])
+      return this._entityPromices[entityType];
+    this._entityPromices[entityType] = new Promise((resolve, reject) =>
+      this._api.loadData<NamedEntity[]>(`api/Gemstone/${entityType}`)
+        .subscribe(
+        g => resolve(g.map(gs => new NamedEntity(gs))),
+          err => reject(err)));
+    return this._entityPromices[entityType];
+  }
+
+  public saveGemSources(gemSources: NamedEntity[], entityType: GemNamedEntity): Promise<any> {
     return new Promise((resolve, reject) =>
-      this._api.postData('api/Gemstone/SaveGemSources', gemSources)
+      this._api.postData(`api/Gemstone/Save${entityType}`, gemSources)
         .subscribe(
           () => resolve(true),
           err => reject(err)));
   }
 }
 
-export class GemSource {
+export enum GemNamedEntity {
+  GemSource = "GemSources",
+  GemClass = "GemClasses",
+  GemCut = "GemCuts"
+}
 
-  constructor(gemSrc: GemSource) {
-    this.nameKey = gemSrc.nameKey;
-    this.id = gemSrc.id;
+export class NamedEntity {
+
+  constructor(namedEntity: NamedEntity) {
+    this.nameKey = namedEntity.nameKey;
+    this.id = namedEntity.id;
   }
 
   public nameKey: string;

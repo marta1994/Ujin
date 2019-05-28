@@ -1,0 +1,21 @@
+{
+  "gemstone": {
+    "gemSource": {
+      "genuine": "Genuine",
+      "artifical": "Artifical"
+    },
+    "gemCut": {
+      "oval": "Oval",
+      "round": "Round",
+      "baguette": "Baguette",
+      "square": "Square"
+    },
+    "gemClass": {
+      "zirconium": "Zirconium",
+      "sapphire": "Sapphire",
+      "emerald": "Emerald",
+      "ruby": "Ruby",
+      "amethyst": "Amethyst"
+    }
+  }
+}

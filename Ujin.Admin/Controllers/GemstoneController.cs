@@ -25,10 +25,34 @@ namespace Ujin.Admin.Controllers
             return _gemstoneService.LoadGemSources();
         }
 
+        [HttpGet("[action]")]
+        public Task<List<GemClassDto>> GemClasses()
+        {
+            return _gemstoneService.LoadGemClasses();
+        }
+
+        [HttpGet("[action]")]
+        public Task<List<GemCutDto>> GemCuts()
+        {
+            return _gemstoneService.LoadGemCuts();
+        }
+
         [HttpPost("[action]")]
         public Task SaveGemSources([FromBody]List<GemSourceDto> gemSources)
         {
             return _gemstoneService.SaveGemSources(gemSources);
+        }
+
+        [HttpPost("[action]")]
+        public Task SaveGemClasses([FromBody]List<GemClassDto> gemClasses)
+        {
+            return _gemstoneService.SaveGemClasses(gemClasses);
+        }
+
+        [HttpPost("[action]")]
+        public Task SaveGemCuts([FromBody]List<GemCutDto> gemCuts)
+        {
+            return _gemstoneService.SaveGemCuts(gemCuts);
         }
     }
 }

@@ -1,14 +1,7 @@
 <div class="container">
   <div class="collection-holder">
-    <div *ngFor="let item of entities" class="entity-group">
-      <span class="label">Id: {{item.id}}; Ключ назви: </span>
-      <input class="name-input" [(ngModel)]="item.nameKey" type="text"
-             placeholder="{{placeholder}}" />
-      <span class="translated">{{item.nameKey | translate}}</span>
-      <button class="delete button" *ngIf="item.id < 0" (click)="deleteItem(item)">
-      Видалити
-      </button>
-    </div>
+    <app-table [dataSource]="entities" [tableConfig]="tableConfig">
+    </app-table>
   </div>
   <button class="add-new button" (click)="addNew()">Додати ще один</button>
   <button class="save button" (click)="saveChanges()">Зберегти зміни</button>

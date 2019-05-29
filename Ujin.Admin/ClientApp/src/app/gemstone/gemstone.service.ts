@@ -32,12 +32,30 @@ export class GemstoneService {
           () => resolve(true),
           err => reject(err)));
   }
+
+  public loadGemstones
 }
 
 export enum GemNamedEntity {
   GemSource = "GemSources",
   GemClass = "GemClasses",
   GemCut = "GemCuts"
+}
+
+export class Gemstone {
+  public id: number;
+  public widthMm: number;
+  public heightMm: number;
+  public price: number;
+  public weight: number;
+  public colorId: number;
+  public color: NamedEntity;
+  public gemstoneClassId: number;
+  public gemstoneClass: NamedEntity;
+  public gemstoneSourceId: number;
+  public gemstoneSource: NamedEntity;
+  public gemstoneCutId: number;
+  public gemstoneCut: NamedEntity;
 }
 
 export class NamedEntity {

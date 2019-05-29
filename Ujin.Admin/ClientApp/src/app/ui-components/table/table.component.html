@@ -1,0 +1,39 @@
+<table class="table">
+  <thead class="head">
+    <tr class="row">
+      <th *ngFor="let column of tableConfig.columnsConfig" class="cell">
+        {{column.columnNameKey | translate}}
+      </th>
+      <th *ngIf="isTableEditable">
+        Редагування
+      </th>
+    </tr>
+  </thead>
+  <tbody class="body">
+    <tr *ngFor="let row of rows" class="row">
+      <td *ngFor="let column of row.columnsConfig" class="cell" [ngSwitch]="column.columnType">
+        <div *ngSwitchCase="columnType.Action">
+          <button *ngIf="column.columnOptions.isActionAllowed(row.item)"
+                  (click)="column.columnOptions.action(row.item)" class="button">
+            {{column.columnOptions.text | translate}}
+          </button>
+        </div>
+        <div *ngSwitchCase="columnType.Text">
+          <span *ngIf="!column.isEditable || !isInEditMode(row.item)">
+            {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
+          </span>
+          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+            <input class="text-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="text"
+                   placeholder="{{column.columnOptions.placeholder}}" />
+          </span>
+        </div>
+        <div *ngSwitchDefault>
+          {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
+        </div>
+      </td>
+      <td *ngIf="isTableEditable">
+        <button class="button" *ngIf="!isInEditMode(row.item)" (click)="setInEditMode(row.item)">Редагувати</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

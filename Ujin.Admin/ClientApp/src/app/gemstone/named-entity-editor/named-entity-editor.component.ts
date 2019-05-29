@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GemstoneService, NamedEntity, GemNamedEntity } from '../gemstone.service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { ITableConfig, ColumnType, ITextColumn, IActionColumn } from 'src/app/ui-components/table/table.component';
 
 @Component({
   selector: 'app-named-entity-editor',
@@ -33,6 +34,54 @@ export class NamedEntityEditorComponent implements OnInit {
     return this._entities;
   }
 
+  public get tableConfig(): ITableConfig {
+    return {
+      columnsConfig: [
+        {
+          columnNameKey: "ID",
+          isEditable: false,
+          displayPropertyName: "id",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Ключ назви",
+          isEditable: true,
+          displayPropertyName: "nameKey",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Text,
+          columnOptions: <ITextColumn> {
+            editPropertyName: "nameKey",
+            placeholder: this.placeholder
+          }
+        },
+        {
+          columnNameKey: "Назва зі словника",
+          isEditable: false,
+          displayPropertyName: "nameKey",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Видалення",
+          isEditable: false,
+          displayPropertyName: "",
+          isTranslated: false,
+          isOrderable: false,
+          columnType: ColumnType.Action,
+          columnOptions: <IActionColumn> {
+            action: (item: NamedEntity) => this.deleteItem(item),
+            text: "Видалити",
+            isActionAllowed: (item: NamedEntity) => {
+              return item.id <= 0;
+            }
+          }
+        }
+      ]
+    }
+  }
+
   public deleteItem(item: NamedEntity) {
     let ind = this._entities.indexOf(item);
     if (ind < 0) return;
@@ -40,7 +89,7 @@ export class NamedEntityEditorComponent implements OnInit {
   }
 
   public addNew() {
-    this._entities.push({ id: -1, nameKey: "" });
+    this._entities.push(new NamedEntity({ id: -1, nameKey: "" }));
   }
 
   public saveChanges() {

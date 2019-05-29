@@ -8,6 +8,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { NamedEntityEditorComponent } from './named-entity-editor/named-entity-editor.component';
+import { GemInstanceComponent } from './gem-instance/gem-instance.component';
+import { UiComponentsModule } from '../ui-components/ui-components.module';
 
 export class GemstoneRouteProvider {
   public static getRoute(): Route {
@@ -57,11 +59,13 @@ export class GemstoneRouteProvider {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    UiComponentsModule
   ],
   declarations: [
     NamedEntityEditorComponent,
-    GemstoneComponent
+    GemstoneComponent,
+    GemInstanceComponent
   ]
 })
 export class GemstoneModule { }

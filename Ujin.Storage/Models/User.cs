@@ -3,7 +3,7 @@ using Ujin.Domain.Enums;
 
 namespace Ujin.Storage.Models
 {
-    public class User : BaseModel
+    internal class User : BaseModel
     {
         [MaxLength(255)]
         public string Name { get; set; }

@@ -18,6 +18,8 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<GemClassDto, GemstoneClass>();
             CreateMap<GemstoneCut, GemCutDto>();
             CreateMap<GemCutDto, GemstoneCut>();
+            CreateMap<Color, ColorDto>();
+            CreateMap<ColorDto, Color>();
         }
     }
 }

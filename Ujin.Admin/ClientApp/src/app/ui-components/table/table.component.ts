@@ -103,12 +103,17 @@ export interface IActionColumn extends IColumnOptions {
   isActionAllowed: (item: any) => boolean;
 }
 
+export interface IColorColumn extends IColumnOptions {
+  editPropertyName: string;
+}
+
 export enum ColumnType {
   Text = 0,
   Boolean = 1,
   Number = 2,
   Options = 3,
-  Action = 4
+  Action = 4,
+  Color = 5
 }
 
 

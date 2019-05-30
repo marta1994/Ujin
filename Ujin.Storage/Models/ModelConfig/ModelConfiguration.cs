@@ -2,7 +2,7 @@
 
 namespace Ujin.Storage.Models.ModelConfig
 {
-    public class ModelConfiguration: NamedModel
+    internal class ModelConfiguration: NamedModel
     {
         public int JewelryModelId { get; set; }
 

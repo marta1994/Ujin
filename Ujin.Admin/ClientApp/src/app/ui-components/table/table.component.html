@@ -27,6 +27,15 @@
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
         </div>
+        <div *ngSwitchCase="columnType.Color">
+          <div *ngIf="!column.isEditable || !isInEditMode(row.item)">
+            <div style="width: 100px; height: 20px" [style.background]="row.item[column.displayPropertyName]"></div>
+          </div>
+          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+            <input [(colorPicker)]="row.item[column.columnOptions.editPropertyName]" [style.background]="row.item[column.columnOptions.editPropertyName]"
+                   [cpOutputFormat]="'hex'"/>
+          </span>
+        </div>
         <div *ngSwitchDefault>
           {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
         </div>

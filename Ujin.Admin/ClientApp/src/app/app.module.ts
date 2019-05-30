@@ -15,13 +15,16 @@ import { LoginComponent } from './authorization/login/login.component';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { ApiModule } from './api/api.module';
 import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.module';
+import { ColorEditorComponent } from './color-editor/color-editor.component';
+import { UiComponentsModule } from './ui-components/ui-components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    ContentComponent
+    ContentComponent,
+    ColorEditorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +37,8 @@ import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.modul
         canActivate: [AuthGuardService],
         children: [
           { path: '', component: HomeComponent },
-          GemstoneRouteProvider.getRoute()
+          GemstoneRouteProvider.getRoute(),
+          { path: 'color-edit', component: ColorEditorComponent }
         ]
       },
       { path: 'login', component: LoginComponent },
@@ -49,7 +53,8 @@ import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.modul
     }),
     ApiModule,
     AuthorizationModule,
-    GemstoneModule
+    GemstoneModule,
+    UiComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

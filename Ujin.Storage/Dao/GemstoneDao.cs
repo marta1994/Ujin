@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Interfaces;
-using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 
 namespace Ujin.Storage.Dao
@@ -46,32 +45,19 @@ namespace Ujin.Storage.Dao
         public Task SaveGemSources(List<GemSourceDto> gemSources)
         {
             var entities = gemSources.Select(g => _mapper.Map<GemstoneSource>(g));
-            return SaveEntities(entities);
+            return _dbContext.UpsertEntities(entities);
         }
 
         public Task SaveGemClasses(List<GemClassDto> gemClasses)
         {
             var entities = gemClasses.Select(g => _mapper.Map<GemstoneClass>(g));
-            return SaveEntities(entities);
+            return _dbContext.UpsertEntities(entities);
         }
 
         public Task SaveGemCuts(List<GemCutDto> gemCuts)
         {
             var entities = gemCuts.Select(g => _mapper.Map<GemstoneCut>(g));
-            return SaveEntities(entities);
-        }
-
-        private Task SaveEntities(IEnumerable<BaseModel> entities)
-        {
-            var addedEntities = entities.Where(g => g.Id <= 0)
-                .Select(e =>
-                {
-                    e.Id = 0;
-                    return e;
-                });
-            _dbContext.AddRange(addedEntities);
-            _dbContext.UpdateRange(entities.Where(g => g.Id > 0));
-            return _dbContext.SaveChangesAsync();
+            return _dbContext.UpsertEntities(entities);
         }
     }
 }

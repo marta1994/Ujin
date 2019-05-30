@@ -1,6 +1,6 @@
 ﻿namespace Ujin.Storage.Models
 {
-    public abstract class NamedModel: BaseModel
+    internal abstract class NamedModel: BaseModel
     {
         public string NameKey { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Ujin.Storage.Models.ModelConfig
 {
-    public class GemstoneSource: NamedModel
+    internal class GemstoneSource: NamedModel
     {
     }
 }

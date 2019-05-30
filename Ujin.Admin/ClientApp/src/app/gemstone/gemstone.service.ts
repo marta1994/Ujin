@@ -52,10 +52,19 @@ export class Gemstone {
   public color: NamedEntity;
   public gemstoneClassId: number;
   public gemstoneClass: NamedEntity;
+  public get gemClassName(): string {
+    return this.gemstoneClass.nameKey;
+  }
   public gemstoneSourceId: number;
   public gemstoneSource: NamedEntity;
+  public get gemSourceName(): string {
+    return this.gemstoneSource.nameKey;
+  }
   public gemstoneCutId: number;
   public gemstoneCut: NamedEntity;
+  public get gemCutName(): string {
+    return this.gemstoneCut.nameKey;
+  }
 }
 
 export class NamedEntity {

@@ -1,6 +1,6 @@
 ﻿namespace Ujin.Storage.Models.ModelConfig
 {
-    public class Gemstone : BaseModel
+    internal class Gemstone : BaseModel
     {
         public double WidthMm { get; set; }
 

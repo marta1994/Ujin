@@ -2,7 +2,7 @@
 
 namespace Ujin.Storage.Models
 {
-    public class AdminUser: BaseModel
+    internal class AdminUser: BaseModel
     {
         [Required]
         [MaxLength(255)]

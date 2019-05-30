@@ -17,5 +17,13 @@
       "ruby": "Ruby",
       "amethyst": "Amethyst"
     }
+  },
+  "color": {
+    "name": {
+      "red": "Red",
+      "green": "Green",
+      "violet": "Violet",
+      "blue":  "Blue"
+    }
   }
 }

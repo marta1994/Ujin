@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ujin.Storage.Models.ModelConfig
 {
-    public class GemstoneCut: NamedModel
+    internal class GemstoneCut: NamedModel
     {
     }
 }

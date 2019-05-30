@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ujin.Storage.Models;
@@ -13,25 +15,38 @@ namespace Ujin.Storage
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        internal DbSet<User> Users { get; set; }
 
-        public DbSet<AdminUser> AdminUsers { get; set; }
+        internal DbSet<AdminUser> AdminUsers { get; set; }
 
-        public DbSet<Color> Colors { get; set; }
+        internal DbSet<Color> Colors { get; set; }
 
-        public DbSet<Gemstone> Gemstones { get; set; }
+        internal DbSet<Gemstone> Gemstones { get; set; }
 
-        public DbSet<GemstoneSource> GemstoneSources { get; set; }
+        internal DbSet<GemstoneSource> GemstoneSources { get; set; }
 
-        public DbSet<GemstoneClass> GemstoneClasses { get; set; }
+        internal DbSet<GemstoneClass> GemstoneClasses { get; set; }
 
-        public DbSet<GemstoneCut> GemstoneCuts { get; set; }
+        internal DbSet<GemstoneCut> GemstoneCuts { get; set; }
 
-        public DbSet<JewelryModel> JewelryModels { get; set; }
+        internal DbSet<JewelryModel> JewelryModels { get; set; }
 
-        public DbSet<Metal> Metals { get; set; }
+        internal DbSet<Metal> Metals { get; set; }
 
-        public DbSet<ModelConfiguration> ModelConfigurations { get; set; }
+        internal DbSet<ModelConfiguration> ModelConfigurations { get; set; }
+
+        internal Task UpsertEntities(IEnumerable<BaseModel> entities)
+        {
+            var addedEntities = entities.Where(g => g.Id <= 0)
+                .Select(e =>
+                {
+                    e.Id = 0;
+                    return e;
+                });
+            AddRange(addedEntities);
+            UpdateRange(entities.Where(g => g.Id > 0));
+            return SaveChangesAsync();
+        }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {

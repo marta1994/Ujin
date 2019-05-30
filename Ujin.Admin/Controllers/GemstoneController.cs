@@ -37,6 +37,12 @@ namespace Ujin.Admin.Controllers
             return _gemstoneService.LoadGemCuts();
         }
 
+        [HttpGet("[action]")]
+        public Task<List<GemstoneDto>> Gemstones()
+        {
+            return _gemstoneService.LoadGemstones();
+        }
+
         [HttpPost("[action]")]
         public Task SaveGemSources([FromBody]List<GemSourceDto> gemSources)
         {
@@ -53,6 +59,12 @@ namespace Ujin.Admin.Controllers
         public Task SaveGemCuts([FromBody]List<GemCutDto> gemCuts)
         {
             return _gemstoneService.SaveGemCuts(gemCuts);
+        }
+
+        [HttpPost("[action]")]
+        public Task SaveGemstones([FromBody]List<GemstoneDto> gemstones)
+        {
+            return _gemstoneService.SaveGemstones(gemstones);
         }
     }
 }

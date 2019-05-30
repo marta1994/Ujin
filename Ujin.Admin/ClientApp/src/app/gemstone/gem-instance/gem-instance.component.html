@@ -1,3 +1,8 @@
-<p>
-  gem-instance works!
-</p>
+<div class="container">
+  <div class="collection-holder">
+    <app-table [dataSource]="gemstones" [tableConfig]="tableConfig">
+    </app-table>
+  </div>
+  <button class="add-new button" (click)="addNew()">Додати ще один</button>
+  <button class="save button" (click)="saveChanges()">Зберегти зміни</button>
+</div>

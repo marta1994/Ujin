@@ -36,6 +36,12 @@ export class TableComponent implements OnInit, DoCheck {
     return dataItem.isInEditMode;
   }
 
+  public selectOption(option: any, item: any, column: IColumnConfig) {
+    item[(<IOptionsColumn>column.columnOptions).editOptionProperty] =
+      (<IOptionsColumn>column.columnOptions).options
+        .find(o => o[(<IOptionsColumn>column.columnOptions).optionValueProperty] == option);
+  }
+
   ngOnInit() {
     this.isTableEditable = this.tableConfig.columnsConfig.find(c => c.isEditable) != null;
   }
@@ -87,6 +93,12 @@ interface IColumnOptions {
 export interface ITextColumn extends IColumnOptions {
   editPropertyName: string;
   placeholder: string;
+}
+
+export interface INumberColumn extends IColumnOptions {
+  editPropertyName: string;
+  minValue?: number;
+  maxValue?: number;
 }
 
 export interface IOptionsColumn extends IColumnOptions {

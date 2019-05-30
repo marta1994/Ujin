@@ -25,7 +25,7 @@ export class NamedEntityEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._gemstoneService.loadGemSources(this.entityType)
+    this._gemstoneService.loadGemNamedEntities(this.entityType)
       .then(res => this._entities = res)
       .catch(err => alert("Помилка завантаження. " + err));
   }
@@ -93,7 +93,7 @@ export class NamedEntityEditorComponent implements OnInit {
   }
 
   public saveChanges() {
-    this._gemstoneService.saveGemSources(this._entities, this.entityType)
+    this._gemstoneService.saveGemNamedEntities(this._entities, this.entityType)
       .then(() => location.reload())
       .catch(err => alert("Помидка при збереженні: " + err));
   }

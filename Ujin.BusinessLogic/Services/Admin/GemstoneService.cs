@@ -29,6 +29,11 @@ namespace Ujin.BusinessLogic.Services.Admin
             return _gemSourceDao.LoadGemCuts();
         }
 
+        public Task<List<GemstoneDto>> LoadGemstones()
+        {
+            return _gemSourceDao.LoadGemstones();
+        }
+
         public Task SaveGemSources(List<GemSourceDto> gemSources)
         {
             return _gemSourceDao.SaveGemSources(gemSources);
@@ -42,6 +47,11 @@ namespace Ujin.BusinessLogic.Services.Admin
         public Task SaveGemCuts(List<GemCutDto> gemCuts)
         {
             return _gemSourceDao.SaveGemCuts(gemCuts);
+        }
+
+        public Task SaveGemstones(List<GemstoneDto> gemstones)
+        {
+            return _gemSourceDao.SaveGemstones(gemstones);
         }
     }
 }

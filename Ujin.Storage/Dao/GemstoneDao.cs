@@ -42,6 +42,13 @@ namespace Ujin.Storage.Dao
                 .ToListAsync();
         }
 
+        public Task<List<GemstoneDto>> LoadGemstones()
+        {
+            return _dbContext.Gemstones
+                .Select(g => _mapper.Map<GemstoneDto>(g))
+                .ToListAsync();
+        }
+
         public Task SaveGemSources(List<GemSourceDto> gemSources)
         {
             var entities = gemSources.Select(g => _mapper.Map<GemstoneSource>(g));
@@ -57,6 +64,12 @@ namespace Ujin.Storage.Dao
         public Task SaveGemCuts(List<GemCutDto> gemCuts)
         {
             var entities = gemCuts.Select(g => _mapper.Map<GemstoneCut>(g));
+            return _dbContext.UpsertEntities(entities);
+        }
+
+        public Task SaveGemstones(List<GemstoneDto> gemstones)
+        {
+            var entities = gemstones.Select(g => _mapper.Map<Gemstone>(g));
             return _dbContext.UpsertEntities(entities);
         }
     }

@@ -18,6 +18,10 @@ export class GemstoneRouteProvider {
       component: GemstoneComponent,
       children: [
         {
+          path: 'gemstone',
+          component: GemInstanceComponent
+        },
+        {
           path: 'gem-class',
           component: NamedEntityEditorComponent,
           data: {
@@ -41,7 +45,7 @@ export class GemstoneRouteProvider {
             entityType: "GemSources"
           }
         },
-        { path: '**', redirectTo: 'gem-class' }
+        { path: '**', redirectTo: 'gemstone' }
       ]
     };
   }

@@ -32,7 +32,8 @@
             {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
           </span>
           <span *ngIf="column.isEditable && isInEditMode(row.item)">
-            <input class="number-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="text"
+            <input class="number-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="number"
+                   [min]="minValue" [max]="maxValue"
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
         </div>

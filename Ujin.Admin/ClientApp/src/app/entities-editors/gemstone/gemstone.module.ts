@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { GemstoneComponent } from './gemstone.component';
 import { Route, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ApiModule } from '../api/api.module';
+import { ApiModule } from '../../api/api.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../app.module';
+import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 import { NamedEntityEditorComponent } from './named-entity-editor/named-entity-editor.component';
 import { GemInstanceComponent } from './gem-instance/gem-instance.component';
-import { UiComponentsModule } from '../ui-components/ui-components.module';
+import { UiComponentsModule } from '../../ui-components/ui-components.module';
 
 export class GemstoneRouteProvider {
   public static getRoute(): Route {

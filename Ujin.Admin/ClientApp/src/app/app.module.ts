@@ -14,10 +14,10 @@ import { AuthGuardService } from './authorization/auth-guard.service';
 import { LoginComponent } from './authorization/login/login.component';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { ApiModule } from './api/api.module';
-import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.module';
-import { ColorEditorComponent } from './color-editor/color-editor.component';
 import { UiComponentsModule } from './ui-components/ui-components.module';
-import { MetalEditorComponent } from './metal-editor/metal-editor.component';
+import { ColorEditorComponent } from './entities-editors/color-editor/color-editor.component';
+import { MetalEditorComponent } from './entities-editors/metal-editor/metal-editor.component';
+import { GemstoneRouteProvider, GemstoneModule } from './entities-editors/gemstone/gemstone.module';
 
 @NgModule({
   declarations: [

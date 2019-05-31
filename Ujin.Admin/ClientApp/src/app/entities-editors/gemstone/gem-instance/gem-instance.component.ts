@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Gemstone, GemstoneService, NamedEntity, GemNamedEntity } from '../gemstone.service';
-import { ColorEditorService, Color } from 'src/app/color-editor/color-editor.service';
+import { ColorEditorService, Color } from 'src/app/entities-editors/color-editor/color-editor.service';
 import { ITableConfig, ColumnType, IOptionsColumn, IActionColumn, INumberColumn } from 'src/app/ui-components/table/table.component';
 
 @Component({

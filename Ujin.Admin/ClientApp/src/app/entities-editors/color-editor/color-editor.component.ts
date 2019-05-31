@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MetalEditorService, Metal } from './metal-editor.service';
-import { ITableConfig, ColumnType, ITextColumn, INumberColumn, IActionColumn } from '../ui-components/table/table.component';
+import { ColorEditorService, Color } from './color-editor.service';
+import { ITableConfig, ColumnType, ITextColumn, IActionColumn, IColorColumn } from '../../ui-components/table/table.component';
 
 @Component({
-  selector: 'app-metal-editor',
-  templateUrl: './metal-editor.component.html',
-  styleUrls: ['./metal-editor.component.less']
+  selector: 'app-color-editor',
+  templateUrl: './color-editor.component.html',
+  styleUrls: ['./color-editor.component.less']
 })
-export class MetalEditorComponent implements OnInit {
+export class ColorEditorComponent implements OnInit {
 
-  public metals: Metal[];
+  public colors: Color[];
 
-  constructor(private _metalService: MetalEditorService) { }
+  constructor(private _colorService: ColorEditorService) { }
 
   ngOnInit() {
-    this._metalService.loadMetals()
-      .then(ms => this.metals = ms)
+    this._colorService.loadColors()
+      .then(cols => this.colors = cols)
       .catch(err => alert(err));
   }
 
@@ -49,15 +49,14 @@ export class MetalEditorComponent implements OnInit {
           isOrderable: true
         },
         {
-          columnNameKey: "Ціна за грам",
+          columnNameKey: "Колір",
           isEditable: true,
-          displayPropertyName: "pricePerGram",
+          displayPropertyName: "colorHexCode",
           isTranslated: false,
-          isOrderable: true,
-          columnType: ColumnType.Number,
-          columnOptions: <INumberColumn>{
-            editPropertyName: "pricePerGram",
-            minValue: 0
+          isOrderable: false,
+          columnType: ColumnType.Color,
+          columnOptions: <IColorColumn>{
+            editPropertyName: "colorHexCode"
           }
         },
         {
@@ -68,9 +67,9 @@ export class MetalEditorComponent implements OnInit {
           isOrderable: false,
           columnType: ColumnType.Action,
           columnOptions: <IActionColumn>{
-            action: (item: Metal) => this.deleteItem(item),
+            action: (item: Color) => this.deleteItem(item),
             text: "Видалити",
-            isActionAllowed: (item: Metal) => {
+            isActionAllowed: (item: Color) => {
               return item.id <= 0;
             }
           }
@@ -79,18 +78,18 @@ export class MetalEditorComponent implements OnInit {
     }
   }
 
-  public deleteItem(item: Metal) {
-    let ind = this.metals.indexOf(item);
+  public deleteItem(item: Color) {
+    let ind = this.colors.indexOf(item);
     if (ind < 0) return;
-    this.metals.splice(ind, 1);
+    this.colors.splice(ind, 1);
   }
 
   public addNew() {
-    this.metals.push(new Metal({ id: -1, nameKey: "metal.NEW_Metal", pricePerGram: 0 }));
+    this.colors.push(new Color({ id: -1, nameKey: "color.NEW_COLOR", colorHexCode: "#747474" }));
   }
 
   public saveChanges() {
-    this._metalService.saveMetals(this.metals)
+    this._colorService.saveColors(this.colors)
       .then(() => location.reload())
       .catch(err => alert("Помилка при збереженні: " + err));
   }

@@ -22,6 +22,7 @@ namespace Ujin.Storage
             services.AddScoped<IAdminUserDao, AdminUserDao>();
             services.AddScoped<IGemstoneDao, GemstoneDao>();
             services.AddScoped<IColorDao, ColorDao>();
+            services.AddScoped<IMetalDao, MetalDao>();
         }
     }
 }

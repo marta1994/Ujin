@@ -89,12 +89,12 @@ export class NamedEntityEditorComponent implements OnInit {
   }
 
   public addNew() {
-    this._entities.push(new NamedEntity({ id: -1, nameKey: "" }));
+    this._entities.push(new NamedEntity({ id: -1, nameKey: "gemstone.gem.NEW_ENTITY" }));
   }
 
   public saveChanges() {
     this._gemstoneService.saveGemNamedEntities(this._entities, this.entityType)
       .then(() => location.reload())
-      .catch(err => alert("Помидка при збереженні: " + err));
+      .catch(err => alert("Помилка при збереженні: " + err));
   }
 }

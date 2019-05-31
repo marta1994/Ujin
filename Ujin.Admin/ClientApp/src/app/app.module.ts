@@ -17,6 +17,7 @@ import { ApiModule } from './api/api.module';
 import { GemstoneModule, GemstoneRouteProvider } from './gemstone/gemstone.module';
 import { ColorEditorComponent } from './color-editor/color-editor.component';
 import { UiComponentsModule } from './ui-components/ui-components.module';
+import { MetalEditorComponent } from './metal-editor/metal-editor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
     NavMenuComponent,
     HomeComponent,
     ContentComponent,
-    ColorEditorComponent
+    ColorEditorComponent,
+    MetalEditorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,7 +40,8 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
         children: [
           { path: '', component: HomeComponent },
           GemstoneRouteProvider.getRoute(),
-          { path: 'color-edit', component: ColorEditorComponent }
+          { path: 'color-edit', component: ColorEditorComponent },
+          { path: 'metal-edit', component: MetalEditorComponent }
         ]
       },
       { path: 'login', component: LoginComponent },

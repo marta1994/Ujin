@@ -6,19 +6,19 @@ import { ApiService } from '../api/api.service';
 })
 export class ColorEditorService {
 
-  private _colorsPromice: Promise<Color[]>;
+  private _colorsPromise: Promise<Color[]>;
 
   constructor(private _api: ApiService) { }
 
   public loadColors(): Promise<Color[]> {
-    if (this._colorsPromice)
-      return this._colorsPromice;
-    this._colorsPromice = new Promise((resolve, reject) =>
+    if (this._colorsPromise)
+      return this._colorsPromise;
+    this._colorsPromise = new Promise((resolve, reject) =>
       this._api.loadData<Color[]>(`api/Color/Colors`)
         .subscribe(
         g => resolve(g.map(gs => new Color(gs))),
           err => reject(err)));
-    return this._colorsPromice;
+    return this._colorsPromise;
   }
 
   public saveColors(colors: Color[]): Promise<any> {

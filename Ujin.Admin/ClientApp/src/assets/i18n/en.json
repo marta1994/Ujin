@@ -23,7 +23,12 @@
       "red": "Red",
       "green": "Green",
       "violet": "Violet",
-      "blue":  "Blue"
+      "blue": "Blue"
     }
+  },
+  "metal": {
+    "gold585": "Gold",
+    "whiteGold585": "White gold",
+    "silver925":  "Silver"
   }
 }

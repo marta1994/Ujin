@@ -24,6 +24,10 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<GemstoneDto, Gemstone>();
             CreateMap<MetalDto, Metal>();
             CreateMap<Metal, MetalDto>();
+            CreateMap<JewelryModel, JewelryModelDto>();
+            CreateMap<JewelryModelDto, JewelryModel>();
+            CreateMap<ModelConfiguration, ModelConfigurationDto>();
+            CreateMap<ModelConfigurationDto, ModelConfiguration>();
         }
     }
 }

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="name-value">
+    <span class="label">Id</span>
+    <span class="value">{{jewelryModel.id}}</span>
+  </div>
+  <div class="name-value">
+    <span class="label">Ключ назви</span>
+    <input class="value text-input" [(ngModel)]="jewelryModel.nameKey" type="text"/>
+  </div>
+  <div class="name-value">
+    <span class="label">Назва зі словника</span>
+    <span class="value">{{jewelryModel.nameKey | translate}}</span>
+  </div>
+  <div class="name-value">
+    <span class="label">Базова ціна</span>
+    <input class="value number-input" [(ngModel)]="jewelryModel.basePrice" type="number" min="0"/>
+  </div>
+</div>

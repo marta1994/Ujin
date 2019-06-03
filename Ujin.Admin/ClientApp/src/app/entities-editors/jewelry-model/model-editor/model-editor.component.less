@@ -1,0 +1,22 @@
+@import '../../../../common.less';
+
+.container {
+  .name-value {
+    display: flex;
+    margin: 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid @light-grey-color;
+
+    .label {
+      width: 200px;
+    }
+
+    .value {
+      width: 250px;
+    }
+
+    .text-input, .number-input {
+      .set-input-style();
+    }
+  }
+}

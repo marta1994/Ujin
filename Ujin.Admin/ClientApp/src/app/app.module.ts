@@ -18,6 +18,7 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
 import { ColorEditorComponent } from './entities-editors/color-editor/color-editor.component';
 import { MetalEditorComponent } from './entities-editors/metal-editor/metal-editor.component';
 import { GemstoneRouteProvider, GemstoneModule } from './entities-editors/gemstone/gemstone.module';
+import { JewelryModelRouteProvider, JewelryModelModule } from './entities-editors/jewelry-model/jewelry-model.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { GemstoneRouteProvider, GemstoneModule } from './entities-editors/gemsto
           GemstoneRouteProvider.getRoute(),
           { path: 'color-edit', component: ColorEditorComponent },
           { path: 'metal-edit', component: MetalEditorComponent }
-        ]
+        ].concat(JewelryModelRouteProvider.getRoutes())
       },
       { path: 'login', component: LoginComponent },
       { path: '**', redirectTo: '' }
@@ -57,6 +58,7 @@ import { GemstoneRouteProvider, GemstoneModule } from './entities-editors/gemsto
     ApiModule,
     AuthorizationModule,
     GemstoneModule,
+    JewelryModelModule,
     UiComponentsModule
   ],
   providers: [],

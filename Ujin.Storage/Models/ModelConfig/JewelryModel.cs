@@ -9,5 +9,7 @@ namespace Ujin.Storage.Models.ModelConfig
         public string ImagesPattern { get; set; }
 
         public double BasePrice { get; set; }
+
+        public string PriceExpression { get; set; }
     }
 }

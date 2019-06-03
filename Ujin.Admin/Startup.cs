@@ -53,6 +53,7 @@ namespace Ujin.Admin
             services.AddScoped<IGemstoneService, GemstoneService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IMetalService, MetalService>();
+            services.AddScoped<IJewelryModelService, JewelryModelService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

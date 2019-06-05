@@ -63,7 +63,8 @@ export class JewelryModelsComponent implements OnInit {
           isOrderable: false,
           columnType: ColumnType.Action,
           columnOptions: <IActionColumn>{
-            action: (item: JewelryModel) => this._router.navigate(['../jewelry-model-editor', item.id]),
+            action: (item: JewelryModel) =>
+              this._router.navigate(['../jewelry-model-editor', item.id], { relativeTo: this._activatedRoute }),
             text: "Редагувати",
             isActionAllowed: (item: JewelryModel) => true
           }

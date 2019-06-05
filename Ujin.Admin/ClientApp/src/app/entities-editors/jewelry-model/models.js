@@ -20,6 +20,13 @@ var ModelConfiguration = /** @class */ (function () {
         this.configurationType = modelConfig.configurationType;
         this.configurationOptions = modelConfig.configurationOptions;
     }
+    Object.defineProperty(ModelConfiguration.prototype, "configurationTypeNameKey", {
+        get: function () {
+            return getJewelryModelConfigTypeKey(this.configurationType);
+        },
+        enumerable: true,
+        configurable: true
+    });
     return ModelConfiguration;
 }());
 exports.ModelConfiguration = ModelConfiguration;
@@ -27,5 +34,9 @@ var JewelryModelConfigType;
 (function (JewelryModelConfigType) {
     JewelryModelConfigType[JewelryModelConfigType["Options"] = 1] = "Options";
     JewelryModelConfigType[JewelryModelConfigType["Number"] = 2] = "Number";
-})(JewelryModelConfigType || (JewelryModelConfigType = {}));
+})(JewelryModelConfigType = exports.JewelryModelConfigType || (exports.JewelryModelConfigType = {}));
+function getJewelryModelConfigTypeKey(value) {
+    return "modelConfig.configName." + JewelryModelConfigType[value];
+}
+exports.getJewelryModelConfigTypeKey = getJewelryModelConfigTypeKey;
 //# sourceMappingURL=models.js.map

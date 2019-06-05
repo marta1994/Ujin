@@ -30,5 +30,24 @@
     "gold585": "Золото",
     "whiteGold585": "Біле золото",
     "silver925": "Срібло"
+  },
+  "modelConfig": {
+    "configName": {
+      "Options": "Вибір варіанту",
+      "Number": "Число"
+    }
+  },
+  "jewelryModel": {
+    "name": {
+      "ovalRing": "Кільце 'Бездонне озеро'"
+    },
+    "modelConfig": {
+      "name": {
+        "size": "Розмір",
+        "metal": "Метал",
+        "gemstone": "Вставка",
+        "ornament": "Оздоба"
+      }
+    }
   }
 }

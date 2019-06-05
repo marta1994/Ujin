@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 import { JewelryModelService } from './jewelry-model.service';
 import { JewelryModelsComponent } from './jewelry-models/jewelry-models.component';
 import { ModelEditorComponent } from './model-editor/model-editor.component';
-import { FormsModule } from '@angular/forms';
 import { ApiModule } from 'src/app/api/api.module';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { UiComponentsModule } from 'src/app/ui-components/ui-components.module';
-import { HttpClient } from '@angular/common/http';
 import { JewelryContainerComponent } from './jewelry-container.component';
+import { EnumService } from 'src/app/services/enum.service';
+import { NumberEditorComponent } from './model-config-editors/number-editor/number-editor.component';
 
 export class JewelryModelRouteProvider {
   public static getRoutes(): Route[] {
@@ -47,9 +51,18 @@ export class JewelryModelRouteProvider {
         deps: [HttpClient]
       }
     }),
+    AngularSvgIconModule,
     UiComponentsModule
   ],
-  providers: [JewelryModelService],
-  declarations: [JewelryModelsComponent, ModelEditorComponent, JewelryContainerComponent]
+  providers: [
+    JewelryModelService,
+    EnumService
+  ],
+  declarations: [
+    JewelryModelsComponent,
+    ModelEditorComponent,
+    JewelryContainerComponent,
+    NumberEditorComponent
+  ]
 })
 export class JewelryModelModule { }

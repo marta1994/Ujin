@@ -17,8 +17,16 @@ export class JewelryModel {
   public configurations: ModelConfiguration[];
 }
 
+export interface IModelConfiguration {
+  id: number;
+  nameKey: string;
+  jewelryModelId: number;
+  configurationType: JewelryModelConfigType;
+  configurationOptions: string;
+}
+
 export class ModelConfiguration {
-  constructor(modelConfig: ModelConfiguration) {
+  constructor(modelConfig: IModelConfiguration) {
     this.nameKey = modelConfig.nameKey;
     this.id = modelConfig.id;
     this.jewelryModelId = modelConfig.jewelryModelId;
@@ -31,9 +39,17 @@ export class ModelConfiguration {
   public jewelryModelId: number;
   public configurationType: JewelryModelConfigType;
   public configurationOptions: string;
+
+  public get configurationTypeNameKey(): string {
+    return getJewelryModelConfigTypeKey(this.configurationType);
+  }
 }
 
-enum JewelryModelConfigType {
+export enum JewelryModelConfigType {
   Options = 1,
   Number = 2,
+}
+
+export function getJewelryModelConfigTypeKey(value: JewelryModelConfigType) {
+  return "modelConfig.configName." + JewelryModelConfigType[value];
 }

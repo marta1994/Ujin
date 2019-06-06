@@ -20,41 +20,45 @@
   <div class="splitter"></div>
   <h3>Конфігурації моделі</h3>
   <div class="model-config-container">
-    <div class="table-container" [ngClass]="{'closed': modelConfig && isPanelOpened}">
-      <app-table [dataSource]="jewelryModel.configurations" [tableConfig]="tableConfig">
-      </app-table>
-      <button class="add-new button" (click)="addNew()">Додати ще один</button>
-      <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
-    </div>
-    <div class="model-config-instance" *ngIf="modelConfig" [ngClass]="{'opened': isPanelOpened}">
-      <div class="opener" (click)="openClose()">
-        <svg-icon src="assets/images/arrow.svg" class="arrow"
-                  [ngClass]="{'arrow-left': !isPanelOpened, 'arrow-right': isPanelOpened}"></svg-icon>
+    <app-double-panel [disabled]="!modelConfig" [firstOpened]="!isEditPanelOpened">
+      <div first-content class="table-container">
+        <app-table [dataSource]="jewelryModel.configurations" [tableConfig]="tableConfig">
+        </app-table>
+        <button class="add-new button" (click)="addNew()">Додати ще один</button>
+        <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
       </div>
-      <div class="model-config-container">
-        <div class="name-value">
-          <span class="label">Id</span>
-          <span class="value">{{modelConfig.id}}</span>
+
+      <div second-content>
+        <div class="model-config-instance" *ngIf="modelConfig">
+          <div class="model-config-container">
+            <div class="name-value">
+              <span class="label">Id</span>
+              <span class="value">{{modelConfig.id}}</span>
+            </div>
+            <div class="name-value">
+              <span class="label">Ключ назви</span>
+              <input class="value text-input" [(ngModel)]="modelConfig.nameKey" type="text" />
+            </div>
+            <div class="name-value">
+              <span class="label">Назва зі словника</span>
+              <span class="value">{{modelConfig.nameKey | translate}}</span>
+            </div>
+            <div class="name-value">
+              <span class="label">Тип конфігурації</span>
+              <span *ngIf="modelConfig.id > 0" class="value">{{modelConfig.configurationTypeNameKey | translate}}</span>
+              <select *ngIf="modelConfig.id <= 0" [(ngModel)]="modelConfig.configurationType">
+                <option *ngFor="let option of configTypes" [value]="option.value">
+                  {{option.name | translate}}
+                </option>
+              </select>
+            </div>
+            <div [ngSwitch]="modelConfig.configurationType">
+              <app-number-editor *ngSwitchCase="JewelryModelConfigType.Number" [modelConfig]="modelConfig"></app-number-editor>
+              <app-options-editor *ngSwitchCase="JewelryModelConfigType.Options" [modelConfig]="modelConfig"></app-options-editor>
+            </div>
+          </div>
         </div>
-        <div class="name-value">
-          <span class="label">Ключ назви</span>
-          <input class="value text-input" [(ngModel)]="modelConfig.nameKey" type="text" />
-        </div>
-        <div class="name-value">
-          <span class="label">Назва зі словника</span>
-          <span class="value">{{modelConfig.nameKey | translate}}</span>
-        </div>
-        <div class="name-value">
-          <span class="label">Тип конфігурації</span>
-          <span *ngIf="modelConfig.id > 0" class="value">{{modelConfig.configurationTypeNameKey | translate}}</span>
-          <select *ngIf="modelConfig.id <= 0" [(ngModel)]="modelConfig.configurationType">
-            <option *ngFor="let option of configTypes" [value]="option.value">
-              {{option.name | translate}}
-            </option>
-          </select>
-        </div>
-        <app-number-editor [modelConfig]="modelConfig"></app-number-editor>
       </div>
-    </div>
+    </app-double-panel>
   </div>
 </div>

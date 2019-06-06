@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api/api.service';
-import { Color } from '../color-editor/color-editor.service';
+import { ColorEditorService, Color } from '../color-editor/color-editor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,9 @@ export class GemstoneService {
 
   private _gemstonePromise: Promise<Gemstone[]>;
 
-  constructor(private _api: ApiService) {
+  private _filledGemstonePromise: Promise<Gemstone[]>;
+
+  constructor(private _api: ApiService, private _colorService: ColorEditorService) {
     this._entityPromises[GemNamedEntity.GemSource] = null;
     this._entityPromises[GemNamedEntity.GemClass] = null;
     this._entityPromises[GemNamedEntity.GemCut] = null;
@@ -45,6 +47,37 @@ export class GemstoneService {
         err => reject(err))
     });
     return this._gemstonePromise;
+  }
+
+  public loadGemstones(): Promise<Gemstone[]> {
+    if (this._filledGemstonePromise != null)
+      return this._filledGemstonePromise;
+    this._filledGemstonePromise = new Promise((resolve, reject) => {
+      Promise.all([
+        this.loadGemNamedEntities(GemNamedEntity.GemClass),
+        this.loadGemNamedEntities(GemNamedEntity.GemCut),
+        this.loadGemNamedEntities(GemNamedEntity.GemSource),
+        this._colorService.loadColors(),
+        this.loadPlainGemstones()])
+        .then(res => {
+          res[4].forEach(g => this.fillGemstone(g, res[3], res[0], res[1], res[2]));
+          resolve(res[4]);
+        })
+        .catch(err => reject(err));
+    });
+    return this._filledGemstonePromise;
+  }
+
+  public fillGemstone(
+    gemstone: Gemstone,
+    colors: Color[],
+    gemClasses: NamedEntity[],
+    gemCuts: NamedEntity[],
+    gemSources: NamedEntity[]) {
+    gemstone.color = colors.find(c => c.id === gemstone.colorId);
+    gemstone.gemstoneClass = gemClasses.find(c => c.id === gemstone.gemstoneClassId);
+    gemstone.gemstoneCut = gemCuts.find(c => c.id === gemstone.gemstoneCutId);
+    gemstone.gemstoneSource = gemSources.find(c => c.id === gemstone.gemstoneSourceId);
   }
 
   public saveGemstones(gemstones: Gemstone[]): Promise<any> {

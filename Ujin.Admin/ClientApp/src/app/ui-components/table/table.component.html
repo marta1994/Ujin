@@ -19,38 +19,38 @@
           </button>
         </div>
         <div *ngSwitchCase="columnType.Text">
-          <span *ngIf="!column.isEditable || !isInEditMode(row.item)">
+          <span *ngIf="!row.isColumnEditable(column) || !isInEditMode(row.item)">
             {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
           </span>
-          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+          <span *ngIf="row.isColumnEditable(column) && isInEditMode(row.item)">
             <input class="text-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="text"
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
         </div>
         <div *ngSwitchCase="columnType.Number">
-          <span *ngIf="!column.isEditable || !isInEditMode(row.item)">
+          <span *ngIf="!row.isColumnEditable(column) || !isInEditMode(row.item)">
             {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
           </span>
-          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+          <span *ngIf="row.isColumnEditable(column) && isInEditMode(row.item)">
             <input class="number-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="number"
                    [min]="minValue" [max]="maxValue"
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
         </div>
         <div *ngSwitchCase="columnType.Color">
-          <div *ngIf="!column.isEditable || !isInEditMode(row.item)">
+          <div *ngIf="!row.isColumnEditable(column) || !isInEditMode(row.item)">
             <div style="width: 100px; height: 20px" [style.background]="row.item[column.displayPropertyName]"></div>
           </div>
-          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+          <span *ngIf="row.isColumnEditable(column) && isInEditMode(row.item)">
             <input [(colorPicker)]="row.item[column.columnOptions.editPropertyName]" [style.background]="row.item[column.columnOptions.editPropertyName]"
                    [cpOutputFormat]="'hex'" />
           </span>
         </div>
         <div *ngSwitchCase="columnType.Options">
-          <div *ngIf="!column.isEditable || !isInEditMode(row.item)">
+          <div *ngIf="!row.isColumnEditable(column) || !isInEditMode(row.item)">
             {{column.isTranslated ? (row.item[column.displayPropertyName] | translate) : row.item[column.displayPropertyName]}}
           </div>
-          <span *ngIf="column.isEditable && isInEditMode(row.item)">
+          <span *ngIf="row.isColumnEditable(column) && isInEditMode(row.item)">
             <select [(ngModel)]="row.item[column.columnOptions.editValueProperty]"
                     (change)="selectOption($event.target.value, row.item, column)">
               <option *ngFor="let option of column.columnOptions.options"

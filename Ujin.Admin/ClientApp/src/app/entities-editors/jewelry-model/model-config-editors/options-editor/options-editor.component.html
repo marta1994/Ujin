@@ -1,0 +1,22 @@
+
+<div class="property-value">
+  <span class="label">Джерело опцій</span>
+  <app-select class="value" [(model)]="optionsSource" [options]="availableSources"
+              [valueProperty]="'value'" [nameProperty]="'name'"></app-select>
+</div>
+<div [ngSwitch]="optionsSource">
+  <div class="options-wrapper" *ngSwitchCase="OptionsSource.Custom">
+    <app-table [dataSource]="customOptions" [tableConfig]="customOptionsTableConfig">
+    </app-table>
+    <button class="add-new button" (click)="addNewCustomOption()">Додати ще один</button>
+  </div>
+  <div class="options-wrapper"*ngSwitchCase="OptionsSource.Metal">
+
+  </div>
+  <div class="options-wrapper" *ngSwitchCase="OptionsSource.Gemstone">
+  </div>
+</div>
+
+<!--<app-collapsible-panel>
+  Hello world!
+</app-collapsible-panel>-->

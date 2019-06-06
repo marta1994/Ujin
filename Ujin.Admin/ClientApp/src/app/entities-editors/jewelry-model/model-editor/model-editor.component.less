@@ -36,16 +36,12 @@
 
     .table-container {
       overflow: auto;
-
-      &.closed {
-        width: 300px;
-      }
     }
 
     .model-config-instance {
       display: flex;
       flex-wrap: wrap;
-      width: 20px;
+      width: auto;
       overflow: hidden;
       margin-left: 10px;
 
@@ -53,49 +49,6 @@
         margin-left: 20px;
         display: flex;
         flex-direction: column;
-      }
-
-      .opener {
-        background-color: @grey-color;
-        width: 20px;
-        .set-border-radius(10px);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        .arrow {
-          margin: 0 10px;
-
-          ::ng-deep svg {
-            fill: @black-color;
-            .set_square_size(18px);
-          }
-        }
-
-        &:hover {
-          background-color: @light-grey-color;
-
-          .arrow {
-            ::ng-deep svg {
-              .set_square_size(20px);
-            }
-          }
-        }
-
-        .arrow-left {
-          transform: rotate(90deg);
-        }
-
-        .arrow-right {
-          transform: rotate(-90deg);
-        }
-      }
-
-      &.opened {
-        width: auto;
       }
     }
   }

@@ -18,6 +18,10 @@ export class ModelEditorComponent implements OnInit {
 
   public configTypes: NameValue<JewelryModelConfigType>[];
 
+  public JewelryModelConfigType = JewelryModelConfigType;
+
+  public isEditPanelOpened: boolean = false;
+
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
@@ -84,18 +88,16 @@ export class ModelEditorComponent implements OnInit {
           isOrderable: false,
           columnType: ColumnType.Action,
           columnOptions: <IActionColumn>{
-            action: (item: ModelConfiguration) => this.modelConfig = item,
+            action: (item: ModelConfiguration) => {
+              this.modelConfig = item;
+              this.isEditPanelOpened = true;
+            },
             text: "Редагувати",
             isActionAllowed: (item: ModelConfiguration) => true
           }
         }
       ]
     }
-  }
-
-  public isPanelOpened: boolean = true;
-  public openClose() {
-    this.isPanelOpened = !this.isPanelOpened;
   }
 
   public saveModel() {

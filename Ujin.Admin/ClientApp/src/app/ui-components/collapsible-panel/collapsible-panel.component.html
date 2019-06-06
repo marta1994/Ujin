@@ -1,0 +1,7 @@
+<div class="panel" [ngClass]="{ 'closed': !isPanelOpened }">
+  <div class="opener" (click)="switchOpened()">
+    <svg-icon src="assets/images/arrow.svg" class="arrow"
+              [ngClass]="{'arrow-closed': !isPanelOpened, 'arrow-opened': isPanelOpened}"></svg-icon>
+  </div>
+  <ng-content></ng-content>
+</div>

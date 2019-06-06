@@ -1,0 +1,12 @@
+<div class="panel">
+  <div class="first-content-wrapper content-wrapper" [ngClass]="{'closed': !firstOpened}">
+    <ng-content select="[first-content]"></ng-content>
+  </div>
+  <div class="opener" (click)="switchPanel()" [ngClass]="{'disabled': disabled}">
+    <svg-icon src="assets/images/arrow.svg" class="arrow"
+              [ngClass]="{'arrow-first': firstOpened, 'arrow-second': !firstOpened}"></svg-icon>
+  </div>
+  <div class="second-content-wrapper content-wrapper" [ngClass]="{'closed': firstOpened}">
+    <ng-content select="[second-content]"></ng-content>
+  </div>
+</div>

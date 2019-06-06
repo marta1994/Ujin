@@ -43,7 +43,6 @@ export class TableComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.isTableEditable = this.tableConfig.columnsConfig.find(c => c.isEditable) != null;
   }
 
   ngDoCheck() {
@@ -57,6 +56,8 @@ export class TableComponent implements OnInit, DoCheck {
         if (rowInd >= 0)
           this.rows.splice(rowInd, 1);
       });
+
+      this.isTableEditable = this.rows.find(r => r.columnsConfig.find(c => r.isColumnEditable(c)) != null) != null;
     }
   }
 }
@@ -70,6 +71,12 @@ class Row {
 
   public item: any;
   public columnsConfig: IColumnConfig[];
+
+  public isColumnEditable(column: IColumnConfig): boolean {
+    return typeof (column.isEditable) == typeof (true)
+      ? <boolean>column.isEditable
+      : (<((item: any) => boolean)>column.isEditable)(this.item);
+  }
 }
 
 export interface ITableConfig {
@@ -78,7 +85,7 @@ export interface ITableConfig {
 
 export interface IColumnConfig {
   columnNameKey: string;
-  isEditable: boolean;
+  isEditable: boolean | ((item: any) => boolean);
   displayPropertyName: string;
   isTranslated: boolean;
   isOrderable: boolean;

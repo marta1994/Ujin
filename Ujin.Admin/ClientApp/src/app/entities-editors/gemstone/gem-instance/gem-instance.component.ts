@@ -27,7 +27,7 @@ export class GemInstanceComponent implements OnInit {
       this._gemstoneService.loadGemNamedEntities(GemNamedEntity.GemCut),
       this._gemstoneService.loadGemNamedEntities(GemNamedEntity.GemSource),
       this._colorService.loadColors(),
-      this._gemstoneService.loadPlainGemstones(),
+      this._gemstoneService.loadGemstones(),
     ])
       .then(res => {
         this._gemClasses = res[0];
@@ -35,7 +35,6 @@ export class GemInstanceComponent implements OnInit {
         this._gemSources = res[2];
         this._colors = res[3]
         this.gemstones = res[4];
-        this.gemstones.forEach(g => this.fillGemstone(g));
       })
       .catch(err => alert(err));
   }
@@ -195,7 +194,7 @@ export class GemInstanceComponent implements OnInit {
       gemstoneCutId: this._gemCuts[0].id,
       gemstoneSourceId: this._gemSources[0].id
     });
-    this.fillGemstone(gemstone);
+    this._gemstoneService.fillGemstone(gemstone, this._colors, this._gemClasses, this._gemCuts, this._gemSources);
     this.gemstones.push(gemstone);
   }
 
@@ -205,11 +204,6 @@ export class GemInstanceComponent implements OnInit {
       .catch(err => alert("Помилка при збереженні: " + err));
   }
 
-  private fillGemstone(gemstone: Gemstone) {
-    gemstone.color = this._colors.find(c => c.id === gemstone.colorId);
-    gemstone.gemstoneClass = this._gemClasses.find(c => c.id === gemstone.gemstoneClassId);
-    gemstone.gemstoneCut = this._gemCuts.find(c => c.id === gemstone.gemstoneCutId);
-    gemstone.gemstoneSource = this._gemSources.find(c => c.id === gemstone.gemstoneSourceId);
-  }
+  
 
 }

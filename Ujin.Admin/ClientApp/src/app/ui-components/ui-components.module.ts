@@ -6,6 +6,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { CollapsiblePanelComponent } from './collapsible-panel/collapsible-panel.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { DoublePanelComponent } from './double-panel/double-panel.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   imports: [
@@ -18,13 +22,20 @@ import { ColorPickerModule } from 'ngx-color-picker';
         deps: [HttpClient]
       }
     }),
-    ColorPickerModule
+    ColorPickerModule,
+    AngularSvgIconModule
   ],
   declarations: [
-    TableComponent
+    TableComponent,
+    CollapsiblePanelComponent,
+    DoublePanelComponent,
+    SelectComponent
   ],
   exports: [
-    TableComponent
+    TableComponent,
+    CollapsiblePanelComponent,
+    DoublePanelComponent,
+    SelectComponent
   ]
 })
 export class UiComponentsModule { }

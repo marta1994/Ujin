@@ -1,0 +1,49 @@
+@import '../../../common.less';
+
+.panel {
+  display: flex;
+  flex-direction: column;
+
+  @opener-size: 20px;
+
+  &.closed {
+    overflow: hidden;
+    height: @opener-size;
+  }
+
+  .opener {
+    width: 100%;
+    height: @opener-size;
+    background-color: @light-grey-color;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color ease 0.3s;
+    .set-border-radius(@opener-size/2);
+
+    .arrow {
+      transition: transform ease 0.3s;
+
+      ::ng-deep svg {
+        fill: @black-color;
+        .set-square-size(@opener-size - 4px);
+        transition: width ease 0.3s, height ease 0.3s;
+      }
+
+      &.arrow-opened {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:hover {
+      background-color: @grey-color;
+
+      .arrow {
+        ::ng-deep svg {
+          .set-square-size(@opener-size - 2px);
+        }
+      }
+    }
+  }
+}

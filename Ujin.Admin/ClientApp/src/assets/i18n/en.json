@@ -47,6 +47,14 @@
         "metal": "Metal",
         "gemstone": "Gemstone",
         "ornament": "Ornament"
+      },
+      "customOption": {
+        "ornament": {
+          "foil": "Foil",
+          "doodles": "Doodles",
+          "feather": "Feather",
+          "bubbles": "Bubbles"
+        }
       }
     }
   }

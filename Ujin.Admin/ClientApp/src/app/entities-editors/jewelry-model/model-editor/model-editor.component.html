@@ -46,11 +46,9 @@
             <div class="name-value">
               <span class="label">Тип конфігурації</span>
               <span *ngIf="modelConfig.id > 0" class="value">{{modelConfig.configurationTypeNameKey | translate}}</span>
-              <select *ngIf="modelConfig.id <= 0" [(ngModel)]="modelConfig.configurationType">
-                <option *ngFor="let option of configTypes" [value]="option.value">
-                  {{option.name | translate}}
-                </option>
-              </select>
+              <app-select *ngIf="modelConfig.id <= 0" class="value" [translated]="true"
+                          [(model)]="modelConfig.configurationType" [options]="configTypes"
+                          [valueProperty]="'value'" [nameProperty]="'name'"></app-select>
             </div>
             <div [ngSwitch]="modelConfig.configurationType">
               <app-number-editor *ngSwitchCase="JewelryModelConfigType.Number" [modelConfig]="modelConfig"></app-number-editor>

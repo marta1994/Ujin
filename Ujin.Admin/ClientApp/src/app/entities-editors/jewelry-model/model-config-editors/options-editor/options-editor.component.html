@@ -11,12 +11,12 @@
     <button class="add-new button" (click)="addNewCustomOption()">Додати ще один</button>
   </div>
   <div class="options-wrapper"*ngSwitchCase="OptionsSource.Metal">
-
+    <app-select-table [sourceItems]="metals" [selectedItems]="externalSourceIds"
+      (onSelectionChange)="onPropertyChanged()" [selectProperty]="'id'" [tableConfig]="metalTableOptions"></app-select-table>
   </div>
   <div class="options-wrapper" *ngSwitchCase="OptionsSource.Gemstone">
+    <app-select-table [sourceItems]="gemstones" [selectedItems]="externalSourceIds"
+                      (onSelectionChange)="onPropertyChanged()" [selectProperty]="'id'"
+                      [tableConfig]="gemstoneTableOptions"></app-select-table>
   </div>
 </div>
-
-<!--<app-collapsible-panel>
-  Hello world!
-</app-collapsible-panel>-->

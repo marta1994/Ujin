@@ -56,6 +56,107 @@ export class OptionsEditorComponent implements OnInit {
     return this._selectorOptions.customOptions;
   }
 
+  public get externalSourceIds(): number[] {
+    return this._selectorOptions.externalSourceIds;
+  }
+
+  public get gemstoneTableOptions(): ITableConfig {
+    return {
+      columnsConfig: [
+        {
+          columnNameKey: "ID",
+          isEditable: false,
+          displayPropertyName: "id",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Тип",
+          isEditable: false,
+          displayPropertyName: "gemstoneClassName",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Походження",
+          isEditable: false,
+          displayPropertyName: "gemstoneSourceName",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Ограновування",
+          isEditable: false,
+          displayPropertyName: "gemstoneCutName",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Колір",
+          isEditable: false,
+          displayPropertyName: "colorName",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Вага (карат)",
+          isEditable: false,
+          displayPropertyName: "weight",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Ширина (мм)",
+          isEditable: false,
+          displayPropertyName: "widthMm",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Довжина (мм)",
+          isEditable: false,
+          displayPropertyName: "heightMm",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Ціна (собівартість)",
+          isEditable: false,
+          displayPropertyName: "price",
+          isTranslated: false,
+          isOrderable: true
+        }
+      ]
+    }
+  }
+
+  public get metalTableOptions(): ITableConfig {
+    return {
+      columnsConfig: [
+        {
+          columnNameKey: "ID",
+          isEditable: false,
+          displayPropertyName: "id",
+          isTranslated: false,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Назва",
+          isEditable: false,
+          displayPropertyName: "nameKey",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
+          columnNameKey: "Ціна за грам",
+          isEditable: false,
+          displayPropertyName: "pricePerGram",
+          isTranslated: false,
+          isOrderable: true
+        }
+      ]
+    }
+  }
 
   public get customOptionsTableConfig(): ITableConfig {
     return {
@@ -76,7 +177,8 @@ export class OptionsEditorComponent implements OnInit {
           columnType: ColumnType.Text,
           columnOptions: <ITextColumn> {
             editPropertyName: "nameKey",
-            placeholder: "Назва кольору"
+            placeholder: "назва",
+            onEdited: () => this.onPropertyChanged()
           }
         },
         {
@@ -88,13 +190,14 @@ export class OptionsEditorComponent implements OnInit {
         },
         {
           columnNameKey: "Значення",
-          isEditable: () => this.modelConfig.id <= 0,
+          isEditable: true,
           displayPropertyName: "value",
           isTranslated: false,
           isOrderable: false,
           columnType: ColumnType.Number,
           columnOptions: <INumberColumn>{
-            editPropertyName: "value"
+            editPropertyName: "value",
+            onEdited: () => this.onPropertyChanged()
           }
         },
         {
@@ -107,6 +210,7 @@ export class OptionsEditorComponent implements OnInit {
           columnOptions: <IActionColumn>{
             action: (item: Option) => {
               this._arrayService.deleteItem(this.customOptions, item);
+              this.onPropertyChanged();
             },
             text: "Видалити",
             isActionAllowed: () => {
@@ -120,13 +224,14 @@ export class OptionsEditorComponent implements OnInit {
 
   public addNewCustomOption() {
     this.customOptions.push(new Option({
-      nameKey: "jewelryModel.modelConfig.customOption.NEW_NAME",
+      nameKey: "jewelryModel.modelConfig.customOption.ornament.NEW_NAME",
       id: Math.max.apply(null, this.customOptions.map(o => o.id).concat([0])) + 1,
       value: 0
     }));
+    this.onPropertyChanged();
   }
 
-  private onPropertyChanged() {
+  public onPropertyChanged() {
     this.modelConfig.configurationOptions = JSON.stringify(this._selectorOptions);
   }
 }

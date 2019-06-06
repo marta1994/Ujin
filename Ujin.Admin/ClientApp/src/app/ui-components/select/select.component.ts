@@ -29,6 +29,9 @@ export class SelectComponent implements OnInit {
   @Input()
   public nameProperty: string;
 
+  @Input()
+  public translated: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

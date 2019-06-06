@@ -47,6 +47,14 @@
         "metal": "Метал",
         "gemstone": "Вставка",
         "ornament": "Оздоба"
+      },
+      "customOption": {
+        "ornament": {
+          "foil": "Фольга",
+          "doodles": "Кільця",
+          "feather": "Перо",
+          "bubbles": "Бульбашки"
+        }
       }
     }
   }

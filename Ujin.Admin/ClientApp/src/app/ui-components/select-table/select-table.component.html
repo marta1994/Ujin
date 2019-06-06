@@ -1,0 +1,12 @@
+<div>
+  <h3>Обрані варіанти</h3>
+  <app-collapsible-panel>
+    <app-table [dataSource]="selectedObjects" [tableConfig]="selectedTableConfig">
+    </app-table>
+  </app-collapsible-panel>
+  <h3>Усі варіанти</h3>
+  <app-collapsible-panel>
+    <app-table [dataSource]="sourceItems" [tableConfig]="sourceTableConfig">
+    </app-table>
+  </app-collapsible-panel>
+</div>

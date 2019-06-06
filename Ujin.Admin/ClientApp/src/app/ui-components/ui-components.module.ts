@@ -10,6 +10,7 @@ import { CollapsiblePanelComponent } from './collapsible-panel/collapsible-panel
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { DoublePanelComponent } from './double-panel/double-panel.component';
 import { SelectComponent } from './select/select.component';
+import { SelectTableComponent } from './select-table/select-table.component';
 
 @NgModule({
   imports: [
@@ -29,13 +30,15 @@ import { SelectComponent } from './select/select.component';
     TableComponent,
     CollapsiblePanelComponent,
     DoublePanelComponent,
-    SelectComponent
+    SelectComponent,
+    SelectTableComponent
   ],
   exports: [
     TableComponent,
     CollapsiblePanelComponent,
     DoublePanelComponent,
-    SelectComponent
+    SelectComponent,
+    SelectTableComponent
   ]
 })
 export class UiComponentsModule { }

@@ -28,12 +28,12 @@ export class TableComponent implements OnInit, DoCheck {
     this._iterableDiffer = this._iterableDiffers.find([]).create(null);
   }
 
-  public setInEditMode(dataItem: any) {
-    dataItem.isInEditMode = true;
+  public setInEditMode(row: Row) {
+    row.isInEditMode = true;
   }
 
-  public isInEditMode(dataItem: any): boolean {
-    return dataItem.isInEditMode;
+  public isInEditMode(row: Row): boolean {
+    return row.isInEditMode;
   }
 
   public selectOption(option: any, item: any, column: IColumnConfig) {
@@ -71,6 +71,7 @@ class Row {
 
   public item: any;
   public columnsConfig: IColumnConfig[];
+  public isInEditMode: boolean = false;
 
   public isColumnEditable(column: IColumnConfig): boolean {
     return typeof (column.isEditable) == typeof (true)
@@ -100,12 +101,14 @@ interface IColumnOptions {
 export interface ITextColumn extends IColumnOptions {
   editPropertyName: string;
   placeholder: string;
+  onEdited?: (item: any) => void;
 }
 
 export interface INumberColumn extends IColumnOptions {
   editPropertyName: string;
   minValue?: number;
   maxValue?: number;
+  onEdited?: (item: any) => void;
 }
 
 export interface IOptionsColumn extends IColumnOptions {

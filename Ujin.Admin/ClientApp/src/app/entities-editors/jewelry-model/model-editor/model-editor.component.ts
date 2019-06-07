@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JewelryModel, ModelConfiguration, JewelryModelConfigType, getJewelryModelConfigTypeKey } from '../models';
+import { JewelryModel, ModelConfiguration, JewelryModelConfigType, getJewelryModelConfigTypeKey, JewelryModelState } from '../models';
 import { JewelryModelService } from '../jewelry-model.service';
 import { ITableConfig, ColumnType, IActionColumn } from 'src/app/ui-components/table/table.component';
 import { EnumService, NameValue } from 'src/app/services/enum.service';
@@ -41,6 +41,7 @@ export class ModelEditorComponent implements OnInit {
         basePrice: 0,
         imagesPattern: "[]",
         priceExpression: "0",
+        modelState: JewelryModelState.BuildingState,
         configurations: []
       });
     }

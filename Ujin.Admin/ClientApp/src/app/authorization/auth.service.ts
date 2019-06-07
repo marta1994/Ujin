@@ -21,7 +21,7 @@ export class AuthService {
 
   public authenticate(authUser: AuthUser) {
     return this._api.postData<AuthUser, IUser>("api/user/authenticate", authUser)
-      .subscribe(u => {
+      .then(u => {
         localStorage.setItem('currentUser', JSON.stringify(u));
         this._router.navigateByUrl('/content/home');
       },

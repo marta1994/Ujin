@@ -7,6 +7,7 @@ var JewelryModel = /** @class */ (function () {
         this.basePrice = jewelryModel.basePrice;
         this.imagesPattern = jewelryModel.imagesPattern;
         this.priceExpression = jewelryModel.priceExpression;
+        this.modelState = jewelryModel.modelState;
         this.configurations = jewelryModel.configurations.map(function (c) { return new ModelConfiguration(c); });
     }
     return JewelryModel;
@@ -30,6 +31,12 @@ var ModelConfiguration = /** @class */ (function () {
     return ModelConfiguration;
 }());
 exports.ModelConfiguration = ModelConfiguration;
+var JewelryModelState;
+(function (JewelryModelState) {
+    JewelryModelState[JewelryModelState["BuildingState"] = -1] = "BuildingState";
+    JewelryModelState[JewelryModelState["Disabled"] = 0] = "Disabled";
+    JewelryModelState[JewelryModelState["Enabled"] = 1] = "Enabled";
+})(JewelryModelState = exports.JewelryModelState || (exports.JewelryModelState = {}));
 var JewelryModelConfigType;
 (function (JewelryModelConfigType) {
     JewelryModelConfigType[JewelryModelConfigType["Options"] = 1] = "Options";

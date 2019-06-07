@@ -24,7 +24,7 @@
           </span>
           <span *ngIf="row.isColumnEditable(column) && isInEditMode(row)">
             <input class="text-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="text"
-                   (ngModelChange)="column.columnOptions.onEdited ? column.columnOptions.onEdited(row.item) : console.log('edited')"
+                   (ngModelChange)="column.columnOptions.onEdited ? column.columnOptions.onEdited(row.item) : return"
                    [ngModelOptions]="{ updateOn: 'blur' }"
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
@@ -36,7 +36,7 @@
           <span *ngIf="row.isColumnEditable(column) && isInEditMode(row)">
             <input class="number-input" [(ngModel)]="row.item[column.columnOptions.editPropertyName]" type="number"
                    [min]="minValue" [max]="maxValue" [ngModelOptions]="{ updateOn: 'blur' }"
-                   (ngModelChange)="column.columnOptions.onEdited ? column.columnOptions.onEdited(row.item) : console.log('edited')"
+                   (ngModelChange)="column.columnOptions.onEdited ? column.columnOptions.onEdited(row.item) : return"
                    placeholder="{{column.columnOptions.placeholder}}" />
           </span>
         </div>

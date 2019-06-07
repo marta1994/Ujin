@@ -7,7 +7,7 @@
         public double HeightMm { get; set; }
 
         public double Price { get; set; }
-
+        
         public double? Weight { get; set; }
 
         public int ColorId { get; set; }

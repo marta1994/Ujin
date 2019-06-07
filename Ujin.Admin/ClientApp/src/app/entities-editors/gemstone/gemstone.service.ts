@@ -24,7 +24,7 @@ export class GemstoneService {
       return this._entityPromises[entityType];
     this._entityPromises[entityType] = new Promise((resolve, reject) =>
       this._api.loadData<NamedEntity[]>(`api/Gemstone/${entityType}`)
-        .subscribe(
+        .then(
         g => resolve(g.map(gs => new NamedEntity(gs))),
           err => reject(err)));
     return this._entityPromises[entityType];
@@ -33,7 +33,7 @@ export class GemstoneService {
   public saveGemNamedEntities(gemSources: NamedEntity[], entityType: GemNamedEntity): Promise<any> {
     return new Promise((resolve, reject) =>
       this._api.postData(`api/Gemstone/Save${entityType}`, gemSources)
-        .subscribe(
+        .then(
           () => resolve(true),
           err => reject(err)));
   }
@@ -42,7 +42,7 @@ export class GemstoneService {
     if (this._gemstonePromise != null)
       return this._gemstonePromise;
     this._gemstonePromise = new Promise((resolve, reject) => {
-      this._api.loadData<IGemstone[]>("api/Gemstone/Gemstones").subscribe(
+      this._api.loadData<IGemstone[]>("api/Gemstone/Gemstones").then(
         g => resolve(g.map(gs => new Gemstone(gs))),
         err => reject(err))
     });
@@ -83,7 +83,7 @@ export class GemstoneService {
   public saveGemstones(gemstones: Gemstone[]): Promise<any> {
     return new Promise((resolve, reject) =>
       this._api.postData(`api/Gemstone/SaveGemstones`, gemstones)
-        .subscribe(
+        .then(
           () => resolve(true),
           err => reject(err)));
   } 

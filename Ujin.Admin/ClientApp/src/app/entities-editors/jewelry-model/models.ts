@@ -6,6 +6,7 @@ export class JewelryModel {
     this.basePrice = jewelryModel.basePrice;
     this.imagesPattern = jewelryModel.imagesPattern;
     this.priceExpression = jewelryModel.priceExpression;
+    this.modelState = jewelryModel.modelState;
     this.configurations = jewelryModel.configurations.map(c => new ModelConfiguration(c));
   }
 
@@ -14,6 +15,7 @@ export class JewelryModel {
   public basePrice: number;
   public imagesPattern: string;
   public priceExpression: string;
+  public modelState: JewelryModelState;
   public configurations: ModelConfiguration[];
 }
 
@@ -43,6 +45,12 @@ export class ModelConfiguration {
   public get configurationTypeNameKey(): string {
     return getJewelryModelConfigTypeKey(this.configurationType);
   }
+}
+
+export enum JewelryModelState {
+  BuildingState = -1,
+  Disabled = 0,
+  Enabled = 1
 }
 
 export enum JewelryModelConfigType {

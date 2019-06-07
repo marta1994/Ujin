@@ -15,7 +15,7 @@ export class ColorEditorService {
       return this._colorsPromise;
     this._colorsPromise = new Promise((resolve, reject) =>
       this._api.loadData<Color[]>(`api/Color/Colors`)
-        .subscribe(
+        .then(
         g => resolve(g.map(gs => new Color(gs))),
           err => reject(err)));
     return this._colorsPromise;
@@ -24,7 +24,7 @@ export class ColorEditorService {
   public saveColors(colors: Color[]): Promise<any> {
     return new Promise((resolve, reject) =>
       this._api.postData(`api/Color/SaveColors`, colors)
-        .subscribe(
+        .then(
           () => resolve(true),
           err => reject(err)));
   }

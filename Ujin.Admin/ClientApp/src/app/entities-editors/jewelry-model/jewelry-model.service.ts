@@ -16,7 +16,7 @@ export class JewelryModelService {
       return this._jewelryModelsPromise;
     this._jewelryModelsPromise = new Promise((resolve, reject) =>
       this._api.loadData<JewelryModel[]>(`api/JewelryModel/JewelryModels`)
-        .subscribe(
+        .then(
           g => resolve(g.map(gs => new JewelryModel(gs))),
           err => reject(err)));
     return this._jewelryModelsPromise;
@@ -25,7 +25,7 @@ export class JewelryModelService {
   public loadJewelryModel(id: number): Promise<JewelryModel> {
     return new Promise<JewelryModel>((resolve, reject) =>
       this._api.loadData<JewelryModel>(`api/JewelryModel/JewelryModelById/?id=${id}`)
-        .subscribe(
+        .then(
           jm => resolve(new JewelryModel(jm)),
           error => reject(error)));
   } 
@@ -33,7 +33,7 @@ export class JewelryModelService {
   public saveJewelryModel(jewelryModel: JewelryModel): Promise<any> {
     return new Promise((resolve, reject) =>
       this._api.postData(`api/JewelryModel/SaveJewelryModel`, jewelryModel)
-        .subscribe(
+        .then(
           () => resolve(true),
           err => reject(err)));
   }

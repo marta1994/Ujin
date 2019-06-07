@@ -15,7 +15,7 @@ export class MetalEditorService {
       return this._metalsPromise;
     this._metalsPromise = new Promise((resolve, reject) =>
       this._api.loadData<Metal[]>(`api/Metal/Metals`)
-        .subscribe(
+        .then(
         g => resolve(g.map(gs => new Metal(gs))),
           err => reject(err)));
     return this._metalsPromise;
@@ -24,7 +24,7 @@ export class MetalEditorService {
   public saveMetals(metals: Metal[]): Promise<any> {
     return new Promise((resolve, reject) =>
       this._api.postData(`api/Metal/SaveMetals`, metals)
-        .subscribe(
+        .then(
           () => resolve(true),
           err => reject(err)));
   }

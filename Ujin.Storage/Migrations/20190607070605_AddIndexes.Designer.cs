@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ujin.Storage;
 
 namespace Ujin.Storage.Migrations
 {
     [DbContext(typeof(UjinContext))]
-    partial class UjinContextModelSnapshot : ModelSnapshot
+    [Migration("20190607070605_AddIndexes")]
+    partial class AddIndexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +51,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Username")
-                        .IsUnique();
+                    b.HasIndex("Username");
 
                     b.ToTable("AdminUsers");
                 });
@@ -72,12 +73,9 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColorHexCode")
-                        .IsUnique()
-                        .HasFilter("[ColorHexCode] IS NOT NULL");
+                    b.HasIndex("ColorHexCode");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("Colors");
                 });
@@ -136,8 +134,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("GemstoneClasses");
                 });
@@ -157,8 +154,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("GemstoneCuts");
                 });
@@ -178,8 +174,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("GemstoneSources");
                 });
@@ -209,8 +204,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("JewelryModels");
                 });
@@ -232,8 +226,7 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameKey")
-                        .IsUnique();
+                    b.HasIndex("NameKey");
 
                     b.ToTable("Metals");
                 });

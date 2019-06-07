@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ujin.Domain.Enums;
 using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 
@@ -88,13 +89,46 @@ namespace Ujin.Storage
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AdminUser>()
-                .HasIndex(u => u.Username);
+                .HasIndex(u => u.Username)
+                .IsUnique();
 
             modelBuilder.Entity<JewelryModel>()
                 .HasMany(m => m.Configurations)
                 .WithOne(m => m.JewelryModel)
                 .HasForeignKey(m => m.JewelryModelId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<JewelryModel>()
+                .HasIndex(m => m.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<JewelryModel>()
+                .Property(m => m.ModelState)
+                .HasDefaultValue(JewelryModelState.BuildingState);
+
+            modelBuilder.Entity<Metal>()
+                .HasIndex(m => m.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<GemstoneClass>()
+                .HasIndex(g => g.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<GemstoneCut>()
+                .HasIndex(g => g.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<GemstoneSource>()
+                .HasIndex(g => g.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<Color>()
+                .HasIndex(c => c.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<Color>()
+                .HasIndex(c => c.ColorHexCode)
+                .IsUnique();
 
             modelBuilder.Entity<Gemstone>()
                 .HasOne(g => g.Color)

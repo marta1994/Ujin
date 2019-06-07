@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Ujin.Domain.Enums;
 
 namespace Ujin.Storage.Models.ModelConfig
 {
@@ -11,5 +12,7 @@ namespace Ujin.Storage.Models.ModelConfig
         public double BasePrice { get; set; }
 
         public string PriceExpression { get; set; }
+        
+        public JewelryModelState ModelState { get; set; }
     }
 }

@@ -17,7 +17,7 @@ export class JewelryModel implements IJewelryModel {
     this.imagesPattern = jewelryModel.imagesPattern;
     this.priceExpression = jewelryModel.priceExpression;
     this.modelState = jewelryModel.modelState;
-    this.configurations = jewelryModel.configurations.map(c => new ModelConfiguration(c));
+    this.configurations = jewelryModel.configurations.map(c => new ModelConfiguration(c, this));
   }
 
   public id: number;
@@ -42,12 +42,14 @@ export interface IModelConfiguration {
 }
 
 export class ModelConfiguration implements IModelConfiguration {
-  constructor(modelConfig: IModelConfiguration) {
+  constructor(modelConfig: IModelConfiguration, parent: JewelryModel) {
     this.nameKey = modelConfig.nameKey;
     this.id = modelConfig.id;
     this.jewelryModelId = modelConfig.jewelryModelId;
     this.configurationType = modelConfig.configurationType;
     this.configurationOptions = modelConfig.configurationOptions;
+
+    this.modelState = parent.modelState;
   }
 
   public id: number;
@@ -55,6 +57,8 @@ export class ModelConfiguration implements IModelConfiguration {
   public jewelryModelId: number;
   public configurationType: JewelryModelConfigType;
   public configurationOptions: string;
+
+  public modelState: JewelryModelState;
 
   public get configurationTypeNameKey(): string {
     return getJewelryModelConfigTypeKey(this.configurationType);

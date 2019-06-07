@@ -4,6 +4,7 @@ import { JewelryModel, ModelConfiguration, JewelryModelConfigType, getJewelryMod
 import { JewelryModelService } from '../jewelry-model.service';
 import { ITableConfig, ColumnType, IActionColumn } from 'src/app/ui-components/table/table.component';
 import { EnumService, NameValue } from 'src/app/services/enum.service';
+import { ArrayService } from 'src/app/services/array.service';
 
 @Component({
   selector: 'app-model-editor',
@@ -26,7 +27,8 @@ export class ModelEditorComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _jewelryModelService: JewelryModelService,
-    private _enumService: EnumService) { }
+    private _enumService: EnumService,
+    private _arrayService: ArrayService) { }
 
   ngOnInit() {
     let id = +this._activatedRoute.snapshot.paramMap.get("id");
@@ -96,6 +98,19 @@ export class ModelEditorComponent implements OnInit {
             text: "Редагувати",
             isActionAllowed: (item: ModelConfiguration) => true
           }
+        },
+        {
+          columnNameKey: "Видалення",
+          isEditable: false,
+          displayPropertyName: "",
+          isTranslated: false,
+          isOrderable: false,
+          columnType: ColumnType.Action,
+          columnOptions: <IActionColumn>{
+            action: (item: ModelConfiguration) => this.deleteConfig(item),
+            text: "Видалити",
+            isActionAllowed: (item: ModelConfiguration) => item.id <= 0
+          }
         }
       ]
     }
@@ -145,6 +160,12 @@ export class ModelEditorComponent implements OnInit {
       configurationType: null,
       jewelryModelId: this.jewelryModel.id,
       configurationOptions: ""
-    }));
+    }, this.jewelryModel));
+  }
+
+  public deleteConfig(config: ModelConfiguration) {
+    this._arrayService.deleteItem(this.jewelryModel.configurations, config);
+    if (this.modelConfig === config)
+      this.modelConfig = null;
   }
 }

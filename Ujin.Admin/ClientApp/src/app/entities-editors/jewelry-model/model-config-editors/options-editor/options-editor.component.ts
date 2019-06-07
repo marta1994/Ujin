@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModelConfiguration } from '../../models';
+import { ModelConfiguration, JewelryModelState } from '../../models';
 import { MetalEditorService, Metal } from 'src/app/entities-editors/metal-editor/metal-editor.service';
 import { GemstoneService, Gemstone } from 'src/app/entities-editors/gemstone/gemstone.service';
 import { EnumService, NameValue } from 'src/app/services/enum.service';
@@ -214,7 +214,7 @@ export class OptionsEditorComponent implements OnInit {
             },
             text: "Видалити",
             isActionAllowed: () => {
-              return this.modelConfig.id <= 0;
+              return this.modelConfig.modelState === JewelryModelState.BuildingState;
             }
           }
         }

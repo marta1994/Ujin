@@ -102,7 +102,22 @@ export class ModelEditorComponent implements OnInit {
   }
 
   public changeModelState() {
-    if (this.jewelryModel.id < 0)
+    if (this.jewelryModel.id < 0) return;
+    let text = "";
+    switch (this.jewelryModel.modelState) {
+      case JewelryModelState.BuildingState:
+        text = "Впевнені, що хочете активувати модель? Модель та усі її варіації стануть доступними у магазині, деякі властивості стануть недоступними для редагування.";
+        break;
+      case JewelryModelState.Enabled:
+        text = "Впевнені, що хочете дизактивувати модель? Модель та усі її варіації стануть недоступними у магазині, покупці більше не зможуть замовляти їх.";
+        break;
+      case JewelryModelState.Disabled:
+        text = "Впевнені, що хочете активувати модель? Модель та усі її варіації стануть доступними у магазині.";
+        break;
+    }
+    let confirmed = confirm(text);
+    if (!confirmed) return;
+
     (this.jewelryModel.modelState === JewelryModelState.Enabled ?
       this._jewelryModelService.disableModel(this.jewelryModel.id) :
       this._jewelryModelService.enableModel(this.jewelryModel.id))

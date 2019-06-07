@@ -6,6 +6,8 @@
 
         public string NameKey { get; set; }
 
+        public string Identifier { get; set; }
+
         public double PricePerGram { get; set; }
     }
 }

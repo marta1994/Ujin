@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Gemstone, GemstoneService, NamedEntity, GemNamedEntity } from '../gemstone.service';
 import { ColorEditorService, Color } from 'src/app/entities-editors/color-editor/color-editor.service';
-import { ITableConfig, ColumnType, IOptionsColumn, IActionColumn, INumberColumn } from 'src/app/ui-components/table/table.component';
+import { ITableConfig, ColumnType, IOptionsColumn, IActionColumn, INumberColumn, ITextColumn } from 'src/app/ui-components/table/table.component';
 
 @Component({
   selector: 'app-gem-instance',
@@ -48,6 +48,18 @@ export class GemInstanceComponent implements OnInit {
           displayPropertyName: "id",
           isTranslated: false,
           isOrderable: true
+        },
+        {
+          columnNameKey: "Ідентифікатор",
+          isEditable: true,
+          displayPropertyName: "identifier",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Text,
+          columnOptions: <ITextColumn>{
+            editPropertyName: "identifier",
+            placeholder: "id"
+          }
         },
         {
           columnNameKey: "Тип",
@@ -185,6 +197,7 @@ export class GemInstanceComponent implements OnInit {
   public addNew() {
     let gemstone = new Gemstone({
       id: -1,
+      identifier: "GEM_ID",
       price: 0,
       weight: 0,
       widthMm: 0,

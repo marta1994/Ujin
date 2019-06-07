@@ -97,6 +97,7 @@ export enum GemNamedEntity {
 
 export interface IGemstone {
   id: number;
+  identifier: string;
   price: number;
   weight: number;
   widthMm: number;
@@ -107,10 +108,11 @@ export interface IGemstone {
   gemstoneSourceId: number;
 }
 
-export class Gemstone {
+export class Gemstone implements IGemstone {
 
   constructor(gemstone: IGemstone) {
     this.id = gemstone.id;
+    this.identifier = gemstone.identifier;
     this.widthMm = gemstone.widthMm;
     this.heightMm = gemstone.heightMm;
     this.price = gemstone.price;
@@ -123,6 +125,7 @@ export class Gemstone {
   }
 
   public id: number;
+  public identifier: string;
   public widthMm: number;
   public heightMm: number;
   public price: number;

@@ -36,6 +36,7 @@ export class JewelryModel implements IJewelryModel {
 export interface IModelConfiguration {
   id: number;
   nameKey: string;
+  identifier: string;
   jewelryModelId: number;
   configurationType: JewelryModelConfigType;
   configurationOptions: string;
@@ -45,6 +46,7 @@ export class ModelConfiguration implements IModelConfiguration {
   constructor(modelConfig: IModelConfiguration, parent: JewelryModel) {
     this.nameKey = modelConfig.nameKey;
     this.id = modelConfig.id;
+    this.identifier = modelConfig.identifier;
     this.jewelryModelId = modelConfig.jewelryModelId;
     this.configurationType = modelConfig.configurationType;
     this.configurationOptions = modelConfig.configurationOptions;
@@ -54,6 +56,7 @@ export class ModelConfiguration implements IModelConfiguration {
 
   public id: number;
   public nameKey: string;
+  public identifier: string;
   public jewelryModelId: number;
   public configurationType: JewelryModelConfigType;
   public configurationOptions: string;

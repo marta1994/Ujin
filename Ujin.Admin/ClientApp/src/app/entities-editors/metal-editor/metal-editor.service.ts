@@ -35,10 +35,12 @@ export class Metal {
   constructor(metal: Metal) {
     this.nameKey = metal.nameKey;
     this.id = metal.id;
+    this.identifier = metal.identifier;
     this.pricePerGram = metal.pricePerGram;
   }
 
   public id: number;
   public nameKey: string;
+  public identifier: string;
   public pricePerGram: number;
 }

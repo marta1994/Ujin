@@ -1,7 +1,12 @@
-﻿namespace Ujin.Storage.Models.ModelConfig
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Ujin.Storage.Models.ModelConfig
 {
     internal class Gemstone : BaseModel
     {
+        [Required]
+        public string Identifier { get; set; }
+
         public double WidthMm { get; set; }
 
         public double HeightMm { get; set; }

@@ -8,6 +8,8 @@ namespace Ujin.Domain.Dtos.ModelConfig
 
         public string NameKey { get; set; }
 
+        public string Identifier { get; set; }
+
         public int JewelryModelId { get; set; }
 
         public JewelryModelConfigType ConfigurationType { get; set; }

@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public string Identifier { get; set; }
+
         public double WidthMm { get; set; }
 
         public double HeightMm { get; set; }

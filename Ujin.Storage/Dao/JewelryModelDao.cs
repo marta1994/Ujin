@@ -33,11 +33,15 @@ namespace Ujin.Storage.Dao
 
         public async Task<JewelryModelDto> LoadJewelryModelById(int id)
         {
-            return (await _dbContext.JewelryModels
+            var model = (await _dbContext.JewelryModels
                 .Where(m => m.Id == id)
                 .Include(m => m.Configurations)
-                .Select(m => _mapper.Map<JewelryModelDto>(m))
                 .ToListAsync()).FirstOrDefault();
+            _dbContext.Entry(model).State = EntityState.Detached;
+            foreach (var config in model.Configurations)
+                _dbContext.Entry(config).State = EntityState.Detached;
+
+            return _mapper.Map<JewelryModelDto>(model);
         }
 
         public Task SaveJewelryModel(JewelryModelDto jewelryModel)

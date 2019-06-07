@@ -46,6 +46,11 @@ namespace Ujin.BusinessLogic.Services.Admin
                 throw new ApplicationException(
                     "Identical names are present in Configuration names. All names should be distinct.");
 
+            var sameIdentifiers = allModelConfigs.GroupBy(c => c.Identifier).Count() != allModelConfigs.Count;
+            if (sameIdentifiers)
+                throw new ApplicationException(
+                    "Identical identifiers are present in Configuration identifiers. All identifiers should be distinct.");
+
             await _jewelryModelDao.SaveJewelryModel(jewelryModel);
         }
 

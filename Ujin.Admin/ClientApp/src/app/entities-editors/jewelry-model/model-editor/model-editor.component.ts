@@ -63,9 +63,9 @@ export class ModelEditorComponent implements OnInit {
           isOrderable: true
         },
         {
-          columnNameKey: "Ключ назви",
+          columnNameKey: "Ідентифікатор",
           isEditable: false,
-          displayPropertyName: "nameKey",
+          displayPropertyName: "identifier",
           isTranslated: false,
           isOrderable: true
         },
@@ -157,6 +157,7 @@ export class ModelEditorComponent implements OnInit {
     this.jewelryModel.configurations.push(new ModelConfiguration({
       id: -1,
       nameKey: "jewelryModel.modelConfig.name.NEW_NAME",
+      identifier: "CONFIG_ID",
       configurationType: null,
       jewelryModelId: this.jewelryModel.id,
       configurationOptions: ""

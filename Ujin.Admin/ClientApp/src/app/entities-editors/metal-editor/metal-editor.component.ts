@@ -30,6 +30,18 @@ export class MetalEditorComponent implements OnInit {
           isOrderable: true
         },
         {
+          columnNameKey: "Ідентифікатор",
+          isEditable: true,
+          displayPropertyName: "identifier",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Text,
+          columnOptions: <ITextColumn>{
+            editPropertyName: "identifier",
+            placeholder: "id"
+          }
+        },
+        {
           columnNameKey: "Ключ назви",
           isEditable: true,
           displayPropertyName: "nameKey",
@@ -86,7 +98,12 @@ export class MetalEditorComponent implements OnInit {
   }
 
   public addNew() {
-    this.metals.push(new Metal({ id: -1, nameKey: "metal.NEW_Metal", pricePerGram: 0 }));
+    this.metals.push(new Metal({
+      id: -1,
+      nameKey: "metal.NEW_Metal",
+      identifier: "METAL_ID",
+      pricePerGram: 0
+    }));
   }
 
   public saveChanges() {

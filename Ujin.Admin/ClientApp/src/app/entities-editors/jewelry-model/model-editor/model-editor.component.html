@@ -1,5 +1,13 @@
 <div class="container" *ngIf="jewelryModel">
-  <h2>{{jewelryModel.id <= 0 ? 'Додавання нової ' : 'Редагування '}}моделі</h2>
+  <div class="header">
+    <h2>{{jewelryModel.id <= 0 ? 'Додавання нової ' : 'Редагування '}}моделі</h2>
+    <div>
+      <span class="model-state-label">Стан моделі: {{jewelryModel.modelStateNameKey}}</span>
+      <button class="button" (click)="changeModelState()" *ngIf="jewelryModel.id > 0">
+        {{jewelryModel.modelState == 1 ? 'Дизактивувати' : 'Активувати'}}
+      </button>
+    </div>
+  </div>
   <div class="name-value">
     <span class="label">Id</span>
     <span class="value">{{jewelryModel.id}}</span>

@@ -11,5 +11,7 @@ namespace Ujin.Interfaces
         Task<JewelryModelDto> LoadJewelryModelById(int id);
 
         Task SaveJewelryModel(JewelryModelDto jewelryModel);
+
+        Task SetEnabledState(int modelId, bool enabled);
     }
 }

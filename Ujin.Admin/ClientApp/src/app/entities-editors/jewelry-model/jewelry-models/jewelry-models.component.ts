@@ -56,6 +56,13 @@ export class JewelryModelsComponent implements OnInit {
           isOrderable: true
         },
         {
+          columnNameKey: "Стан моделі",
+          isEditable: false,
+          displayPropertyName: "modelStateNameKey",
+          isTranslated: true,
+          isOrderable: true
+        },
+        {
           columnNameKey: "Редагування",
           isEditable: false,
           displayPropertyName: "",

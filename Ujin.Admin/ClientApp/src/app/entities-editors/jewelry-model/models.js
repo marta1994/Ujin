@@ -10,6 +10,13 @@ var JewelryModel = /** @class */ (function () {
         this.modelState = jewelryModel.modelState;
         this.configurations = jewelryModel.configurations.map(function (c) { return new ModelConfiguration(c); });
     }
+    Object.defineProperty(JewelryModel.prototype, "modelStateNameKey", {
+        get: function () {
+            return JewelryModelState[this.modelState];
+        },
+        enumerable: true,
+        configurable: true
+    });
     return JewelryModel;
 }());
 exports.JewelryModel = JewelryModel;

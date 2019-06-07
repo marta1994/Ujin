@@ -101,6 +101,15 @@ export class ModelEditorComponent implements OnInit {
     }
   }
 
+  public changeModelState() {
+    if (this.jewelryModel.id < 0)
+    (this.jewelryModel.modelState === JewelryModelState.Enabled ?
+      this._jewelryModelService.disableModel(this.jewelryModel.id) :
+      this._jewelryModelService.enableModel(this.jewelryModel.id))
+      .then(() => location.reload())
+      .catch(err => alert("Помилка при збереженні: " + err));
+  }
+
   public saveModel() {
     this._jewelryModelService.saveJewelryModel(this.jewelryModel)
       .then(() => {

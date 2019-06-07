@@ -1,6 +1,16 @@
-export class JewelryModel {
+export interface IJewelryModel {
+  id: number;
+  nameKey: string;
+  basePrice: number;
+  imagesPattern: string;
+  priceExpression: string;
+  modelState: JewelryModelState;
+  configurations: IModelConfiguration[];
+}
 
-  constructor(jewelryModel: JewelryModel) {
+export class JewelryModel implements IJewelryModel {
+
+  constructor(jewelryModel: IJewelryModel) {
     this.nameKey = jewelryModel.nameKey;
     this.id = jewelryModel.id;
     this.basePrice = jewelryModel.basePrice;
@@ -17,6 +27,10 @@ export class JewelryModel {
   public priceExpression: string;
   public modelState: JewelryModelState;
   public configurations: ModelConfiguration[];
+
+  public get modelStateNameKey(): string {
+    return JewelryModelState[this.modelState];
+  }
 }
 
 export interface IModelConfiguration {
@@ -27,7 +41,7 @@ export interface IModelConfiguration {
   configurationOptions: string;
 }
 
-export class ModelConfiguration {
+export class ModelConfiguration implements IModelConfiguration {
   constructor(modelConfig: IModelConfiguration) {
     this.nameKey = modelConfig.nameKey;
     this.id = modelConfig.id;

@@ -48,5 +48,10 @@ namespace Ujin.BusinessLogic.Services.Admin
 
             await _jewelryModelDao.SaveJewelryModel(jewelryModel);
         }
+
+        public Task SetEnabledState(int modelId, bool enabled)
+        {
+            return _jewelryModelDao.SetEnabledState(modelId, enabled);
+        }
     }
 }

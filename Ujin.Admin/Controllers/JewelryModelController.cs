@@ -39,5 +39,17 @@ namespace Ujin.Admin.Controllers
         {
             return _jewelryModelService.SaveJewelryModel(jewelryModel);
         }
+
+        [HttpPost("[action]")]
+        public Task EnableModel([FromBody]int modelId)
+        {
+            return _jewelryModelService.SetEnabledState(modelId, true);
+        }
+
+        [HttpPost("[action]")]
+        public Task DisableModel([FromBody]int modelId)
+        {
+            return _jewelryModelService.SetEnabledState(modelId, false);
+        }
     }
 }

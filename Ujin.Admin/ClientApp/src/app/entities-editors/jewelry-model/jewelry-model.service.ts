@@ -37,4 +37,20 @@ export class JewelryModelService {
           () => resolve(true),
           err => reject(err)));
   }
+
+  public enableModel(modelId: number): Promise<any> {
+    return new Promise((resolve, reject) =>
+      this._api.postData(`api/JewelryModel/EnableModel`, modelId)
+        .then(
+          () => resolve(true),
+          err => reject(err)));
+  }
+
+  public disableModel(modelId: number): Promise<any> {
+    return new Promise((resolve, reject) =>
+      this._api.postData(`api/JewelryModel/DisableModel`, modelId)
+        .then(
+          () => resolve(true),
+          err => reject(err)));
+  }
 }

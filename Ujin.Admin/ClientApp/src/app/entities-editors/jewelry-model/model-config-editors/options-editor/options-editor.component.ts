@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ModelConfiguration, JewelryModelState } from '../../models';
 import { MetalEditorService, Metal } from 'src/app/entities-editors/metal-editor/metal-editor.service';
 import { GemstoneService, Gemstone } from 'src/app/entities-editors/gemstone/gemstone.service';
@@ -11,7 +11,7 @@ import { ArrayService } from 'src/app/services/array.service';
   templateUrl: './options-editor.component.html',
   styleUrls: ['./options-editor.component.less']
 })
-export class OptionsEditorComponent implements OnInit {
+export class OptionsEditorComponent implements OnInit, OnChanges {
 
   private _selectorOptions: SelectorOptions;
 
@@ -32,12 +32,16 @@ export class OptionsEditorComponent implements OnInit {
     private _arrayService: ArrayService) { }
 
   ngOnInit() {
-    this._selectorOptions = new SelectorOptions(this.modelConfig.configurationOptions);
     Promise.all([this._metalService.loadMetals(), this._gemstoneService.loadGemstones()])
       .then(res => {
         this.metals = res[0];
         this.gemstones = res[1];
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes["modelConfig"]) return;
+    this._selectorOptions = new SelectorOptions(this.modelConfig.configurationOptions);
     this.availableSources = this._enumService.getNameValues(OptionsSource);
   }
 

@@ -4,25 +4,7 @@
   height: @desktop-header-height;
   .set-box-shadow(0 2px 5px @grey-minor-color);
 
-  .discount-link {
-    width: 100%;
-    height: 30px;
-    text-align: center;
-    font-size: 18px;
-    color: @black-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: @accent-color;
-    cursor: pointer;
-
-    &:hover {
-      color: @grey-minor-color;
-      text-decoration: underline;
-    }
-  }
-
-  @actual-header-height: @desktop-header-height - 30px;
+  @actual-header-height: @desktop-header-height;
 
   .header-part {
     background-color: @white-color;

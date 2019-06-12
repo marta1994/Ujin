@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ujin.Storage;
 
 namespace Ujin.Storage.Migrations
 {
     [DbContext(typeof(UjinContext))]
-    partial class UjinContextModelSnapshot : ModelSnapshot
+    [Migration("20190612090141_AddIdentifiers")]
+    partial class AddIdentifiers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,9 +147,6 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Identifier")
-                        .IsUnique();
-
                     b.HasIndex("NameKey")
                         .IsUnique();
 
@@ -172,9 +171,6 @@ namespace Ujin.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Identifier")
-                        .IsUnique();
-
                     b.HasIndex("NameKey")
                         .IsUnique();
 
@@ -198,9 +194,6 @@ namespace Ujin.Storage.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Identifier")
-                        .IsUnique();
 
                     b.HasIndex("NameKey")
                         .IsUnique();
@@ -235,9 +228,6 @@ namespace Ujin.Storage.Migrations
                     b.Property<string>("PriceExpression");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Identifier")
-                        .IsUnique();
 
                     b.HasIndex("NameKey")
                         .IsUnique();

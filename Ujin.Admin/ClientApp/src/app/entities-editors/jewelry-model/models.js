@@ -5,6 +5,7 @@ var JewelryModel = /** @class */ (function () {
         var _this = this;
         this.nameKey = jewelryModel.nameKey;
         this.id = jewelryModel.id;
+        this.identifier = jewelryModel.identifier;
         this.basePrice = jewelryModel.basePrice;
         this.imagesPattern = jewelryModel.imagesPattern;
         this.priceExpression = jewelryModel.priceExpression;

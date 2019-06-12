@@ -9,6 +9,8 @@ namespace Ujin.Domain.Dtos.ModelConfig
 
         public string NameKey { get; set; }
 
+        public string Identifier { get; set; }
+
         public virtual List<ModelConfigurationDto> Configurations { get; set; }
 
         public string ImagesPattern { get; set; }

@@ -164,8 +164,10 @@ export class NamedEntity {
   constructor(namedEntity: NamedEntity) {
     this.nameKey = namedEntity.nameKey;
     this.id = namedEntity.id;
+    this.identifier = namedEntity.identifier;
   }
 
+  public identifier: string;
   public nameKey: string;
   public id: number;
 }

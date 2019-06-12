@@ -1,6 +1,7 @@
 export interface IJewelryModel {
   id: number;
   nameKey: string;
+  identifier: string;
   basePrice: number;
   imagesPattern: string;
   priceExpression: string;
@@ -13,6 +14,7 @@ export class JewelryModel implements IJewelryModel {
   constructor(jewelryModel: IJewelryModel) {
     this.nameKey = jewelryModel.nameKey;
     this.id = jewelryModel.id;
+    this.identifier = jewelryModel.identifier;
     this.basePrice = jewelryModel.basePrice;
     this.imagesPattern = jewelryModel.imagesPattern;
     this.priceExpression = jewelryModel.priceExpression;
@@ -22,6 +24,7 @@ export class JewelryModel implements IJewelryModel {
 
   public id: number;
   public nameKey: string;
+  public identifier: string;
   public basePrice: number;
   public imagesPattern: string;
   public priceExpression: string;

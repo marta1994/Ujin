@@ -103,6 +103,10 @@ namespace Ujin.Storage
                 .IsUnique();
 
             modelBuilder.Entity<JewelryModel>()
+                .HasIndex(g => g.Identifier)
+                .IsUnique();
+
+            modelBuilder.Entity<JewelryModel>()
                 .Property(m => m.ModelState)
                 .HasDefaultValue(JewelryModelState.BuildingState);
 
@@ -126,12 +130,24 @@ namespace Ujin.Storage
                 .HasIndex(g => g.NameKey)
                 .IsUnique();
 
+            modelBuilder.Entity<GemstoneClass>()
+                .HasIndex(m => m.Identifier)
+                .IsUnique();
+
             modelBuilder.Entity<GemstoneCut>()
                 .HasIndex(g => g.NameKey)
                 .IsUnique();
 
+            modelBuilder.Entity<GemstoneCut>()
+                .HasIndex(m => m.Identifier)
+                .IsUnique();
+
             modelBuilder.Entity<GemstoneSource>()
                 .HasIndex(g => g.NameKey)
+                .IsUnique();
+
+            modelBuilder.Entity<GemstoneSource>()
+                .HasIndex(m => m.Identifier)
                 .IsUnique();
 
             modelBuilder.Entity<Color>()

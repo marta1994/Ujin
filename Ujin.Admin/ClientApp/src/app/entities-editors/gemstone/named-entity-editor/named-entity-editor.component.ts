@@ -57,6 +57,18 @@ export class NamedEntityEditorComponent implements OnInit {
           }
         },
         {
+          columnNameKey: "Ідентифікатор",
+          isEditable: true,
+          displayPropertyName: "identifier",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Text,
+          columnOptions: <ITextColumn>{
+            editPropertyName: "identifier",
+            placeholder: "id"
+          }
+        },
+        {
           columnNameKey: "Назва зі словника",
           isEditable: false,
           displayPropertyName: "nameKey",
@@ -89,7 +101,7 @@ export class NamedEntityEditorComponent implements OnInit {
   }
 
   public addNew() {
-    this._entities.push(new NamedEntity({ id: -1, nameKey: "gemstone.gem.NEW_ENTITY" }));
+    this._entities.push(new NamedEntity({ id: -1, nameKey: "gemstone.gem.NEW_ENTITY", identifier: "ID" }));
   }
 
   public saveChanges() {

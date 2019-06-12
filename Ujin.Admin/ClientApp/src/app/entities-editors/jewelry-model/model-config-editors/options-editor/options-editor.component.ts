@@ -173,6 +173,19 @@ export class OptionsEditorComponent implements OnInit, OnChanges {
           isOrderable: true
         },
         {
+          columnNameKey: "Ідентифікатор",
+          isEditable: true,
+          displayPropertyName: "identifier",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Text,
+          columnOptions: <ITextColumn>{
+            editPropertyName: "identifier",
+            placeholder: "id",
+            onEdited: () => this.onPropertyChanged()
+          }
+        },
+        {
           columnNameKey: "Ключ назви",
           isEditable: true,
           displayPropertyName: "nameKey",
@@ -229,6 +242,7 @@ export class OptionsEditorComponent implements OnInit, OnChanges {
   public addNewCustomOption() {
     this.customOptions.push(new Option({
       nameKey: "jewelryModel.modelConfig.customOption.ornament.NEW_NAME",
+      identifier: "ID",
       id: Math.max.apply(null, this.customOptions.map(o => o.id).concat([0])) + 1,
       value: 0
     }));
@@ -258,11 +272,13 @@ export class Option {
 
   constructor(o: Option) {
     this.nameKey = o.nameKey;
+    this.identifier = o.identifier;
     this.id = o.id;
     this.value = o.value;
   }
 
   public nameKey: string;
+  public identifier: string;
   public id: number;
   public value: number;
 }

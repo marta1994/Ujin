@@ -1,0 +1,13 @@
+<div class="container">
+  <div *ngFor="let group of groups; index as i; trackBy: trackGroups"
+       [ngSwitch]="group.inputType" class="group-wrapper">
+    <span *ngSwitchCase="InputType.SimpleText" class="text">{{group.text}}</span>
+    <span *ngSwitchCase="InputType.HintInput" class="hint-text">{{group.hintedItem.fullName}}</span>
+  </div>
+  <input #currenttextinput type="text" class="current-text" [(ngModel)]="currentText"
+         (keypress)="keyPress($event)" (keydown.backspace)="deletePress($event)"/>
+</div>
+<div *ngIf="state == InputType.HintInput" class="tree-container">
+  <app-hint-tree-node *ngFor="let src of filteredSource; index as i; trackBy: trackItems"
+                      [node]="src" (onNodeClick)="onNodeClick($event)"></app-hint-tree-node>
+</div>

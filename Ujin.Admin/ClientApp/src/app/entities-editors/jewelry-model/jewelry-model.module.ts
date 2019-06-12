@@ -16,6 +16,7 @@ import { JewelryContainerComponent } from './jewelry-container.component';
 import { EnumService } from 'src/app/services/enum.service';
 import { NumberEditorComponent } from './model-config-editors/number-editor/number-editor.component';
 import { OptionsEditorComponent } from './model-config-editors/options-editor/options-editor.component';
+import { ImagesEditorComponent } from './model-config-editors/images-editor/images-editor.component';
 
 export class JewelryModelRouteProvider {
   public static getRoutes(): Route[] {
@@ -64,7 +65,8 @@ export class JewelryModelRouteProvider {
     ModelEditorComponent,
     JewelryContainerComponent,
     NumberEditorComponent,
-    OptionsEditorComponent
+    OptionsEditorComponent,
+    ImagesEditorComponent
   ]
 })
 export class JewelryModelModule { }

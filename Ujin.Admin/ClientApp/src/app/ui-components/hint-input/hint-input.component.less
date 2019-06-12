@@ -1,0 +1,57 @@
+@import '../../../common.less';
+
+.container {
+  .set-input-style();
+  display: flex;
+  font: inherit;
+  align-items: baseline;
+
+  .group-wrapper {
+    display: inline;
+
+    .hint-text {
+      display: inline-block;
+      padding: 0 5px;
+      margin: 0 2px;
+      border: 1px solid @grey-color;
+      .set-border-radius(3px);
+      background-color: @light-pearl;
+    }
+  }
+
+  .current-text {
+    border: none;
+    outline: none;
+    padding: 0;
+    font: inherit;
+  }
+}
+.tree-container {
+  background-color: @white-color;
+  border: 1px solid @black-color;
+  .set-border-radius(3px);
+  border-top-left-radius: initial;
+  border-top-right-radius: initial;
+
+  ::ng-deep {
+    .tree-node {
+      .node-name {
+        display: inline-block;
+
+        &.leaf {
+          font-weight: bold;
+          cursor: pointer;
+          transition: color ease 0.3s;
+
+          &:hover {
+            color: @light-grey-color;
+          }
+        }
+      }
+
+      .children {
+        margin-left: 20px;
+      }
+    }
+  }
+}

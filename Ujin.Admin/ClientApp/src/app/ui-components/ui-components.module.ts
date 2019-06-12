@@ -11,6 +11,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { DoublePanelComponent } from './double-panel/double-panel.component';
 import { SelectComponent } from './select/select.component';
 import { SelectTableComponent } from './select-table/select-table.component';
+import { HintInputComponent } from './hint-input/hint-input.component';
+import { HintTreeNodeComponent } from './hint-input/hint-tree-node.component';
 
 @NgModule({
   imports: [
@@ -31,14 +33,17 @@ import { SelectTableComponent } from './select-table/select-table.component';
     CollapsiblePanelComponent,
     DoublePanelComponent,
     SelectComponent,
-    SelectTableComponent
+    SelectTableComponent,
+    HintInputComponent,
+    HintTreeNodeComponent
   ],
   exports: [
     TableComponent,
     CollapsiblePanelComponent,
     DoublePanelComponent,
     SelectComponent,
-    SelectTableComponent
+    SelectTableComponent,
+    HintInputComponent
   ]
 })
 export class UiComponentsModule { }

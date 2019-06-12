@@ -240,11 +240,11 @@ export class OptionsEditorComponent implements OnInit, OnChanges {
   }
 }
 
-class SelectorOptions {
+export class SelectorOptions {
 
   constructor(serializedOptions: string) {
     let obj = serializedOptions ? JSON.parse(serializedOptions) : {};
-    this.optionsSource = obj.optionsSource;
+    this.optionsSource = Number.parseInt(obj.optionsSource);
     this.externalSourceIds = obj.externalSourceIds || [];
     this.customOptions = (obj.customOptions || []).map(o => new Option(o));
   }
@@ -254,7 +254,7 @@ class SelectorOptions {
   public customOptions: Option[];
 }
 
-class Option {
+export class Option {
 
   constructor(o: Option) {
     this.nameKey = o.nameKey;
@@ -267,7 +267,7 @@ class Option {
   public value: number;
 }
 
-enum OptionsSource {
+export enum OptionsSource {
   Custom = 1,
   Metal = 2,
   Gemstone = 3

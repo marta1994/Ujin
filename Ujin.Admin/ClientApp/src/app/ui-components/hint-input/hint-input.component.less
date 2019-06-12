@@ -26,12 +26,21 @@
     font: inherit;
   }
 }
+
+:host {
+  position: relative;
+  overflow: visible;
+}
+
 .tree-container {
   background-color: @white-color;
   border: 1px solid @black-color;
-  .set-border-radius(3px);
+  .set-border-radius(7px);
   border-top-left-radius: initial;
   border-top-right-radius: initial;
+  position: absolute;
+  padding: 5px 20px;
+  right: 0;
 
   ::ng-deep {
     .tree-node {

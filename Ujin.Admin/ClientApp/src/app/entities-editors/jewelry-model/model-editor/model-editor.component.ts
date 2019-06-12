@@ -5,6 +5,8 @@ import { JewelryModelService } from '../jewelry-model.service';
 import { ITableConfig, ColumnType, IActionColumn } from 'src/app/ui-components/table/table.component';
 import { EnumService, NameValue } from 'src/app/services/enum.service';
 import { ArrayService } from 'src/app/services/array.service';
+import { IHintSource } from 'src/app/ui-components/hint-input/hint-input.component';
+import { SelectorOptions, OptionsSource } from '../model-config-editors/options-editor/options-editor.component';
 
 @Component({
   selector: 'app-model-editor',
@@ -50,6 +52,41 @@ export class ModelEditorComponent implements OnInit {
 
     this.configTypes = this._enumService.getNameValues(JewelryModelConfigType);
     this.configTypes.forEach(c => c.name = getJewelryModelConfigTypeKey(c.value));
+  }
+
+  private _priceHintSource: IHintSource[];
+
+  public get priceHintSource(): IHintSource[] {
+    if (this._priceHintSource == null)
+      this._priceHintSource = this.jewelryModel.configurations.map(cfg => {
+        switch (cfg.configurationType) {
+          case JewelryModelConfigType.Number:
+            return { name: cfg.identifier, children: [{ name: "value" }] };
+          case JewelryModelConfigType.Options: {
+            return this.getOptionsHintSource(cfg);
+          }
+          default: return null;
+        }
+      });
+    return this._priceHintSource;
+  }
+
+  private getOptionsHintSource(cfg: ModelConfiguration): IHintSource {
+    let opts = new SelectorOptions(cfg.configurationOptions);
+    switch (opts.optionsSource) {
+      case OptionsSource.Metal:
+        return { name: cfg.identifier, children: [{ name: "id" }, { name: "pricePerGram" }] };
+      case OptionsSource.Gemstone:
+        return {
+          name: cfg.identifier, children: [
+            { name: "id" },
+            { name: "price" }
+          ]
+        };
+      case OptionsSource.Custom:
+        return { name: cfg.identifier, children: [{ name: "id" }, { name: "value" }] };
+      default: return null;
+    }
   }
 
   public get tableConfig(): ITableConfig {

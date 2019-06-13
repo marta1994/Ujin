@@ -144,10 +144,10 @@ export class HintInputComponent implements OnInit, OnChanges {
         return new HintSourceWrapper(node, true);
       }
 
-      let children = node.children.filter(ch => getFiltered(ch) != null);
+      let children = node.children.map(ch => getFiltered(ch)).filter(ch => ch != null);
       if (children.length == 0) return null;
       let wrapper = new HintSourceWrapper(node);
-      wrapper.children = children.map(ch => new HintSourceWrapper(ch));
+      wrapper.children = children;
       return wrapper;
     }
 

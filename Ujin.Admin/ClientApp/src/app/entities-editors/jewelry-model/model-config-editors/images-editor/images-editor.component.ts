@@ -29,17 +29,19 @@ export class ImagesEditorComponent implements OnInit, OnChanges {
   private _imageHintSource: IHintSource[];
 
   public get imageHintSource(): IHintSource[] {
-    if (this._imageHintSource == null)
-      this._imageHintSource = this.jewelryModel.configurations.map(cfg => {
-        switch (cfg.configurationType) {
-          case JewelryModelConfigType.Number:
-            return { name: cfg.identifier, children: [{ name: "value" }] };
-          case JewelryModelConfigType.Options: {
-            return this.getOptionsHintSource(cfg);
+    if (this._imageHintSource == null) {
+      this._imageHintSource = [<IHintSource>{ name: "model", children: [{ name: "identifier" }] }].concat(
+        this.jewelryModel.configurations.map(cfg => {
+          switch (cfg.configurationType) {
+            case JewelryModelConfigType.Number:
+              return { name: cfg.identifier, children: [{ name: "value" }] };
+            case JewelryModelConfigType.Options: {
+              return this.getOptionsHintSource(cfg);
+            }
+            default: return null;
           }
-          default: return null;
-        }
-      });
+        }));
+    }
     return this._imageHintSource;
   }
 
@@ -47,23 +49,22 @@ export class ImagesEditorComponent implements OnInit, OnChanges {
     let opts = new SelectorOptions(cfg.configurationOptions);
     switch (opts.optionsSource) {
       case OptionsSource.Metal:
-        return { name: cfg.identifier, children: [{ name: "id" }, { name: "identifier" }] };
+        return { name: cfg.identifier, children: [{ name: "identifier" }] };
       case OptionsSource.Gemstone:
         return {
           name: cfg.identifier, children: [
-            { name: "id" },
             { name: "identifier" },
             {
               name: "gemSource",
-              children: [{ name: "id" }, { name: "identifier" }]
+              children: [{ name: "identifier" }]
             },
             {
               name: "gemCut",
-              children: [{ name: "id" }, { name: "identifier" }]
+              children: [{ name: "identifier" }]
             },
             {
               name: "gemClass",
-              children: [{ name: "id" }, { name: "identifier" }]
+              children: [{ name: "identifier" }]
             }
           ]
         };

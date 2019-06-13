@@ -58,7 +58,8 @@ export class ModelEditorComponent implements OnInit {
   private _priceHintSource: IHintSource[];
 
   public get priceHintSource(): IHintSource[] {
-    if (this._priceHintSource == null)
+    if (this._priceHintSource == null) {
+      this._priceHintSource = [<IHintSource>{ name: "model", children: [{ name: "basePrice" }] }].concat(
       this._priceHintSource = this.jewelryModel.configurations.map(cfg => {
         switch (cfg.configurationType) {
           case JewelryModelConfigType.Number:
@@ -68,7 +69,8 @@ export class ModelEditorComponent implements OnInit {
           }
           default: return null;
         }
-      });
+      }));
+    }
     return this._priceHintSource;
   }
 

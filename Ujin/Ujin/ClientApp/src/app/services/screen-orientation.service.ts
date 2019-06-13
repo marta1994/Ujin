@@ -14,6 +14,7 @@ export class ScreenOrientationService {
     switch (window.orientation) {
       case -90:
       case 90:
+      case undefined:
         this.orientation = ScreenOrientation.Landscape;
         break;
       default:

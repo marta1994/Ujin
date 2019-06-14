@@ -18,6 +18,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "loading.less",
         "styles.less",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],

@@ -5,6 +5,7 @@ import { EmailValidatorService } from './email-validator.service';
 import { WidgetService, MenuConfig, GemstoneOption } from './widget.service';
 import { RingInfoService } from './ring-info.service';
 import { TranslationService } from 'angular-l10n';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class OrderService {
@@ -46,7 +47,7 @@ export class OrderService {
     this._properties.push({ name: tr(WidgetService.DECORATION_KEY), value: tr(this.widgetService.decorationSelectedItem.nameKey) });
     this._properties.push({ name: tr(WidgetService.SIZE_CONFIG.nameKey), value: this.widgetService.selectedSize + "" });
     this._properties.push({ name: tr("ringInfo.metalWeightLabel"), value: this.ringInfoService.ringInfo.metalWeight + " " + tr("ringInfo.measure.grams") });
-    this._properties.push({ name: tr("ringInfo.priceLabel"), value: this.ringInfoService.ringInfo.price + " " + tr("ringInfo.currency.uah") });
+    this._properties.push({ name: tr("ringInfo.priceLabel"), value: this.ringInfoService.ringInfo.price + " " + tr("ringInfo.currency.uah"), class: "price-val" });
 
     return this._properties;
   }
@@ -80,7 +81,7 @@ export class OrderService {
     this._validationRes.isEmailValid = this.emailValidator.isValidEmail(this._user.email);
   }
 
-  public makeAnOrder() {
+  public makeAnOrder(): Observable<{}> {
     var user = {
       name: this._user.name,
       phone: this.phoneValidator.normalizePhone(this._user.phone),
@@ -90,8 +91,7 @@ export class OrderService {
 
     user.order.definition += `\r\n Showed to user: ${JSON.stringify(this.properties)}`
 
-    this.dataLoader.postData("api/User/PostOrderData", user)
-      .subscribe(() => { }, error => console.log(error));
+    return this.dataLoader.postData("api/User/PostOrderData", user);
   }
 
 }
@@ -134,4 +134,5 @@ export class ValidationResult {
 export interface Property {
   name: string;
   value: string;
+  class?: string;
 }

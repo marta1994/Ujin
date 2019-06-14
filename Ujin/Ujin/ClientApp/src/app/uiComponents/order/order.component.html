@@ -1,9 +1,17 @@
 <div class="order-container">
+  <div class="loading" *ngIf="isOrderProcessing">
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+  </div>
+  <div class="loading" *ngIf="succeded">
+    <span class="ok-icon" [inlineSVG]="'/assets/images/ok.svg'"></span>
+  </div>
   <div class="order-description" [hidden]="!showLeft">
     <span class="description-tittle" l10nTranslate>order.descriptionTittle</span>
     <div *ngFor="let item of properties" class="prop-name-value">
       <span class="prop-name">{{item.name}}:</span>
-      <span class="prop-value">{{item.value}}</span>
+      <span class="prop-value" [ngClass]="item.class">{{item.value}}</span>
     </div>
     <div class="order-conditions" l10nTranslate>order.conditions</div>
     <div class="next-view-wrapper">

@@ -3,6 +3,8 @@ import { BaseGaService } from './base-ga.service';
 import { GoogleAnalyticsService } from './google-analytics.service';
 import * as $ from 'jquery';
 
+declare function fbq(a, b, c);
+
 @Injectable()
 export class OrderGaService extends BaseGaService {
 
@@ -70,6 +72,12 @@ export class OrderGaService extends BaseGaService {
       "click",
       () => {
         sendEvent(OrderEvtCat.NAME, OrderEvtCat.submit);
+        let price = Number.parseFloat($(".order-container .price-val").text());
+        fbq('track', 'Purchase', {
+          value: price,
+          currency: '980',
+        });
+        sendEvent("ecommerce", "purchase", "980", price);
       }
     );
 

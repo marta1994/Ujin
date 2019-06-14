@@ -16,6 +16,10 @@ export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestro
   
   public show2Views: boolean = true;
 
+  public isOrderProcessing: boolean = false;
+
+  public succeded: boolean = false;
+
   @Output()
   public actionHappened: EventEmitter<void> = new EventEmitter<void>();
 
@@ -77,9 +81,17 @@ export class OrderComponent implements OnInit, OnAction, AfterViewInit, OnDestro
   }
 
   public onSubmit() {
+    if (this.isOrderProcessing) return;
     if (!this.orderService.validate()) return;
-    this.orderService.makeAnOrder();
-    this.actionHappened.emit();
+    this.isOrderProcessing = true;
+    this.orderService.makeAnOrder()
+      .subscribe(() => {
+        this.succeded = true;
+        this.isOrderProcessing = false;
+        setTimeout(() => {
+          this.actionHappened.emit();
+        }, 5000);
+      }, error => console.log(error));
   }
 
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 using Ujin.Storage.Models.ModelConfig;
 
 namespace Ujin.Storage.Dao
@@ -24,6 +25,14 @@ namespace Ujin.Storage.Dao
         public Task<List<MetalDto>> LoadMetals()
         {
             return _dbContext.Metals
+                .Select(g => _mapper.Map<MetalDto>(g))
+                .ToListAsync();
+        }
+
+        public Task<List<MetalDto>> LoadMetaldByIds(List<int> ids)
+        {
+            return _dbContext.Metals
+                .Where(m => ids.Contains(m.Id))
                 .Select(g => _mapper.Map<MetalDto>(g))
                 .ToListAsync();
         }

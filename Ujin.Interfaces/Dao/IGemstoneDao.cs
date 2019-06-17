@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
 
-namespace Ujin.Interfaces
+namespace Ujin.Interfaces.Dao
 {
     public interface IGemstoneDao
     {
@@ -13,6 +13,8 @@ namespace Ujin.Interfaces
         Task<List<GemCutDto>> LoadGemCuts();
 
         Task<List<GemstoneDto>> LoadGemstones();
+
+        Task<List<GemstoneDto>> LoadGemstonesByIds(List<int> ids);
 
         Task SaveGemSources(List<GemSourceDto> gemSources);
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.Admin;
-using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 
 namespace Ujin.Storage.Dao
 {

@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Ujin.BusinessLogic.Services.Admin;
+using Ujin.BusinessLogic.Services.Model;
+using Ujin.BusinessLogic.Services.Price;
 using Ujin.Interfaces;
 using Ujin.Storage;
 
@@ -54,6 +56,8 @@ namespace Ujin.Admin
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IMetalService, MetalService>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
+            services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
+            services.AddScoped<ModelParser>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

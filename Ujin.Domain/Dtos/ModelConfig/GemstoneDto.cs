@@ -16,10 +16,18 @@
 
         public int ColorId { get; set; }
 
+        public ColorDto Color { get; set; }
+
         public int GemstoneClassId { get; set; }
+
+        public GemClassDto GemstoneClass { get; set; }
 
         public int GemstoneSourceId { get; set; }
 
+        public GemSourceDto GemstoneSource { get; set; }
+
         public int GemstoneCutId { get; set; }
+
+        public GemCutDto GemstoneCut { get; set; }
     }
 }

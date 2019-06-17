@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
-using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 using Ujin.Storage.Models.ModelConfig;
 
 namespace Ujin.Storage.Dao
@@ -25,6 +25,18 @@ namespace Ujin.Storage.Dao
         {
             return _dbContext.GemstoneSources
                 .Select(g => _mapper.Map<GemSourceDto>(g))
+                .ToListAsync();
+        }
+
+        public Task<List<GemstoneDto>> LoadGemstonesByIds(List<int> ids)
+        {
+            return _dbContext.Gemstones
+                .Where(m => ids.Contains(m.Id))
+                .Include(g => g.Color)
+                .Include(g => g.GemstoneClass)
+                .Include(g => g.GemstoneCut)
+                .Include(g => g.GemstoneSource)
+                .Select(g => _mapper.Map<GemstoneDto>(g))
                 .ToListAsync();
         }
 

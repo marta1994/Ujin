@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Ujin.Domain.Dtos.Admin;
 
-namespace Ujin.Interfaces
+namespace Ujin.Interfaces.Dao
 {
     public interface IAdminUserDao
     {

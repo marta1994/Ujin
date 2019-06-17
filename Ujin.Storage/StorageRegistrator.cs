@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 using Ujin.Storage.Dao;
 
 namespace Ujin.Storage

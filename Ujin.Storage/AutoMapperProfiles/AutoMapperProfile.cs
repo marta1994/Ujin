@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Ujin.Domain.Dtos.Admin;
 using Ujin.Domain.Dtos.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig.Parsed;
+using Ujin.Domain.Enums;
 using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 
@@ -28,6 +30,30 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<JewelryModelDto, JewelryModel>();
             CreateMap<ModelConfiguration, ModelConfigurationDto>();
             CreateMap<ModelConfigurationDto, ModelConfiguration>();
+            CreateMap<JewelryModel, ParsedJewelryModel>();
+            CreateMap<ModelConfiguration, ParsedModelConfig>()
+                .ForMember(m => m.ConfigOptions, m => m.MapFrom<ParsedModelConfigResolver>());
+        }
+    }
+
+    internal class ParsedModelConfigResolver : 
+        IValueResolver<ModelConfiguration, ParsedModelConfig, BaseConfigOptions>
+    {
+        public BaseConfigOptions Resolve(
+            ModelConfiguration source, 
+            ParsedModelConfig destination, 
+            BaseConfigOptions member, 
+            ResolutionContext context)
+        {
+            switch (source.ConfigurationType)
+            {
+                case JewelryModelConfigType.Number:
+                    return new NumberOptions(source.ConfigurationOptions);
+                case JewelryModelConfigType.Options:
+                    return new SelectorOptions(source.ConfigurationOptions);
+                default:
+                    return null;
+            }
         }
     }
 }

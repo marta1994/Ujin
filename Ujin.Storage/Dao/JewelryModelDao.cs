@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
-using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 using Ujin.Storage.Models;
 using Ujin.Storage.Models.ModelConfig;
 
@@ -42,6 +43,20 @@ namespace Ujin.Storage.Dao
                 _dbContext.Entry(config).State = EntityState.Detached;
 
             return _mapper.Map<JewelryModelDto>(model);
+        }
+
+        public async Task<ParsedJewelryModel> LoadJewelryModelByIdentifier(string identifier)
+        {
+            var model = (await _dbContext.JewelryModels
+                .Where(m => m.Identifier == identifier)
+                .Include(m => m.Configurations)
+                .ToListAsync()).FirstOrDefault();
+            if (model == null) return null;
+            _dbContext.Entry(model).State = EntityState.Detached;
+            foreach (var config in model.Configurations)
+                _dbContext.Entry(config).State = EntityState.Detached;
+
+            return _mapper.Map<ParsedJewelryModel>(model);
         }
 
         public Task SaveJewelryModel(JewelryModelDto jewelryModel)

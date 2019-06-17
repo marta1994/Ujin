@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Interfaces;
+using Ujin.Interfaces.Dao;
 
 namespace Ujin.BusinessLogic.Services.Admin
 {

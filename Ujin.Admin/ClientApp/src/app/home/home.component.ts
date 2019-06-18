@@ -9,7 +9,7 @@ import { Terms, AppSettingsService } from '../services/app-settings.service';
 
 @Component({
   selector: 'app-home',
-  styleUrls: ['./home.component.less']
+  styleUrls: ['./home.component.less'],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {

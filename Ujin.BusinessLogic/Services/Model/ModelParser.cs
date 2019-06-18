@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ujin.Domain;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
@@ -11,27 +12,29 @@ namespace Ujin.BusinessLogic.Services.Model
 {
     public class ModelParser
     {
-        private const string SkuSeparator = "_";
-
         private readonly IJewelryModelDao _jewelryModelDao;
 
         private readonly IMetalDao _metalDao;
 
         private readonly IGemstoneDao _gemstoneDao;
 
+        private readonly AppSettings _appSettings;
+
         public ModelParser(
             IJewelryModelDao jewelryModelDao,
             IMetalDao metalDao,
-            IGemstoneDao gemstoneDao)
+            IGemstoneDao gemstoneDao,
+            AppSettings appSettings)
         {
             _jewelryModelDao = jewelryModelDao;
             _metalDao = metalDao;
             _gemstoneDao = gemstoneDao;
+            _appSettings = appSettings;
         }
 
         public async Task<ConfiguredModel> ParseFromSku(string sku)
         {
-            var splitted = sku.Split(SkuSeparator);
+            var splitted = sku.Split(_appSettings.ExpressionTerms.SkuSeparator);
             if (splitted.Length == 0)
                 throw new InvalidOperationException($"Can not parse sku '{sku}'!");
             var modelIdentifier = splitted[0];
@@ -42,7 +45,8 @@ namespace Ujin.BusinessLogic.Services.Model
                 model,
                 splitted.Skip(1).ToList(),
                 await GetModelMetals(model),
-                await GetModelGemstones(model));
+                await GetModelGemstones(model),
+                _appSettings.ExpressionTerms);
         }
 
         private async Task<List<MetalDto>> GetModelMetals(ParsedJewelryModel model)

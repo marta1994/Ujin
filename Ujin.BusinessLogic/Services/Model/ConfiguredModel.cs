@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ujin.Domain;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 
@@ -10,16 +11,20 @@ namespace Ujin.BusinessLogic.Services.Model
     {
         private readonly ParsedJewelryModel _model;
 
+        private readonly ExpressionTerms _expressionTerms;
+
         public ConfiguredModel(
             ParsedJewelryModel model, 
             List<string> configIds,
             List<MetalDto> metals,
-            List<GemstoneDto> gemstones)
+            List<GemstoneDto> gemstones,
+            ExpressionTerms expressionTerms)
         {
             _model = model;
+            _expressionTerms = expressionTerms;
             if (configIds.Count != _model.Configurations.Count)
                 throw new ApplicationException(
-                    $"Could not parse model configuration values of configIDs '{string.Join('_', configIds)}'. Actual model config number: {model.Configurations.Count}!");
+                    $"Could not parse model configuration values of configIDs '{string.Join(_expressionTerms.SkuSeparator, configIds)}'. Actual model config number: {model.Configurations.Count}!");
             model.Configurations = model.Configurations.OrderBy(c => c.Id).ToList();
             Configs = new List<SpecificModelConfig>();
             for(var i = 0; i < model.Configurations.Count; ++i)
@@ -42,7 +47,7 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public string GetStrValueByPath(string path)
         {
-            var splitted = path.Split('.');
+            var splitted = path.Split(_expressionTerms.PathSeparator);
             if (splitted.Length == 0)
                 throw new ApplicationException($"Could not parse path '{path}' with model '{Identifier}'!");
             if (splitted[0] == "model")
@@ -54,7 +59,7 @@ namespace Ujin.BusinessLogic.Services.Model
             var config = Configs.SingleOrDefault(c => c.Identifier == splitted[0]);
             if (config == null)
                 throw new ApplicationException($"Could not parse path '{path}' with model '{Identifier}'!");
-            return config.SelectedItem.GetStrValueByPath(string.Join('.', splitted.Skip(1)));
+            return config.SelectedItem.GetStrValueByPath(string.Join(_expressionTerms.PathSeparator, splitted.Skip(1)));
         }
     }
 }

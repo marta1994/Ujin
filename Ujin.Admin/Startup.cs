@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Ujin.BusinessLogic.Services.Admin;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.BusinessLogic.Services.Price;
+using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Storage;
 
@@ -51,6 +53,10 @@ namespace Ujin.Admin
 
             StorageRegistrator.RegisterStorage(services, Configuration);
 
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+
+            services.AddSingleton(appSettings);
             services.AddScoped<IAdminUserService, AdminUserService>();
             services.AddScoped<IGemstoneService, GemstoneService>();
             services.AddScoped<IColorService, ColorService>();

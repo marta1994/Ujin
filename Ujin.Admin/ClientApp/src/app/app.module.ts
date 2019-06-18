@@ -19,6 +19,7 @@ import { ColorEditorComponent } from './entities-editors/color-editor/color-edit
 import { MetalEditorComponent } from './entities-editors/metal-editor/metal-editor.component';
 import { GemstoneRouteProvider, GemstoneModule } from './entities-editors/gemstone/gemstone.module';
 import { JewelryModelRouteProvider, JewelryModelModule } from './entities-editors/jewelry-model/jewelry-model.module';
+import { AppSettingsService } from './services/app-settings.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { JewelryModelRouteProvider, JewelryModelModule } from './entities-editor
     JewelryModelModule,
     UiComponentsModule
   ],
-  providers: [],
+  providers: [
+    AppSettingsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

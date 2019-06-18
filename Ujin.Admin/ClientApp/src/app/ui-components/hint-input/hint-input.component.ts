@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { AppSettingsService, Terms } from 'src/app/services/app-settings.service';
 
 @Component({
   selector: 'app-hint-input',
@@ -37,7 +38,14 @@ export class HintInputComponent implements OnInit, OnChanges {
 
   public InputType = InputType;
 
-  constructor() { }
+  private _terms: Terms;
+
+  constructor(_appSettings: AppSettingsService) {
+    _appSettings.loadTerms().then(res => {
+      this._terms = res;
+      this.tryInit();
+    });
+  }
 
   ngOnInit() {
   }
@@ -76,12 +84,12 @@ export class HintInputComponent implements OnInit, OnChanges {
   public keyPress(event: KeyboardEvent) {
     const inputChar = String.fromCharCode(event.charCode);
     switch (inputChar) {
-      case Const.openBr: {
+      case this._terms.exprOpen: {
         this.openBrCase();
         event.preventDefault();
         break;
       }
-      case Const.closeBr: {
+      case this._terms.exprClose: {
         this.closeBrCase();
         event.preventDefault();
         break;
@@ -105,7 +113,7 @@ export class HintInputComponent implements OnInit, OnChanges {
     if (src) {
       this.groups.push(new TextGroup(InputType.HintInput, "", src));
     } else {
-      this.appendSimpleText(Const.openBr + this.currentText + Const.closeBr);
+      this.appendSimpleText(this._terms.exprOpen + this.currentText + this._terms.exprClose);
     }
     this.currentText = "";
     this.currentTextField.nativeElement.focus();
@@ -127,7 +135,7 @@ export class HintInputComponent implements OnInit, OnChanges {
 
   private setValue() {
     this.value = this.groups.map(g => g.inputType == InputType.HintInput ?
-      Const.openBr + g.hintedItem.fullName + Const.closeBr : g.text)
+      this._terms.exprOpen + g.hintedItem.fullName + this._terms.exprClose : g.text)
       .join("") + this.currentText;
   }
 
@@ -167,7 +175,7 @@ export class HintInputComponent implements OnInit, OnChanges {
   }
 
   private findInHintTree(currWord: string): HintSource {
-    let splitted = currWord.split(Const.nameSplitter);
+    let splitted = currWord.split(this._terms.pathSeparator);
     let currSource = this.hintSource;
     for (let i = 0; i < splitted.length; ++i) {
       let src = currSource.find(s => s.name == splitted[i]);
@@ -179,9 +187,9 @@ export class HintInputComponent implements OnInit, OnChanges {
   }
 
   private tryInit() {
-    if (!this.value || !this.inputHintSource)
+    if (!this.value || !this.inputHintSource || !this._terms)
       return;
-    this.hintSource = this.inputHintSource.map(hs => new HintSource(hs));
+    this.hintSource = this.inputHintSource.map(hs => new HintSource(hs, this._terms));
 
     let textState = InputType.SimpleText;
     let currWord = "";
@@ -189,20 +197,20 @@ export class HintInputComponent implements OnInit, OnChanges {
 
     for (let i = 0; i < this.value.length; ++i) {
 
-      if (textState == InputType.SimpleText && this.value[i] === Const.openBr) {
+      if (textState == InputType.SimpleText && this.value[i] === this._terms.exprOpen) {
         textState = InputType.HintInput;
         this.appendSimpleText(currWord);
         currWord = "";
         continue;
       }
 
-      if (textState == InputType.HintInput && this.value[i] == Const.closeBr) {
+      if (textState == InputType.HintInput && this.value[i] == this._terms.exprClose) {
         textState = InputType.SimpleText;
         let src = this.findInHintTree(currWord);
         if (src) {
           this.groups.push(new TextGroup(InputType.HintInput, "", src));
         } else {
-          this.appendSimpleText(Const.openBr + currWord + Const.closeBr);
+          this.appendSimpleText(this._terms.exprOpen + currWord + this._terms.exprClose);
         }
         currWord = "";
         continue;
@@ -225,11 +233,14 @@ export interface IHintSource {
 
 export class HintSource implements IHintSource {
 
-  constructor(hintSource: IHintSource, parent?: HintSource) {
+  private _terms: Terms;
+
+  constructor(hintSource: IHintSource, terms: Terms, parent?: HintSource) {
     this.name = hintSource.name;
-    this.fullName = (parent ? parent.fullName + Const.nameSplitter : "") + this.name;
+    this._terms = terms;
+    this.fullName = (parent ? parent.fullName + this._terms.pathSeparator : "") + this.name;
     this.children = hintSource.children ?
-      hintSource.children.map(ch => new HintSource(ch, this)) : [];
+      hintSource.children.map(ch => new HintSource(ch, terms, this)) : [];
     this.parent = parent;
   }
 
@@ -269,12 +280,6 @@ export class HintSourceWrapper {
 enum InputType {
   SimpleText = 1,
   HintInput = 2
-}
-
-enum Const {
-  nameSplitter = ".",
-  openBr = "{",
-  closeBr = "}",
 }
 
 class TextGroup {

@@ -69,7 +69,7 @@ export class ImagesEditorComponent implements OnInit, OnChanges {
           ]
         };
       case OptionsSource.Custom:
-        return { name: cfg.identifier, children: [{ name: "id" }, { name: "identifier" }, { name: "value" }] };
+        return { name: cfg.identifier, children: [{ name: "identifier" }, { name: "value" }] };
       default: return null;
     }
   }

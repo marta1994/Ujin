@@ -8,5 +8,7 @@ namespace Ujin.Storage.Models.ModelConfig
         public string Identifier { get; set; }
 
         public double PricePerGram { get; set; }
+
+        public double GramsPerMl { get; set; }
     }
 }

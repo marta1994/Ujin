@@ -78,16 +78,21 @@ export class ModelEditorComponent implements OnInit {
     let opts = new SelectorOptions(cfg.configurationOptions);
     switch (opts.optionsSource) {
       case OptionsSource.Metal:
-        return { name: cfg.identifier, children: [{ name: "id" }, { name: "pricePerGram" }] };
+        return {
+          name: cfg.identifier, children: [
+            { name: "identifier" },
+            { name: "pricePerGram" },
+            { name: "gramsPerMl" }]
+        };
       case OptionsSource.Gemstone:
         return {
           name: cfg.identifier, children: [
-            { name: "id" },
+            { name: "identifier" }, 
             { name: "price" }
           ]
         };
       case OptionsSource.Custom:
-        return { name: cfg.identifier, children: [{ name: "id" }, { name: "value" }] };
+        return { name: cfg.identifier, children: [{ name: "identifier" }, { name: "value" }] };
       default: return null;
     }
   }

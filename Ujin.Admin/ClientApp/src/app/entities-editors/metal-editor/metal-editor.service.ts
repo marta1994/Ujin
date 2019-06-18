@@ -37,10 +37,12 @@ export class Metal {
     this.id = metal.id;
     this.identifier = metal.identifier;
     this.pricePerGram = metal.pricePerGram;
+    this.gramsPerMl = metal.gramsPerMl;
   }
 
   public id: number;
   public nameKey: string;
   public identifier: string;
   public pricePerGram: number;
+  public gramsPerMl: number;
 }

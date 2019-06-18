@@ -73,6 +73,18 @@ export class MetalEditorComponent implements OnInit {
           }
         },
         {
+          columnNameKey: "К-сть гамів на мл",
+          isEditable: true,
+          displayPropertyName: "gramsPerMl",
+          isTranslated: false,
+          isOrderable: true,
+          columnType: ColumnType.Number,
+          columnOptions: <INumberColumn>{
+            editPropertyName: "gramsPerMl",
+            minValue: 0
+          }
+        },
+        {
           columnNameKey: "Видалення",
           isEditable: false,
           displayPropertyName: "",
@@ -102,7 +114,8 @@ export class MetalEditorComponent implements OnInit {
       id: -1,
       nameKey: "metal.NEW_Metal",
       identifier: "METAL_ID",
-      pricePerGram: 0
+      pricePerGram: 0,
+      gramsPerMl: 0
     }));
   }
 

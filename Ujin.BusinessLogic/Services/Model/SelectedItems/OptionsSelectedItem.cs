@@ -54,6 +54,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
                 case OptionsSource.Metal:
                     var metal = (MetalDto)_value;
                     if (path == "pricePerGram") return metal.PricePerGram.ToString();
+                    if (path == "gramsPerMl") return metal.GramsPerMl.ToString();
                     if (path == "identifier") return metal.Identifier;
                     break;
                 case OptionsSource.Gemstone:

@@ -18,28 +18,6 @@ import { NumberEditorComponent } from './model-config-editors/number-editor/numb
 import { OptionsEditorComponent } from './model-config-editors/options-editor/options-editor.component';
 import { ImagesEditorComponent } from './model-config-editors/images-editor/images-editor.component';
 
-export class JewelryModelRouteProvider {
-  public static getRoutes(): Route[] {
-    return [
-      {
-        path: 'jewelry-models',
-        component: JewelryContainerComponent,
-        children: [
-          {
-            path: 'models',
-            component: JewelryModelsComponent
-          },
-          {
-            path: 'jewelry-model-editor/:id',
-            component: ModelEditorComponent
-          },
-          { path: '**', redirectTo: 'models' }
-        ]
-      }
-    ];
-  }
-}
-
 @NgModule({
   imports: [
     CommonModule,

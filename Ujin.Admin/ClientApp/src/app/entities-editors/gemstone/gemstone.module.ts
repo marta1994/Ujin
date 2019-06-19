@@ -11,46 +11,6 @@ import { NamedEntityEditorComponent } from './named-entity-editor/named-entity-e
 import { GemInstanceComponent } from './gem-instance/gem-instance.component';
 import { UiComponentsModule } from '../../ui-components/ui-components.module';
 
-export class GemstoneRouteProvider {
-  public static getRoute(): Route {
-    return {
-      path: 'gemstone',
-      component: GemstoneComponent,
-      children: [
-        {
-          path: 'gemstone',
-          component: GemInstanceComponent
-        },
-        {
-          path: 'gem-class',
-          component: NamedEntityEditorComponent,
-          data: {
-            placeholder: "Тип каменя (сапфір, рубін, жовтий сапфір, ...)",
-            entityType: "GemClasses"
-          }
-        },
-        {
-          path: 'gem-cut',
-          component: NamedEntityEditorComponent,
-          data: {
-            placeholder: "Ограновування каменя (овал, квадрат, ...)",
-            entityType: "GemCuts"
-          }
-        },
-        {
-          path: 'gem-source',
-          component: NamedEntityEditorComponent,
-          data: {
-            placeholder: "Походження каменю (натуральний, вироблений, ...)",
-            entityType: "GemSources"
-          }
-        },
-        { path: '**', redirectTo: 'gemstone' }
-      ]
-    };
-  }
-}
-
 @NgModule({
   imports: [
     CommonModule,

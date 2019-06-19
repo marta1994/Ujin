@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { JewelryModelService } from '../entities-editors/jewelry-model/jewelry-model.service';
 import { MetalEditorService, Metal } from '../entities-editors/metal-editor/metal-editor.service';
-import { GemstoneService, Gemstone } from '../entities-editors/gemstone/gemstone.service';
+import { GemstoneService, Gemstone, GemNamedEntity } from '../entities-editors/gemstone/gemstone.service';
 import { JewelryModel, ModelConfiguration, JewelryModelConfigType } from '../entities-editors/jewelry-model/models';
 import { SelectorOptions, OptionsSource } from '../entities-editors/jewelry-model/model-config-editors/options-editor/options-editor.component';
 import { ApiService } from '../api/api.service';
@@ -39,11 +39,13 @@ export class HomeComponent {
       _jewelryModelService.loadJewelryModels(),
       _metalService.loadMetals(),
       _gemstoneService.loadGemstones(),
-      _appSettings.loadTerms()])
+      _appSettings.loadTerms(),
+      _gemstoneService.loadGemNamedEntities(GemNamedEntity.GemClass)])
       .then(res => {
         this._metals = res[1];
         this._gemstones = res[2];
         this._terms = res[3];
+        this._gemstones.forEach(g => g.gemstoneClass = res[4].find(gc => gc.id === g.gemstoneClassId));
         let promises = res[0].map(r => _jewelryModelService.loadJewelryModel(r.id));
         Promise.all(promises).then(models => {
           this.jewelryModels = models;
@@ -67,7 +69,7 @@ export class HomeComponent {
         break;
       case OptionsSource.Gemstone:
         src = this._gemstones.filter(m => opts.externalSourceIds.indexOf(m.id) >= 0)
-          .map(m => { return { name: m.identifier, value: m.identifier } });
+          .map(m => { return { name: m.gemstoneClass.nameKey, value: m.identifier } });
         break;
       case OptionsSource.Custom:
         src = opts.customOptions.map(m => { return { name: m.nameKey, value: m.identifier } });

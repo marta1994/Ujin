@@ -62,7 +62,9 @@ namespace Ujin.Storage.Dao
         public Task SaveJewelryModel(JewelryModelDto jewelryModel)
         {
             var jm = _mapper.Map<JewelryModel>(jewelryModel);
-            var entities = new List<BaseModel> { jm }.Concat(jm.Configurations);
+            var entities = new List<BaseModel> { jm };
+            if (jm.Id > 0)
+                entities.AddRange(jm.Configurations);
             return _dbContext.UpsertEntities(entities);
         }
 

@@ -81,6 +81,13 @@ namespace Ujin.Storage.Dao
 
         public Task SaveGemstones(List<GemstoneDto> gemstones)
         {
+            foreach(var gem in gemstones)
+            {
+                gem.Color = null;
+                gem.GemstoneClass = null;
+                gem.GemstoneCut = null;
+                gem.GemstoneSource = null;
+            }
             var entities = gemstones.Select(g => _mapper.Map<Gemstone>(g));
             return _dbContext.UpsertEntities(entities);
         }

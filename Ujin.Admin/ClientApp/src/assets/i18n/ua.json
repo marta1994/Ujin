@@ -8,14 +8,21 @@
       "oval": "Овал",
       "round": "Круг",
       "baguette": "Багет",
-      "square": "Квадрат"
+      "square": "Квадрат",
+      "marquise": "Маркіз"
     },
     "gemClass": {
       "zirconium": "Цирконій",
       "sapphire": "Сапфір",
       "emerald": "Смарагд",
       "ruby": "Рубін",
-      "amethyst": "Аметист"
+      "amethyst": "Аметист",
+      "rauchatopas": "Раухтопаз",
+      "citrine": "Цитрин",
+      "garnet": "Гранат",
+      "chrysolite": "Хризоліт",
+      "topaz": "Топаз",
+      "alexandrite": "Александрит"
     }
   },
   "color": {
@@ -23,7 +30,10 @@
       "red": "Червоний",
       "green": "Зелений",
       "violet": "Фіолетовий",
-      "blue": "Синій"
+      "blue": "Синій",
+      "brown": "Коричневий",
+      "yellow": "Жовтий",
+      "lightBlue": "Голубий"
     }
   },
   "metal": {
@@ -39,7 +49,17 @@
   },
   "jewelryModel": {
     "name": {
-      "ovalRing": "Кільце 'Бездонне озеро'"
+      "ovalRing": "Кільце 'Бездонне озеро'",
+      "cloudEarring": "Сережки 'Хмаринка'",
+      "floatEarring": "Сережки 'Поплавок'",
+      "coralEarring": "Сережки 'Корал'",
+      "shellfishEarring": "Сережки 'Мушля'",
+      "whirlwindRing": "Кільце 'Вихор'",
+      "ribbonRing": "Кільце 'Стрічка'",
+      "shapelessRing": "Кільце 'Форма-М'",
+      "flowerRing": "Кільце 'Квітка'",
+      "hedgehogRing": "Кільце 'Їжачок'",
+      "baguetteRing": "Кільце 'Багет'"
     },
     "modelConfig": {
       "name": {
@@ -53,7 +73,11 @@
           "foil": "Фольга",
           "doodles": "Кільця",
           "feather": "Перо",
-          "bubbles": "Бульбашки"
+          "bubbles": "Бульбашки",
+          "accordion": "Гармошка",
+          "facet": "Грані",
+          "window": "Віконця",
+          "sleeves": "Гільзи"
         }
       }
     }

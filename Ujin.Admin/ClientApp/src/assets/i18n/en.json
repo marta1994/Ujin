@@ -8,14 +8,21 @@
       "oval": "Oval",
       "round": "Round",
       "baguette": "Baguette",
-      "square": "Square"
+      "square": "Square",
+      "marquise": "Marquise"
     },
     "gemClass": {
       "zirconium": "Zirconium",
       "sapphire": "Sapphire",
       "emerald": "Emerald",
       "ruby": "Ruby",
-      "amethyst": "Amethyst"
+      "amethyst": "Amethyst",
+      "rauchatopas": "rauchatopas",
+      "citrine": "Citrine",
+      "garnet": "Garnet",
+      "chrysolite": "Chrysolite",
+      "topaz": "Topaz",
+      "alexandrite": "Alexandrite"
     }
   },
   "color": {
@@ -23,7 +30,10 @@
       "red": "Red",
       "green": "Green",
       "violet": "Violet",
-      "blue": "Blue"
+      "blue": "Blue",
+      "brown": "Brown",
+      "yellow": "Yellow",
+      "lightBlue": "Light-blue"
     }
   },
   "metal": {
@@ -39,7 +49,17 @@
   },
   "jewelryModel": {
     "name": {
-      "ovalRing": "Ring 'Deep lake'"
+      "ovalRing": "Ring 'Deep lake'",
+      "cloudEarring": "Earring 'Cloud'",
+      "floatEarring": "Earring 'Float'",
+      "coralEarring": "Earring 'Coral'",
+      "shellfishEarring": "Earring 'Shellfish'",
+      "whirlwindRing": "Ring 'Whirlwind'",
+      "ribbonRing": "Ring 'Ribbon'",
+      "shapelessRing": "Ring 'Shape-M'",
+      "flowerRing": "Ring 'Flower'",
+      "hedgehogRing": "Ring 'Hedgehg'",
+      "baguetteRing": "Ring 'Baguette'"
     },
     "modelConfig": {
       "name": {
@@ -53,7 +73,11 @@
           "foil": "Foil",
           "doodles": "Doodles",
           "feather": "Feather",
-          "bubbles": "Bubbles"
+          "bubbles": "Bubbles",
+          "accordion": "Accordion",
+          "facet": "Facet",
+          "window": "Window",
+          "sleeves": "Sleeves"
         }
       }
     }

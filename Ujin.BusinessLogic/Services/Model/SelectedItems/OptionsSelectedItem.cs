@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
@@ -53,8 +54,8 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
             {
                 case OptionsSource.Metal:
                     var metal = (MetalDto)_value;
-                    if (path == "pricePerGram") return metal.PricePerGram.ToString();
-                    if (path == "gramsPerMl") return metal.GramsPerMl.ToString();
+                    if (path == "pricePerGram") return metal.PricePerGram.ToString(CultureInfo.InvariantCulture);
+                    if (path == "gramsPerMl") return metal.GramsPerMl.ToString(CultureInfo.InvariantCulture);
                     if (path == "identifier") return metal.Identifier;
                     break;
                 case OptionsSource.Gemstone:
@@ -68,7 +69,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
                 case OptionsSource.Custom:
                     var opt = (CustomOption)_value;
                     if (path == "identifier") return opt.Identifier;
-                    if (path == "value") return opt.Value.ToString();
+                    if (path == "value") return opt.Value.ToString(CultureInfo.InvariantCulture);
                     break;
             }
             throw new ApplicationException($"Could not parse option selected item '{path}'");

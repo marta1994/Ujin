@@ -62,7 +62,12 @@
       "baguetteRing": "Ring 'Baguette'",
       "squareRing": "Ring 'Square'",
       "marquiseRing": "Ring 'Marquise'",
-      "roundRing": "Ring 'Round'"
+      "roundRing": "Ring 'Round'",
+      "baguetteEarring": "Earring 'Baguette'",
+      "squareEarring": "Earring 'Square'",
+      "marquiseEarring": "Earring 'Marquise'",
+      "roundEarring": "Earring 'Round'",
+      "ovalEarring": "Earring 'Oval'"
     },
     "modelConfig": {
       "name": {

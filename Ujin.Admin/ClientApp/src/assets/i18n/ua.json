@@ -62,7 +62,12 @@
       "baguetteRing": "Кільце 'Багет'",
       "squareRing": "Кільце 'Квадрат'",
       "marquiseRing": "Кільце 'Маркіз'",
-      "roundRing": "Кільце 'Круг'"
+      "roundRing": "Кільце 'Круг'",
+      "baguetteEarring": "Сережки 'Багет'",
+      "squareEarring": "Сережки 'Квадрат'",
+      "marquiseEarring": "Сережки 'Маркіз'",
+      "roundEarring": "Сережки 'Круг'",
+      "ovalEarring": "Сережки 'Овал'"
     },
     "modelConfig": {
       "name": {

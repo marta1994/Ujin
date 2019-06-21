@@ -80,6 +80,7 @@ export class HomeComponent {
 
   public calcPrice() {
     if (!this.selectedJewelryModel) return;
+    this.price = null;
     let sku = this.selectedJewelryModel.identifier;
     this.selectedJewelryModel.configurations.forEach(c =>
       sku += this._terms.skuSeparator + (<any>c).value);

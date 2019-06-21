@@ -21,5 +21,5 @@
     </div>
   </div>
   <button class="button" (click)="calcPrice()">Завантажити вартість</button>
-  <h2 *ngIf="price">Ціна: {{price}} грн</h2>
+  <h2 *ngIf="price">Ціна: {{price ? price : 'Завантажується...'}} грн</h2>
 </div>

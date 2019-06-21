@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.Admin;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
@@ -14,6 +15,12 @@ namespace Ujin.Storage.AutoMapperProfiles
         {
             CreateMap<AdminUser, AdminUserDto>();
             CreateMap<AdminUserDto, AdminUser>();
+
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+            CreateMap<Order, OrderDto>();
+            CreateMap<OrderDto, Order>();
+
             CreateMap<GemstoneSource, GemSourceDto>();
             CreateMap<GemSourceDto, GemstoneSource>();
             CreateMap<GemstoneClass, GemClassDto>();

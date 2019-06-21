@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Ujin.BusinessLogic.Services.Admin;
 using Ujin.BusinessLogic.Services.Model;
+using Ujin.BusinessLogic.Services.Order;
 using Ujin.BusinessLogic.Services.Price;
 using Ujin.Domain;
 using Ujin.Interfaces;
@@ -58,6 +59,7 @@ namespace Ujin.Admin
 
             services.AddSingleton(appSettings);
             services.AddScoped<IAdminUserService, AdminUserService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IGemstoneService, GemstoneService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IMetalService, MetalService>();

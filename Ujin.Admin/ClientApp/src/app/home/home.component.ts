@@ -28,6 +28,8 @@ export class HomeComponent {
 
   public price: number;
 
+  public orderData: OrderData = new OrderData();
+
   constructor(
     private _api: ApiService,
     _jewelryModelService: JewelryModelService,
@@ -79,7 +81,14 @@ export class HomeComponent {
   }
 
   public calcPrice() {
-    if (!this.selectedJewelryModel) return;
+    if (!this.selectedJewelryModel) {
+      alert("Виберіть модель!");
+      return;
+    }
+    if (this.selectedJewelryModel.configurations.find(c => (<any>c).value == null) != null) {
+      alert("Заповніть всі конфігурації!");
+      return;
+    }
     this.price = null;
     let sku = this.selectedJewelryModel.identifier;
     this.selectedJewelryModel.configurations.forEach(c =>
@@ -87,4 +96,49 @@ export class HomeComponent {
     this._api.loadData<number>(`/api/price/price/?sku=${sku}`)
       .then(res => this.price = res);
   }
+
+  public createOrder() {
+    if (!this.selectedJewelryModel) {
+      alert("Виберіть модель!");
+      return;
+    }
+    if (this.selectedJewelryModel.configurations.find(c => (<any>c).value == null) != null) {
+      alert("Заповніть всі конфігурації!");
+      return;
+    }
+    if (!this.orderData.price || this.orderData.advance == null
+      || !this.orderData.user.email || !this.orderData.user.phone || !this.orderData.user.name
+      || !this.orderData.user.surname) {
+      alert("Заповніть всі дані про покупця, а також вартість і розмір авансу!");
+      return;
+    }
+
+    let sku = this.selectedJewelryModel.identifier;
+    this.selectedJewelryModel.configurations.forEach(c =>
+      sku += this._terms.skuSeparator + (<any>c).value);
+
+    this.orderData.sku = sku;
+    this._api.postData(`/api/Order/CreateOrder`, this.orderData)
+      .then(res => alert("Замовлення успішно створено"))
+      .catch(err => alert("Помилка при створенні замовлення"));
+  }
+}
+
+class OrderData {
+
+  constructor() {
+    this.user = new User();
+  }
+
+  user: User;
+  sku: string;
+  price: number;
+  advance: number;
+}
+
+class User {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
 }

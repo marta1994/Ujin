@@ -18,6 +18,8 @@ namespace Ujin.Storage
 
         internal DbSet<User> Users { get; set; }
 
+        internal DbSet<Order> Orders { get; set; }
+
         internal DbSet<AdminUser> AdminUsers { get; set; }
 
         internal DbSet<Color> Colors { get; set; }
@@ -88,6 +90,12 @@ namespace Ujin.Storage
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany()
+                .HasForeignKey(g => g.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<AdminUser>()
                 .HasIndex(u => u.Username)
                 .IsUnique();

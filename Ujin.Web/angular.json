@@ -3,12 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AspnetCore-Angular-Universal": {
+    "Ujin": {
       "root": "",
       "sourceRoot": "ClientApp",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "./ClientApp/app/styles"
+        ]
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -19,7 +24,7 @@
             "tsConfig": "ClientApp/tsconfig.app.json",
             "assets": [],
             "styles": [
-              "ClientApp/app/_styles.less"
+              "ClientApp/app/styles/_styles.less"
             ],
             "scripts": []
           },
@@ -46,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AspnetCore-Angular-Universal:build"
+            "browserTarget": "Ujin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AspnetCore-Angular-Universal:build:production"
+              "browserTarget": "Ujin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AspnetCore-Angular-Universal:build"
+            "browserTarget": "Ujin:build"
           }
         },
         "test": {
@@ -67,9 +72,9 @@
             "polyfills": "ClientApp/polyfills.ts",
             "tsConfig": "ClientApp/tsconfig.spec.json",
             "karmaConfig": "ClientApp/karma.conf.js",
-            "styles": ["ClientApp/styles.css"],
+            "styles": [ "ClientApp/styles.css" ],
             "scripts": [],
-            "assets": ["ClientApp/favicon.ico", "ClientApp/assets"]
+            "assets": [ "ClientApp/favicon.ico", "ClientApp/assets" ]
           }
         },
         "lint": {
@@ -79,12 +84,12 @@
               "ClientApp/tsconfig.app.json",
               "ClientApp/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [ "**/node_modules/**" ]
           }
         }
       }
     },
-    "AspnetCore-Angular-Universal-e2e": {
+    "Ujin-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -92,7 +97,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AspnetCore-Angular-Universal:serve"
+            "devServerTarget": "Ujin:serve"
           }
         },
         "lint": {
@@ -105,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "AspnetCore-Angular-Universal"
+  "defaultProject": "Ujin"
 }

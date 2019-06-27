@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,13 +8,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
+using Ujin.BusinessLogic.Services;
 using Ujin.BusinessLogic.Services.Admin;
+using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.BusinessLogic.Services.Order;
 using Ujin.BusinessLogic.Services.Price;
 using Ujin.Domain;
 using Ujin.Interfaces;
+using Ujin.Interfaces.Cache;
 using Ujin.Storage;
 
 namespace Ujin.Admin
@@ -54,6 +59,8 @@ namespace Ujin.Admin
 
             StorageRegistrator.RegisterStorage(services, Configuration);
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
 
@@ -63,6 +70,8 @@ namespace Ujin.Admin
             services.AddScoped<IGemstoneService, GemstoneService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IMetalService, MetalService>();
+            services.AddScoped<ICache, Cache>();
+            services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
             services.AddScoped<ModelParser>();

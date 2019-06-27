@@ -27,6 +27,8 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
             }
         }
 
+        public abstract string SkuValue { get; }
+
         public abstract JewelryModelConfigType ConfigType { get; }
 
         public abstract string GetStrValueByPath(string path);

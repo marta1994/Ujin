@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" /> 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
@@ -22,6 +23,8 @@
 
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\model\model-routing.module.ts" />
+    <None Remove="ClientApp\app\model\models.ts" />
     <None Remove="yarn.lock" />
     <Content Remove="wwwroot\dist\**" />
     <None Remove="ClientApp\dist\**" />
@@ -32,7 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ujin.BusinessLogic\Ujin.BusinessLogic.csproj" />
+    <ProjectReference Include="..\Ujin.Domain\Ujin.Domain.csproj" />
+    <ProjectReference Include="..\Ujin.Interfaces\Ujin.Interfaces.csproj" />
     <ProjectReference Include="..\Ujin.Storage\Ujin.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\model\model-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\model\models.ts" />
   </ItemGroup>
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->

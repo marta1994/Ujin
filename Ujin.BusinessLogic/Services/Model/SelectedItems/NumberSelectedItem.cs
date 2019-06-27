@@ -19,6 +19,8 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
             return dblVal;
         }
 
+        public override string SkuValue => _value.ToString();
+
         public override JewelryModelConfigType ConfigType => JewelryModelConfigType.Number;
 
         public override string GetStrValueByPath(string path)

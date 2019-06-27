@@ -15,7 +15,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         private readonly List<GemstoneDto> _availableGemstones;
 
         public OptionsSelectedItem(
-            string value, 
+            string value,
             SelectorOptions options,
             List<MetalDto> availableMetals,
             List<GemstoneDto> availableGemstones) : base()
@@ -29,7 +29,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         protected override object ParseValue(string val)
         {
             object result = null;
-            switch(_options.OptionsSource)
+            switch (_options.OptionsSource)
             {
                 case OptionsSource.Metal:
                     result = _availableMetals.SingleOrDefault(m => m.Identifier == val);
@@ -47,6 +47,26 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         }
 
         public override JewelryModelConfigType ConfigType => JewelryModelConfigType.Options;
+
+        public override string SkuValue
+        {
+            get
+            {
+                switch (_options.OptionsSource)
+                {
+                    case OptionsSource.Metal:
+                        var metal = (MetalDto)_value;
+                        return metal.Identifier;
+                    case OptionsSource.Gemstone:
+                        var gem = (GemstoneDto)_value;
+                        return gem.Identifier;
+                    case OptionsSource.Custom:
+                        var opt = (CustomOption)_value;
+                        return opt.Identifier;
+                }
+                return null;
+            }
+        }
 
         public override string GetStrValueByPath(string path)
         {

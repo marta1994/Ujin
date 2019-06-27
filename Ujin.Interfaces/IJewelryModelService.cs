@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ujin.Domain.Dtos.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig.Parsed;
 
 namespace Ujin.Interfaces
 {
@@ -13,5 +14,9 @@ namespace Ujin.Interfaces
         Task SaveJewelryModel(JewelryModelDto jewelryModel);
 
         Task SetEnabledState(int modelId, bool enabled);
+
+        Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier);
+
+        Task<List<string>> GetOrderedValues(string sku, string identifier);
     }
 }

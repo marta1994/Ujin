@@ -12,8 +12,6 @@ namespace Ujin.Storage
     {
         public static void RegisterStorage(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
             services.AddDbContext<UjinContext>(
                 options => options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),

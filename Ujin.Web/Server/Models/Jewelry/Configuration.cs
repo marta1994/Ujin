@@ -1,18 +1,17 @@
-﻿using Ujin.Domain.Enums;
+﻿using Ujin.Domain.Dtos.ModelConfig.Parsed;
+using Ujin.Domain.Enums;
 
-namespace Ujin.Domain.Dtos.ModelConfig.Parsed
+namespace Ujin.Web.Server.Models.Jewelry
 {
-    public class ParsedModelConfig
+    public class Configuration
     {
-        public int Id { get; set; }
-
         public string NameKey { get; set; }
 
         public string Identifier { get; set; }
 
         public int Order { get; set; }
 
-        public int JewelryModelId { get; set; }
+        public string Value { get; set; }
 
         public JewelryModelConfigType ConfigurationType { get; set; }
 

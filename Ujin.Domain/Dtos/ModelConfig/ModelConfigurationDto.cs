@@ -10,6 +10,8 @@ namespace Ujin.Domain.Dtos.ModelConfig
 
         public string Identifier { get; set; }
 
+        public int Order { get; set; }
+
         public int JewelryModelId { get; set; }
 
         public JewelryModelConfigType ConfigurationType { get; set; }

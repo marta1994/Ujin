@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,8 +7,16 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Swashbuckle.AspNetCore.Swagger;
+using Ujin.BusinessLogic.Services;
+using Ujin.BusinessLogic.Services.Cache;
+using Ujin.BusinessLogic.Services.Model;
+using Ujin.BusinessLogic.Services.Price;
+using Ujin.Domain;
+using Ujin.Interfaces;
+using Ujin.Interfaces.Cache;
 using Ujin.Storage;
 using WebEssentials.AspNetCore.Pwa;
 
@@ -36,6 +45,19 @@ namespace AspCoreServer {
 
             StorageRegistrator.RegisterStorage(services, Configuration);
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMemoryCache();
+
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+
+            services.AddSingleton(appSettings);
+            services.AddScoped<ICache, Cache>();
+            services.AddScoped<IPriceCache, PriceCache>();
+            services.AddScoped<IParsedModelCache, ParsedModelCache>();
+            services.AddScoped<IJewelryModelService, JewelryModelService>();
+            services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
+            services.AddScoped<ModelParser>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen (c => {

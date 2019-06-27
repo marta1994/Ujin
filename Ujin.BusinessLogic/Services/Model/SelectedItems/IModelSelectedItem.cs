@@ -8,6 +8,8 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 
         string GetStrValueByPath(string path);
 
+        string SkuValue { get; }
+
         JewelryModelConfigType ConfigType { get; }
     }
 }

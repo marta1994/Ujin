@@ -38,6 +38,8 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public string Identifier => _modelConfig.Identifier;
 
+        public int Order => _modelConfig.Order;
+
         public JewelryModelConfigType ConfigType => _modelConfig.ConfigurationType;
 
         public IModelSelectedItem SelectedItem { get; set; }

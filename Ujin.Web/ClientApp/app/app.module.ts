@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AccordionModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
+import { ModelModule } from './model/model.module';
 
 export function createTranslateLoader(http: HttpClient, baseHref) {
   // Temporary Azure hack
@@ -25,42 +26,42 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule.withServerTransition({
-      appId: 'my-app-id' // make sure this matches with your Server NgModule
-    }),
-    HttpClientModule,
-    TransferHttpCacheModule,
-    BrowserTransferStateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AccordionModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        CommonModule,
+        BrowserModule.withServerTransition({
+            appId: 'my-app-id' // make sure this matches with your Server NgModule
+        }),
+        HttpClientModule,
+        TransferHttpCacheModule,
+        BrowserTransferStateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AccordionModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
+        ModelModule,
+        // i18n support
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient, [ORIGIN_URL]]
+            }
+        }),
 
-    // i18n support
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient, [ORIGIN_URL]]
-      }
-    }),
-
-    // App Routing
-    RouterModule.forRoot(
-      [],
-      {
-        // Router options
-        useHash: false,
-        preloadingStrategy: PreloadAllModules,
-        initialNavigation: 'enabled'
-      }
-    )
-  ],
-  providers: [TranslateModule],
-  bootstrap: [AppComponent]
+        // App Routing
+        RouterModule.forRoot(
+            [],
+            {
+                // Router options
+                useHash: false,
+                preloadingStrategy: PreloadAllModules,
+                initialNavigation: 'enabled'
+            }
+        )
+    ],
+    providers: [TranslateModule],
+    bootstrap: [AppComponent]
 })
 export class AppModuleShared {}

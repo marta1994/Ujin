@@ -25,10 +25,6 @@
     <span class="value">{{jewelryModel.nameKey | translate}}</span>
   </div>
   <div class="name-value">
-    <span class="label">Базова ціна</span>
-    <input class="value number-input" [(ngModel)]="jewelryModel.basePrice" type="number" min="0" />
-  </div>
-  <div class="name-value">
     <span class="label">Шаблон назви зображень</span>
     <app-images-editor [jewelryModel]="jewelryModel"></app-images-editor>
   </div>

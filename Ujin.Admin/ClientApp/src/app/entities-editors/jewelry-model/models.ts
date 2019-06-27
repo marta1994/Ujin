@@ -2,7 +2,6 @@ export interface IJewelryModel {
   id: number;
   nameKey: string;
   identifier: string;
-  basePrice: number;
   imagesPattern: string;
   priceExpression: string;
   modelState: JewelryModelState;
@@ -15,7 +14,6 @@ export class JewelryModel implements IJewelryModel {
     this.nameKey = jewelryModel.nameKey;
     this.id = jewelryModel.id;
     this.identifier = jewelryModel.identifier;
-    this.basePrice = jewelryModel.basePrice;
     this.imagesPattern = jewelryModel.imagesPattern;
     this.priceExpression = jewelryModel.priceExpression;
     this.modelState = jewelryModel.modelState;
@@ -25,7 +23,6 @@ export class JewelryModel implements IJewelryModel {
   public id: number;
   public nameKey: string;
   public identifier: string;
-  public basePrice: number;
   public imagesPattern: string;
   public priceExpression: string;
   public modelState: JewelryModelState;
@@ -40,6 +37,7 @@ export interface IModelConfiguration {
   id: number;
   nameKey: string;
   identifier: string;
+  order: number;
   jewelryModelId: number;
   configurationType: JewelryModelConfigType;
   configurationOptions: string;
@@ -50,6 +48,7 @@ export class ModelConfiguration implements IModelConfiguration {
     this.nameKey = modelConfig.nameKey;
     this.id = modelConfig.id;
     this.identifier = modelConfig.identifier;
+    this.order = modelConfig.order;
     this.jewelryModelId = modelConfig.jewelryModelId;
     this.configurationType = modelConfig.configurationType;
     this.configurationOptions = modelConfig.configurationOptions;
@@ -59,6 +58,7 @@ export class ModelConfiguration implements IModelConfiguration {
 
   public id: number;
   public nameKey: string;
+  public order: number;
   public identifier: string;
   public jewelryModelId: number;
   public configurationType: JewelryModelConfigType;

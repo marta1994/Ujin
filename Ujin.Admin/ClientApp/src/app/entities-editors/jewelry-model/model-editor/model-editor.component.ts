@@ -43,7 +43,6 @@ export class ModelEditorComponent implements OnInit {
         id: -1,
         nameKey: "jewelryModel.name.NEW_NAME",
         identifier: "ID",
-        basePrice: 0,
         imagesPattern: "[]",
         priceExpression: "0",
         modelState: JewelryModelState.BuildingState,
@@ -59,7 +58,7 @@ export class ModelEditorComponent implements OnInit {
 
   public get priceHintSource(): IHintSource[] {
     if (this._priceHintSource == null) {
-      this._priceHintSource = [<IHintSource>{ name: "model", children: [{ name: "basePrice" }] }].concat(
+      this._priceHintSource = 
       this._priceHintSource = this.jewelryModel.configurations.map(cfg => {
         switch (cfg.configurationType) {
           case JewelryModelConfigType.Number:
@@ -69,7 +68,7 @@ export class ModelEditorComponent implements OnInit {
           }
           default: return null;
         }
-      }));
+      });
     }
     return this._priceHintSource;
   }
@@ -186,6 +185,7 @@ export class ModelEditorComponent implements OnInit {
   }
 
   public saveModel() {
+    this.jewelryModel.configurations.forEach((v, i) => v.order = i + 1);
     this._jewelryModelService.saveJewelryModel(this.jewelryModel)
       .then(() => {
         if (this.jewelryModel.id <= 0) {
@@ -203,6 +203,7 @@ export class ModelEditorComponent implements OnInit {
       id: -1,
       nameKey: "jewelryModel.modelConfig.name.NEW_NAME",
       identifier: "CONFIG_ID",
+      order: this.jewelryModel.configurations.length + 1,
       configurationType: null,
       jewelryModelId: this.jewelryModel.id,
       configurationOptions: ""

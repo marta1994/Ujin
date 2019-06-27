@@ -49,13 +49,6 @@ export class JewelryModelsComponent implements OnInit {
           isOrderable: true
         },
         {
-          columnNameKey: "Базова ціна",
-          isEditable: false,
-          displayPropertyName: "basePrice",
-          isTranslated: false,
-          isOrderable: true
-        },
-        {
           columnNameKey: "Стан моделі",
           isEditable: false,
           displayPropertyName: "modelStateNameKey",

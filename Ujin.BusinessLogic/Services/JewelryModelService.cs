@@ -1,20 +1,46 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ujin.BusinessLogic.Services.Model;
 using Ujin.Domain.Dtos.ModelConfig;
+using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Interfaces;
+using Ujin.Interfaces.Cache;
 using Ujin.Interfaces.Dao;
 
-namespace Ujin.BusinessLogic.Services.Admin
+namespace Ujin.BusinessLogic.Services
 {
     public class JewelryModelService : IJewelryModelService
     {
         private readonly IJewelryModelDao _jewelryModelDao;
 
-        public JewelryModelService(IJewelryModelDao jewelryModelDao)
+        private readonly IParsedModelCache _parsedModelCache;
+
+        private readonly ModelParser _modelParser;
+
+        public JewelryModelService(
+            IJewelryModelDao jewelryModelDao,
+            IParsedModelCache parsedModelCache,
+            ModelParser modelParser)
         {
             _jewelryModelDao = jewelryModelDao;
+            _parsedModelCache = parsedModelCache;
+            _modelParser = modelParser;
+        }
+
+        public Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
+        {
+            return _parsedModelCache.GetParsedModelById(identifier);
+        }
+
+        public async Task<List<string>> GetOrderedValues(string sku, string identifier)
+        {
+            var confModel = await _modelParser.ParseFromSku(sku);
+            if (confModel.Identifier != identifier)
+                throw new ApplicationException($"Could not parse sku '{sku}' for model '{identifier}'");
+            return confModel.Configs.OrderBy(c => c.Order)
+                .Select(c => c.SelectedItem.SkuValue).ToList();
         }
 
         public Task<JewelryModelDto> LoadJewelryModelById(int id)
@@ -29,11 +55,6 @@ namespace Ujin.BusinessLogic.Services.Admin
 
         public async Task SaveJewelryModel(JewelryModelDto jewelryModel)
         {
-            var isPriceIncorrect = jewelryModel.BasePrice < 0;
-            if (isPriceIncorrect)
-                throw new ApplicationException(
-                    "Incorrect value for property 'BasePrice': it should be greater than 0.");
-
             var allModelConfigs = jewelryModel.Configurations.ToList();
             if (jewelryModel.Id > 0)
             {

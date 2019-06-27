@@ -8,6 +8,8 @@ namespace Ujin.Storage.Models.ModelConfig
         [Required]
         public string Identifier { get; set; }
 
+        public int Order { get; set; }
+
         public int JewelryModelId { get; set; }
 
         public virtual JewelryModel JewelryModel { get; set; }

@@ -25,7 +25,7 @@ namespace Ujin.BusinessLogic.Services.Model
             if (configIds.Count != _model.Configurations.Count)
                 throw new ApplicationException(
                     $"Could not parse model configuration values of configIDs '{string.Join(_expressionTerms.SkuSeparator, configIds)}'. Actual model config number: {model.Configurations.Count}!");
-            model.Configurations = model.Configurations.OrderBy(c => c.Id).ToList();
+            model.Configurations = model.Configurations.OrderBy(c => c.Order).ToList();
             Configs = new List<SpecificModelConfig>();
             for(var i = 0; i < model.Configurations.Count; ++i)
             {
@@ -40,8 +40,6 @@ namespace Ujin.BusinessLogic.Services.Model
         public List<SpecificModelConfig> Configs { get; set; }
 
         public string ImagesPattern => _model.ImagesPattern;
-
-        public double BasePrice => _model.BasePrice;
 
         public string PriceExpression => _model.PriceExpression;
 

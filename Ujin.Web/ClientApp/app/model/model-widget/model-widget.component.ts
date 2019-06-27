@@ -6,7 +6,7 @@ import { JewelryModel } from '../models';
 @Component({
     selector: 'app-model-widget',
     templateUrl: './model-widget.component.html',
-    styleUrls: ['./model-widget.component.css']
+    styleUrls: ['./model-widget.component.less']
 })
 export class ModelWidgetComponent implements OnInit {
 

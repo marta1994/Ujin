@@ -20,10 +20,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // This will go at the END of your title for example "Home - Angular Universal..." <-- after the dash (-)
-  private endPageTitle: string = 'Angular Universal and ASP.NET Core Starter';
-  // If no Title is provided, we'll use a default one before the dash(-)
-  private defaultPageTitle: string = 'My App';
+  private defaultPageTitle: string = 'Ujin jewelry';
 
   private routerSub$: Subscription;
   private request;
@@ -36,19 +33,10 @@ export class AppComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private injector: Injector
   ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
-
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
 
     this.request = this.injector.get(REQUEST);
-
-    console.log(`What's our REQUEST Object look like?`);
-    console.log(
-      `The Request object only really exists on the Server, but on the Browser we can at least see Cookies`
-    );
-    console.log(this.request);
   }
 
   ngOnInit() {
@@ -82,8 +70,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private _setMetaAndLinks(event) {
     // Set Title if available, otherwise leave the default Title
     const title = event['title']
-      ? `${event['title']} - ${this.endPageTitle}`
-      : `${this.defaultPageTitle} - ${this.endPageTitle}`;
+      ? event['title']
+      : this.defaultPageTitle;
 
     this.title.setTitle(title);
 

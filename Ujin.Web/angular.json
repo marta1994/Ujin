@@ -23,9 +23,7 @@
             "polyfills": "ClientApp/polyfills/polyfills.ts",
             "tsConfig": "ClientApp/tsconfig.app.json",
             "assets": [],
-            "styles": [
-              "ClientApp/app/styles/_styles.less"
-            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {

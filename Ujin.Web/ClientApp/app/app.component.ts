@@ -14,72 +14,81 @@ import { Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.less'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private defaultPageTitle: string = 'Ujin jewelry';
+    private defaultPageTitle: string = 'Ujin jewelry';
 
-  private routerSub$: Subscription;
-  private request;
+    private routerSub$: Subscription;
+    private request;
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta,
-    public translate: TranslateService,
-    private injector: Injector
-  ) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private title: Title,
+        private meta: Meta,
+        private translate: TranslateService,
+        private injector: Injector
+    ) {
+        translate.setDefaultLang('en');
+        translate.use('en');
 
-    this.request = this.injector.get(REQUEST);
-  }
-
-  ngOnInit() {
-    // Change "Title" on every navigationEnd event
-    // Titles come from the data.title property on all Routes (see app.routes.ts)
-    this._changeTitleOnNavigation();
-  }
-
-  ngOnDestroy() {
-    // Subscription clean-up
-    this.routerSub$.unsubscribe();
-  }
-
-  private _changeTitleOnNavigation() {
-    this.routerSub$ = this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        map(() => this.activatedRoute),
-        map(route => {
-          while (route.firstChild) route = route.firstChild;
-          return route;
-        }),
-        filter(route => route.outlet === 'primary'),
-        mergeMap(route => route.data)
-      )
-      .subscribe(event => {
-        this._setMetaAndLinks(event);
-      });
-  }
-
-  private _setMetaAndLinks(event) {
-    // Set Title if available, otherwise leave the default Title
-    const title = event['title']
-      ? event['title']
-      : this.defaultPageTitle;
-
-    this.title.setTitle(title);
-
-    const metaData = event['meta'] || [];
-    const linksData = event['links'] || [];
-
-    for (let i = 0; i < metaData.length; i++) {
-      this.meta.updateTag(metaData[i]);
+        this.request = this.injector.get(REQUEST);
     }
-  }
+
+    ngOnInit() {
+        this._changeTitleOnNavigation();
+        this.activatedRoute.params.subscribe(routeParams => {
+            this.setLang(routeParams.lang);
+        });
+    }
+
+    ngOnDestroy() {
+        // Subscription clean-up
+        this.routerSub$.unsubscribe();
+    }
+
+    private setLang(lang: string) {
+        if (this.translate.langs.indexOf(lang) < 0) {
+            this.translate.use(this.translate.defaultLang);
+            return;
+        }
+        this.translate.use(lang);
+    }
+
+    private _changeTitleOnNavigation() {
+        this.routerSub$ = this.router.events
+            .pipe(
+                filter(event => event instanceof NavigationEnd),
+                map(() => this.activatedRoute),
+                map(route => {
+                    while (route.firstChild) route = route.firstChild;
+                    return route;
+                }),
+                filter(route => route.outlet === 'primary'),
+                mergeMap(route => route.data)
+            )
+            .subscribe(event => {
+                this._setMetaAndLinks(event);
+            });
+    }
+
+    private _setMetaAndLinks(event) {
+        // Set Title if available, otherwise leave the default Title
+        const title = event['title']
+            ? event['title']
+            : this.defaultPageTitle;
+
+        this.title.setTitle(title);
+
+        const metaData = event['meta'] || [];
+        const linksData = event['links'] || [];
+
+        for (let i = 0; i < metaData.length; i++) {
+            this.meta.updateTag(metaData[i]);
+        }
+    }
 }

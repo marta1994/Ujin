@@ -11,7 +11,8 @@ export class ModelService {
 
     public loadModel(identifier: string, sku?: string): Promise<JewelryModel> {
         return new Promise((resolve, reject) =>
-            this._api.loadData<JewelryModel>(`api/JewelryModel/LoadModelByIdentifier/?identifier=${identifier}&sku=${sku}`)
+            this._api.loadData<JewelryModel>(
+                `api/JewelryModel/LoadModelByIdentifier/?identifier=${identifier}&sku=${sku}`)
                 .then(
                     m => resolve(new JewelryModel(m)),
                     err => reject(err)));

@@ -6,14 +6,13 @@ import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
-import { PreloadAllModules, RouterModule } from '@angular/router';
 import { ORIGIN_URL } from '@nguniversal/aspnetcore-engine/tokens';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 // i18n support
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AccordionModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { ModelModule } from './model/model.module';
 
 export function createTranslateLoader(http: HttpClient, baseHref) {
@@ -39,27 +38,15 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
         BrowserTransferStateModule,
         FormsModule,
         ReactiveFormsModule,
-        AccordionModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
         ModelModule,
-        // i18n support
+        AppRoutingModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
                 deps: [HttpClient, [ORIGIN_URL]]
             }
-        }),
-
-        // App Routing
-        RouterModule.forRoot(
-            [],
-            {
-                // Router options
-                useHash: false,
-                preloadingStrategy: PreloadAllModules,
-                initialNavigation: 'enabled'
-            }
-        )
+        })
     ],
     providers: [TranslateModule],
     bootstrap: [AppComponent]

@@ -15,7 +15,7 @@ export class ModelWidgetComponent implements OnInit {
     constructor(
         private _modelService: ModelService,
         private _activatedRoute: ActivatedRoute) {
-        let sku = this._activatedRoute.snapshot.params['sku'];
+        let sku = this._activatedRoute.snapshot.queryParamMap.get('sku');
         let identifier = this._activatedRoute.snapshot.params['id'];
         _modelService.loadModel(identifier, sku).then(model => this.model = model);
     }

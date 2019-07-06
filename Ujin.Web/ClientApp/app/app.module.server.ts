@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerModule } from '@angular/platform-server';
 import { PrebootModule } from 'preboot';
-import { AppComponent } from './app.component';
+import { AppComponent } from './core/app/app.component';
 import { AppModuleShared } from './app.module';
 
 import { TransferHttpCacheModule } from '@nguniversal/common';

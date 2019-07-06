@@ -8,8 +8,6 @@ import {
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { REQUEST } from '@nguniversal/aspnetcore-engine/tokens';
-// i18n support
-import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
@@ -30,33 +28,18 @@ export class AppComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private title: Title,
         private meta: Meta,
-        private translate: TranslateService,
         private injector: Injector
     ) {
-        translate.setDefaultLang('en');
-        translate.use('en');
-
         this.request = this.injector.get(REQUEST);
     }
 
     ngOnInit() {
         this._changeTitleOnNavigation();
-        this.activatedRoute.params.subscribe(routeParams => {
-            this.setLang(routeParams.lang);
-        });
     }
 
     ngOnDestroy() {
         // Subscription clean-up
         this.routerSub$.unsubscribe();
-    }
-
-    private setLang(lang: string) {
-        if (this.translate.langs.indexOf(lang) < 0) {
-            this.translate.use(this.translate.defaultLang);
-            return;
-        }
-        this.translate.use(lang);
     }
 
     private _changeTitleOnNavigation() {

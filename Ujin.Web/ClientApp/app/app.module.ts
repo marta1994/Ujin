@@ -8,12 +8,13 @@ import {
 } from '@angular/platform-browser';
 import { ORIGIN_URL } from '@nguniversal/aspnetcore-engine/tokens';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-// i18n support
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppComponent } from './app.component';
+import { LangService } from './core/lang/lang.service';
+import { AppComponent } from './core/app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ModelModule } from './model/model.module';
+import { LangComponent } from './core/lang/lang.component';
 
 export function createTranslateLoader(http: HttpClient, baseHref) {
   // Temporary Azure hack
@@ -26,7 +27,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LangComponent
     ],
     imports: [
         CommonModule,
@@ -48,7 +50,10 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
             }
         })
     ],
-    providers: [TranslateModule],
+    providers: [
+        TranslateModule,
+        LangService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModuleShared {}

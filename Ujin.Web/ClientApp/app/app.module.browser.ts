@@ -2,7 +2,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ORIGIN_URL, REQUEST } from '@nguniversal/aspnetcore-engine/tokens';
 import { PrebootModule } from 'preboot';
-import { AppComponent } from './app.component';
+import { AppComponent } from './core/app/app.component';
 import { AppModuleShared } from './app.module';
 
 export function getOriginUrl() {

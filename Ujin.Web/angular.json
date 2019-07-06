@@ -8,11 +8,7 @@
       "sourceRoot": "ClientApp",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
-      "stylePreprocessorOptions": {
-        "includePaths": [
-          "./ClientApp/app/styles"
-        ]
+      "schematics": {
       },
       "architect": {
         "build": {

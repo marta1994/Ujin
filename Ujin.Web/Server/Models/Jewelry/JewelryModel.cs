@@ -8,6 +8,8 @@ namespace Ujin.Web.Server.Models.Jewelry
 
         public string Identifier { get; set; }
 
+        public int ImagesCount { get; set; }
+
         public virtual List<Configuration> Configurations { get; set; }
     }
 }

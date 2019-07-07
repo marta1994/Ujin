@@ -57,7 +57,9 @@ namespace AspCoreServer {
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
+            services.AddScoped<IModelImageService, ModelImageService>();
             services.AddScoped<ModelParser>();
+            services.AddScoped<VariablesEvaluator>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen (c => {

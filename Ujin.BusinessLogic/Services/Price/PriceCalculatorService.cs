@@ -1,31 +1,29 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Ujin.BusinessLogic.Services.Model;
-using Ujin.Domain;
 using Ujin.Interfaces;
 
 namespace Ujin.BusinessLogic.Services.Price
 {
     public class PriceCalculatorService : IPriceCalculatorService
     {
-        private readonly ModelParser _modelParser;
+        private readonly VariablesEvaluator _variablesEvaluator;
 
-        private readonly ExpressionTerms _expressionTerms;
+        private readonly ModelParser _modelParser;
 
         public PriceCalculatorService(
             ModelParser modelParser,
-            AppSettings appSettings)
+            VariablesEvaluator variablesEvaluator)
         {
             _modelParser = modelParser;
-            _expressionTerms = appSettings.ExpressionTerms;
+            _variablesEvaluator = variablesEvaluator;
         }
 
         public async Task<decimal> CalculatePrice(string sku)
         {
             var model = await _modelParser.ParseFromSku(sku);
-            var evaluatedExpression = GetEvaluatedPriceExpression(model);
+            var evaluatedExpression = _variablesEvaluator.EvaluateExpression(model.PriceExpression, model);
             return await CalcPriceFromExpression(evaluatedExpression);
         }
 
@@ -46,28 +44,6 @@ namespace Ujin.BusinessLogic.Services.Price
             {
                 throw new ApplicationException($"Could not evaluate expression '{expression}'");
             }
-        }
-
-        private string GetEvaluatedPriceExpression(ConfiguredModel model)
-        {
-            CheckBraces(model.PriceExpression);
-            var splitted = model.PriceExpression.Split(_expressionTerms.ExprOpen, _expressionTerms.ExprClose);
-            var evaluated = splitted.Select((str, i) => i % 2 == 0 ? str : model.GetStrValueByPath(str));
-            return string.Join("", evaluated);
-        }
-
-        private void CheckBraces(string expression)
-        {
-            int brNum = 0;
-            for (var i = 0; i < expression.Length; ++i)
-            {
-                if (expression[i] == _expressionTerms.ExprOpen) brNum++;
-                if (expression[i] == _expressionTerms.ExprClose) brNum--;
-                if (brNum < 0 || brNum > 1)
-                    throw new ApplicationException($"Invalid expression '{expression}'!");
-            }
-            if (brNum != 0)
-                throw new ApplicationException($"Invalid expression '{expression}'!");
         }
     }
 }

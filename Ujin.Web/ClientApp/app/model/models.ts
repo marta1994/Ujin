@@ -2,12 +2,18 @@
     constructor(model: any) {
         this.identifier = model.identifier;
         this.nameKey = model.nameKey;
+        this.imagesCount = model.imagesCount;
         this.configurations = model.configurations.map(cfg => Configuration.Create(cfg));
     }
 
     public identifier: string;
     public nameKey: string;
+    public imagesCount: number;
     public configurations: Configuration[];
+
+    public get sku(): string {
+        return this.identifier + "_" + this.configurations.sort(c => c.order).map(c => c.value).join("_");
+    }
 }
 
 export abstract class Configuration {
@@ -17,7 +23,7 @@ export abstract class Configuration {
         this.order = config.order;
         this.nameKey = config.nameKey;
         this.configurationType = config.configurationType;
-        this.selectedValue = config.selectedValue;
+        this.setValue(config.value);
     }
 
     public identifier: string;
@@ -25,7 +31,9 @@ export abstract class Configuration {
     public nameKey: string;
     public configurationType: JewelryModelConfigType;
 
-    public selectedValue: string;
+    public value: string;
+
+    public abstract setValue(configValue: string);
 
     public static Create(config: any): Configuration {
         switch (config.configurationType) {
@@ -46,6 +54,10 @@ export class NumberConfiguration extends Configuration {
         this.step = config.configOptions.step;
     }
 
+    public setValue(configValue: string) {
+        this.value = !configValue ? this.min.toString() : configValue;
+    }
+
     public min: number;
     public max: number;
     public step: number;
@@ -58,6 +70,11 @@ export class SelectorConfiguration extends Configuration {
         this.optionsSource = config.configOptions.optionsSource;
         this.externalSourceIds = config.configOptions.externalSourceIds || [];
         this.customOptions = (config.configOptions.customOptions || []).map(opt => new CustomOption(opt));
+    }
+
+    public setValue(configValue: string) {
+        //TODO: correctly set default VAlue!!!!
+        this.value = !configValue ? null : configValue;
     }
 
     public optionsSource: OptionsSource;

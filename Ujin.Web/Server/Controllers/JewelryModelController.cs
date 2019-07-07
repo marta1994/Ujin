@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ujin.Interfaces;
 using Ujin.Web.Server.Models.Jewelry;
@@ -14,15 +12,21 @@ namespace Ujin.Web.Server.Controllers
     [ApiController]
     public class JewelryModelController : ControllerBase
     {
+        private const string ImagesDir = "wwwroot/assets/images/widget/";
+
         private readonly IJewelryModelService _jewelryModelService;
+
+        private readonly IModelImageService _modelImageService;
 
         private readonly IMapper _mapper;
 
         public JewelryModelController(
             IJewelryModelService jewelryModelService,
+            IModelImageService modelImageService,
             IMapper mapper)
         {
             _jewelryModelService = jewelryModelService;
+            _modelImageService = modelImageService;
             _mapper = mapper;
         }
 
@@ -45,6 +49,18 @@ namespace Ujin.Web.Server.Controllers
             }
 
             return Ok(model);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> WidgetImage([FromQuery]string sku, [FromQuery]int index = 0)
+        {
+            if (index < 0) return NotFound();
+            var images = await _modelImageService.GetImagesPath(sku);
+            if (index >= images.Count) return NotFound();
+            var fullPath = Path.Combine(ImagesDir, images[index]);
+            var image = System.IO.File.OpenRead(fullPath);
+            var extension = fullPath.Split('.').Last();
+            return File(image, $"image/{extension}");
         }
     }
 }

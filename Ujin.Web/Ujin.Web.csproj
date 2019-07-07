@@ -26,12 +26,16 @@
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\model\models.ts" />
     <None Remove="yarn.lock" />
+    <Compile Remove="wwwroot\assets\images\widget\desktop\**" />
+    <Content Remove="wwwroot\assets\images\widget\desktop\**" />
     <Content Remove="wwwroot\dist\**" />
     <None Remove="ClientApp\dist\**" />
+    <None Remove="wwwroot\assets\images\widget\desktop\**" />
     <Content Remove="coverage\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="wwwroot\assets\images\widget\desktop\**" />
   </ItemGroup>
 
   <ItemGroup>

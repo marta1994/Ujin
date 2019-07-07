@@ -29,16 +29,17 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         protected override object ParseValue(string val)
         {
             object result = null;
+            val = val ?? val.ToLower();
             switch (_options.OptionsSource)
             {
                 case OptionsSource.Metal:
-                    result = _availableMetals.SingleOrDefault(m => m.Identifier == val);
+                    result = _availableMetals.SingleOrDefault(m => m.Identifier.ToLower() == val);
                     break;
                 case OptionsSource.Gemstone:
-                    result = _availableGemstones.SingleOrDefault(g => g.Identifier == val);
+                    result = _availableGemstones.SingleOrDefault(g => g.Identifier.ToLower() == val);
                     break;
                 case OptionsSource.Custom:
-                    result = _options.CustomOptions.SingleOrDefault(o => o.Identifier == val);
+                    result = _options.CustomOptions.SingleOrDefault(o => o.Identifier.ToLower() == val);
                     break;
             }
             if (result == null)
@@ -70,20 +71,21 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 
         public override string GetStrValueByPath(string path)
         {
-            switch(_options.OptionsSource)
+            path = path.ToLower();
+            switch (_options.OptionsSource)
             {
                 case OptionsSource.Metal:
                     var metal = (MetalDto)_value;
-                    if (path == "pricePerGram") return metal.PricePerGram.ToString(CultureInfo.InvariantCulture);
-                    if (path == "gramsPerMl") return metal.GramsPerMl.ToString(CultureInfo.InvariantCulture);
+                    if (path == "pricepergram") return metal.PricePerGram.ToString(CultureInfo.InvariantCulture);
+                    if (path == "gramsperml") return metal.GramsPerMl.ToString(CultureInfo.InvariantCulture);
                     if (path == "identifier") return metal.Identifier;
                     break;
                 case OptionsSource.Gemstone:
                     var gem = (GemstoneDto)_value;
                     if (path == "identifier") return gem.Identifier;
-                    if (path == "gemSource.identifier") return gem.GemstoneSource.Identifier;
-                    if (path == "gemCut.identifier") return gem.GemstoneCut.Identifier;
-                    if (path == "gemClass.identifier") return gem.GemstoneClass.Identifier;
+                    if (path == "gemsource.identifier") return gem.GemstoneSource.Identifier;
+                    if (path == "gemcut.identifier") return gem.GemstoneCut.Identifier;
+                    if (path == "gemclass.identifier") return gem.GemstoneClass.Identifier;
                     if (path == "price") return gem.Price.ToString();
                     break;
                 case OptionsSource.Custom:

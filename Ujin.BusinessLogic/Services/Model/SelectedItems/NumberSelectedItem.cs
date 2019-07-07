@@ -25,7 +25,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 
         public override string GetStrValueByPath(string path)
         {
-            if (path == "value") return _value.ToString();
+            if (path != null && path.ToLower() == "value") return _value.ToString();
             throw new InvalidOperationException($"Can not get value from path '{path}'!");
         }
     }

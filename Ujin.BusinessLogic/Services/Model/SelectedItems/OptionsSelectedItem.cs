@@ -29,7 +29,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         protected override object ParseValue(string val)
         {
             object result = null;
-            val = val ?? val.ToLower();
+            val = val != null ? val.ToLower() : string.Empty;
             switch (_options.OptionsSource)
             {
                 case OptionsSource.Metal:

@@ -1,12 +1,12 @@
-<div [ngSwitch]="configuration.optionsSource">
-    <div *ngSwitchCase="OptionsSource.Custom">
+<div [ngSwitch]="configuration.optionsSource" class="selector-wrapper">
+    <div *ngSwitchCase="OptionsSource.Custom" class="menu">
         <div *ngFor="let item of configuration.customOptions" class="menu-item" 
              (click)="selectItem(item.identifier)"
              [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
             <span class="text">{{item.nameKey|translate}}</span>
         </div>
     </div>
-    <div *ngSwitchCase="OptionsSource.Metal">
+    <div *ngSwitchCase="OptionsSource.Metal" class="menu">
         <div *ngFor="let item of configuration.metalSource" class="menu-item"
              (click)="selectItem(item.identifier)"
              [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
@@ -14,12 +14,14 @@
         </div>
     </div>
     <div *ngSwitchCase="OptionsSource.Gemstone">
-        <div *ngFor="let item of gemstones" class="menu-item"
-             (click)="selectGemClass(item)"
-             [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
-            <span class="text">{{item.nameKey|translate}}</span>
+        <div class="menu">
+            <div *ngFor="let item of gemstones" class="menu-item"
+                 (click)="selectGemClass(item)"
+                 [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+                <span class="text">{{item.nameKey|translate}}</span>
+            </div>
         </div>
-        <div *ngIf="selectedNode.children.length > 1">
+        <div *ngIf="selectedNode.children.length > 1" class="sub-menu">
             <div *ngFor="let item of selectedNode.children"
                  class="sub-menu-item" (click)="selectGem(item)"
                  [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">

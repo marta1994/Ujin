@@ -4,21 +4,51 @@
 @menu-border-width: 2px;
 @menu-border: @menu-border-width @menu-border-style;
 
-.menu {
-    width: 100%;
-    border-bottom: 1px solid @grey-color;
-    @padding: 10px;
+.selector-wrapper {
+    .menu, .sub-menu {
+        width: 100%;
+        border-bottom: 1px solid @grey-color;
+        @padding: 10px;
+        display: flex;
+        font-size: 1.2em;
+        font-weight: 500;
 
-    .menu-item {
-        border-bottom: 0 @menu-border-style;
+        .menu-item, .sub-menu-item {
+            border-bottom: 0 @menu-border-style;
+            padding: @padding 0;
+            color: @grey-color;
+            flex: 1;
+            cursor: pointer;
+            transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.selected {
+                border-bottom-width: @menu-border-width;
+                color: @white-color;
+                padding-bottom: @padding - @menu-border-width;
+            }
+
+            .text {
+                display: inline-block;
+                padding: 10px;
+            }
+        }
+    }
+
+    .sub-menu .sub-menu-item {
+        @padding: 3px;
         padding: @padding 0;
-        color: @grey-color;
-        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
+        font-size: 0.9em;
+        font-weight: 300;
 
         &.selected {
-            border-bottom-width: @menu-border-width;
-            color: @white-color;
             padding-bottom: @padding - @menu-border-width;
+        }
+
+        .text {
+            padding: 5px;
         }
     }
 }

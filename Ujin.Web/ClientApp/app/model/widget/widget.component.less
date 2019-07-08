@@ -37,9 +37,14 @@
         .category-menu {
             display: flex;
             flex-direction: row;
+            @cat-menu-border: 1px solid @grey-color;
+            border-bottom: @cat-menu-border;
 
             @media @desktop {
                 flex-direction: column;
+                width: 90px;
+                border-right: @cat-menu-border;
+                border-bottom: none;
             }
 
             .menu-item {
@@ -51,7 +56,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-                margin: 5px;
                 border: 0 @menu-border-style;
                 padding-bottom: @padding + @menu-border-width;
                 transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s, padding-right ease 0.3s;

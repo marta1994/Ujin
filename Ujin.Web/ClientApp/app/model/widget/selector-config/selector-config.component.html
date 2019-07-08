@@ -13,7 +13,7 @@
             <span class="text">{{item.nameKey|translate}}</span>
         </div>
     </div>
-    <div *ngSwitchCase="OptionsSource.Gemstone">
+    <div *ngSwitchCase="OptionsSource.Gemstone" class="gem-container">
         <div class="menu">
             <div *ngFor="let item of gemstones" class="menu-item"
                  (click)="selectGemClass(item)"

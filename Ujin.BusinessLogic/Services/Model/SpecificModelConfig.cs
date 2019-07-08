@@ -12,9 +12,7 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public SpecificModelConfig(
             ParsedModelConfig modelConfig, 
-            string selectedItem,
-            List<MetalDto> metals,
-            List<GemstoneDto> gemstones)
+            string selectedItem)
         {
             _modelConfig = modelConfig;
             switch (modelConfig.ConfigurationType)
@@ -25,9 +23,7 @@ namespace Ujin.BusinessLogic.Services.Model
                 case JewelryModelConfigType.Options:
                     SelectedItem = new OptionsSelectedItem(
                         selectedItem,
-                        (SelectorOptions)modelConfig.ConfigOptions,
-                        metals,
-                        gemstones);
+                        (SelectorOptions)modelConfig.ConfigOptions);
                     break;
             }
         }

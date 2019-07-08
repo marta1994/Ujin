@@ -48,35 +48,7 @@ namespace Ujin.BusinessLogic.Services.Model
             return new ConfiguredModel(
                 model,
                 splitted.Skip(1).ToList(),
-                await GetModelMetals(model),
-                await GetModelGemstones(model),
                 _appSettings.ExpressionTerms);
-        }
-
-        private async Task<List<MetalDto>> GetModelMetals(ParsedJewelryModel model)
-        {
-            var metalConfigs = model.Configurations
-                .Where(c => c.ConfigurationType == JewelryModelConfigType.Options)
-                .Select(c => c.ConfigOptions)
-                .Cast<SelectorOptions>()
-                .Where(s => s.OptionsSource == OptionsSource.Metal)
-                .ToList();
-            if (metalConfigs.Count == 0) return null;
-            var allIds = metalConfigs.SelectMany(m => m.ExternalSourceIds).Distinct().ToList();
-            return await _metalDao.LoadMetaldByIds(allIds);
-        }
-
-        private async Task<List<GemstoneDto>> GetModelGemstones(ParsedJewelryModel model)
-        {
-            var gemConfigs = model.Configurations
-                .Where(c => c.ConfigurationType == JewelryModelConfigType.Options)
-                .Select(c => c.ConfigOptions)
-                .Cast<SelectorOptions>()
-                .Where(s => s.OptionsSource == OptionsSource.Gemstone)
-                .ToList();
-            if (gemConfigs.Count == 0) return null;
-            var allIds = gemConfigs.SelectMany(m => m.ExternalSourceIds).Distinct().ToList();
-            return await _gemstoneDao.LoadGemstonesByIds(allIds);
         }
     }
 }

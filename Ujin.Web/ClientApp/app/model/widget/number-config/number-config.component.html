@@ -1,0 +1,11 @@
+<div class="slider">
+    <app-slider class="slider-instance"
+                [min]="configuration.min"
+                [max]="configuration.max"
+                [step]="configuration.step"
+                [(value)]="configuration.value"
+                (valueChange)="valueChanged()"></app-slider>
+    <span class="text">
+        {{configuration.value}}
+    </span>
+</div>

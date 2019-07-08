@@ -1,0 +1,21 @@
+<div *ngIf="model" class="widget-wrapper">
+    <div class="category-menu-and-image">
+        <div class="category-menu">
+            <div *ngFor="let config of model.configurations" class="menu-item" (click)="selectConfig(config)"
+                 [ngClass]="{'selected': isSelected(config)}" id="{{config.nameKey}}">
+                <span class="text">{{config.nameKey|translate}}</span>
+            </div>
+        </div>
+        <div class="images-conatiner">
+            <img *ngFor="let i of imageIndexes" [src]="getImgSrc(i)" class="model-image" />
+        </div>
+    </div>
+    <div class="config-menu" [ngSwitch]="selectedConfig.configurationType">
+        <div *ngSwitchCase="JewelryModelConfigType.Options">
+            <app-selector-config [configuration]="selectedConfig" (onChange)="modelChanged($event)"></app-selector-config>
+        </div>
+        <div *ngSwitchCase="JewelryModelConfigType.Number">
+            <app-number-config [configuration]="selectedConfig" (onChange)="modelChanged($event)"></app-number-config>
+        </div>
+    </div>
+</div>

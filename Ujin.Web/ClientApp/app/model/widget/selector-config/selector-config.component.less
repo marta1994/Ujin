@@ -1,0 +1,24 @@
+@import '../../../styles/common.less';
+
+@menu-border-style: solid @white-color;
+@menu-border-width: 2px;
+@menu-border: @menu-border-width @menu-border-style;
+
+.menu {
+    width: 100%;
+    border-bottom: 1px solid @grey-color;
+    @padding: 10px;
+
+    .menu-item {
+        border-bottom: 0 @menu-border-style;
+        padding: @padding 0;
+        color: @grey-color;
+        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s;
+
+        &.selected {
+            border-bottom-width: @menu-border-width;
+            color: @white-color;
+            padding-bottom: @padding - @menu-border-width;
+        }
+    }
+}

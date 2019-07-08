@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ModelService } from '../model.service';
 import { JewelryModel } from '../models';
 
@@ -12,26 +12,49 @@ export class ModelWidgetComponent implements OnInit {
 
     public model: JewelryModel;
 
-    public imageIndexes: number[];
+    public modelIdentifier: string;
+
+    public modelSku: string;
 
     constructor(
         private _modelService: ModelService,
-        private _activatedRoute: ActivatedRoute) {
-        let sku = this._activatedRoute.snapshot.queryParamMap.get('sku');
-        let identifier = this._activatedRoute.snapshot.params['id'];
-        _modelService.loadModel(identifier, sku).then(model => {
-            this.model = model;
-            this.imageIndexes = [];
-            for (let i = 0; i < model.imagesCount; ++i)
-                this.imageIndexes.push(i);
-        });
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router
+    ) {
     }
 
     ngOnInit() {
+        this._activatedRoute.queryParams.subscribe(queryParams => {
+            this.init();
+        });
+        this._activatedRoute.params.subscribe(routeParams => {
+            this.init();
+        });
     }
 
-    public getImgSrc(index: number): string {
-        return `api/JewelryModel/WidgetImage/?sku=${this.model.sku}&index=${index}`;
+    private init() {
+        let sku = this._activatedRoute.snapshot.queryParamMap.get('sku');
+        let identifier = this._activatedRoute.snapshot.params['id'];
+        if ((this.modelIdentifier || "").toLowerCase() === (identifier || "").toLowerCase() &&
+            (this.modelSku || "").toLowerCase() === (sku || "").toLowerCase())
+            return;
+        this._modelService.loadModel(identifier, sku).then(model => {
+            this.model = model;
+            this.modelIdentifier = model.identifier;
+            this.modelSku = model.sku;
+        });
     }
 
+    public modelChanged() {
+        const queryParams: Params = { sku: this.model.sku };
+        this.modelSku = this.model.sku;
+
+        this._router.navigate(
+            [],
+            {
+                relativeTo: this._activatedRoute,
+                queryParams: queryParams,
+                queryParamsHandling: "merge",
+            });
+    }
 }

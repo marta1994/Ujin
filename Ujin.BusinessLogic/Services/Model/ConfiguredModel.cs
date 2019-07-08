@@ -16,8 +16,6 @@ namespace Ujin.BusinessLogic.Services.Model
         public ConfiguredModel(
             ParsedJewelryModel model, 
             List<string> configIds,
-            List<MetalDto> metals,
-            List<GemstoneDto> gemstones,
             ExpressionTerms expressionTerms)
         {
             _model = model;
@@ -29,7 +27,7 @@ namespace Ujin.BusinessLogic.Services.Model
             Configs = new List<SpecificModelConfig>();
             for(var i = 0; i < model.Configurations.Count; ++i)
             {
-                Configs.Add(new SpecificModelConfig(model.Configurations[i], configIds[i], metals, gemstones));
+                Configs.Add(new SpecificModelConfig(model.Configurations[i], configIds[i]));
             }
         }
 

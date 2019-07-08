@@ -10,18 +10,10 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 {
     internal class OptionsSelectedItem : BaseSelectedItem<object, SelectorOptions>
     {
-        private readonly List<MetalDto> _availableMetals;
-
-        private readonly List<GemstoneDto> _availableGemstones;
-
         public OptionsSelectedItem(
             string value,
-            SelectorOptions options,
-            List<MetalDto> availableMetals,
-            List<GemstoneDto> availableGemstones) : base()
+            SelectorOptions options) : base()
         {
-            _availableMetals = availableMetals;
-            _availableGemstones = availableGemstones;
             _options = options;
             _value = ParseValue(value);
         }
@@ -33,10 +25,10 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
             switch (_options.OptionsSource)
             {
                 case OptionsSource.Metal:
-                    result = _availableMetals.SingleOrDefault(m => m.Identifier.ToLower() == val);
+                    result = _options.MetalSource.SingleOrDefault(m => m.Identifier.ToLower() == val);
                     break;
                 case OptionsSource.Gemstone:
-                    result = _availableGemstones.SingleOrDefault(g => g.Identifier.ToLower() == val);
+                    result = _options.GemstoneSource.SingleOrDefault(g => g.Identifier.ToLower() == val);
                     break;
                 case OptionsSource.Custom:
                     result = _options.CustomOptions.SingleOrDefault(o => o.Identifier.ToLower() == val);

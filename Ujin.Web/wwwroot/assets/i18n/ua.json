@@ -1,3 +1,101 @@
 {
-  "test": "Мій тест"
+  "gemstone": {
+    "gemSource": {
+      "genuine": "Натуральний",
+      "artifical": "Вирощений"
+    },
+    "gemCut": {
+      "oval": "Овал",
+      "round": "Круг",
+      "baguette": "Багет",
+      "square": "Квадрат",
+      "marquise": "Маркіз"
+    },
+    "gemClass": {
+      "zirconium": "Цирконій",
+      "sapphire": "Сапфір",
+      "emerald": "Смарагд",
+      "ruby": "Рубін",
+      "amethyst": "Аметист",
+      "rauchatopas": "Раухтопаз",
+      "citrine": "Цитрин",
+      "garnet": "Гранат",
+      "chrysolite": "Хризоліт",
+      "topaz": "Топаз",
+      "alexandrite": "Александрит"
+    }
+  },
+  "color": {
+    "name": {
+      "red": "Червоний",
+      "green": "Зелений",
+      "violet": "Фіолетовий",
+      "blue": "Синій",
+      "brown": "Коричневий",
+      "yellow": "Жовтий",
+      "lightBlue": "Голубий"
+    }
+  },
+  "metal": {
+    "gold585": "Золото",
+    "whiteGold585": "Біле золото",
+    "silver925": "Срібло"
+  },
+  "modelConfig": {
+    "configName": {
+      "Options": "Вибір варіанту",
+      "Number": "Число"
+    }
+  },
+  "jewelryModel": {
+    "name": {
+      "ovalRing": "Кільце 'Овал'",
+      "cloudEarring": "Сережки 'Хмаринка'",
+      "floatEarring": "Сережки 'Поплавок'",
+      "coralEarring": "Сережки 'Корал'",
+      "shellfishEarring": "Сережки 'Мушля'",
+      "whirlwindRing": "Кільце 'Вихор'",
+      "ribbonRing": "Кільце 'Стрічка'",
+      "shapelessRing": "Кільце 'Форма-М'",
+      "flowerRing": "Кільце 'Квітка'",
+      "hedgehogRing": "Кільце 'Їжачок'",
+      "baguetteRing": "Кільце 'Багет'",
+      "squareRing": "Кільце 'Квадрат'",
+      "marquiseRing": "Кільце 'Маркіз'",
+      "roundRing": "Кільце 'Круг'",
+      "baguetteEarring": "Сережки 'Багет'",
+      "squareEarring": "Сережки 'Квадрат'",
+      "marquiseEarring": "Сережки 'Маркіз'",
+      "roundEarring": "Сережки 'Круг'",
+      "ovalEarring": "Сережки 'Овал'"
+    },
+    "modelConfig": {
+      "name": {
+        "size": "Розмір",
+        "metal": "Метал",
+        "gemstone": "Вставка",
+        "ornament": "Оздоба"
+      },
+      "customOption": {
+        "ornament": {
+          "foil": "Фольга",
+          "doodles": "Кільця",
+          "feather": "Перо",
+          "bubbles": "Бульбашки",
+          "accordion": "Гармошка",
+          "facet": "Грані",
+          "window": "Віконця",
+          "sleeves": "Гільзи",
+          "dry": "Суша",
+          "plant": "Рослинки",
+          "cheese": "Сир",
+          "elf": "Ельф",
+          "tree": "Деревце",
+          "wreath": "Вінок",
+          "snakes": "Змії",
+          "thread": "Нитки"
+        }
+      }
+    }
+  }
 }

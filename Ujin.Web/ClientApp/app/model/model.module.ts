@@ -3,15 +3,26 @@ import { CommonModule } from '@angular/common';
 import { ModelWidgetComponent } from './model-widget/model-widget.component';
 import { ApiModule } from '../api/api.module';
 import { ModelService } from './model.service';
-
+import { WidgetComponent } from './widget/widget.component';
+import { NumberConfigComponent } from './widget/number-config/number-config.component';
+import { UiComponentsModule } from '../ui-components/ui-components.module';
+import { SelectorConfigComponent } from './widget/selector-config/selector-config.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
-        ModelWidgetComponent
+        ModelWidgetComponent,
+        WidgetComponent,
+        NumberConfigComponent,
+        SelectorConfigComponent
     ],
     imports: [
         CommonModule,
-        ApiModule
+        FormsModule,
+        ApiModule,
+        UiComponentsModule,
+        TranslateModule.forChild()
     ],
     providers: [
         ModelService

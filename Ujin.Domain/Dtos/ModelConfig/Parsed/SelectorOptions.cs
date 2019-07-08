@@ -45,5 +45,9 @@ namespace Ujin.Domain.Dtos.ModelConfig.Parsed
         public List<int> ExternalSourceIds { get; private set; }
 
         public List<CustomOption> CustomOptions { get; private set; }
+
+        public List<GemstoneDto> GemstoneSource { get; set; }
+
+        public List<MetalDto> MetalSource { get; set; }
     }
 }

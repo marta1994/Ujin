@@ -1,3 +1,5 @@
+@desktop: ~"only screen and (min-width: 780px)";
+
 @dark-color: #121212;
 @grey-color: #7d778d;
 @light-grey-color: #c8cad9;
@@ -5,3 +7,11 @@
 @accent-color: #ffb6b6;
 @red-color: #ff4848;
 @green-color: #3aeb51;
+
+@font: 'Roboto', sans-serif;
+
+.set-border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}

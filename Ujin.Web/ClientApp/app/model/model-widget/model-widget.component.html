@@ -1,5 +1,1 @@
-<div *ngIf="model">
-    <div class="images-conatiner">
-        <img *ngFor="let i of imageIndexes" [src]="getImgSrc(i)" class="model-image"/>
-    </div>
-</div>
+<app-widget [model]="model" (onChange)="modelChanged($event)"></app-widget>

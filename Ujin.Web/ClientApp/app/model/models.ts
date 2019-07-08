@@ -31,7 +31,7 @@ export abstract class Configuration {
     public nameKey: string;
     public configurationType: JewelryModelConfigType;
 
-    public value: string;
+    public value: any;
 
     public abstract setValue(configValue: string);
 
@@ -55,7 +55,7 @@ export class NumberConfiguration extends Configuration {
     }
 
     public setValue(configValue: string) {
-        this.value = !configValue ? this.min.toString() : configValue;
+        this.value = +(!configValue ? this.min : configValue);
     }
 
     public min: number;
@@ -68,18 +68,33 @@ export class SelectorConfiguration extends Configuration {
     constructor(config: any) {
         super(config);
         this.optionsSource = config.configOptions.optionsSource;
-        this.externalSourceIds = config.configOptions.externalSourceIds || [];
         this.customOptions = (config.configOptions.customOptions || []).map(opt => new CustomOption(opt));
+        this.gemstoneSource = (config.configOptions.gemstoneSource || []).map(opt => new Gemstone(opt));
+        this.metalSource = (config.configOptions.metalSource || []).map(opt => new NamedEntity(opt));
     }
 
     public setValue(configValue: string) {
-        //TODO: correctly set default VAlue!!!!
-        this.value = !configValue ? null : configValue;
+        if (configValue) {
+            this.value = configValue;
+            return;
+        }
+        switch (this.optionsSource) {
+            case OptionsSource.Custom:
+                this.value = this.customOptions[0].identifier;
+                break;
+            case OptionsSource.Gemstone:
+                this.value = this.gemstoneSource[0].identifier;
+                break;
+            case OptionsSource.Metal:
+                this.value = this.metalSource[0].identifier;
+                break;
+        }
     }
 
     public optionsSource: OptionsSource;
-    public externalSourceIds: number[];
     public customOptions: CustomOption[];
+    public gemstoneSource: Gemstone[];
+    public metalSource: NamedEntity[];
 }
 
 export class CustomOption {
@@ -87,12 +102,10 @@ export class CustomOption {
     constructor(opt: any) {
         this.nameKey = opt.nameKey;
         this.identifier = opt.identifier;
-        this.value = opt.value;
     }
 
     public nameKey: string;
     public identifier: string;
-    public value: number;
 }
 
 export enum JewelryModelConfigType {
@@ -104,4 +117,50 @@ export enum OptionsSource {
     Custom = 1,
     Metal = 2,
     Gemstone = 3
+}
+
+export class Gemstone {
+
+    constructor(gemstone: Gemstone) {
+        this.identifier = gemstone.identifier;
+        this.widthMm = gemstone.widthMm;
+        this.heightMm = gemstone.heightMm;
+        this.weight = gemstone.weight;
+        this.color = new Color(gemstone.color);
+        this.gemstoneClass = new NamedEntity(gemstone.gemstoneClass);
+        this.gemstoneSource = new NamedEntity(gemstone.gemstoneSource);
+        this.gemstoneCut = new NamedEntity(gemstone.gemstoneCut);
+    }
+    
+    public identifier: string;
+    public widthMm: number;
+    public heightMm: number;
+    public weight: number;
+    
+    public color: Color;
+    public gemstoneClass: NamedEntity;
+    public gemstoneSource: NamedEntity;
+    public gemstoneCut: NamedEntity;
+}
+
+export class NamedEntity {
+
+    constructor(namedEntity: NamedEntity) {
+        this.nameKey = namedEntity.nameKey;
+        this.identifier = namedEntity.identifier;
+    }
+
+    public identifier: string;
+    public nameKey: string;
+}
+
+export class Color {
+
+    constructor(color: Color) {
+        this.nameKey = color.nameKey;
+        this.colorHexCode = color.colorHexCode;
+    }
+    
+    public nameKey: string;
+    public colorHexCode: string;
 }

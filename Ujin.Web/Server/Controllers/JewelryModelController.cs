@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Ujin.Domain.Dtos.ModelConfig.Parsed;
+using Ujin.Domain.Enums;
 using Ujin.Interfaces;
 using Ujin.Web.Server.Models.Jewelry;
 

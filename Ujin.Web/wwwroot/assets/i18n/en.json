@@ -1,3 +1,101 @@
 {
-  "test": "My test"
+  "gemstone": {
+    "gemSource": {
+      "genuine": "Genuine",
+      "artifical": "Artifical"
+    },
+    "gemCut": {
+      "oval": "Oval",
+      "round": "Round",
+      "baguette": "Baguette",
+      "square": "Square",
+      "marquise": "Marquise"
+    },
+    "gemClass": {
+      "zirconium": "Zirconium",
+      "sapphire": "Sapphire",
+      "emerald": "Emerald",
+      "ruby": "Ruby",
+      "amethyst": "Amethyst",
+      "rauchatopas": "rauchatopas",
+      "citrine": "Citrine",
+      "garnet": "Garnet",
+      "chrysolite": "Chrysolite",
+      "topaz": "Topaz",
+      "alexandrite": "Alexandrite"
+    }
+  },
+  "color": {
+    "name": {
+      "red": "Red",
+      "green": "Green",
+      "violet": "Violet",
+      "blue": "Blue",
+      "brown": "Brown",
+      "yellow": "Yellow",
+      "lightBlue": "Light-blue"
+    }
+  },
+  "metal": {
+    "gold585": "Gold",
+    "whiteGold585": "White gold",
+    "silver925": "Silver"
+  },
+  "modelConfig": {
+    "configName": {
+      "Options": "Options",
+      "Number": "Number"
+    }
+  },
+  "jewelryModel": {
+    "name": {
+      "ovalRing": "Ring 'Oval'",
+      "cloudEarring": "Earring 'Cloud'",
+      "floatEarring": "Earring 'Float'",
+      "coralEarring": "Earring 'Coral'",
+      "shellfishEarring": "Earring 'Shellfish'",
+      "whirlwindRing": "Ring 'Whirlwind'",
+      "ribbonRing": "Ring 'Ribbon'",
+      "shapelessRing": "Ring 'Shape-M'",
+      "flowerRing": "Ring 'Flower'",
+      "hedgehogRing": "Ring 'Hedgehg'",
+      "baguetteRing": "Ring 'Baguette'",
+      "squareRing": "Ring 'Square'",
+      "marquiseRing": "Ring 'Marquise'",
+      "roundRing": "Ring 'Round'",
+      "baguetteEarring": "Earring 'Baguette'",
+      "squareEarring": "Earring 'Square'",
+      "marquiseEarring": "Earring 'Marquise'",
+      "roundEarring": "Earring 'Round'",
+      "ovalEarring": "Earring 'Oval'"
+    },
+    "modelConfig": {
+      "name": {
+        "size": "Size",
+        "metal": "Metal",
+        "gemstone": "Gemstone",
+        "ornament": "Ornament"
+      },
+      "customOption": {
+        "ornament": {
+          "foil": "Foil",
+          "doodles": "Doodles",
+          "feather": "Feather",
+          "bubbles": "Bubbles",
+          "accordion": "Accordion",
+          "facet": "Facet",
+          "window": "Window",
+          "sleeves": "Sleeves",
+          "dry": "Dry",
+          "plant": "Plant",
+          "cheese": "Cheese",
+          "elf": "Elf",
+          "tree": "Tree",
+          "wreath": "Wreath",
+          "snakes": "Snakes",
+          "thread": "Thread"
+        }
+      }
+    }
+  }
 }

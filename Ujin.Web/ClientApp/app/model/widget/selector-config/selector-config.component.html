@@ -1,0 +1,30 @@
+<div [ngSwitch]="configuration.optionsSource">
+    <div *ngSwitchCase="OptionsSource.Custom">
+        <div *ngFor="let item of configuration.customOptions" class="menu-item" 
+             (click)="selectItem(item.identifier)"
+             [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+            <span class="text">{{item.nameKey|translate}}</span>
+        </div>
+    </div>
+    <div *ngSwitchCase="OptionsSource.Metal">
+        <div *ngFor="let item of configuration.metalSource" class="menu-item"
+             (click)="selectItem(item.identifier)"
+             [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+            <span class="text">{{item.nameKey|translate}}</span>
+        </div>
+    </div>
+    <div *ngSwitchCase="OptionsSource.Gemstone">
+        <div *ngFor="let item of gemstones" class="menu-item"
+             (click)="selectGemClass(item)"
+             [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+            <span class="text">{{item.nameKey|translate}}</span>
+        </div>
+        <div *ngIf="selectedNode.children.length > 1">
+            <div *ngFor="let item of selectedNode.children"
+                 class="sub-menu-item" (click)="selectGem(item)"
+                 [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
+                <span class="text">{{item.gemstoneSource.nameKey|translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Ujin.BusinessLogic.Services.Model;
-using Ujin.Interfaces;
 
 namespace Ujin.BusinessLogic.Services
 {
@@ -18,7 +17,7 @@ namespace Ujin.BusinessLogic.Services
 
         public async Task<decimal> CalculateExpression(string expression, ConfiguredModel model)
         {
-            var evaluatedExpression = _variablesEvaluator.EvaluateExpression(model.PriceExpression, model);
+            var evaluatedExpression = _variablesEvaluator.EvaluateExpression(expression, model);
             return await GetResultFromExpression(evaluatedExpression);
         }
 

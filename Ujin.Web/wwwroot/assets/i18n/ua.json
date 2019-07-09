@@ -1,111 +1,117 @@
 {
-  "gemstone": {
-    "gemSource": {
-      "genuine": "Натуральний",
-      "artifical": "Вирощений"
-    },
-    "gemCut": {
-      "oval": "Овал",
-      "round": "Круг",
-      "baguette": "Багет",
-      "square": "Квадрат",
-      "marquise": "Маркіз"
-    },
-    "gemClass": {
-      "zirconium": "Цирконій",
-      "sapphire": "Сапфір",
-      "emerald": "Смарагд",
-      "ruby": "Рубін",
-      "amethyst": "Аметист",
-      "rauchatopas": "Раухтопаз",
-      "citrine": "Цитрин",
-      "garnet": "Гранат",
-      "chrysolite": "Хризоліт",
-      "topaz": "Топаз",
-      "alexandrite": "Александрит"
-    }
-  },
-  "color": {
-    "name": {
-      "red": "Червоний",
-      "green": "Зелений",
-      "violet": "Фіолетовий",
-      "blue": "Синій",
-      "brown": "Коричневий",
-      "yellow": "Жовтий",
-      "lightBlue": "Голубий"
-    }
-  },
-  "metal": {
-    "gold585": "Золото",
-    "whiteGold585": "Біле золото",
-    "silver925": "Срібло"
-  },
-  "modelConfig": {
-    "configName": {
-      "Options": "Вибір варіанту",
-      "Number": "Число"
-    }
-  },
-  "jewelryModel": {
-    "name": {
-      "ovalRing": "Кільце 'Овал'",
-      "cloudEarring": "Сережки 'Хмаринка'",
-      "floatEarring": "Сережки 'Поплавок'",
-      "coralEarring": "Сережки 'Корал'",
-      "shellfishEarring": "Сережки 'Мушля'",
-      "whirlwindRing": "Кільце 'Вихор'",
-      "ribbonRing": "Кільце 'Стрічка'",
-      "shapelessRing": "Кільце 'Форма-М'",
-      "flowerRing": "Кільце 'Квітка'",
-      "hedgehogRing": "Кільце 'Їжачок'",
-      "baguetteRing": "Кільце 'Багет'",
-      "squareRing": "Кільце 'Квадрат'",
-      "marquiseRing": "Кільце 'Маркіз'",
-      "roundRing": "Кільце 'Круг'",
-      "baguetteEarring": "Сережки 'Багет'",
-      "squareEarring": "Сережки 'Квадрат'",
-      "marquiseEarring": "Сережки 'Маркіз'",
-      "roundEarring": "Сережки 'Круг'",
-      "ovalEarring": "Сережки 'Овал'"
-    },
-    "description": {
-      "ovalRing": "Дуже круте кільце, супер неймовірно пречудове, просто необхідне для вас - купіть вже. Зараз! НЕГАЙНО!!! ВЖЕ ВЖЕ ВЖЕ!!!"
-    },
-    "modelConfig": {
-      "name": {
-        "size": "Розмір",
-        "metal": "Метал",
-        "gemstone": "Вставка",
-        "ornament": "Оздоба",
-        "gemstoneSize": "Розмір каменя",
-        "gemstoneSource": "Походження каменя",
-        "gemstoneWeight":  "Вага каменя"
-      },
-      "customOption": {
-        "ornament": {
-          "foil": "Фольга",
-          "doodles": "Кільця",
-          "feather": "Перо",
-          "bubbles": "Бульбашки",
-          "accordion": "Гармошка",
-          "facet": "Грані",
-          "window": "Віконця",
-          "sleeves": "Гільзи",
-          "dry": "Суша",
-          "plant": "Рослинки",
-          "cheese": "Сир",
-          "elf": "Ельф",
-          "tree": "Деревце",
-          "wreath": "Вінок",
-          "snakes": "Змії",
-          "thread": "Нитки"
-        }
-      }
-    }
-  }
-  "measure": {
-    "mm": "мм",
-    "ct": "кар"
-  }
+	"color": {
+		"name": {
+			"blue": "Синій",
+			"brown": "Коричневий",
+			"green": "Зелений",
+			"lightBlue": "Голубий",
+			"red": "Червоний",
+			"violet": "Фіолетовий",
+			"yellow": "Жовтий"
+		}
+	},
+	"gemstone": {
+		"gemClass": {
+			"alexandrite": "Александрит",
+			"amethyst": "Аметист",
+			"chrysolite": "Хризоліт",
+			"citrine": "Цитрин",
+			"emerald": "Смарагд",
+			"garnet": "Гранат",
+			"rauchatopas": "Раухтопаз",
+			"ruby": "Рубін",
+			"sapphire": "Сапфір",
+			"topaz": "Топаз",
+			"zirconium": "Цирконій"
+		},
+		"gemCut": {
+			"baguette": "Багет",
+			"marquise": "Маркіз",
+			"oval": "Овал",
+			"round": "Круг",
+			"square": "Квадрат"
+		},
+		"gemSource": {
+			"artifical": "Вирощений",
+			"genuine": "Натуральний"
+		}
+	},
+	"jewelryModel": {
+		"description": {
+			"ovalRing": "Дуже круте кільце, супер неймовірно пречудове, просто необхідне для вас - купіть вже. Зараз! НЕГАЙНО!!! ВЖЕ ВЖЕ ВЖЕ!!!"
+		},
+		"modelConfig": {
+			"customOption": {
+				"ornament": {
+					"accordion": "Гармошка",
+					"bubbles": "Бульбашки",
+					"cheese": "Сир",
+					"doodles": "Кільця",
+					"dry": "Суша",
+					"elf": "Ельф",
+					"facet": "Грані",
+					"feather": "Перо",
+					"foil": "Фольга",
+					"plant": "Рослинки",
+					"sleeves": "Гільзи",
+					"snakes": "Змії",
+					"thread": "Нитки",
+					"tree": "Деревце",
+					"window": "Віконця",
+					"wreath": "Вінок"
+				}
+			},
+			"name": {
+				"characteristics": "Характеристики",
+				"gemstone": "Вставка",
+				"gemstoneClass": "Камінь",
+				"gemstoneSize": "Розмір каменя",
+				"gemstoneSource": "Походження каменя",
+				"gemstoneWeight": "Вага каменя",
+				"metal": "Метал",
+				"ornament": "Оздоба",
+				"price": "Ціна",
+				"size": "Розмір",
+				"weight": "Вага"
+			}
+		},
+		"name": {
+			"baguetteEarring": "Сережки 'Багет'",
+			"baguetteRing": "Кільце 'Багет'",
+			"cloudEarring": "Сережки 'Хмаринка'",
+			"coralEarring": "Сережки 'Корал'",
+			"floatEarring": "Сережки 'Поплавок'",
+			"flowerRing": "Кільце 'Квітка'",
+			"hedgehogRing": "Кільце 'Їжачок'",
+			"marquiseEarring": "Сережки 'Маркіз'",
+			"marquiseRing": "Кільце 'Маркіз'",
+			"ovalEarring": "Сережки 'Овал'",
+			"ovalRing": "Кільце 'Овал'",
+			"ribbonRing": "Кільце 'Стрічка'",
+			"roundEarring": "Сережки 'Круг'",
+			"roundRing": "Кільце 'Круг'",
+			"shapelessRing": "Кільце 'Форма-М'",
+			"shellfishEarring": "Сережки 'Мушля'",
+			"squareEarring": "Сережки 'Квадрат'",
+			"squareRing": "Кільце 'Квадрат'",
+			"whirlwindRing": "Кільце 'Вихор'"
+		}
+	},
+	"measure": {
+		"ct": "кар",
+		"grams": "г",
+		"mm": "мм",
+		"uah": "грн"
+	},
+	"metal": {
+		"gold585": "Золото",
+		"silver925": "Срібло",
+		"whiteGold585": "Біле золото"
+	},
+	"modelConfig": {
+		"configName": {
+			"Number": "Число",
+			"Options": "Вибір варіанту"
+		}
+	}
 }

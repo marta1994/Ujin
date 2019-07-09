@@ -1,0 +1,12 @@
+<div class="model-info-container">
+    <h4 class="tittle">{{'jewelryModel.modelConfig.name.characteristics'|translate}}</h4>
+    <div *ngIf="showPrice" class="property-value">
+        <label class="property">{{'jewelryModel.modelConfig.name.price'|translate}}:</label>
+        <label class="value">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
+    </div>
+    <div class="property-value">
+        <label class="property">{{'jewelryModel.modelConfig.name.weight'|translate}}:</label>
+        <label class="value">{{modelInfo.weight}}{{' '}}{{'measure.grams'|translate}}</label>
+    </div>
+    <app-info-node *ngFor="let child of modelInfo.nodes" [node]="child"></app-info-node>
+</div>

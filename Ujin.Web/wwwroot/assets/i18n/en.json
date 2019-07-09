@@ -1,111 +1,117 @@
 {
-  "gemstone": {
-    "gemSource": {
-      "genuine": "Genuine",
-      "artifical": "Artifical"
-    },
-    "gemCut": {
-      "oval": "Oval",
-      "round": "Round",
-      "baguette": "Baguette",
-      "square": "Square",
-      "marquise": "Marquise"
-    },
-    "gemClass": {
-      "zirconium": "Zirconium",
-      "sapphire": "Sapphire",
-      "emerald": "Emerald",
-      "ruby": "Ruby",
-      "amethyst": "Amethyst",
-      "rauchatopas": "rauchatopas",
-      "citrine": "Citrine",
-      "garnet": "Garnet",
-      "chrysolite": "Chrysolite",
-      "topaz": "Topaz",
-      "alexandrite": "Alexandrite"
-    }
-  },
-  "color": {
-    "name": {
-      "red": "Red",
-      "green": "Green",
-      "violet": "Violet",
-      "blue": "Blue",
-      "brown": "Brown",
-      "yellow": "Yellow",
-      "lightBlue": "Light-blue"
-    }
-  },
-  "metal": {
-    "gold585": "Gold",
-    "whiteGold585": "White gold",
-    "silver925": "Silver"
-  },
-  "modelConfig": {
-    "configName": {
-      "Options": "Options",
-      "Number": "Number"
-    }
-  },
-  "jewelryModel": {
-    "name": {
-      "ovalRing": "Ring 'Oval'",
-      "cloudEarring": "Earring 'Cloud'",
-      "floatEarring": "Earring 'Float'",
-      "coralEarring": "Earring 'Coral'",
-      "shellfishEarring": "Earring 'Shellfish'",
-      "whirlwindRing": "Ring 'Whirlwind'",
-      "ribbonRing": "Ring 'Ribbon'",
-      "shapelessRing": "Ring 'Shape-M'",
-      "flowerRing": "Ring 'Flower'",
-      "hedgehogRing": "Ring 'Hedgehg'",
-      "baguetteRing": "Ring 'Baguette'",
-      "squareRing": "Ring 'Square'",
-      "marquiseRing": "Ring 'Marquise'",
-      "roundRing": "Ring 'Round'",
-      "baguetteEarring": "Earring 'Baguette'",
-      "squareEarring": "Earring 'Square'",
-      "marquiseEarring": "Earring 'Marquise'",
-      "roundEarring": "Earring 'Round'",
-      "ovalEarring": "Earring 'Oval'"
-    },
-    "description": {
-      "ovalRing": "Super cool ring! Amazing! Stunning, fabulous!!! Buy now!"
-    },
-    "modelConfig": {
-      "name": {
-        "size": "Size",
-        "metal": "Metal",
-        "gemstone": "Gemstone",
-        "ornament": "Ornament",
-        "gemstoneSize": "Gemstone size",
-        "gemstoneSource": "Gemstone source",
-        "gemstoneWeight": "Gemstone weight"
-      },
-      "customOption": {
-        "ornament": {
-          "foil": "Foil",
-          "doodles": "Doodles",
-          "feather": "Feather",
-          "bubbles": "Bubbles",
-          "accordion": "Accordion",
-          "facet": "Facet",
-          "window": "Window",
-          "sleeves": "Sleeves",
-          "dry": "Dry",
-          "plant": "Plant",
-          "cheese": "Cheese",
-          "elf": "Elf",
-          "tree": "Tree",
-          "wreath": "Wreath",
-          "snakes": "Snakes",
-          "thread": "Thread"
-        }
-      }
-    }
-  },
-  "measure": {
-    "mm": "mm",
-    "ct": "ct"
-  }
+	"color": {
+		"name": {
+			"blue": "Blue",
+			"brown": "Brown",
+			"green": "Green",
+			"lightBlue": "Light-blue",
+			"red": "Red",
+			"violet": "Violet",
+			"yellow": "Yellow"
+		}
+	},
+	"gemstone": {
+		"gemClass": {
+			"alexandrite": "Alexandrite",
+			"amethyst": "Amethyst",
+			"chrysolite": "Chrysolite",
+			"citrine": "Citrine",
+			"emerald": "Emerald",
+			"garnet": "Garnet",
+			"rauchatopas": "rauchatopas",
+			"ruby": "Ruby",
+			"sapphire": "Sapphire",
+			"topaz": "Topaz",
+			"zirconium": "Zirconium"
+		},
+		"gemCut": {
+			"baguette": "Baguette",
+			"marquise": "Marquise",
+			"oval": "Oval",
+			"round": "Round",
+			"square": "Square"
+		},
+		"gemSource": {
+			"artifical": "Artifical",
+			"genuine": "Genuine"
+		}
+	},
+	"jewelryModel": {
+		"description": {
+			"ovalRing": "Super cool ring! Amazing! Stunning, fabulous!!! Buy now!"
+		},
+		"modelConfig": {
+			"customOption": {
+				"ornament": {
+					"accordion": "Accordion",
+					"bubbles": "Bubbles",
+					"cheese": "Cheese",
+					"doodles": "Doodles",
+					"dry": "Dry",
+					"elf": "Elf",
+					"facet": "Facet",
+					"feather": "Feather",
+					"foil": "Foil",
+					"plant": "Plant",
+					"sleeves": "Sleeves",
+					"snakes": "Snakes",
+					"thread": "Thread",
+					"tree": "Tree",
+					"window": "Window",
+					"wreath": "Wreath"
+				}
+			},
+			"name": {
+				"characteristics": "Characteristics",
+				"gemstone": "Gemstone",
+				"gemstoneClass": "Gemstone",
+				"gemstoneSize": "Gemstone size",
+				"gemstoneSource": "Gemstone source",
+				"gemstoneWeight": "Gemstone weight",
+				"metal": "Metal",
+				"ornament": "Ornament",
+				"price": "Price",
+				"size": "Size",
+				"weight": "Weight"
+			}
+		},
+		"name": {
+			"baguetteEarring": "Earring 'Baguette'",
+			"baguetteRing": "Ring 'Baguette'",
+			"cloudEarring": "Earring 'Cloud'",
+			"coralEarring": "Earring 'Coral'",
+			"floatEarring": "Earring 'Float'",
+			"flowerRing": "Ring 'Flower'",
+			"hedgehogRing": "Ring 'Hedgehg'",
+			"marquiseEarring": "Earring 'Marquise'",
+			"marquiseRing": "Ring 'Marquise'",
+			"ovalEarring": "Earring 'Oval'",
+			"ovalRing": "Ring 'Oval'",
+			"ribbonRing": "Ring 'Ribbon'",
+			"roundEarring": "Earring 'Round'",
+			"roundRing": "Ring 'Round'",
+			"shapelessRing": "Ring 'Shape-M'",
+			"shellfishEarring": "Earring 'Shellfish'",
+			"squareEarring": "Earring 'Square'",
+			"squareRing": "Ring 'Square'",
+			"whirlwindRing": "Ring 'Whirlwind'"
+		}
+	},
+	"measure": {
+		"ct": "ct",
+		"grams": "g",
+		"mm": "mm",
+		"uah": "uah"
+	},
+	"metal": {
+		"gold585": "Gold",
+		"silver925": "Silver",
+		"whiteGold585": "White gold"
+	},
+	"modelConfig": {
+		"configName": {
+			"Number": "Number",
+			"Options": "Options"
+		}
+	}
 }

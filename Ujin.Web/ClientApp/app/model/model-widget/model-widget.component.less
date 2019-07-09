@@ -1,7 +1,47 @@
 @import '../../styles/common.less';
 
-app-widget {
-    width: 600px;
-    display: block;
-    background-color: @dark-color;
+.model-page-container {
+
+    .widget-and-info-container {
+        display: flex;
+        flex-direction: column;
+        background-color: @dark-color;
+
+        @media @desktop {
+            flex-direction: row;
+        }
+
+        .widget-container {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @media @desktop {
+                flex: 6;
+            }
+
+            app-widget {
+                width: 600px;
+                display: block;
+            }
+        }
+
+        .info-container {
+            background-color: @light-grey-color;
+            padding: 30px;
+
+            .model-name {
+                font-size: 2.5em;
+                font-weight: 500;
+                padding-bottom: 15px;
+                padding-left: 30px;
+                border-bottom: 1px solid @white-color;
+            }
+
+            @media @desktop {
+                flex: 5;
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ModelService } from '../model.service';
-import { JewelryModel } from '../models';
+import { JewelryModel, ModelInfo } from '../models';
 
 @Component({
     selector: 'app-model-widget',
@@ -11,6 +11,8 @@ import { JewelryModel } from '../models';
 export class ModelWidgetComponent implements OnInit {
 
     public model: JewelryModel;
+
+    public modelInfo: ModelInfo;
 
     public modelIdentifier: string;
 
@@ -42,12 +44,14 @@ export class ModelWidgetComponent implements OnInit {
             this.model = model;
             this.modelIdentifier = model.identifier;
             this.modelSku = model.sku;
+            this._modelService.loadModelInfo(this.modelSku).then(mi => this.modelInfo = mi);
         });
     }
 
     public modelChanged() {
         const queryParams: Params = { sku: this.model.sku };
         this.modelSku = this.model.sku;
+        this._modelService.loadModelInfo(this.modelSku).then(mi => this.modelInfo = mi);
 
         this._router.navigate(
             [],

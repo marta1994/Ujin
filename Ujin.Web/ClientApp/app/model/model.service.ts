@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { JewelryModel } from './models';
-import { Router } from '@angular/router';
+import { JewelryModel, ModelInfo } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +16,15 @@ export class ModelService {
                 `api/JewelryModel/LoadModelByIdentifier/?identifier=${identifier}&sku=${sku}`)
                 .then(
                     m => resolve(new JewelryModel(m)),
+                    err => reject(err)));
+    }
+
+    public loadModelInfo(sku: string): Promise<ModelInfo> {
+        return new Promise((resolve, reject) =>
+            this._api.loadData<ModelInfo>(
+                `api/JewelryModel/GetModelInfo/?sku=${sku}`)
+                .then(
+                    m => resolve(new ModelInfo(m)),
                     err => reject(err)));
     }
 }

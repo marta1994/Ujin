@@ -69,9 +69,6 @@ namespace Ujin.Web.Server.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ModelInfo> GetModelInfo([FromQuery]string sku)
-        {
-            throw new Exception();
-        }
+        public Task<ModelInfo> GetModelInfo([FromQuery]string sku) => _jewelryModelService.GetModelInfo(sku);
     }
 }

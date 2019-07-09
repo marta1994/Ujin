@@ -1,2 +1,11 @@
-
-<app-widget [model]="model" (onChange)="modelChanged($event)"></app-widget>
+<div class="model-page-container">
+    <div class="widget-and-info-container">
+        <div class="widget-container">
+            <app-widget [model]="model" (onChange)="modelChanged($event)"></app-widget>
+        </div>
+        <div class="info-container">
+            <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
+            <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>
+        </div>
+    </div>
+</div>

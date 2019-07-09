@@ -39,19 +39,19 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
                             {
                                 new ModelInfoNode
                                 {
-                                    NameKey = "jewelryModel.modelConfig.gemstone",
+                                    NameKey = "jewelryModel.modelConfig.name.gemstoneClass",
                                     Value = gem.GemstoneClass.NameKey,
                                     NeedTranslateValue = true
                                 },
                                 new ModelInfoNode
                                 {
-                                    NameKey = "jewelryModel.modelConfig.gemstoneSize",
+                                    NameKey = "jewelryModel.modelConfig.name.gemstoneSize",
                                     Value = $"{gem.HeightMm} x {gem.WidthMm}",
                                     SuffixKey = "measure.mm"
                                 },
                                 new ModelInfoNode
                                 {
-                                    NameKey = "jewelryModel.modelConfig.gemstoneSource",
+                                    NameKey = "jewelryModel.modelConfig.name.gemstoneSource",
                                     Value = gem.GemstoneSource.NameKey,
                                     NeedTranslateValue = true
                                 }
@@ -60,7 +60,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
                         if (gem.Weight.HasValue)
                             info.Children.Add(new ModelInfoNode
                             {
-                                NameKey = "jewelryModel.modelConfig.gemstoneWeight",
+                                NameKey = "jewelryModel.modelConfig.name.gemstoneWeight",
                                 Value = gem.Weight.Value.ToString(),
                                 SuffixKey = "measure.ct"
                             });

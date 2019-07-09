@@ -9,13 +9,16 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { SelectorConfigComponent } from './widget/selector-config/selector-config.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
 
 @NgModule({
     declarations: [
         ModelWidgetComponent,
         WidgetComponent,
         NumberConfigComponent,
-        SelectorConfigComponent
+        SelectorConfigComponent,
+        ModelInfoComponent,
+        InfoNodeComponent
     ],
     imports: [
         CommonModule,

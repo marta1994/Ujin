@@ -164,3 +164,33 @@ export class Color {
     public nameKey: string;
     public colorHexCode: string;
 }
+
+export class ModelInfo {
+
+    constructor(modelInfo: ModelInfo) {
+        this.price = modelInfo.price;
+        this.weight = modelInfo.weight;
+        this.nodes = modelInfo.nodes.map(ch => new ModelInfoNode(ch));
+    }
+
+    price: number;
+    weight: number;
+    nodes: ModelInfoNode[];
+}
+
+export class ModelInfoNode {
+
+    constructor(node: ModelInfoNode) {
+        this.nameKey = node.nameKey;
+        this.value = node.value;
+        this.needTranslateValue = node.needTranslateValue;
+        this.suffixKey = node.suffixKey;
+        this.children = (node.children || []).map(ch => new ModelInfoNode(ch));
+    }
+
+    nameKey: string;
+    value: string;
+    needTranslateValue: boolean;
+    suffixKey: string;
+    children: ModelInfoNode[];
+}

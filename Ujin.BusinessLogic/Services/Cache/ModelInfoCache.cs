@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.Domain.Dtos;
@@ -33,7 +34,7 @@ namespace Ujin.BusinessLogic.Services.Cache
             return _cache.GetValue(key, async () =>
             {
                 var model = await _modelParser.ParseFromSku(sku);
-                return new ModelInfo
+                var modelInfo = new ModelInfo
                 {
                     Price = await _expressionCalculatorService.CalculateExpression(model.PriceExpression, model),
                     Weight = await _expressionCalculatorService.CalculateExpression(model.WeightExpression, model),
@@ -43,6 +44,8 @@ namespace Ujin.BusinessLogic.Services.Cache
                         return node;
                     }).ToList()
                 };
+                modelInfo.Weight = Math.Floor(modelInfo.Weight * 100) / 100;
+                return modelInfo;
             });
         }
     }

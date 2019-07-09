@@ -8,17 +8,17 @@ namespace Ujin.Admin.Controllers
     [ApiController]
     public class PriceController : ControllerBase
     {
-        private readonly IPriceCalculatorService _priceCalculatorService;
+        private readonly IJewelryModelService _jewelryModelService;
 
-        public PriceController(IPriceCalculatorService priceCalculatorService)
+        public PriceController(IJewelryModelService jewelryModelService)
         {
-            _priceCalculatorService = priceCalculatorService;
+            _jewelryModelService = jewelryModelService;
         }
 
         [HttpGet("[action]")]
-        public Task<decimal> Price([FromQuery]string sku)
+        public async Task<decimal> Price([FromQuery]string sku)
         {
-            return _priceCalculatorService.CalculatePrice(sku);
+            return (await _jewelryModelService.GetModelInfo(sku)).Price;
         }
     }
 }

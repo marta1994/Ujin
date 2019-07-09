@@ -15,7 +15,6 @@ using Ujin.BusinessLogic.Services.Admin;
 using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.BusinessLogic.Services.Order;
-using Ujin.BusinessLogic.Services.Price;
 using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
@@ -73,8 +72,10 @@ namespace Ujin.Admin
             services.AddScoped<ICache, Cache>();
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
-            services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
+            services.AddScoped<IModelInfoCache, ModelInfoCache>();
             services.AddScoped<ModelParser>();
+            services.AddScoped<VariablesEvaluator>();
+            services.AddScoped<ExpressionCalculatorService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

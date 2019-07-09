@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
 using Ujin.Interfaces;
@@ -64,6 +66,12 @@ namespace Ujin.Web.Server.Controllers
             var image = System.IO.File.OpenRead(fullPath);
             var extension = fullPath.Split('.').Last();
             return File(image, $"image/{extension}");
+        }
+
+        [HttpGet("[action]")]
+        public async Task<ModelInfo> GetModelInfo([FromQuery]string sku)
+        {
+            throw new Exception();
         }
     }
 }

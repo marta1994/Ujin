@@ -30,6 +30,8 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public int Id => _modelConfig.Id;
 
+        public string NameKey => _modelConfig.NameKey;
+
         public int JewelryModelId => _modelConfig.JewelryModelId;
 
         public string Identifier => _modelConfig.Identifier;

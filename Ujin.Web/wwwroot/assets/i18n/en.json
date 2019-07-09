@@ -69,12 +69,18 @@
       "roundEarring": "Earring 'Round'",
       "ovalEarring": "Earring 'Oval'"
     },
+    "description": {
+      "ovalRing": "Super cool ring! Amazing! Stunning, fabulous!!! Buy now!"
+    },
     "modelConfig": {
       "name": {
         "size": "Size",
         "metal": "Metal",
         "gemstone": "Gemstone",
-        "ornament": "Ornament"
+        "ornament": "Ornament",
+        "gemstoneSize": "Gemstone size",
+        "gemstoneSource": "Gemstone source",
+        "gemstoneWeight": "Gemstone weight"
       },
       "customOption": {
         "ornament": {
@@ -97,5 +103,9 @@
         }
       }
     }
+  },
+  "measure": {
+    "mm": "mm",
+    "ct": "ct"
   }
 }

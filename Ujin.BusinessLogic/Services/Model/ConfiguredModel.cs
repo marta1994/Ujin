@@ -41,6 +41,10 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public string PriceExpression => _model.PriceExpression;
 
+        public string WeightExpression => _model.WeightExpression;
+
+        public string DescriptionKey => _model.DescriptionKey;
+
         public string GetStrValueByPath(string path)
         {
             var splitted = path.Split(_expressionTerms.PathSeparator);

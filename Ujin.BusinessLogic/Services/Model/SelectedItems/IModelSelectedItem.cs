@@ -1,3 +1,4 @@
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Enums;
 
 namespace Ujin.BusinessLogic.Services.Model.SelectedItems
@@ -11,5 +12,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         string SkuValue { get; }
 
         JewelryModelConfigType ConfigType { get; }
+
+        ModelInfoNode Info { get; }
     }
 }

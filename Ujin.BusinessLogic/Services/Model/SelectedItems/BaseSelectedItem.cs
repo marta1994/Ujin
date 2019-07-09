@@ -1,3 +1,4 @@
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
 
@@ -28,6 +29,8 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         }
 
         public abstract string SkuValue { get; }
+
+        public abstract ModelInfoNode Info { get; }
 
         public abstract JewelryModelConfigType ConfigType { get; }
 

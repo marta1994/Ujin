@@ -4,10 +4,12 @@ var JewelryModel = /** @class */ (function () {
     function JewelryModel(jewelryModel) {
         var _this = this;
         this.nameKey = jewelryModel.nameKey;
+        this.descriptionKey = jewelryModel.descriptionKey;
         this.id = jewelryModel.id;
         this.identifier = jewelryModel.identifier;
         this.imagesPattern = jewelryModel.imagesPattern;
         this.priceExpression = jewelryModel.priceExpression;
+        this.weightExpression = jewelryModel.weightExpression;
         this.modelState = jewelryModel.modelState;
         this.configurations = jewelryModel.configurations.map(function (c) { return new ModelConfiguration(c, _this); });
     }

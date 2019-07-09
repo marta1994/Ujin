@@ -1,4 +1,5 @@
 using System;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
 
@@ -20,6 +21,12 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
         }
 
         public override string SkuValue => _value.ToString();
+
+        public override ModelInfoNode Info => new ModelInfoNode
+        {
+            Value = _value.ToString(),
+            SuffixKey = string.Empty
+        };
 
         public override JewelryModelConfigType ConfigType => JewelryModelConfigType.Number;
 

@@ -69,12 +69,18 @@
       "roundEarring": "Сережки 'Круг'",
       "ovalEarring": "Сережки 'Овал'"
     },
+    "description": {
+      "ovalRing": "Дуже круте кільце, супер неймовірно пречудове, просто необхідне для вас - купіть вже. Зараз! НЕГАЙНО!!! ВЖЕ ВЖЕ ВЖЕ!!!"
+    },
     "modelConfig": {
       "name": {
         "size": "Розмір",
         "metal": "Метал",
         "gemstone": "Вставка",
-        "ornament": "Оздоба"
+        "ornament": "Оздоба",
+        "gemstoneSize": "Розмір каменя",
+        "gemstoneSource": "Походження каменя",
+        "gemstoneWeight":  "Вага каменя"
       },
       "customOption": {
         "ornament": {
@@ -97,5 +103,9 @@
         }
       }
     }
+  }
+  "measure": {
+    "mm": "мм",
+    "ct": "кар"
   }
 }

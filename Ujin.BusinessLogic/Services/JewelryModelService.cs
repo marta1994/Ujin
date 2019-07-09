@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ujin.BusinessLogic.Services.Model;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Interfaces;
@@ -17,22 +18,31 @@ namespace Ujin.BusinessLogic.Services
 
         private readonly IParsedModelCache _parsedModelCache;
 
+        private readonly IModelInfoCache _modelInfoCache;
+
         private readonly ModelParser _modelParser;
 
         public JewelryModelService(
             IJewelryModelDao jewelryModelDao,
             IParsedModelCache parsedModelCache,
-            ModelParser modelParser)
+            ModelParser modelParser,
+            IModelInfoCache modelInfoCache)
         {
             _jewelryModelDao = jewelryModelDao;
             _parsedModelCache = parsedModelCache;
             _modelParser = modelParser;
+            _modelInfoCache = modelInfoCache;
         }
 
         public Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
         {
             return _parsedModelCache.GetParsedModelById(identifier);
         }
+
+        public Task<ModelInfo> GetModelInfo(string sku)
+        {
+            return _modelInfoCache.GetModelInfoBySku(sku);
+        } 
 
         public async Task<List<string>> GetOrderedValues(string sku, string identifier)
         {

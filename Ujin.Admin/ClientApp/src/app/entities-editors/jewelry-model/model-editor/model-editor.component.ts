@@ -42,9 +42,11 @@ export class ModelEditorComponent implements OnInit {
       this.jewelryModel = new JewelryModel({
         id: -1,
         nameKey: "jewelryModel.name.NEW_NAME",
+        descriptionKey: "jewelryModel.description.NEW_NAME",
         identifier: "ID",
         imagesPattern: "[]",
         priceExpression: "0",
+        weightExpression: "0",
         modelState: JewelryModelState.BuildingState,
         configurations: []
       });

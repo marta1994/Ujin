@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 
@@ -10,6 +11,8 @@ namespace Ujin.Interfaces
         Task<List<JewelryModelDto>> LoadJewelryModels();
 
         Task<JewelryModelDto> LoadJewelryModelById(int id);
+
+        Task<ModelInfo> GetModelInfo(string sku);
 
         Task SaveJewelryModel(JewelryModelDto jewelryModel);
 

@@ -25,12 +25,20 @@
     <span class="value">{{jewelryModel.nameKey | translate}}</span>
   </div>
   <div class="name-value">
+    <span class="label">Ключ опису</span>
+    <input class="value text-input" [(ngModel)]="jewelryModel.descriptionKey" type="text" />
+  </div>
+  <div class="name-value">
     <span class="label">Шаблон назви зображень</span>
     <app-images-editor [jewelryModel]="jewelryModel"></app-images-editor>
   </div>
   <div class="name-value">
     <span class="label">Формула обчислення ціни</span>
     <app-hint-input [(value)]="jewelryModel.priceExpression" [hintSource]="priceHintSource"></app-hint-input>
+  </div>
+  <div class="name-value">
+    <span class="label">Формула обчислення ваги</span>
+    <app-hint-input [(value)]="jewelryModel.weightExpression" [hintSource]="priceHintSource"></app-hint-input>
   </div>
   <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
   <div class="splitter"></div>

@@ -13,7 +13,6 @@ using Swashbuckle.AspNetCore.Swagger;
 using Ujin.BusinessLogic.Services;
 using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
-using Ujin.BusinessLogic.Services.Price;
 using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
@@ -53,13 +52,13 @@ namespace AspCoreServer {
 
             services.AddSingleton(appSettings);
             services.AddScoped<ICache, Cache>();
-            services.AddScoped<IPriceCache, PriceCache>();
+            services.AddScoped<IModelInfoCache, ModelInfoCache>();
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
-            services.AddScoped<IPriceCalculatorService, PriceCalculatorService>();
             services.AddScoped<IModelImageService, ModelImageService>();
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
+            services.AddScoped<ExpressionCalculatorService>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen (c => {

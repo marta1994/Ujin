@@ -14,6 +14,10 @@ namespace Ujin.Storage.Models.ModelConfig
         public string ImagesPattern { get; set; }
 
         public string PriceExpression { get; set; }
+
+        public string WeightExpression { get; set; }
+
+        public string DescriptionKey { get; set; }
         
         public JewelryModelState ModelState { get; set; }
     }

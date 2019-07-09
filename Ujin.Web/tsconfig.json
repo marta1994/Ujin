@@ -18,6 +18,6 @@
     "types": [ "node" ]
   },
   "include": [
-    "ClientApp"
+    "ClientApp", "../Ujin.Interfaces/Cache/IParsedModelCache.cs", "../Ujin.Interfaces/Cache/IModelInfoCache.cs", "../Ujin.BusinessLogic/Services/Cache/ModelInfoCache.cs"
   ]
 }

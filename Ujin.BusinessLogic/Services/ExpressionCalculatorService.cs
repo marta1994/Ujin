@@ -4,30 +4,25 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.Interfaces;
 
-namespace Ujin.BusinessLogic.Services.Price
+namespace Ujin.BusinessLogic.Services
 {
-    public class PriceCalculatorService : IPriceCalculatorService
+    public class ExpressionCalculatorService
     {
         private readonly VariablesEvaluator _variablesEvaluator;
 
-        private readonly ModelParser _modelParser;
-
-        public PriceCalculatorService(
-            ModelParser modelParser,
+        public ExpressionCalculatorService(
             VariablesEvaluator variablesEvaluator)
         {
-            _modelParser = modelParser;
             _variablesEvaluator = variablesEvaluator;
         }
 
-        public async Task<decimal> CalculatePrice(string sku)
+        public async Task<decimal> CalculateExpression(string expression, ConfiguredModel model)
         {
-            var model = await _modelParser.ParseFromSku(sku);
             var evaluatedExpression = _variablesEvaluator.EvaluateExpression(model.PriceExpression, model);
-            return await CalcPriceFromExpression(evaluatedExpression);
+            return await GetResultFromExpression(evaluatedExpression);
         }
 
-        private async Task<decimal> CalcPriceFromExpression(string expression)
+        private async Task<decimal> GetResultFromExpression(string expression)
         {
             try
             {

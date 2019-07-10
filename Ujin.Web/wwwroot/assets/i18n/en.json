@@ -10,6 +10,11 @@
 			"yellow": "Yellow"
 		}
 	},
+	"forms": {
+		"modelPage": {
+			"buyInOneClick": "Buy in one click"
+		}
+	},
 	"gemstone": {
 		"gemClass": {
 			"alexandrite": "Alexandrite",

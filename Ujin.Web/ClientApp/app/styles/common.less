@@ -1,10 +1,10 @@
 @desktop: ~"only screen and (min-width: 780px)";
 
-@dark-color: #121212;
-@grey-color: #7d778d;
-@light-grey-color: #c8cad9;
-@white-color: #f3fdff;
-@accent-color: #ffb6b6;
+@dark-color: #0A1011;
+@grey-color: #4A494A;
+@light-grey-color: #BBD1D5;
+@white-color: #ffffff;
+@accent-color: #5CA2A2;
 @red-color: #ff4848;
 @green-color: #3aeb51;
 
@@ -14,4 +14,21 @@
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
     border-radius: @radius;
+}
+
+.set-primary-button() {
+    .set-border-radius(3px);
+    border: 1px solid @grey-color;
+    font-weight: 400;
+    font-size: 1.7rem;
+    padding: 10px 15px;
+    color: @dark-color;
+    transition: color ease 0.3s, background-color ease 0.3s;
+    cursor: pointer;
+    background-color: @light-grey-color;
+
+    &:hover {
+        color: lighten(@dark-color, 5%);
+        background-color: darken(@accent-color, 10%);
+    }
 }

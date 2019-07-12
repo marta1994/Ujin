@@ -6,8 +6,9 @@
                 <span class="text">{{config.nameKey|translate}}</span>
             </div>
         </div>
-        <div class="images-conatiner">
-            <img *ngFor="let i of imageIndexes" [src]="getImgSrc(i)" class="model-image" />
+        <div class="images-conatiner" [@widgetImg]="imgAnimate"
+               (@widgetImg.done)="imgAnimateDone($event)">
+            <img *ngFor="let i of imageIndexes" [src]="getImgSrc(i)" class="model-image" (load)="onImageLoded(i)" />
         </div>
     </div>
     <div class="config-menu" [ngSwitch]="selectedConfig.configurationType">

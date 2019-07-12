@@ -4,7 +4,31 @@
 @menu-border-width: 2px;
 @menu-border: @menu-border-width @menu-border-style;
 
+@keyframes expand {
+    from {
+        //transform: scaleY(0);
+        height: 0;
+    }
+}
+
 .selector-wrapper {
+
+    .gem-container {
+        .sub-menu {
+            //transform-origin: top;
+            //transform: scaleY(0);
+            height: 0;
+            overflow: hidden;
+            transition: height ease 0.3s;
+            animation: expand 0.3s ease;
+
+            &.visible {
+                //transform: scaleY(1);
+                height: 25px;
+            }
+        }
+    }
+
     .menu, .sub-menu {
         width: 100%;
         border-bottom: 1px solid @grey-color;
@@ -53,6 +77,5 @@
     }
 
     .gem-container {
-
     }
 }

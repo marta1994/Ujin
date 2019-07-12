@@ -1,10 +1,19 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { SelectorConfiguration, OptionsSource, Gemstone, NamedEntity, CustomOption } from '../../models';
+import { trigger, state, transition, style, animate } from '@angular/animations';
 
 @Component({
     selector: 'app-selector-config',
     templateUrl: './selector-config.component.html',
-    styleUrls: ['./selector-config.component.less']
+    styleUrls: ['./selector-config.component.less'],
+    animations: [
+        trigger('collapseSubMenu', [
+            state('void', style({
+                height: 0
+            })),
+            transition('* -> void', animate('0.3s ease')),
+        ])
+    ]
 })
 export class SelectorConfigComponent implements OnInit, OnChanges {
 

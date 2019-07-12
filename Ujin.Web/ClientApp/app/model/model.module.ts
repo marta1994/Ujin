@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModelWidgetComponent } from './model-widget/model-widget.component';
 import { ApiModule } from '../api/api.module';
 import { ModelService } from './model.service';
@@ -23,6 +24,7 @@ import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.c
     imports: [
         CommonModule,
         FormsModule,
+        BrowserAnimationsModule,
         ApiModule,
         UiComponentsModule,
         TranslateModule.forChild()

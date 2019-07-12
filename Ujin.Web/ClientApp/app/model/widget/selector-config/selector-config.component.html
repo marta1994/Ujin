@@ -21,7 +21,7 @@
                 <span class="text">{{item.nameKey|translate}}</span>
             </div>
         </div>
-        <div *ngIf="selectedNode.children.length > 1" class="sub-menu">
+        <div [ngClass]="{'visible': selectedNode.children.length > 1}" class="sub-menu" #submenu>
             <div *ngFor="let item of selectedNode.children"
                  class="sub-menu-item" (click)="selectGem(item)"
                  [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">

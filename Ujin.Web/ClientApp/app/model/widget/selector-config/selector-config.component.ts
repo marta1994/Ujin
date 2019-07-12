@@ -51,6 +51,8 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
             }
             gemNode.children.push(g);
         });
+        this.gemstones.forEach(g => g.children = g.children.sort(
+            (c1, c2) => c1.gemstoneSource.identifier.localeCompare(c2.gemstoneSource.identifier)));
         this.selectedGem = this.configuration.gemstoneSource.find(
             g => g.identifier.toLowerCase() === (this.configuration.value + "").toLowerCase());
         this.selectedNode = this.gemstones.find(gn => gn.classId.toLowerCase() === this.selectedGem.gemstoneClass.identifier.toLowerCase());

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ColorEditorComponent } from './entities-editors/color-editor/color-editor.component';
 import { MetalEditorComponent } from './entities-editors/metal-editor/metal-editor.component';
 import { LoginComponent } from './authorization/login/login.component';
+import { SkuConfigComponent } from './sku-config/sku-config.component';
 
 const appRoutes: Routes = [
   {
@@ -71,6 +72,9 @@ const appRoutes: Routes = [
           },
           { path: '**', redirectTo: 'models' }
         ]
+      },
+      {
+        path: 'sku-config', component: SkuConfigComponent
       }
     ]
   },

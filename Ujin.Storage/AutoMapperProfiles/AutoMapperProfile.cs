@@ -35,6 +35,8 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<Metal, MetalDto>();
             CreateMap<JewelryModel, JewelryModelDto>();
             CreateMap<JewelryModelDto, JewelryModel>();
+            CreateMap<SkuDescription, SkuDescriptionDto>();
+            CreateMap<SkuDescriptionDto, SkuDescription>();
             CreateMap<ModelConfiguration, ModelConfigurationDto>();
             CreateMap<ModelConfigurationDto, ModelConfiguration>();
             CreateMap<JewelryModel, ParsedJewelryModel>();

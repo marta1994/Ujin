@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ujin.Storage;
 
 namespace Ujin.Storage.Migrations
 {
     [DbContext(typeof(UjinContext))]
-    partial class UjinContextModelSnapshot : ModelSnapshot
+    [Migration("20190713112911_addskudescription")]
+    partial class addskudescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -317,25 +319,24 @@ namespace Ujin.Storage.Migrations
 
             modelBuilder.Entity("Ujin.Storage.Models.ModelConfig.SkuDescription", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Sku")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateCreated");
 
                     b.Property<DateTime?>("DateModified");
 
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("Images");
 
                     b.Property<int>("JewelryModelId");
 
-                    b.Property<string>("Sku");
-
-                    b.HasKey("Id");
+                    b.HasKey("Sku");
 
                     b.HasIndex("JewelryModelId");
-
-                    b.HasIndex("Sku");
 
                     b.ToTable("SkuDescriptions");
                 });

@@ -73,6 +73,7 @@ namespace Ujin.Admin
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IModelInfoCache, ModelInfoCache>();
+            services.AddScoped<ISkuDescriptionService, SkuDescriptionService>();
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();

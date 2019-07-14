@@ -18,6 +18,7 @@ import { GemstoneModule } from './entities-editors/gemstone/gemstone.module';
 import { JewelryModelModule } from './entities-editors/jewelry-model/jewelry-model.module';
 import { AppSettingsService } from './services/app-settings.service';
 import { AppRoutingModule } from './app-routing.module';
+import { SkuConfigComponent, InfoNodeComponent } from './sku-config/sku-config.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
     HomeComponent,
     ContentComponent,
     ColorEditorComponent,
-    MetalEditorComponent
+    MetalEditorComponent,
+    SkuConfigComponent,
+    InfoNodeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

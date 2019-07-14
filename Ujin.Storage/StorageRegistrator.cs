@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Ujin.Interfaces.Dao;
 using Ujin.Storage.Dao;
 
@@ -24,6 +22,7 @@ namespace Ujin.Storage
             services.AddScoped<IColorDao, ColorDao>();
             services.AddScoped<IMetalDao, MetalDao>();
             services.AddScoped<IJewelryModelDao, JewelryModelDao>();
+            services.AddScoped<ISkuDescriptionDao, SkuDescriptionDao>();
         }
     }
 }

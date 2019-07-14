@@ -38,6 +38,8 @@ namespace Ujin.Storage
 
         internal DbSet<ModelConfiguration> ModelConfigurations { get; set; }
 
+        internal DbSet<SkuDescription> SkuDescriptions { get; set; }
+
         internal Task UpsertEntities(IEnumerable<BaseModel> entities)
         {
             var addedEntities = entities.Where(g => g.Id <= 0)
@@ -105,6 +107,17 @@ namespace Ujin.Storage
                 .WithOne(m => m.JewelryModel)
                 .HasForeignKey(m => m.JewelryModelId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SkuDescription>()
+                .HasIndex(s => s.Sku);
+
+            modelBuilder.Entity<SkuDescription>()
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<SkuDescription>()
+                .HasOne(s => s.JewelryModel)
+                .WithMany(m => m.SkuDescriptions)
+                .HasForeignKey(s => s.JewelryModelId);
 
             modelBuilder.Entity<JewelryModel>()
                 .HasIndex(m => m.NameKey)

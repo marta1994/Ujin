@@ -20,5 +20,7 @@ namespace Ujin.Storage.Models.ModelConfig
         public string DescriptionKey { get; set; }
         
         public JewelryModelState ModelState { get; set; }
+
+        public virtual List<SkuDescription> SkuDescriptions { get; set; }
     }
 }

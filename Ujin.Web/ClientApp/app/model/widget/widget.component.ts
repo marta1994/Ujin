@@ -24,14 +24,17 @@ export class WidgetComponent implements OnInit, OnChanges {
     @Input()
     public model: JewelryModel;
 
+    @Input()
+    public currentImages: string[] = [];
+
     @Output()
     public onChange: EventEmitter<string> = new EventEmitter<string>();
 
     public selectedConfig: Configuration;
 
-    public imageIndexes: number[];
-
     public JewelryModelConfigType = JewelryModelConfigType;
+
+    public imageIndexes: number[];
 
     constructor(private _changeDetector: ChangeDetectorRef) { }
 
@@ -39,15 +42,18 @@ export class WidgetComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (!changes.model || !this.model) return;
-        this.imageIndexes = [];
-        for (let i = 0; i < this.model.imagesCount; ++i)
-            this.imageIndexes.push(i);
-        this.selectedConfig = this.model.configurations[0];
-    }
-
-    public getImgSrc(index: number): string {
-        return `api/JewelryModel/WidgetImage/?sku=${this.model.sku}&index=${index}`;
+        if (changes.currentImages) {
+            var oldImages = changes.currentImages.previousValue;
+            var currImages = changes.currentImages.currentValue;
+            if (!this.areStrArraysEqual(oldImages, currImages))
+                this.triggerAnimation();
+        }
+        if (changes.model && this.model) {
+            this.selectedConfig = this.model.configurations[0];
+            this.imageIndexes = [];
+            for (let i = 0; i < this.model.imagesCount; ++i)
+                this.imageIndexes.push(i);
+        }
     }
 
     public selectConfig(config: Configuration) {
@@ -60,6 +66,17 @@ export class WidgetComponent implements OnInit, OnChanges {
 
     public modelChanged(configId: string) {
         this.currentConfigId = configId;
+        this.onChange.emit(this.currentConfigId);
+    }
+
+    private areStrArraysEqual(ar1: string[], ar2: string[]) {
+        if (ar1 == null && ar2 == null) return true;
+        if (ar1 == null || ar2 == null) return false;
+        if (ar1.length != ar2.length) return false;
+        return ar1.find(el1 => ar2.find(el2 => el2 === el1) == null) == null;
+    }
+
+    private triggerAnimation() {
         this.imgAnimate = ImgAnimateState.Out;
         this.loadedIndexes = [];
     }
@@ -72,7 +89,6 @@ export class WidgetComponent implements OnInit, OnChanges {
         switch (event.toState) {
             case ImgAnimateState.Out:
                 if (this.currentConfigId != null) {
-                    this.onChange.emit(this.currentConfigId);
                     this.currentConfigId = null;
                 }
                 this.imgAnimate = ImgAnimateState.Loading;
@@ -86,14 +102,15 @@ export class WidgetComponent implements OnInit, OnChanges {
     }
 
     public onImageLoded(index: number) {
-        this.loadedIndexes.push(index);
+        if (this.loadedIndexes.indexOf(index) < 0)
+            this.loadedIndexes.push(index);
         if (this.imgAnimate != ImgAnimateState.Loading) return;
         this.tryStartInAnimation();
     }
 
     private tryStartInAnimation() {
-        let loaded = this.imageIndexes.find(i => this.loadedIndexes.find(li => li == i) == null) == null;
-        let complete = this.imageIndexes.map(i => this.getImgSrc(i)).reduce((pr, curr) => {
+        let loaded = this.loadedIndexes.length === this.currentImages.length;
+        let complete = this.currentImages.reduce((pr, curr) => {
             let img = new Image();
             img.src = curr;
             return img.complete && pr;

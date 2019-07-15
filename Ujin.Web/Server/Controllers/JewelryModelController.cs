@@ -19,6 +19,8 @@ namespace Ujin.Web.Server.Controllers
     {
         private const string ImagesDir = "wwwroot/assets/images/widget/";
 
+        private const string RelImagesDir = "assets/images/widget/";
+
         private readonly IJewelryModelService _jewelryModelService;
 
         private readonly IModelImageService _modelImageService;
@@ -54,6 +56,13 @@ namespace Ujin.Web.Server.Controllers
             }
 
             return Ok(model);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<List<string>> WidgetImageSrcs([FromQuery]string sku)
+        {
+            var images = await _modelImageService.GetImagesPath(sku);
+            return images.Select(i => Path.Combine(RelImagesDir, i)).ToList();
         }
 
         [HttpGet("[action]")]

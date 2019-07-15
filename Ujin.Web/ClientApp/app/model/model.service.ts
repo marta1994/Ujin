@@ -27,6 +27,14 @@ export class ModelService {
                     m => resolve(new ModelInfo(m)),
                     err => reject(err)));
     }
+
+    public loadImageSrcs(sku: string): Promise<string[]> {
+        return new Promise((resolve, reject) => {
+            this._api.loadData<string[]>(`api/JewelryModel/WidgetImageSrcs/?sku=${sku}`)
+                .then(r => resolve(r),
+                    err => reject(err));
+        });
+    }
 }
 
 

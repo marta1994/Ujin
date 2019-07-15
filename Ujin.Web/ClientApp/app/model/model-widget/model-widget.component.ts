@@ -18,6 +18,8 @@ export class ModelWidgetComponent implements OnInit {
 
     public modelSku: string;
 
+    public currentImages: string[];
+
     constructor(
         private _modelService: ModelService,
         private _activatedRoute: ActivatedRoute,
@@ -45,6 +47,7 @@ export class ModelWidgetComponent implements OnInit {
             this.modelIdentifier = model.identifier;
             this.modelSku = model.sku;
             this._modelService.loadModelInfo(this.modelSku).then(mi => this.modelInfo = mi);
+            this._modelService.loadImageSrcs(this.modelSku).then(imgs => this.currentImages = imgs);
         });
     }
 
@@ -52,6 +55,7 @@ export class ModelWidgetComponent implements OnInit {
         const queryParams: Params = { sku: this.model.sku };
         this.modelSku = this.model.sku;
         this._modelService.loadModelInfo(this.modelSku).then(mi => this.modelInfo = mi);
+        this._modelService.loadImageSrcs(this.modelSku).then(imgs => this.currentImages = imgs);
 
         this._router.navigate(
             [],

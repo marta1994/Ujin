@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Web.Server.Models.Jewelry;
 
@@ -14,6 +15,7 @@ namespace Ujin.Web
                 .ForMember(jm => jm.ImagesCount, m => m.MapFrom(
                     src => JsonConvert.DeserializeObject<List<string>>(src.ImagesPattern).Count));
             CreateMap<ParsedModelConfig, Configuration>();
+            CreateMap<SkuDescriptionDto, SkuDescription>();
         }
     }
 }

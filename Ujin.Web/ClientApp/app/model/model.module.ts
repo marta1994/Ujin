@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModelWidgetComponent } from './model-widget/model-widget.component';
 import { ApiModule } from '../api/api.module';
 import { ModelService } from './model.service';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { WidgetComponent } from './widget/widget.component';
 import { NumberConfigComponent } from './widget/number-config/number-config.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
@@ -11,6 +12,8 @@ import { SelectorConfigComponent } from './widget/selector-config/selector-confi
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
+import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
+import { ServicesModule } from '../services/services.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +22,8 @@ import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.c
         NumberConfigComponent,
         SelectorConfigComponent,
         ModelInfoComponent,
-        InfoNodeComponent
+        InfoNodeComponent,
+        ImageCarouselComponent
     ],
     imports: [
         CommonModule,
@@ -27,6 +31,8 @@ import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.c
         BrowserAnimationsModule,
         ApiModule,
         UiComponentsModule,
+        ServicesModule,
+        AngularSvgIconModule,
         TranslateModule.forChild()
     ],
     providers: [

@@ -49,6 +49,7 @@ namespace AspCoreServer {
 
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+            services.AddSingleton(appSettings);
 
             services.AddSingleton(appSettings);
             services.AddScoped<ICache, Cache>();
@@ -56,6 +57,7 @@ namespace AspCoreServer {
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IModelImageService, ModelImageService>();
+            services.AddScoped<ISkuDescriptionService, SkuDescriptionService>();
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();

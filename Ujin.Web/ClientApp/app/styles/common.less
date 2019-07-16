@@ -10,6 +10,12 @@
 
 @font: 'Roboto', sans-serif;
 
+.set-box-shadow(@color, @shadow: 0 0 5px 2px) {
+    box-shadow: @shadow @color;
+    -webkit-box-shadow: @shadow @color;
+    -moz-box-shadow: @shadow @color;
+}
+
 .set-border-radius(@radius) {
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;

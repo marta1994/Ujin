@@ -1,19 +1,37 @@
 ﻿export class JewelryModel {
-    constructor(model: any) {
+    constructor(model: any, skuSeparator: string) {
         this.identifier = model.identifier;
         this.nameKey = model.nameKey;
         this.imagesCount = model.imagesCount;
         this.configurations = model.configurations.map(cfg => Configuration.Create(cfg));
+        this.skuDescriptions = model.skuDescriptions.map(sd => new SkuDescription(sd));
+
+        this.skuSeparator = skuSeparator;
     }
 
     public identifier: string;
     public nameKey: string;
     public imagesCount: number;
     public configurations: Configuration[];
+    public skuDescriptions: SkuDescription[];
+
+    private skuSeparator: string;
 
     public get sku(): string {
-        return this.identifier + "_" + this.configurations.sort(c => c.order).map(c => c.value).join("_");
+        return this.identifier + this.skuSeparator +
+            this.configurations.sort(c => c.order).map(c => c.value).join(this.skuSeparator);
     }
+}
+
+export class SkuDescription {
+
+    constructor(sd: SkuDescription) {
+        this.sku = sd.sku;
+        this.images = JSON.parse(<any>sd.images);
+    }
+
+    public sku: string;
+    public images: string[];
 }
 
 export abstract class Configuration {

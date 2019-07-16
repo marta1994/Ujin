@@ -25,15 +25,19 @@ namespace Ujin.Web.Server.Controllers
 
         private readonly IModelImageService _modelImageService;
 
+        private readonly ISkuDescriptionService _skuDescriptionService;
+
         private readonly IMapper _mapper;
 
         public JewelryModelController(
             IJewelryModelService jewelryModelService,
             IModelImageService modelImageService,
+            ISkuDescriptionService skuDescriptionService,
             IMapper mapper)
         {
             _jewelryModelService = jewelryModelService;
             _modelImageService = modelImageService;
+            _skuDescriptionService = skuDescriptionService;
             _mapper = mapper;
         }
 
@@ -47,6 +51,8 @@ namespace Ujin.Web.Server.Controllers
                 return NotFound();
 
             var model = _mapper.Map<JewelryModel>(parsedModel);
+            model.SkuDescriptions = (await _skuDescriptionService.LoadSkuDescriptionsByModelId(parsedModel.Id))
+                .Select(s => _mapper.Map<SkuDescription>(s)).ToList();
             if (string.IsNullOrEmpty(sku))
                 return Ok(model);
             var values = await _jewelryModelService.GetOrderedValues(sku, identifier);

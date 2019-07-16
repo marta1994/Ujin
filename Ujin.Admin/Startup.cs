@@ -62,8 +62,8 @@ namespace Ujin.Admin
 
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
-
             services.AddSingleton(appSettings);
+
             services.AddScoped<IAdminUserService, AdminUserService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IGemstoneService, GemstoneService>();

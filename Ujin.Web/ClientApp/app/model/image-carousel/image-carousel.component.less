@@ -44,6 +44,12 @@
             background-color: @accent-color;
             .set-box-shadow(@grey-color);
             z-index: 3;
+            cursor: pointer;
+            transition: box-shadow ease 0.3s;
+
+            &:hover {
+                .set-box-shadow(@grey-color, 0 0 7px 4px);
+            }
 
             img {
                 .set-border-radius(3px);

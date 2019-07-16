@@ -67,6 +67,19 @@
                     justify-content: flex-end;
                 }
 
+                &:hover {
+                    color: @white-color;
+                    padding-bottom: @padding + 1px;
+                    border-bottom-width: @menu-border-width - 1px;
+
+                    @media @desktop {
+                        padding-right: @padding + 1px;
+                        border-right-width: @menu-border-width - 1px;
+                        border-bottom-width: 0;
+                        padding-bottom: 0;
+                    }
+                }
+
                 &.selected {
                     color: @white-color;
                     padding-bottom: @padding;

@@ -54,6 +54,12 @@
                 padding-bottom: @padding - @menu-border-width;
             }
 
+            &:hover {
+                border-bottom-width: @menu-border-width - 1px;
+                color: @white-color;
+                padding-bottom: @padding - @menu-border-width + 1px;
+            }
+
             .text {
                 display: inline-block;
                 padding: 10px;
@@ -69,6 +75,10 @@
 
         &.selected {
             padding-bottom: @padding - @menu-border-width;
+        }
+
+        &:hover {
+            padding-bottom: @padding - @menu-border-width + 1px;
         }
 
         .text {

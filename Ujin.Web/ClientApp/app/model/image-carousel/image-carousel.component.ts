@@ -1,11 +1,21 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JewelryModel, SkuDescription } from '../models';
 import { AppSettingsService } from '../../services/app-settings.service';
+import { trigger, transition, useAnimation, sequence } from '@angular/animations';
+import { fadeInRight, fadeInLeft } from 'ng-animate';
 
 @Component({
     selector: 'app-image-carousel',
     templateUrl: './image-carousel.component.html',
-    styleUrls: ['./image-carousel.component.less']
+    styleUrls: ['./image-carousel.component.less'],
+    animations: [
+        trigger('mainImg', [
+            transition('* => outRight',
+                useAnimation(fadeInLeft, { params: { timing: 0.3 } }),),
+            transition('* => outLeft',
+                useAnimation(fadeInRight, { params: { timing: 0.3 } })
+                )])
+    ]
 })
 export class ImageCarouselComponent implements OnInit, OnChanges {
 
@@ -23,6 +33,8 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
 
     public currIndex = 0;
 
+    public imgAnimate: ImageAnimate = ImageAnimate.none;
+
     constructor(private _appSettingsService: AppSettingsService) { }
 
     ngOnInit() {
@@ -39,8 +51,13 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         this.sortImages();
     }
 
+    public imgAnimateDone() {
+        this.imgAnimate = ImageAnimate.none;
+    }
+    
     public shift(pos: number) {
         this.currIndex = (this.currIndex + pos + this.images.length) % this.images.length;
+        this.imgAnimate = pos > 0 ? ImageAnimate.outLeft : ImageAnimate.outRight;
     }
 
     private sortImages() {
@@ -74,4 +91,12 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         }
         return res;
     }
+}
+
+enum ImageAnimate {
+    outRight = "outRight",
+    outLeft = "outLeft",
+    inRight = "inRight",
+    inLeft = "inLeft",
+    none = "none"
 }

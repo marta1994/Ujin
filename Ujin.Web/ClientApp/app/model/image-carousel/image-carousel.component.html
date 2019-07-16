@@ -4,7 +4,7 @@
             <img [src]="images[(currIndex - 1 + imageIndexes.length) % imageIndexes.length]" />
         </div>
         <div class="main-image image-wrapper" (click)="shift(1)">
-            <img [src]="images[currIndex]" />
+            <img [src]="images[currIndex]" [@mainImg]="imgAnimate" (@mainImg.done)="imgAnimateDone($event)"/>
         </div>
         <div class="side-image image-wrapper right-image">
             <img [src]="images[(currIndex + 1) % imageIndexes.length]" />

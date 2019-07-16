@@ -1,23 +1,13 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { JewelryModel, SkuDescription } from '../models';
 import { AppSettingsService } from '../../services/app-settings.service';
-import { trigger, transition, useAnimation, sequence } from '@angular/animations';
-import { fadeIn, fadeOut } from 'ng-animate';
 
 @Component({
-    selector: 'app-image-carousel',
-    templateUrl: './image-carousel.component.html',
-    styleUrls: ['./image-carousel.component.less'],
-    animations: [
-        trigger('mainImg', [
-            transition('* => out',
-                sequence([
-                    useAnimation(fadeOut, { params: { timing: 0.3 } }),
-                    useAnimation(fadeIn, { params: { timing: 0.5 } })
-                ]))])
-    ]
+    selector: 'app-vertical-img-collage',
+    templateUrl: './vertical-img-collage.component.html',
+    styleUrls: ['./vertical-img-collage.component.less']
 })
-export class ImageCarouselComponent implements OnInit, OnChanges {
+export class VerticalImgCollageComponent implements OnInit, OnChanges {
 
     @Input()
     public model: JewelryModel;
@@ -25,15 +15,9 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
     @Input()
     public sku: string;
 
-    public imageIndexes: number[] = [];
-
     public images: string[] = [];
 
     private _skuSeparator: string;
-
-    public currIndex = 0;
-
-    public imgAnimate: ImageAnimate = ImageAnimate.none;
 
     constructor(private _appSettingsService: AppSettingsService) { }
 
@@ -41,30 +25,14 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         this._appSettingsService.loadTerms().then(res => this._skuSeparator = res.skuSeparator);
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes.model && this.model) {
-            this.imageIndexes = [];
-            this.model.skuDescriptions.forEach(sk => {
-                sk.images.forEach(() => this.imageIndexes.push(this.imageIndexes.length));
-            });
-        }
+    ngOnChanges() {
         this.sortImages();
-    }
-    
-    public imgAnimateDone() {
-            this.imgAnimate = ImageAnimate.none;
-    }
-    
-    public shift(pos: number) {
-        this.currIndex = (this.currIndex + pos + this.images.length) % this.images.length;
-        this.imgAnimate = ImageAnimate.out;
     }
 
     private sortImages() {
         if (!this._skuSeparator || !this.model || !this.sku) return;
         let sortedSkuData = this.model.skuDescriptions.sort((s1, s2) => this.compareSkuData(s1, s2));
         this.images = [];
-        this.currIndex = 0;
         sortedSkuData.forEach(sk => sk.images.forEach(img => this.images.push("assets/images/sku/" + img)));
     }
 
@@ -91,10 +59,4 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
         }
         return res;
     }
-}
-
-enum ImageAnimate {
-    out = "out",
-    in = "in",
-    none = "none"
 }

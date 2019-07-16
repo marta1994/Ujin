@@ -1,0 +1,6 @@
+<div class="vertical-callage-container">
+    <div *ngFor="let image of images;let index=index" class="image-wrapper" 
+         [ngClass]="{'odd': index%2==1, 'even': index%2==0}" >
+        <img [src]="image" />
+    </div>
+</div>

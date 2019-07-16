@@ -46,6 +46,7 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
                 gemNode = new GemNode();
                 gemNode.classId = g.gemstoneClass.identifier;
                 gemNode.nameKey = g.gemstoneClass.nameKey;
+                gemNode.color = g.color.colorHexCode;
                 gemNode.children = [];
                 this.gemstones.push(gemNode);
             }
@@ -94,6 +95,7 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
 
 class GemNode {
     public nameKey: string;
+    public color: string;
     public classId: string;
     public children: Gemstone[];
 }

@@ -61,4 +61,20 @@
             }
         }
     }
+
+    .carousel-container {
+        app-image-carousel {
+            display: none;
+        }
+
+        @media @desktop {
+            app-image-carousel {
+                display: block;
+            }
+
+            app-vertical-img-collage {
+                display: none;
+            }
+        }
+    }
 }

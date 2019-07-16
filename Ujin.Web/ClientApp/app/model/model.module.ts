@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
 import { ImageCarouselComponent } from './image-carousel/image-carousel.component';
 import { ServicesModule } from '../services/services.module';
+import { VerticalImgCollageComponent } from './vertical-img-collage/vertical-img-collage.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ServicesModule } from '../services/services.module';
         SelectorConfigComponent,
         ModelInfoComponent,
         InfoNodeComponent,
-        ImageCarouselComponent
+        ImageCarouselComponent,
+        VerticalImgCollageComponent
     ],
     imports: [
         CommonModule,

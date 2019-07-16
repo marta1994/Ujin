@@ -10,9 +10,9 @@ import { fadeOut, fadeIn } from 'ng-animate';
     animations: [
         trigger('widgetImg', [
             transition('* => out',
-                useAnimation(fadeOut, { params: { timing: 0.1 } })),
+                useAnimation(fadeOut, { params: { timing: 0.2 } })),
             transition('* => in',
-                useAnimation(fadeIn, { params: { timing: 0.3 } })),
+                useAnimation(fadeIn, { params: { timing: 0.5 } })),
             state('loading', style({
                 opacity: 0
             })),
@@ -79,6 +79,11 @@ export class WidgetComponent implements OnInit, OnChanges {
     private triggerAnimation() {
         this.imgAnimate = ImgAnimateState.Out;
         this.loadedIndexes = [];
+        this.currentImages.forEach((img, ind) => {
+            let image = new Image();
+            image.onload = () => this.onImageLoded(ind);
+            image.src = img;
+        });
     }
     
     private currentConfigId: string;
@@ -110,13 +115,7 @@ export class WidgetComponent implements OnInit, OnChanges {
 
     private tryStartInAnimation() {
         let loaded = this.loadedIndexes.length === this.currentImages.length;
-        let complete = this.currentImages.reduce((pr, curr) => {
-            let img = new Image();
-            img.src = curr;
-            return img.complete && pr;
-        });
-        
-        if (!complete && !loaded) return;
+        if (!loaded) return;
         this.imgAnimate = ImgAnimateState.In;
     }
 }

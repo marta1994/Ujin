@@ -17,6 +17,7 @@ appsettings.json
 appsettings.Development.json
 
 wwwroot/assets/images/widget
+wwwroot/assets/images/sku
 
 # yarn
 yarn.lock

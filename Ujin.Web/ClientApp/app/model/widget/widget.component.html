@@ -9,7 +9,7 @@
         <div class="images-conatiner" [@widgetImg]="imgAnimate"
                (@widgetImg.done)="imgAnimateDone($event)">
             <img *ngFor="let index of imageIndexes" 
-                 [src]="(currentImages || [])[index]" class="model-image" (load)="onImageLoded(index)" />
+                 [src]="(currentImages || [])[index]" class="model-image" />
         </div>
     </div>
     <div class="config-menu" [ngSwitch]="selectedConfig.configurationType">

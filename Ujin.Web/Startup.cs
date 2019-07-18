@@ -1,15 +1,12 @@
-﻿using System;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Net.Http.Headers;
-using Swashbuckle.AspNetCore.Swagger;
+using System;
 using Ujin.BusinessLogic.Services;
 using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
@@ -17,32 +14,28 @@ using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
 using Ujin.Storage;
-using WebEssentials.AspNetCore.Pwa;
 
-namespace AspCoreServer {
-
-    public class Startup {
-
-        public Startup (IHostingEnvironment env) {
-            var builder = new ConfigurationBuilder ()
-                .SetBasePath (env.ContentRootPath)
-                .AddJsonFile ("appsettings.json", optional : true, reloadOnChange : true)
-                .AddJsonFile ($"appsettings.{env.EnvironmentName}.json", optional : true)
-                .AddEnvironmentVariables ();
-            this.Configuration = builder.Build ();
+namespace Ujin.Web
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
-            // Add framework services.
-            services.AddMvc ();
-            services.AddNodeServices ();
-            services.AddHttpContextAccessor ();
-            services.AddProgressiveWebApp (new PwaOptions { Strategy = ServiceWorkerStrategy.CacheFirst, RegisterServiceWorker = true, RegisterWebmanifest = true }, "manifest.json");
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            StorageRegistrator.RegisterStorage(services, Configuration);
+            // In production, the Angular files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMemoryCache();
@@ -50,6 +43,8 @@ namespace AspCoreServer {
             services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
             var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
             services.AddSingleton(appSettings);
+
+            StorageRegistrator.RegisterStorage(services, Configuration);
 
             services.AddSingleton(appSettings);
             services.AddScoped<ICache, Cache>();
@@ -61,71 +56,45 @@ namespace AspCoreServer {
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();
-
-            // Register the Swagger generator, defining one or more Swagger documents
-            services.AddSwaggerGen (c => {
-                c.SwaggerDoc ("v1", new Info { Title = "Ujin jewelry", Version = "v2" });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure (IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
-            loggerFactory.AddConsole (this.Configuration.GetSection ("Logging"));
-            loggerFactory.AddDebug ();
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
-            // app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
-            app.UseStaticFiles (new StaticFileOptions () {
-                OnPrepareResponse = c => {
-                    //Do not add cache to json files. We need to have new versions when we add new translations.
-                    c.Context.Response.GetTypedHeaders ().CacheControl = !c.Context.Request.Path.Value.Contains (".json")
-                        ? new CacheControlHeaderValue () {
-                            MaxAge = TimeSpan.FromDays (30) // Cache everything except json for 30 days
-                        }
-                        : new CacheControlHeaderValue () {
-                            MaxAge = TimeSpan.FromMinutes (15) // Cache json for 15 minutes
-                        };
-                }
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
             });
 
-            if (env.IsDevelopment ()) {
-                app.UseDeveloperExceptionPage ();
-                app.UseWebpackDevMiddleware (new WebpackDevMiddlewareOptions {
-                    HotModuleReplacement = true,
-                        HotModuleReplacementEndpoint = "/dist/"
-                });
-                app.UseSwagger ();
-                app.UseSwaggerUI (c => {
-                    c.SwaggerEndpoint ("/swagger/v1/swagger.json", "My API V1");
-                });
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+                spa.Options.SourcePath = "ClientApp";
 
-                app.MapWhen (x => !x.Request.Path.Value.StartsWith ("/swagger", StringComparison.OrdinalIgnoreCase), builder => {
-                    builder.UseMvc (routes => {
-                        routes.MapSpaFallbackRoute (
-                            name: "spa-fallback",
-                            defaults : new { controller = "Home", action = "Index" });
-                    });
-                });
-            } else {
-                app.UseMvc (routes => {
-                    routes.MapRoute (
-                        name: "default",
-                        template: "{controller=Home}/{action=Index}/{id?}");
-
-                    routes.MapRoute (
-                        "Sitemap",
-                        "sitemap.xml",
-                        new { controller = "Home", action = "SitemapXml" });
-
-                    routes.MapSpaFallbackRoute (
-                        name: "spa-fallback",
-                        defaults : new { controller = "Home", action = "Index" });
-
-                });
-                app.UseExceptionHandler ("/Home/Error");
-            }
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
         }
     }
 }

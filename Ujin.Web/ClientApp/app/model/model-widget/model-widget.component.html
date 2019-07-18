@@ -2,7 +2,7 @@
     <div class="widget-and-info-container">
         <div class="widget-container">
             <app-widget [model]="model" [currentImages]="currentImages" 
-                        (onChange)="modelChanged($event)"></app-widget>
+                        (onChange)="modelChanged()"></app-widget>
         </div>
         <div class="info-container">
             <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>

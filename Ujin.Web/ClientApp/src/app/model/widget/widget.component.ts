@@ -10,13 +10,12 @@ import { fadeOut, fadeIn } from 'ng-animate';
     animations: [
         trigger('widgetImg', [
             transition('* => out',
-                useAnimation(fadeOut, { params: { timing: 0.2 } })),
+                useAnimation(fadeOut, { params: { timing: 0.1 } })),
             transition('* => in',
-                useAnimation(fadeIn, { params: { timing: 0.3 } })),
+                useAnimation(fadeIn, { params: { timing: 0.2 } })),
             state('loading', style({
                 opacity: 0
-            })),
-            transition('* => loading', [animate(0.3)])])
+            }))])
     ]
 })
 export class WidgetComponent implements OnInit, OnChanges {

@@ -2,79 +2,102 @@
 
 .model-page-container {
 
-    .widget-and-info-container {
+  .widget-and-info-container {
+    display: flex;
+    flex-direction: column;
+    background-color: @dark-color;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+
+    .widget-container {
+      padding: 30px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media @desktop {
+        flex: 6;
+        padding: 30px;
+      }
+
+      app-widget {
+        width: 600px;
+        display: block;
+      }
+    }
+
+    .info-container {
+      background-color: @white-color;
+      padding: 30px;
+
+      .model-name {
+        font-size: 2.5em;
+        font-weight: 500;
+        padding-bottom: 15px;
+        padding-left: 30px;
+        border-bottom: 1px solid @grey-color;
+      }
+
+      .price-conatiner {
         display: flex;
-        flex-direction: column;
-        background-color: @dark-color;
+        align-items: center;
 
-        @media @desktop {
-            flex-direction: row;
+        .price {
+          font-size: 2em;
+          font-weight: 700;
+          color: @dark-color;
         }
 
-        .widget-container {
-            padding: 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            @media @desktop {
-                flex: 6;
-                padding: 30px;
-            }
-
-            app-widget {
-                width: 600px;
-                display: block;
-            }
+        .buy-in-one-click {
+          .set-primary-button();
+          margin-left: 20px;
         }
+      }
 
-        .info-container {
-            background-color: @white-color;
-            padding: 30px;
+      .description {
+        margin: 20px 0;
+        padding: 10px;
+        background-color: @light-grey-color;
 
-            .model-name {
-                font-size: 2.5em;
-                font-weight: 500;
-                padding-bottom: 15px;
-                padding-left: 30px;
-                border-bottom: 1px solid @grey-color;
+        ::ng-deep {
+          p {
+            font-size: 1.3em;
+            font-weight: 500;
+          }
+
+          ul {
+            font-size: 1.2em;
+            padding-left: 20px;
+
+            li {
+              display: block;
+              padding: 5px 0;
             }
-
-            .price-conatiner {
-                display: flex;
-                align-items: center;
-
-                .price {
-                    font-size: 2em;
-                    font-weight: 700;
-                    color: @dark-color;
-                }
-
-                .buy-in-one-click {
-                    .set-primary-button();
-                    margin-left: 20px;
-                }
-            }
-
-            @media @desktop {
-                flex: 5;
-            }
+          }
         }
+      }
+
+      @media @desktop {
+        flex: 5;
+      }
+    }
+  }
+
+  .carousel-container {
+    app-image-carousel {
+      display: none;
     }
 
-    .carousel-container {
-        app-image-carousel {
-            display: none;
-        }
+    @media @desktop {
+      app-image-carousel {
+        display: block;
+      }
 
-        @media @desktop {
-            app-image-carousel {
-                display: block;
-            }
-
-            app-vertical-img-collage {
-                display: none;
-            }
-        }
+      app-vertical-img-collage {
+        display: none;
+      }
     }
+  }
 }

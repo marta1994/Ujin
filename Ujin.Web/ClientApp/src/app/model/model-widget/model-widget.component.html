@@ -10,6 +10,7 @@
                 <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
                 <button class="buy-in-one-click">{{'forms.modelPage.buyInOneClick'|translate}}</button>
             </div>
+            <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
             <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>
         </div>
     </div>

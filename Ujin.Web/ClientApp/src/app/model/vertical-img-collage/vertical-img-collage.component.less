@@ -1,30 +1,30 @@
 @import '../../styles/common.less';
 
 .vertical-callage-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0;
-    background-color: @light-grey-color;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  background-color: @light-accent-color;
 
-    .image-wrapper {
-        img {
-            width: 100%;
-        }
-
-        &.odd {
-            padding: 10px 0;
-        }
-
-        &.even {
-            padding: 20px;
-            .set-border-radius(3px);
-            background-color: @accent-color;
-            margin: 10px;
-            .set-box-shadow(@grey-color);
-
-            img {
-                .set-border-radius(3px);
-            }
-        }
+  .image-wrapper {
+    img {
+      width: 100%;
     }
+
+    &.odd {
+      padding: 10px 0;
+    }
+
+    &.even {
+      padding: 20px;
+      .set-border-radius(3px);
+      background-color: @accent-color;
+      margin: 10px;
+      .set-box-shadow(@grey-color);
+
+      img {
+        .set-border-radius(3px);
+      }
+    }
+  }
 }

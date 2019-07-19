@@ -6,96 +6,96 @@
 @padding: 8px;
 
 .widget-wrapper {
-    color: @white-color;
+  color: @white-color;
 
-    .category-menu-and-image {
-        display: flex;
+  .category-menu-and-image {
+    display: flex;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row-reverse;
+    }
+
+    .images-conatiner {
+      flex: 1;
+      position: relative;
+
+      .model-image {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        &:first-child {
+          position: relative;
+        }
+      }
+    }
+
+    .category-menu {
+      display: flex;
+      flex-direction: row;
+      @cat-menu-border: 1px solid @grey-color;
+      border-bottom: @cat-menu-border;
+
+      @media @desktop {
         flex-direction: column;
+        width: 90px;
+        border-right: @cat-menu-border;
+        border-bottom: none;
+      }
+
+      .menu-item {
+        color: @light-accent-color;
+        font-size: 1.2em;
+        font-weight: 500;
+        flex: 1;
+        cursor: pointer;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0 @menu-border-style;
+        padding-bottom: @padding + @menu-border-width;
+        transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s, padding-right ease 0.3s;
 
         @media @desktop {
-            flex-direction: row-reverse;
+          padding-right: @padding + @menu-border-width;
+          padding-bottom: 0;
+          justify-content: flex-end;
         }
 
-        .images-conatiner {
-            flex: 1;
-            position: relative;
+        &:hover {
+          color: @white-color;
+          padding-bottom: @padding + 1px;
+          border-bottom-width: @menu-border-width - 1px;
 
-            .model-image {
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-
-                &:first-child {
-                    position: relative;
-                }
-            }
+          @media @desktop {
+            padding-right: @padding + 1px;
+            border-right-width: @menu-border-width - 1px;
+            border-bottom-width: 0;
+            padding-bottom: 0;
+          }
         }
 
-        .category-menu {
-            display: flex;
-            flex-direction: row;
-            @cat-menu-border: 1px solid @grey-color;
-            border-bottom: @cat-menu-border;
+        &.selected {
+          color: @white-color;
+          padding-bottom: @padding;
+          border-bottom-width: @menu-border-width;
 
-            @media @desktop {
-                flex-direction: column;
-                width: 90px;
-                border-right: @cat-menu-border;
-                border-bottom: none;
-            }
-
-            .menu-item {
-                color: @light-grey-color;
-                font-size: 1.2em;
-                font-weight: 500;
-                flex: 1;
-                cursor: pointer;
-                padding: 10px 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 0 @menu-border-style;
-                padding-bottom: @padding + @menu-border-width;
-                transition: border-width ease 0.3s, color ease 0.3s, padding-bottom ease 0.3s, padding-right ease 0.3s;
-
-                @media @desktop {
-                    padding-right: @padding + @menu-border-width;
-                    padding-bottom: 0;
-                    justify-content: flex-end;
-                }
-
-                &:hover {
-                    color: @white-color;
-                    padding-bottom: @padding + 1px;
-                    border-bottom-width: @menu-border-width - 1px;
-
-                    @media @desktop {
-                        padding-right: @padding + 1px;
-                        border-right-width: @menu-border-width - 1px;
-                        border-bottom-width: 0;
-                        padding-bottom: 0;
-                    }
-                }
-
-                &.selected {
-                    color: @white-color;
-                    padding-bottom: @padding;
-                    border-bottom-width: @menu-border-width;
-
-                    @media @desktop {
-                        padding-right: @padding;
-                        border-right-width: @menu-border-width;
-                        border-bottom-width: 0;
-                        padding-bottom: 0;
-                    }
-                }
-
-                .text {
-                }
-            }
+          @media @desktop {
+            padding-right: @padding;
+            border-right-width: @menu-border-width;
+            border-bottom-width: 0;
+            padding-bottom: 0;
+          }
         }
+
+        .text {
+        }
+      }
     }
+  }
 }

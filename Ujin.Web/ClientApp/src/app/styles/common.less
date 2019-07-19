@@ -25,17 +25,17 @@
 
 .set-primary-button() {
   .set-border-radius(3px);
-  border: 1px solid @grey-color;
+  border: none;
   font-weight: 400;
   font-size: 1.7rem;
   padding: 10px 15px;
   color: @dark-color;
   transition: color ease 0.3s, background-color ease 0.3s;
   cursor: pointer;
-  background-color: @light-accent-color;
+  background-color: @accent-color;
 
   &:hover {
     color: lighten(@dark-color, 5%);
-    background-color: darken(@accent-color, 10%);
+    background-color: lighten(@accent-color, 15%);
   }
 }

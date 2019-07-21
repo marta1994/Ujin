@@ -1,4 +1,4 @@
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -12,9 +12,17 @@ import { ModelModule } from './model/model.module';
 import { LangComponent } from './core/lang/lang.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UiComponentsModule } from './ui-components/ui-components.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export class FixVericalScrollHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    'pinch': { enable: false },
+    'rotate': { enable: false }
+  }
 }
 
 @NgModule({
@@ -32,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     ModelModule,
+    UiComponentsModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -43,7 +52,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     TranslateModule,
-    LangService
+    LangService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: FixVericalScrollHammerConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

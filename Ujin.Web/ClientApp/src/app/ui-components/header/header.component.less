@@ -1,0 +1,192 @@
+@import '../../styles/common.less';
+
+:host {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: visible;
+  z-index: 100;
+}
+
+.header {
+  height: @mobile-header-height;
+
+  @media @desktop {
+    height: @desktop-header-height;
+  }
+
+  .set-box-shadow(@grey-color);
+
+  .header-part {
+    background-color: @white-color;
+    color: @dark-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    height: @mobile-header-height;
+
+    @media @desktop {
+      height: @desktop-header-height;
+    }
+
+    .hamburger {
+      margin-left: 15px;
+
+      @media @desktop {
+        margin-left: 30px;
+      }
+
+      padding: 0;
+      cursor: pointer;
+      background-color: none;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:active {
+        outline: none;
+      }
+
+      .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+        background-color: @dark-color;
+        height: 2px;
+        .set-border-radius(1px);
+        width: 30px;
+      }
+    }
+  }
+
+  .logo-header {
+    display: block;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    width: @mobile-header-height;
+
+    @media @desktop {
+      width: @desktop-header-height;
+    }
+
+    @media (max-width:1100px) {
+      margin-right: 30px;
+    }
+
+    ::ng-deep svg {
+      fill: @dark-color;
+    }
+  }
+
+  .motto-holder {
+    font-size: 20px;
+
+    @media (max-width:1100px) {
+      margin-right: 40px;
+    }
+  }
+
+  .right-menu-holder {
+    @mobile-menu-item-size: 30px;
+    @menu-item-size: 15px;
+    font-size: @menu-item-size;
+    display: inline-flex;
+
+    @media @desktop {
+      margin-right: 30px;
+    }
+
+    .like-text {
+      display: none;
+
+      @media @desktop {
+        display: inline;
+      }
+    }
+
+    .menu-item {
+      border-right: 1px solid @light-grey-color;
+      padding: 0 10px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color ease 200ms;
+      display: inline-flex;
+      align-items: flex-end;
+      position: relative;
+
+      &.mobile-hide {
+        display: none;
+
+        @media @desktop {
+          display: inline-block;
+        }
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .social-buttons {
+        height: auto;
+        transform: scaleY(0);
+        transform-origin: top;
+        top: @mobile-menu-item-size;
+
+        @media @desktop {
+          top: @menu-item-size;
+        }
+
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        transition: transform ease 0.3s;
+
+        &.opened {
+          transform: scaleY(1);
+        }
+      }
+
+      @media @desktop {
+        &:hover {
+          color: lighten(@dark-color, 30%);
+
+          .social-buttons {
+            transform: scaleY(1);
+          }
+
+          .svg-holder ::ng-deep svg {
+            fill: lighten(@dark-color, 30%);
+          }
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .svg-holder {
+        display: inline-block;
+        height: @mobile-menu-item-size;
+        width: @mobile-menu-item-size;
+        margin-right: 3px;
+
+        @media @desktop {
+          height: @menu-item-size;
+          width: @menu-item-size;
+        }
+
+        ::ng-deep svg {
+          fill: @dark-color;
+          transition: fill ease 200ms;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

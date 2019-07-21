@@ -13,6 +13,7 @@
 
     .widget-container {
       padding: 30px 0;
+      padding-top: 30px + @mobile-header-height;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,6 +21,7 @@
       @media @desktop {
         flex: 6;
         padding: 30px;
+        padding-top: 20px + @desktop-header-height;
       }
 
       app-widget {
@@ -31,6 +33,10 @@
     .info-container {
       background-color: @white-color;
       padding: 30px;
+
+      @media @desktop {
+        padding-top: 10px + @desktop-header-height;
+      }
 
       .model-name {
         font-size: 2.5em;

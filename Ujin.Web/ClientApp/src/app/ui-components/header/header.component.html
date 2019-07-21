@@ -1,0 +1,31 @@
+<div class="header">
+  <div class="header-part">
+    <label (click)="switchMenu($event);openedItemClick($event)" [ngClass]="{'is-active': menuOpened}"
+            class="hamburger hamburger--slider">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </label>
+    <svg-icon src="/assets/images/ujin_logo.svg" class="logo-header"></svg-icon>
+    <div class="right-menu-holder">
+      <span class="like-item menu-item">
+        <svg-icon class="svg-holder" src="/assets/images/heart.svg"
+                  (tap)="switchLike($event)" (click)="openedItemClick($event)"></svg-icon>
+        <span class="like-text">{{'forms.header.like'|translate}}</span>
+        <div class="social-buttons" [ngClass]="{'opened': likeOpened}">
+          <app-social [purpose]="'like'"></app-social>
+        </div>
+      </span>
+      <span class="share-item menu-item mobile-hide">
+        <svg-icon class="svg-holder" src="/assets/images/share.svg"></svg-icon>
+        <span>{{'forms.header.share'|translate}}</span>
+        <div class="social-buttons">
+          <app-social [purpose]="'share'"></app-social>
+        </div>
+      </span>
+      <span class="contacts-item menu-item mobile-hide">
+        <a href="#contacts">{{'forms.header.contacts'|translate}}</a>
+      </span>
+    </div>
+  </div>
+</div>

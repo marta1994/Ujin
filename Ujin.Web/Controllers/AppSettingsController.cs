@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ujin.Domain;
+using Ujin.Web.Models;
 
 namespace Ujin.Web.Server.Controllers
 {
@@ -18,6 +19,22 @@ namespace Ujin.Web.Server.Controllers
         public ExpressionTerms Terms()
         {
             return _appSettings.ExpressionTerms;
+        }
+
+        [HttpGet("[action]")]
+        public SocialRefs SocialReferences()
+        {
+            return new SocialRefs
+            {
+                Facebook = _appSettings.SocialReferences.Facebook,
+                Instagram = _appSettings.SocialReferences.Instagram,
+                Pinterest = _appSettings.SocialReferences.Pinterest,
+                FacebookAppId = _appSettings.SocialReferences.FacebookAppId,
+                SelfHost = "https://" + _appSettings.Host + "/",
+                Phones = _appSettings.Contacts.Phones,
+                Email = _appSettings.Contacts.Email,
+                DiscountHref = _appSettings.Contacts.DiscountHref
+            };
         }
     }
 }

@@ -1,0 +1,128 @@
+@import '../../styles/common.less';
+
+@facebook-color: #4267b2;
+@viber-color: #574e92;
+@messanger-color: #0084ff;
+@telegram-color: #0088cc;
+@pinterest-color: #e60023;
+@instagram-color: #e1306c;
+
+.social-share-holder {
+  display: flex;
+
+  .social-button {
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1px solid;
+    transition: background-color ease 0.3s;
+    cursor: pointer;
+
+    .share-link {
+      width: 75%;
+      height: 75%;
+
+      .svg-holder {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+
+        ::ng-deep {
+          svg {
+            fill: @white-color;
+            width: 100%;
+            height: 100%;
+            transition: fill ease 0.3s;
+          }
+        }
+      }
+    }
+
+    &:hover, &:active {
+      background-color: @white-color;
+    }
+  }
+
+  .facebook {
+    background-color: @facebook-color;
+    border-color: @facebook-color;
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @facebook-color;
+      }
+    }
+  }
+
+  .viber {
+    background-color: @viber-color;
+    border-color: @viber-color;
+
+    &.social-button .share-link {
+      width: 70%;
+      height: 70%;
+    }
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @viber-color;
+      }
+    }
+  }
+
+  .messanger {
+    background-color: @messanger-color;
+    border-color: @messanger-color;
+
+    &.social-button .share-link {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @messanger-color;
+      }
+    }
+  }
+
+  .telegram {
+    background-color: @telegram-color;
+    border-color: @telegram-color;
+
+    &.social-button .share-link {
+      width: 65%;
+      height: 65%;
+    }
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @telegram-color;
+      }
+    }
+  }
+
+  .pinterest {
+    background-color: @pinterest-color;
+    border-color: @pinterest-color;
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @pinterest-color;
+      }
+    }
+  }
+
+  .instagram {
+    background-color: @instagram-color;
+    border-color: @instagram-color;
+
+    &:hover, &:active {
+      .share-link .svg-holder ::ng-deep svg {
+        fill: @instagram-color;
+      }
+    }
+  }
+}

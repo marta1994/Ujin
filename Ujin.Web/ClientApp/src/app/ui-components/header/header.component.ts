@@ -68,6 +68,7 @@ export class HeaderComponent implements AfterViewInit {
     this.menuOpened = false;
   }
 
+  @HostListener('document:scroll')
   @HostListener('document:click')
   public clickout() {
     this.menuOpened = false;

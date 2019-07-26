@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
+using System.Globalization;
 using Ujin.BusinessLogic.Services;
 using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
@@ -95,6 +96,9 @@ namespace Ujin.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
         }
     }
 }

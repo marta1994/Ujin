@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
 using Ujin.Domain.Enums;
@@ -13,7 +14,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 
         protected override double ParseValue(string val)
         {
-            if (!double.TryParse(val, out var dblVal))
+            if (!double.TryParse(val, NumberStyles.Any, CultureInfo.InvariantCulture, out var dblVal))
                 throw new InvalidOperationException($"Cannot convert '{val}' to double!");
             if (dblVal > _options.Max) throw new ApplicationException($"Value '{val}' cannot be greater then max '{_options.Max}'!");
             if (dblVal < _options.Min) throw new ApplicationException($"Value '{val}' cannot be less then min '{_options.Min}'!");
@@ -32,7 +33,7 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
 
         public override string GetStrValueByPath(string path)
         {
-            if (path != null && path.ToLower() == "value") return _value.ToString();
+            if (path != null && path.ToLower() == "value") return _value.ToString(CultureInfo.InvariantCulture);
             throw new InvalidOperationException($"Can not get value from path '{path}'!");
         }
     }

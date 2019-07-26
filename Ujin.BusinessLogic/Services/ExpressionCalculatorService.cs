@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Ujin.BusinessLogic.Services.Model;
@@ -25,8 +26,8 @@ namespace Ujin.BusinessLogic.Services
         {
             try
             {
-                var strResult = (await CSharpScript.EvaluateAsync(expression)).ToString();
-                if (decimal.TryParse(strResult, out var result))
+                var strResult = Convert.ToString(await CSharpScript.EvaluateAsync(expression), CultureInfo.InvariantCulture);
+                if (decimal.TryParse(strResult, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
                     return result;
                 throw new ApplicationException($"Could not convert '{strResult}' to decimal");
             }

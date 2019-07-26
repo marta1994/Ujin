@@ -26,6 +26,11 @@
       "social": "Connect",
       "contactPhone": "Phone number",
       "email": "E-mail"
+    },
+    "navMenu": {
+      "socialLinks": "Connect",
+      "share": "Share",
+      "contacts": "Contacts"
     }
   },
 	"gemstone": {

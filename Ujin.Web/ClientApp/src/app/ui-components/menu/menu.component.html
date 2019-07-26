@@ -1,0 +1,13 @@
+<div class="menu">
+  <div class="contacts-link">
+    <span (click)="goToContacts()">{{'forms.navMenu.contacts'|translate}}</span>
+  </div>
+  <div class="social social-share">
+    <span class="share-text">{{'forms.navMenu.share'|translate}}</span>
+    <app-social [purpose]="'share'" [direction]="'horizontal'" [size]="'40px'"></app-social>
+  </div>
+  <div class="social social-links">
+    <span class="share-text">{{'forms.navMenu.socialLinks'|translate}}</span>
+    <app-social [purpose]="'like'" [direction]="'horizontal'" [size]="'40px'"></app-social>
+  </div>
+</div>

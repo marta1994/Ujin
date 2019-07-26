@@ -10,6 +10,7 @@
 
 .header {
   height: @mobile-header-height;
+  z-index: 101;
 
   @media @desktop {
     height: @desktop-header-height;
@@ -188,5 +189,28 @@
         }
       }
     }
+  }
+}
+
+.nav-menu {
+  transition: transform ease 400ms;
+  position: fixed;
+  z-index: 99;
+  transform-origin: left;
+  width: 100%;
+  top: @mobile-header-height;
+
+  @media @desktop {
+    top: @desktop-header-height;
+    width: 400px;
+  }
+
+  &.opened {
+    transform: scaleX(1);
+    .set-box-shadow(@grey-color, 3px 3px 3px 0px);
+  }
+
+  &.closed {
+    transform: scaleX(0);
   }
 }

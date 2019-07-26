@@ -58,7 +58,7 @@ export class HeaderComponent implements AfterViewInit {
     return this._headerVisibility;
   }
 
-  public switchMenu(event) {
+  public switchMenu() {
     this.menuOpened = !this.menuOpened;
     this.likeOpened = false;
   }
@@ -66,6 +66,11 @@ export class HeaderComponent implements AfterViewInit {
   public switchLike(event) {
     this.likeOpened = !this.likeOpened;
     this.menuOpened = false;
+  }
+
+  public goToContacts() {
+    let el = document.getElementById("contacts");
+    el.scrollIntoView();
   }
 
   @HostListener('document:scroll')

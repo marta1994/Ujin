@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header-part">
-    <label (click)="switchMenu($event);openedItemClick($event)" [ngClass]="{'is-active': menuOpened}"
+    <label (click)="switchMenu();openedItemClick($event)" [ngClass]="{'is-active': menuOpened}"
             class="hamburger hamburger--slider">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
@@ -24,8 +24,10 @@
         </div>
       </span>
       <span class="contacts-item menu-item mobile-hide">
-        <a href="#contacts">{{'forms.header.contacts'|translate}}</a>
+        <span (click)="goToContacts()">{{'forms.header.contacts'|translate}}</span>
       </span>
     </div>
   </div>
 </div>
+<app-menu class="nav-menu" (menuCloseActionHappened)="switchMenu()" (click)="openedItemClick($event)"
+          [ngClass]="{'opened': menuOpened, 'closed': !menuOpened}"></app-menu>

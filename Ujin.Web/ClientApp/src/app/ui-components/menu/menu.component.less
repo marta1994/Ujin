@@ -1,0 +1,31 @@
+@import '../../styles/common.less';
+
+.menu {
+  width: 100%;
+  height: auto;
+  padding-bottom: 40px;
+  background-color: @light-accent-color;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .contacts-link {
+    color: @dark-color;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+  .social {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -8,6 +8,8 @@ import { ServicesModule } from '../services/services.module';
 import { HeaderComponent } from './header/header.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations:
@@ -15,20 +17,23 @@ import { FooterComponent } from './footer/footer.component';
       SliderComponent,
       SocialComponent,
       HeaderComponent,
-      FooterComponent
+      FooterComponent,
+      MenuComponent
     ],
   imports: [
     CommonModule,
     FormsModule,
     ServicesModule,
     AngularSvgIconModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    RouterModule.forChild([])
   ],
   exports: [
     SliderComponent,
     SocialComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MenuComponent
   ]
 })
 export class UiComponentsModule { }

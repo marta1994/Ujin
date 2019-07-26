@@ -9,7 +9,9 @@ export class SocialService {
   private _socialRefs: SocialRefs;
   private _socialPromise: Promise<SocialRefs>;
 
-  constructor(private _api: ApiService, private _deviceService: DeviceService) { }
+  constructor(
+    private _api: ApiService,
+    private _deviceService: DeviceService) { }
 
   public get socialRefs(): SocialRefs {
     if (this._socialRefs) return this._socialRefs;
@@ -29,11 +31,11 @@ export class SocialService {
     return this._socialPromise;
   }
 
-  public get selfHost(): string {
-    return this.socialRefs ? this.socialRefs.selfHost : null;
+  private get selfHost(): string {
+    return window.location.href;
   }
 
-  public get facebookAppId(): string {
+  private get facebookAppId(): string {
     return this.socialRefs ? this.socialRefs.facebookAppId : null;
   }
 

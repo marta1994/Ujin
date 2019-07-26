@@ -12,8 +12,16 @@ const routes: Routes = [
       {
         path: 'model/:id',
         component: ModelWidgetComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'model'
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'ua/model/ov-rn'
   }
 ];
 

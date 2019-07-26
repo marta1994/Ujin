@@ -7,13 +7,15 @@ import { SocialComponent } from './social/social.component';
 import { ServicesModule } from '../services/services.module';
 import { HeaderComponent } from './header/header.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations:
     [
       SliderComponent,
       SocialComponent,
-      HeaderComponent
+      HeaderComponent,
+      FooterComponent
     ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
   exports: [
     SliderComponent,
     SocialComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class UiComponentsModule { }

@@ -1,0 +1,23 @@
+<div class="footer-wrapper">
+  <div class="description">
+    <span class="description-content">
+      {{'forms.footer.description'|translate}}
+    </span>
+  </div>
+  <div class="contacts" id="contacts">
+    <div class="contacts-wrapper">
+      <span class="social-networks">{{'forms.footer.social'|translate}}</span>
+      <app-social [purpose]="'like'" [direction]="'horizontal'" [size]="'40px'"></app-social>
+      <div class="contact-prop">
+        <span class="contact-label">{{'forms.footer.contactPhone'|translate}}</span>
+        <span class="phones-containers">
+          <a *ngFor="let phone of phones" class="contact-href" [href]="phoneHref(phone)">{{phone}}</a>
+        </span>
+      </div>
+      <div class="contact-prop email-prop">
+        <span class="contact-label">{{'forms.footer.email'|translate}}</span>
+        <a class="contact-href" [href]="emailHref">{{email}}</a>
+      </div>
+    </div>
+  </div>
+</div>

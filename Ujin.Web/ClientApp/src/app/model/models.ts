@@ -1,4 +1,4 @@
-﻿export class JewelryModel {
+export class JewelryModel {
     constructor(model: any, skuSeparator: string) {
         this.identifier = model.identifier;
         this.nameKey = model.nameKey;
@@ -41,7 +41,6 @@ export abstract class Configuration {
         this.order = config.order;
         this.nameKey = config.nameKey;
         this.configurationType = config.configurationType;
-        this.setValue(config.value);
     }
 
     public identifier: string;
@@ -65,54 +64,56 @@ export abstract class Configuration {
 
 export class NumberConfiguration extends Configuration {
 
-    constructor(config: any) {
-        super(config);
-        this.min = config.configOptions.min;
-        this.max = config.configOptions.max;
-        this.step = config.configOptions.step;
-    }
+  constructor(config: any) {
+    super(config);
+    this.min = config.configOptions.min;
+    this.max = config.configOptions.max;
+    this.step = config.configOptions.step;
+    this.setValue(config.value);
+  }
 
-    public setValue(configValue: string) {
-        this.value = +(!configValue ? this.min : configValue);
-    }
+  public setValue(configValue: string) {
+    this.value = +(!configValue ? this.min : configValue);
+  }
 
-    public min: number;
-    public max: number;
-    public step: number;
+  public min: number;
+  public max: number;
+  public step: number;
 }
 
 export class SelectorConfiguration extends Configuration {
 
-    constructor(config: any) {
-        super(config);
-        this.optionsSource = config.configOptions.optionsSource;
-        this.customOptions = (config.configOptions.customOptions || []).map(opt => new CustomOption(opt));
-        this.gemstoneSource = (config.configOptions.gemstoneSource || []).map(opt => new Gemstone(opt));
-        this.metalSource = (config.configOptions.metalSource || []).map(opt => new NamedEntity(opt));
-    }
+  constructor(config: any) {
+    super(config);
+    this.optionsSource = config.configOptions.optionsSource;
+    this.customOptions = (config.configOptions.customOptions || []).map(opt => new CustomOption(opt));
+    this.gemstoneSource = (config.configOptions.gemstoneSource || []).map(opt => new Gemstone(opt));
+    this.metalSource = (config.configOptions.metalSource || []).map(opt => new NamedEntity(opt));
+    this.setValue(config.value);
+  }
 
-    public setValue(configValue: string) {
-        if (configValue) {
-            this.value = configValue;
-            return;
-        }
-        switch (this.optionsSource) {
-            case OptionsSource.Custom:
-                this.value = this.customOptions[0].identifier;
-                break;
-            case OptionsSource.Gemstone:
-                this.value = this.gemstoneSource[0].identifier;
-                break;
-            case OptionsSource.Metal:
-                this.value = this.metalSource[0].identifier;
-                break;
-        }
+  public setValue(configValue: string) {
+    if (configValue) {
+      this.value = configValue;
+      return;
     }
+    switch (this.optionsSource) {
+      case OptionsSource.Custom:
+        this.value = this.customOptions[0].identifier;
+        break;
+      case OptionsSource.Gemstone:
+        this.value = this.gemstoneSource[0].identifier;
+        break;
+      case OptionsSource.Metal:
+        this.value = this.metalSource[0].identifier;
+        break;
+    }
+  }
 
-    public optionsSource: OptionsSource;
-    public customOptions: CustomOption[];
-    public gemstoneSource: Gemstone[];
-    public metalSource: NamedEntity[];
+  public optionsSource: OptionsSource;
+  public customOptions: CustomOption[];
+  public gemstoneSource: Gemstone[];
+  public metalSource: NamedEntity[];
 }
 
 export class CustomOption {

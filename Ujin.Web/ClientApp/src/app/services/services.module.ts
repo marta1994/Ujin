@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppSettingsService } from './app-settings.service';
 import { ApiModule } from '../api/api.module';
 import { DeviceService } from './device.service';
+import { ClipboardService } from './clipboard.service';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import { DeviceService } from './device.service';
   ],
   providers: [
     AppSettingsService,
-    DeviceService
+    DeviceService,
+    ClipboardService
   ]
 })
 export class ServicesModule { }

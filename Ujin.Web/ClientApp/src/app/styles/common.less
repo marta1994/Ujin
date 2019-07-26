@@ -26,18 +26,40 @@
     border-radius: @radius;
 }
 
-.set-primary-button() {
+.set-button() {
   .set-border-radius(3px);
+  padding: 10px 15px;
+  transition: color ease 0.3s, background-color ease 0.3s, border-color ease 0.3s;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.set-default-button() {
+  .set-button();
+  border: 2px solid @accent-color;
+  color: @dark-color;
+  font-size: 1.2rem;
+  font-weight: 300;
+  background-color: transparent;
+
+  &:hover,&:active {
+    color: lighten(@dark-color, 25%);
+    border-color: lighten(@accent-color, 15%);
+  }
+}
+
+.set-primary-button() {
+  .set-button();
   border: none;
   font-weight: 400;
   font-size: 1.7rem;
-  padding: 10px 15px;
   color: @dark-color;
-  transition: color ease 0.3s, background-color ease 0.3s;
-  cursor: pointer;
   background-color: @accent-color;
 
-  &:hover {
+  &:hover,&:active {
     color: lighten(@dark-color, 5%);
     background-color: lighten(@accent-color, 15%);
   }

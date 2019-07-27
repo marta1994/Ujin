@@ -32,17 +32,17 @@ export class SocialComponent implements OnInit {
   private get simpleLinkButtons(): SocialButtonConfig[] {
     return [
       {
-        url: this.socialService.socialRefs.facebook,
+        url: () => this.socialService.socialRefs.facebook,
         className: "facebook",
         imagePath: "/assets/images/facebook.svg"
       },
       {
-        url: this.socialService.socialRefs.instagram,
+        url: () => this.socialService.socialRefs.instagram,
         className: "instagram",
         imagePath: "/assets/images/instagram.svg"
       },
       {
-        url: this.socialService.socialRefs.pinterest,
+        url: () => this.socialService.socialRefs.pinterest,
         className: "pinterest",
         imagePath: "/assets/images/pinterest.svg"
       }
@@ -52,22 +52,22 @@ export class SocialComponent implements OnInit {
   private get shareButtons(): SocialButtonConfig[] {
     return [
       {
-        url: this.socialService.facebookShareUrl,
+        url: () => this.socialService.facebookShareUrl,
         className: "facebook",
         imagePath: "/assets/images/facebook.svg"
       },
       {
-        url: this.socialService.viberShareUrl,
+        url: () => this.socialService.viberShareUrl,
         className: "viber",
         imagePath: "/assets/images/viber.svg"
       },
       {
-        url: this.socialService.messangerShareUrl,
+        url: () => this.socialService.messangerShareUrl,
         className: "messanger",
         imagePath: "/assets/images/messanger.svg"
       },
       {
-        url: this.socialService.telegramShareUrl,
+        url: () => this.socialService.telegramShareUrl,
         className: "telegram",
         imagePath: "/assets/images/telegram.svg"
       }];
@@ -87,7 +87,7 @@ export class SocialComponent implements OnInit {
 }
 
 interface SocialButtonConfig {
-  url: string;
+  url: () => string;
   className: string;
   imagePath: string;
 }

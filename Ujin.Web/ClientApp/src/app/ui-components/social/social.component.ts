@@ -25,7 +25,7 @@ export class SocialComponent implements OnInit {
   ngOnInit() {
     this.socialService.loadSocialRefs().then(() => {
       this._socialButtons = this.purpose === Purpose.share ? this.shareButtons : this.simpleLinkButtons;
-      this._socialButtons = this._socialButtons.filter(el => el.url);
+      this._socialButtons = this._socialButtons.filter(el => el.url());
     });
   }
 

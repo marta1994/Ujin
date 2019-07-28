@@ -8,6 +8,8 @@ import { AppSettingsService } from '../services/app-settings.service';
 })
 export class ModelService {
 
+  private _skuSeparator: string;
+
   constructor(
     private _api: ApiService,
     private _appSettingsService: AppSettingsService) { }
@@ -20,7 +22,10 @@ export class ModelService {
     return new Promise((resolve, reject) =>
       Promise.all([loadModelPromise, loadTermsPromise])
         .then(
-          m => resolve(new JewelryModel(m[0], m[1].skuSeparator)),
+          m => {
+            this._skuSeparator = m[1].skuSeparator;
+            resolve(new JewelryModel(m[0], m[1].skuSeparator));
+          },
           err => reject(err)));
   }
 
@@ -39,6 +44,26 @@ export class ModelService {
         .then(r => resolve(r),
           err => reject(err));
     });
+  }
+
+  public getDistBetweenSku(sku1: string, sku2: string): number {
+    let currSeparated = sku2.split(this._skuSeparator);
+    let comparSeparated = sku1.split(this._skuSeparator);
+    if (currSeparated.length != comparSeparated.length) return 10000;
+    let res = 0;
+    for (let i = 0; i < currSeparated.length; ++i) {
+      if (currSeparated[i] == comparSeparated[i] || !isNaN(+comparSeparated[i])) continue;
+      if (currSeparated[i].indexOf("-") < 0) {
+        res += 10;
+        continue;
+      }
+      let splitted1 = currSeparated[i].split("-");
+      let splitted2 = comparSeparated[i].split("-");
+      for (let j = 0; j < splitted1.length; ++j) {
+        if (splitted1[j] != splitted2[j]) res++;
+      }
+    }
+    return res;
   }
 }
 

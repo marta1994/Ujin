@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from 'src/app/api/api.service';
 import { DeviceService, DeviceType } from 'src/app/services/device.service';
+import { AppSettingsService, SocialRefs } from 'src/app/services/app-settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class SocialService {
   private _socialPromise: Promise<SocialRefs>;
 
   constructor(
-    private _api: ApiService,
+    private _appSettings: AppSettingsService,
     private _deviceService: DeviceService) { }
 
   public get socialRefs(): SocialRefs {
@@ -22,7 +22,7 @@ export class SocialService {
   public loadSocialRefs(): Promise<SocialRefs> {
     if (this._socialPromise) return this._socialPromise;
     this._socialPromise = new Promise((resolve, reject) => 
-      this._api.loadData<SocialRefs>('api/AppSettings/SocialReferences')
+        this._appSettings.loadSocialRefs()
         .then(res => {
           this._socialRefs = res;
           resolve(this._socialRefs);
@@ -62,15 +62,4 @@ export class SocialService {
     if (this._deviceService.deviceType !== DeviceType.Mobile) return null;
     return `tg://msg?text=${this.selfHost}`;
   }
-}
-
-export interface SocialRefs {
-  facebook: string;
-  instagram: string;
-  pinterest: string;
-  selfHost: string;
-  facebookAppId: string;
-  phones: string[];
-  email: string;
-  discountHref: string;
 }

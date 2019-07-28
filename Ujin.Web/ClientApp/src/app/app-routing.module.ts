@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LangComponent } from './core/lang/lang.component';
-import { ModelWidgetComponent } from './model/model-widget/model-widget.component';
+import { ModelPageComponent } from './model/model-page/model-page.component';
 
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'model/:id',
-        component: ModelWidgetComponent
+        component: ModelPageComponent
       },
       {
         path: '**',

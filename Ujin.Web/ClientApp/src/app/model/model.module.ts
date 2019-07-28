@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModelWidgetComponent } from './model-widget/model-widget.component';
+import { ModelPageComponent } from './model-page/model-page.component';
 import { ApiModule } from '../api/api.module';
 import { ModelService } from './model.service';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -17,28 +17,28 @@ import { ServicesModule } from '../services/services.module';
 import { VerticalImgCollageComponent } from './vertical-img-collage/vertical-img-collage.component';
 
 @NgModule({
-    declarations: [
-        ModelWidgetComponent,
-        WidgetComponent,
-        NumberConfigComponent,
-        SelectorConfigComponent,
-        ModelInfoComponent,
-        InfoNodeComponent,
-        ImageCarouselComponent,
-        VerticalImgCollageComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        ApiModule,
-        UiComponentsModule,
-        ServicesModule,
-        AngularSvgIconModule,
-        TranslateModule.forChild()
-    ],
-    providers: [
-        ModelService
-    ]
+  declarations: [
+    ModelPageComponent,
+    WidgetComponent,
+    NumberConfigComponent,
+    SelectorConfigComponent,
+    ModelInfoComponent,
+    InfoNodeComponent,
+    ImageCarouselComponent,
+    VerticalImgCollageComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ApiModule,
+    UiComponentsModule,
+    ServicesModule,
+    AngularSvgIconModule,
+    TranslateModule.forChild()
+  ],
+  providers: [
+    ModelService
+  ]
 })
 export class ModelModule { }

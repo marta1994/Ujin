@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JewelryModel, SkuDescription } from '../models';
-import { AppSettingsService } from '../../services/app-settings.service';
 import { trigger, transition, useAnimation, state, style } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
+import { ModelService } from '../model.service';
 
 @Component({
   selector: 'app-image-carousel',
@@ -33,16 +33,13 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
 
   public images: string[] = [];
 
-  private _skuSeparator: string;
-
   public currIndex = 0;
 
   public imgAnimate: ImageAnimate = ImageAnimate.none;
 
-  constructor(private _appSettingsService: AppSettingsService) { }
+  constructor(private _modelService: ModelService) { }
 
   ngOnInit() {
-    this._appSettingsService.loadTerms().then(res => this._skuSeparator = res.skuSeparator);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -99,7 +96,7 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   }
 
   private sortImages() {
-    if (!this._skuSeparator || !this.model || !this.sku) return;
+    if (!this.model || !this.sku) return;
     let sortedSkuData = this.model.skuDescriptions.sort((s1, s2) => this.compareSkuData(s1, s2));
     this.images = [];
     this.currIndex = 0;
@@ -107,27 +104,8 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   }
 
   private compareSkuData(sku1: SkuDescription, sku2: SkuDescription): number {
-    return this.getDistFromCurrSku(sku1.sku) - this.getDistFromCurrSku(sku2.sku);
-  }
-
-  private getDistFromCurrSku(sku: string): number {
-    let currSeparated = this.sku.split(this._skuSeparator);
-    let comparSeparated = sku.split(this._skuSeparator);
-    if (currSeparated.length != comparSeparated.length) return 10000;
-    let res = 0;
-    for (let i = 0; i < currSeparated.length; ++i) {
-      if (currSeparated[i] == comparSeparated[i] || !isNaN(+comparSeparated[i])) continue;
-      if (currSeparated[i].indexOf("-") < 0) {
-        res += 10;
-        continue;
-      }
-      let splitted1 = currSeparated[i].split("-");
-      let splitted2 = comparSeparated[i].split("-");
-      for (let j = 0; j < splitted1.length; ++j) {
-        if (splitted1[j] != splitted2[j]) res++;
-      }
-    }
-    return res;
+    return this._modelService.getDistBetweenSku(sku1.sku, this.sku) -
+      this._modelService.getDistBetweenSku(sku2.sku, this.sku);
   }
 }
 

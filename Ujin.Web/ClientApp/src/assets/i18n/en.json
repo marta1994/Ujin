@@ -37,6 +37,7 @@
       "yourOrder": "Yur order",
       "count": "Number",
       "totalPrice": "Total price",
+      "orderPrice": "Price of order",
       "callPromice": "Please enter your contacts so we could reach out for order details negotiation",
       "enterName": "Enter your name",
       "enterPhone": "Enter your phone",

@@ -22,6 +22,10 @@
       </div>
     </div>
     <div class="form">
+      <span class="total-price">
+        {{'forms.order.orderPrice'|translate}}{{': ' + totalPrice + ' '}}{{'measure.uah'|translate}}
+      </span>
+      <span class="call-promise">{{'forms.order.callPromice'|translate}}</span>
       <div class="form-group">
         <div class="group" *ngFor="let propName of objectKeys(user.properties)">
           <span class="form-label">{{user.properties[propName].labelKey|translate}}</span>
@@ -34,6 +38,7 @@
       <span class="form-error" [ngClass]="{'shown': showError}">
         {{'forms.order.formError'|translate}}
       </span>
+      <span class="conditions">{{'forms.order.conditions'|translate}}</span>
     </div>
   </div>
 </div>

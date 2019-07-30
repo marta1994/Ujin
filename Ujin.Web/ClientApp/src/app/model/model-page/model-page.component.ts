@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ModelService } from '../model.service';
 import { JewelryModel, ModelInfo } from '../models';
 import { ClipboardService } from 'src/app/services/clipboard.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SeoService } from 'src/app/services/seo.service';
+import { CartService } from 'src/app/services/cart.service';
+import { ModelService } from 'src/app/services/model.service';
+import { LangService } from 'src/app/core/lang/lang.service';
 
 @Component({
   selector: 'app-model-page',
@@ -29,7 +31,9 @@ export class ModelPageComponent implements OnInit {
     private _clipboardService: ClipboardService,
     private _seoService: SeoService,
     private _translateService: TranslateService,
-    private _router: Router
+    private _cartService: CartService,
+    private _router: Router,
+    private _langService: LangService
   ) {
   }
 
@@ -108,6 +112,11 @@ export class ModelPageComponent implements OnInit {
       }
     });
     return "assets/images/sku/" + this.model.skuDescriptions[minInd].images[0];
+  }
+
+  public placeOrder() {
+    this._cartService.addToCart(this.modelSku);
+    this._langService.navigateTo("place-order");
   }
 
   public copyLink() {

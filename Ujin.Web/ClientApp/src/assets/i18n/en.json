@@ -31,6 +31,12 @@
       "socialLinks": "Connect",
       "share": "Share",
       "contacts": "Contacts"
+    },
+    "order": {
+      "tittle": "Place order",
+      "yourOrder": "Yur order",
+      "count": "Number",
+      "totalPrice": "Total price"
     }
   },
 	"gemstone": {

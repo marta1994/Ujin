@@ -8,8 +8,12 @@
             <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
             <div class="price-conatiner">
               <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
-              <button class="buy-in-one-click">{{'forms.modelPage.buyInOneClick'|translate}}</button>
-              <button class="copy-link" (click)="copyLink()">{{'forms.modelPage.copyLink'|translate}}</button>
+              <button class="buy-in-one-click" (click)="placeOrder()">
+              {{'forms.modelPage.buyInOneClick'|translate}}
+              </button>
+              <button class="copy-link" (click)="copyLink()">
+              {{'forms.modelPage.copyLink'|translate}}
+              </button>
             </div>
             <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
             <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>

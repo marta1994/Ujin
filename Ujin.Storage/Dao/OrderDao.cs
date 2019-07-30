@@ -20,7 +20,7 @@ namespace Ujin.Storage.Dao
 
         public Task AddOrder(OrderDto order)
         {
-            order.Id = -1;
+            order.Id = 0;
             var orderEntity = _mapper.Map<Order>(order);
             return _dbContext.UpsertEntities(new[] { orderEntity });
         }

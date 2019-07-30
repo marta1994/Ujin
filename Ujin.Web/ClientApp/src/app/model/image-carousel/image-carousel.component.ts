@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { JewelryModel, SkuDescription } from '../models';
 import { trigger, transition, useAnimation, state, style } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
-import { ModelService } from '../model.service';
+import { ModelService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-image-carousel',

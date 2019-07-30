@@ -7,37 +7,47 @@ import { Router } from '@angular/router';
 })
 export class LangService {
 
-    private readonly defaultLang: string = 'ua';
-    private readonly allLangs: string[] = ['ua', 'en'];
+  private readonly defaultLang: string = 'ua';
+  private readonly allLangs: string[] = ['ua', 'en'];
 
-    constructor(
-        private _translate: TranslateService,
-        private _router: Router) {
-        _translate.setDefaultLang(this.defaultLang);
-        _translate.use(this.defaultLang);
-        _translate.addLangs(this.allLangs);
-    }
+  constructor(
+    private _translate: TranslateService,
+    private _router: Router) {
+    _translate.setDefaultLang(this.defaultLang);
+    _translate.use(this.defaultLang);
+    _translate.addLangs(this.allLangs);
+  }
 
-    public get languages(): string[] {
-        return this.allLangs.map(l => l);
-    }
+  public get languages(): string[] {
+    return this.allLangs.map(l => l);
+  }
 
-    public setLangFromRoute(lang: string) {
-        if (this._translate.langs.indexOf(lang) < 0) {
-            this.redirectToLang(this._translate.defaultLang);
-        }
-        this._translate.use(lang);
+  public setLangFromRoute(lang: string) {
+    if (this._translate.langs.indexOf(lang) < 0) {
+      this.redirectToLang(this._translate.defaultLang);
     }
+    this._translate.use(lang);
+  }
 
-    public reRouteToLang(lang: string) {
-        this.redirectToLang(lang);
-    }
+  public reRouteToLang(lang: string) {
+    this.redirectToLang(lang);
+  }
 
-    private redirectToLang(lang: string) {
-        let parsed = this._router.parseUrl(this._router.url);
-        parsed.root.children.primary.segments[0].path = lang;
-        var path = [parsed.root.children.primary.segments.map(s => s.path).join("/")];
-        var params = { queryParams: parsed.queryParams };
-        this._router.navigate(path, params);
-    }
+  private redirectToLang(lang: string) {
+    let parsed = this._router.parseUrl(this._router.url);
+    parsed.root.children.primary.segments[0].path = lang;
+    var path = [parsed.root.children.primary.segments.map(s => s.path).join("/")];
+    var params = { queryParams: parsed.queryParams };
+    this._router.navigate(path, params);
+  }
+
+  public navigateTo(path: string) {
+    let parsed = this._router.parseUrl(this._router.url);
+    let lang = parsed.root.children.primary.segments[0].path;
+    path = path[0] == '/' ? path : '/' + path;
+    let parsedPath = this._router.parseUrl(lang + path);
+    var navPath = [parsedPath.root.children.primary.segments.map(s => s.path).join("/")];
+    var params = { queryParams: parsedPath.queryParams };
+    this._router.navigate(navPath, params);
+  }
 }

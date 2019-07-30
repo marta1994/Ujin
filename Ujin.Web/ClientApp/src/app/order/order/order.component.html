@@ -1,0 +1,28 @@
+<div class="order-wrapper">
+  <span class="header">{{'forms.order.yourOrder'|translate}}</span>
+  <div class="products-and-form">
+    <div class="products">
+      <div *ngFor="let product of products" class="product-wrapper">
+        <svg-icon class="delete-button" *ngIf="products.length > 1" src="assets/images/close.svg"
+                  (click)="removeAllBySku(product.sku)"></svg-icon>
+        <div class="images-container">
+          <img *ngFor="let img of product.images" [src]="img" class="model-image" />
+        </div>
+        <app-model-info class="model-info" *ngIf="product.model" [modelInfo]="product.model" [showPrice]="true"></app-model-info>
+        <div class="main-info">
+          <div class="prop-val">
+            <span class="label">{{'forms.order.count'|translate}}:</span>
+            <span class="value">{{product.count}}</span>
+          </div>
+          <div class="prop-val">
+            <span class="label">{{'forms.order.totalPrice'|translate}}:</span>
+            <span class="value">{{product.totalPrice}}{{' '}}{{'measure.uah'|translate}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form">
+
+    </div>
+  </div>
+</div>

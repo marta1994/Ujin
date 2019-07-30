@@ -20,6 +20,8 @@ namespace Ujin.Storage
 
         internal DbSet<Order> Orders { get; set; }
 
+        internal DbSet<OrderedProduct> OrderedProducts { get; set; }
+
         internal DbSet<AdminUser> AdminUsers { get; set; }
 
         internal DbSet<Color> Colors { get; set; }
@@ -96,6 +98,12 @@ namespace Ujin.Storage
                 .HasOne(o => o.User)
                 .WithMany()
                 .HasForeignKey(g => g.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OrderedProduct>()
+                .HasOne(o => o.Order)
+                .WithMany(o => o.OrderedProducts)
+                .HasForeignKey(o => o.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AdminUser>()

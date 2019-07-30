@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LangComponent } from './core/lang/lang.component';
 import { ModelPageComponent } from './model/model-page/model-page.component';
+import { OrderComponent } from './order/order/order.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,14 @@ const routes: Routes = [
       {
         path: 'model/:id',
         component: ModelPageComponent
+      },
+      {
+        path: 'place-order',
+        component: OrderComponent
+      },
+      {
+        path: 'wrong-path',
+        component: OrderComponent
       },
       {
         path: '**',

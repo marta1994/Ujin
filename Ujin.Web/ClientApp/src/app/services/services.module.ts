@@ -4,6 +4,10 @@ import { AppSettingsService } from './app-settings.service';
 import { ApiModule } from '../api/api.module';
 import { DeviceService } from './device.service';
 import { ClipboardService } from './clipboard.service';
+import { LocalStorageService } from './local-storage.service';
+import { CartService } from './cart.service';
+import { ModelService } from './model.service';
+import { ArrayService } from './array.service';
 
 @NgModule({
   declarations: [],
@@ -14,7 +18,11 @@ import { ClipboardService } from './clipboard.service';
   providers: [
     AppSettingsService,
     DeviceService,
-    ClipboardService
+    ClipboardService,
+    LocalStorageService,
+    CartService,
+    ModelService,
+    ArrayService
   ]
 })
 export class ServicesModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { JewelryModel, SkuDescription } from '../models';
-import { ModelService } from '../model.service';
+import { ModelService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-vertical-img-collage',

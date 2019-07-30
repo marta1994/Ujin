@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModelInfo, ModelInfoNode } from '../models';
+import { ModelInfoNode, ModelInfo } from 'src/app/model/models';
 
 @Component({
     selector: 'app-model-info',

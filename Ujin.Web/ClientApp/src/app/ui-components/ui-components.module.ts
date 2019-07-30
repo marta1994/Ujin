@@ -10,6 +10,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { RouterModule } from '@angular/router';
+import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
 
 @NgModule({
   declarations:
@@ -18,7 +19,9 @@ import { RouterModule } from '@angular/router';
       SocialComponent,
       HeaderComponent,
       FooterComponent,
-      MenuComponent
+      MenuComponent,
+      ModelInfoComponent,
+      InfoNodeComponent
     ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { RouterModule } from '@angular/router';
     SocialComponent,
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    ModelInfoComponent
   ]
 })
 export class UiComponentsModule { }

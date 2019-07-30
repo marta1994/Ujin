@@ -13,6 +13,7 @@ import { LangComponent } from './core/lang/lang.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiComponentsModule } from './ui-components/ui-components.module';
+import { OrderModule } from './order/order.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,6 +42,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     ReactiveFormsModule,
     ModelModule,
     UiComponentsModule,
+    OrderModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {

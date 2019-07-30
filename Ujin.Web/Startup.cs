@@ -11,6 +11,7 @@ using System.Globalization;
 using Ujin.BusinessLogic.Services;
 using Ujin.BusinessLogic.Services.Cache;
 using Ujin.BusinessLogic.Services.Model;
+using Ujin.BusinessLogic.Services.Order;
 using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
@@ -54,6 +55,8 @@ namespace Ujin.Web
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IModelImageService, ModelImageService>();
             services.AddScoped<ISkuDescriptionService, SkuDescriptionService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IMailSender, MailSender>();
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();

@@ -6,6 +6,8 @@ import { SeoService } from 'src/app/services/seo.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/app/core/lang/lang.service';
 import { ArrayService } from 'src/app/services/array.service';
+import { OrderService, User } from 'src/app/services/order.service';
+import { timer, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -16,12 +18,20 @@ export class OrderComponent implements OnInit {
 
   private _products: ProductCount[];
 
+  public objectKeys = Object.keys;
+  public user: User = new User();
+  public validationEnabled: boolean = false;
+  public showError: boolean = false;
+  public timer: Observable<number> = timer(5000, 5000);
+  public mainErrorInterval: Subscription;
+
   constructor(
     private _cartService: CartService,
     private _modelService: ModelService,
     private _seoService: SeoService,
     private _langService: LangService,
     private _arrService: ArrayService,
+    private _orderService: OrderService,
     private _translateService: TranslateService) { }
 
   public get products(): ProductCount[] {
@@ -73,6 +83,37 @@ export class OrderComponent implements OnInit {
   public removeAllBySku(sku: string) {
     this._cartService.removeAllBySku(sku);
     this._arrService.removeByCond(this._products, p => p.sku === sku);
+  }
+
+  public placeOrder() {
+    this._orderService.makeAnOrder(this.user, this.products.map(p => { return { sku: p.sku, number: p.count } }), this.totalPrice)
+      .then(res => {
+        if (res === false) {
+          this.orderErrorCase();
+          return;
+        }
+        //redirect
+      },
+      () => this.orderErrorCase())
+      .catch(() => this.orderErrorCase());
+  }
+
+  private showMainError() {
+    this.showError = true;
+    if (this.mainErrorInterval) {
+      this.mainErrorInterval.unsubscribe();
+      this.mainErrorInterval = undefined;
+    }
+    this.mainErrorInterval = this.timer.subscribe(() => {
+      this.showError = false;
+      this.mainErrorInterval.unsubscribe();
+      this.mainErrorInterval = undefined;
+    });
+  }
+
+  private orderErrorCase() {
+    this.validationEnabled = true;
+    this.showMainError();
   }
 }
 

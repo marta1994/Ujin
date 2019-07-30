@@ -22,7 +22,18 @@
       </div>
     </div>
     <div class="form">
-
+      <div class="form-group">
+        <div class="group" *ngFor="let propName of objectKeys(user.properties)">
+          <span class="form-label">{{user.properties[propName].labelKey|translate}}</span>
+          <app-input class="input" [errorState]="validationEnabled && !user.properties[propName].isValid"
+                     [(value)]="user.properties[propName].value" [errorMessageKey]="'forms.order.inputError'"
+                     [type]="user.properties[propName].inputType"></app-input>
+        </div>
+      </div>
+      <button class="submit" (click)="placeOrder()">{{'forms.order.submit'|translate}}</button>
+      <span class="form-error" [ngClass]="{'shown': showError}">
+        {{'forms.order.formError'|translate}}
+      </span>
     </div>
   </div>
 </div>

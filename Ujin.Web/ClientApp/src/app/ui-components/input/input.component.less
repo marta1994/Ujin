@@ -1,0 +1,40 @@
+@import '../../styles/common.less';
+
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.ujin-input {
+  border: none;
+  background-color: @white-color;
+  border-bottom: 1px solid @light-grey-color;
+  outline: none;
+  padding: 2px 0;
+  width: 100%;
+  .set-border-radius(0);
+
+  &.error-state {
+    border-bottom-width: 2px;
+    border-bottom-color: @red-color;
+    padding-bottom: 1px;
+  }
+
+  &:focus {
+    border-bottom-width: 2px;
+    border-bottom-color: @dark-color;
+    padding-bottom: 1px;
+  }
+}
+
+.error-message {
+  color: @red-color;
+  font-size: 0.9rem;
+  transform: scaleY(0);
+  transition: transform ease 0.3s;
+
+  &.shown {
+    transform: scaleY(1);
+  }
+}

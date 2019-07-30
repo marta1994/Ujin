@@ -97,5 +97,59 @@
         }
       }
     }
+
+    .form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+
+      .form-group {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+
+          .form-label {
+            font-size: 0.9rem;
+            color: @dark-color;
+          }
+
+          .input {
+            margin-top: 5px;
+            width: 300px;
+
+            ::ng-deep input {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+
+      .submit {
+        .set-primary-button();
+        margin-bottom: 5px;
+      }
+
+      .form-error {
+        display: block;
+        max-width: 100%;
+        width: 300px;
+        color: @red-color;
+        font-size: 0.9rem;
+        transform: scaleY(0);
+        transition: transform ease 0.3s;
+
+        &.shown {
+          transform: scaleY(1);
+        }
+      }
+    }
   }
 }

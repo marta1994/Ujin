@@ -1,0 +1,5 @@
+<input [ngClass]="{'error-state': errorState}" class="ujin-input"
+       type="{{type}}" [(ngModel)]="value" placeholder="{{placeholder}}" />
+<span class="error-message" *ngIf="errorMessageKey" [ngClass]="{'shown': errorState}">
+  {{errorMessageKey|translate}}
+</span>

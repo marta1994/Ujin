@@ -37,7 +37,11 @@ namespace Ujin.BusinessLogic.Services.Order
             _mailSettings = appSettingsOptions.MailSettings;
         }
 
-        public async Task MakeOrder(UserDto userDto, string sku, decimal price, decimal advance)
+        public async Task MakeOrder(
+            UserDto userDto, 
+            List<OrderedProductDto> orderedProducts, 
+            decimal price,
+            decimal advance)
         {
             var user = await _userDao.GetByEmail(userDto.Email);
             if (user == null)
@@ -48,22 +52,19 @@ namespace Ujin.BusinessLogic.Services.Order
                 user.Id = await _userDao.AddUser(user);
             };
 
-            var model = await _modelParser.ParseFromSku(sku);
-            var serialized = JsonConvert.SerializeObject(model, Formatting.Indented);
+            var tasks = orderedProducts.Select(op => _modelParser.ParseFromSku(op.Sku));
+            var models = (await Task.WhenAll(tasks)).GroupBy(m => m.Sku).ToDictionary(m => m.Key, m => m.First());
+            foreach(var prod in orderedProducts)
+            {
+                prod.SerializedProduct = JsonConvert.SerializeObject(models[prod.Sku], Formatting.Indented);
+            }
 
             var order = new OrderDto
             {
                 UserId = user.Id,
                 Price = price,
                 Advance = advance,
-                OrderedProducts = new List<OrderedProductDto>
-                {
-                    new OrderedProductDto
-                    {
-                        Sku = sku,
-                        SerializedProduct = serialized
-                    }
-                }
+                OrderedProducts = orderedProducts
             };
 
             await _orderDao.AddOrder(order);
@@ -79,7 +80,7 @@ namespace Ujin.BusinessLogic.Services.Order
         private string GenerateMailMessage(OrderDto order, UserDto user)
         {
             return $@"
-There was a new order placed by a user at Ujin jewelry
+There was a new order placed by a user at Ujin jewelry.
 
 User name: {user.Name},
 User email: {user.Email},
@@ -90,7 +91,7 @@ Price: {order.Price} uah,
 Advance: {order.Advance} uah,
 
 Order Information: 
-{string.Join(";\r\n", order.OrderedProducts.Select(op => $"Sku: {op.Sku}, Data: {op.SerializedProduct}"))}
+{string.Join(";\r\n", order.OrderedProducts.Select(op => $"Sku: {op.Sku}, Number: {op.Number}, Data: {op.SerializedProduct}"))}
                     ";
         }
     }

@@ -9,5 +9,7 @@
         public string Sku { get; set; }
 
         public string SerializedProduct { get; set; }
+
+        public int Number { get; set; }
     }
 }

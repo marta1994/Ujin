@@ -36,7 +36,15 @@
       "tittle": "Place order",
       "yourOrder": "Yur order",
       "count": "Number",
-      "totalPrice": "Total price"
+      "totalPrice": "Total price",
+      "callPromice": "Please enter your contacts so we could reach out for order details negotiation",
+      "enterName": "Enter your name",
+      "enterPhone": "Enter your phone",
+      "enterEmail": "Enter your email",
+      "submit": "Submit",
+      "formError": "Could not create an order. Please enter a correct data and try again.",
+      "inputError": "Please enter a correct value into the fieald",
+      "conditions": ""
     }
   },
 	"gemstone": {

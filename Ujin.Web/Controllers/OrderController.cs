@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Ujin.Domain.Dtos;
 using Ujin.Interfaces;
 using Ujin.Web.Models;
 
@@ -18,11 +20,13 @@ namespace Ujin.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateOrder(OrderData orderData)
+        public async Task<IActionResult> CreateOrder([FromBody]OrderData orderData)
         {
             try
             {
-                await _orderService.MakeOrder(orderData.User, orderData.Sku, orderData.Advance, orderData.Advance);
+                var products = orderData.Products
+                    .Select(p => new OrderedProductDto { Sku = p.Sku, Number = p.Number }).ToList();
+                await _orderService.MakeOrder(orderData.User, products, orderData.Advance, orderData.Advance);
             }
             catch (Exception)
             {

@@ -8,6 +8,7 @@ import { LocalStorageService } from './local-storage.service';
 import { CartService } from './cart.service';
 import { ModelService } from './model.service';
 import { ArrayService } from './array.service';
+import { OrderService } from './order.service';
 
 @NgModule({
   declarations: [],
@@ -22,7 +23,8 @@ import { ArrayService } from './array.service';
     LocalStorageService,
     CartService,
     ModelService,
-    ArrayService
+    ArrayService,
+    OrderService
   ]
 })
 export class ServicesModule { }

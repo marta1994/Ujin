@@ -22,16 +22,9 @@ namespace Ujin.Web.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> CreateOrder([FromBody]OrderData orderData)
         {
-            try
-            {
-                var products = orderData.Products
-                    .Select(p => new OrderedProductDto { Sku = p.Sku, Number = p.Number }).ToList();
-                await _orderService.MakeOrder(orderData.User, products, orderData.Advance, orderData.Advance);
-            }
-            catch (Exception)
-            {
-                return StatusCode(500);
-            }
+            var products = orderData.Products
+                .Select(p => new OrderedProductDto { Sku = p.Sku, Number = p.Number }).ToList();
+            await _orderService.MakeOrder(orderData.User, products, orderData.Price, orderData.Advance);
             return Ok();
         }
     }

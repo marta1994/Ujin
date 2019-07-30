@@ -20,6 +20,8 @@ namespace Ujin.Storage.AutoMapperProfiles
             CreateMap<UserDto, User>();
             CreateMap<Order, OrderDto>();
             CreateMap<OrderDto, Order>();
+            CreateMap<OrderedProductDto, OrderedProduct>();
+            CreateMap<OrderedProduct, OrderedProductDto>();
 
             CreateMap<GemstoneSource, GemSourceDto>();
             CreateMap<GemSourceDto, GemstoneSource>();

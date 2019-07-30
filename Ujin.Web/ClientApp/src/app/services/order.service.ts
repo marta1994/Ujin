@@ -88,5 +88,6 @@ export class User {
     for (let prop in this._properties) {
       res[prop] = this._properties[prop].value;
     }
+    return res;
   }
 }

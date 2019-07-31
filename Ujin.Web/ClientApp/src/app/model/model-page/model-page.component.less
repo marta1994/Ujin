@@ -49,22 +49,28 @@
 
       .price-conatiner {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
 
         .price {
           font-size: 2em;
           font-weight: 700;
           color: @dark-color;
+          margin-top: 10px;
         }
 
         .buy-in-one-click {
           .set-primary-button();
           margin-left: 20px;
+          margin-top: 10px;
         }
 
         .copy-link {
           .set-default-button();
           margin-left: 20px;
+          margin-top: 10px;
+          flex: 1;
         }
       }
 

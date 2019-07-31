@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { IProperty, StringProperty } from './property';
 import { ApiService } from '../api/api.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
+  private static justMadeOrderProp: string = "justMadeOrder";
+
   constructor(
-    private _api: ApiService) { }
+    private _api: ApiService,
+    private _localStorageService: LocalStorageService) { }
 
   public makeAnOrder(user: User, products: IOrderProduct[], price: number): Promise<any> {
     if (!user.isValid || products.length == 0)
@@ -23,6 +27,14 @@ export class OrderService {
         .then(() => resolve(true),
           err => reject(err));
     });
+  }
+
+  public get justMadeOrder(): boolean {
+    return this._localStorageService.get<boolean>(OrderService.justMadeOrderProp);
+  }
+
+  public set justMadeOrder(val: boolean) {
+    return this._localStorageService.set(OrderService.justMadeOrderProp, val);
   }
 }
 

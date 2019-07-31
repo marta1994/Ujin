@@ -46,6 +46,10 @@
       "formError": "Could not create an order. Please enter a correct data and try again.",
       "inputError": "Please enter a correct value into the fieald",
       "conditions": ""
+    },
+    "thankYou": {
+      "caption": "Thank you! Your order is created!",
+      "text": "Your order is successfully created and is waiting to be processed by the operator of Ujin jewelry."
     }
   },
 	"gemstone": {

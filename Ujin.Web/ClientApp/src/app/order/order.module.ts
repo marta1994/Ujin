@@ -6,9 +6,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { ServicesModule } from '../services/services.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 @NgModule({
-  declarations: [OrderComponent],
+  declarations: [OrderComponent, ThankyouComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,7 +19,8 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     TranslateModule.forChild()
   ],
   exports: [
-    OrderComponent
+    OrderComponent,
+    ThankyouComponent
   ]
 })
 export class OrderModule { }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LangComponent } from './core/lang/lang.component';
 import { ModelPageComponent } from './model/model-page/model-page.component';
 import { OrderComponent } from './order/order/order.component';
+import { ThankyouComponent } from './order/thankyou/thankyou.component';
 
 
 const routes: Routes = [
@@ -19,12 +20,16 @@ const routes: Routes = [
         component: OrderComponent
       },
       {
+        path: 'thank-you',
+        component: ThankyouComponent
+      },
+      {
         path: 'wrong-path',
         component: OrderComponent
       },
       {
         path: '**',
-        redirectTo: 'model'
+        redirectTo: 'model/ov-rn'
       }
     ]
   },

@@ -31,7 +31,8 @@ export class SeoService {
     this._meta.updateTag({ property: 'og:description', content: description });
   }
 
-  updateOgImage(image: string) {
+  updateOgImage(image?: string) {
+    if (!image) image = 'assets/images/ujin_logo_white_text.png';
     this._meta.updateTag({ property: 'og:image', content: `${this.siteName}${image}` });
   }
 

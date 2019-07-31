@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit {
       .subscribe(res =>
         this._seoService.updateTitle(res));
     this._seoService.updateOgUrl("place-order");
-    this._seoService.updateOgImage("assets/images/ujin_logo_white_text.png");
+    this._seoService.updateOgImage();
    
     if (!this.initProducts())
       this._langService.navigateTo("wrong-path");
@@ -92,7 +92,9 @@ export class OrderComponent implements OnInit {
           this.orderErrorCase();
           return;
         }
-        //redirect
+        this._cartService.clearCart();
+        this._orderService.justMadeOrder = true;
+        this._langService.navigateTo('thank-you');
       },
       () => this.orderErrorCase())
       .catch(() => this.orderErrorCase());

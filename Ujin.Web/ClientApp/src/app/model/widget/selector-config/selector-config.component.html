@@ -15,7 +15,7 @@
     </div>
     <div *ngSwitchCase="OptionsSource.Gemstone" class="gem-container">
         <div class="menu">
-            <div *ngFor="let item of gemstones" class="menu-item"
+            <div *ngFor="let item of gemstones" class="menu-item gem-menu-item"
                  (click)="selectGemClass(item)"
                  [ngClass]="{'selected': isSelected(item)}" id="{{item.nameKey}}">
                 <span class="color-pin" [ngStyle]="{'background-color': item.color}"></span>

@@ -3,6 +3,7 @@ import { JewelryModel, SkuDescription } from '../models';
 import { trigger, transition, useAnimation, state, style } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { ModelService } from 'src/app/services/model.service';
+import { DeviceService, DeviceType } from 'src/app/services/device.service';
 
 @Component({
   selector: 'app-image-carousel',
@@ -37,7 +38,9 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
 
   public imgAnimate: ImageAnimate = ImageAnimate.none;
 
-  constructor(private _modelService: ModelService) { }
+  constructor(
+    private _modelService: ModelService,
+    private _deviceService: DeviceService) { }
 
   ngOnInit() {
   }
@@ -50,6 +53,10 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
       });
     }
     this.sortImages();
+  }
+
+  public get device(): DeviceType {
+    return this._deviceService.deviceType;
   }
   
   public shift(pos: number) {

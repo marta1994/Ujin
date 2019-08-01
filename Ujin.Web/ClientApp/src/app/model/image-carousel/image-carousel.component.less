@@ -23,6 +23,11 @@
     .side-image {
       flex: 3;
       padding: 30px 0;
+      display: none;
+
+      @media @desktop {
+        display: block;
+      }
 
       &.left-image {
         padding-right: 0;
@@ -34,34 +39,46 @@
     }
 
     .main-image {
-      flex: 4;
-      padding: 20px;
-      .set-border-radius(3px);
+      flex: 3;
       background-color: @accent-color;
       .set-box-shadow(@grey-color);
       z-index: 3;
       cursor: pointer;
+      display: inline-flex;
       transition: box-shadow ease 0.3s;
+
+      @media @desktop {
+        .set-border-radius(3px);
+        flex: 3;
+
+        img {
+          .set-border-radius(3px);
+        }
+      }
 
       &:hover {
         .set-box-shadow(@grey-color, 0 0 7px 4px);
-      }
-
-      img {
-        .set-border-radius(3px);
       }
     }
   }
 
   .arrow {
-    @arrow-size: 50px;
-
-    position: absolute;
-    top: 50%;
+    @arrow-size: 25px;
     margin-top: -@arrow-size/2;
     height: @arrow-size;
     width: @arrow-size;
+
+    @media @desktop {
+      @arrow-size: 50px;
+      margin-top: -@arrow-size/2;
+      height: @arrow-size;
+      width: @arrow-size;
+    }
+
+    position: absolute;
+    top: 50%;
     cursor: pointer;
+    z-index: 4;
 
     ::ng-deep svg {
       fill: @dark-color;
@@ -70,8 +87,10 @@
       height: 100%;
       transition: opacity ease 0.3s;
 
-      &:hover {
-        opacity: 1;
+      @media @desktop {
+        &:hover {
+          opacity: 1;
+        }
       }
     }
 

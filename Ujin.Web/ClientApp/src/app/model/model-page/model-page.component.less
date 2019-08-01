@@ -31,74 +31,88 @@
     }
 
     .info-container {
-      background-color: @white-color;
-      padding: 30px;
+      display: none;
 
       @media @desktop {
-        flex: 4;
-        padding-top: 10px + @desktop-header-height;
+        display: block;
+      }
+    }
+  }
+
+  @media @desktop {
+    .mobile-info-container {
+      display: none;
+    }
+  }
+
+  .info-container {
+    background-color: @white-color;
+    padding: 30px;
+
+    @media @desktop {
+      flex: 4;
+      padding-top: 10px + @desktop-header-height;
+    }
+
+    .model-name {
+      font-size: 2.5em;
+      font-weight: 500;
+      padding-bottom: 15px;
+      padding-left: 30px;
+      border-bottom: 1px solid @grey-color;
+    }
+
+    .price-conatiner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      .price {
+        font-size: 2em;
+        font-weight: 700;
+        color: @dark-color;
+        margin-top: 10px;
       }
 
-      .model-name {
-        font-size: 2.5em;
+      .buy-in-one-click {
+        .set-primary-button();
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+
+      .copy-link {
+        .set-default-button();
+        margin-left: 20px;
+        margin-top: 10px;
+        flex: 1;
+      }
+    }
+
+    @media @desktop {
+      flex: 5;
+    }
+  }
+
+  .description {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: @light-grey-color;
+
+    ::ng-deep {
+      p {
+        font-size: 1.3em;
         font-weight: 500;
-        padding-bottom: 15px;
-        padding-left: 30px;
-        border-bottom: 1px solid @grey-color;
       }
 
-      .price-conatiner {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+      ul {
+        font-size: 1.2em;
+        padding-left: 20px;
 
-        .price {
-          font-size: 2em;
-          font-weight: 700;
-          color: @dark-color;
-          margin-top: 10px;
+        li {
+          display: block;
+          padding: 5px 0;
         }
-
-        .buy-in-one-click {
-          .set-primary-button();
-          margin-left: 20px;
-          margin-top: 10px;
-        }
-
-        .copy-link {
-          .set-default-button();
-          margin-left: 20px;
-          margin-top: 10px;
-          flex: 1;
-        }
-      }
-
-      .description {
-        margin: 20px 0;
-        padding: 10px;
-        background-color: @light-grey-color;
-
-        ::ng-deep {
-          p {
-            font-size: 1.3em;
-            font-weight: 500;
-          }
-
-          ul {
-            font-size: 1.2em;
-            padding-left: 20px;
-
-            li {
-              display: block;
-              padding: 5px 0;
-            }
-          }
-        }
-      }
-
-      @media @desktop {
-        flex: 5;
       }
     }
   }

@@ -1,25 +1,50 @@
 <div class="model-page-container">
-    <div class="widget-and-info-container">
-        <div class="widget-container">
-            <app-widget [model]="model" [currentImages]="currentImages" 
-                        (onChange)="modelChanged()"></app-widget>
-        </div>
-        <div class="info-container">
-            <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
-            <div class="price-conatiner">
-              <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
-              <button class="buy-in-one-click" (click)="placeOrder()">
-              {{'forms.modelPage.buyInOneClick'|translate}}
-              </button>
-              <button class="copy-link" (click)="copyLink()">
-              {{'forms.modelPage.copyLink'|translate}}
-              </button>
-            </div>
-            <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
-            <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>
-        </div>
+  <div class="widget-and-info-container">
+    <div class="widget-container">
+      <app-widget [model]="model" [currentImages]="currentImages"
+                  (onChange)="modelChanged()"></app-widget>
     </div>
-    <div class="carousel-container">
-        <app-image-carousel [model]="model" [sku]="modelSku"></app-image-carousel>
+    <div class="info-container">
+      <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
+      <div class="price-conatiner">
+        <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
+        <button class="buy-in-one-click" (click)="placeOrder()">
+          {{'forms.modelPage.buyInOneClick'|translate}}
+        </button>
+        <button class="copy-link" (click)="copyLink()">
+          {{'forms.modelPage.copyLink'|translate}}
+        </button>
+      </div>
+      <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
+      <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>
     </div>
+  </div>
+  <div class="mobile-info-container info-container">
+    <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
+    <div class="price-conatiner">
+      <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
+      <button class="buy-in-one-click" (click)="placeOrder()">
+        {{'forms.modelPage.buyInOneClick'|translate}}
+      </button>
+      <button class="copy-link" (click)="copyLink()">
+        {{'forms.modelPage.copyLink'|translate}}
+      </button>
+    </div>
+  </div>
+  <div class="carousel-container">
+    <app-image-carousel [model]="model" [sku]="modelSku"></app-image-carousel>
+  </div>
+  <div class="mobile-info-container info-container">
+    <app-model-info *ngIf="modelInfo" [modelInfo]="modelInfo" [showPrice]="false"></app-model-info>
+    <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
+    <div class="price-conatiner">
+      <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
+      <button class="buy-in-one-click" (click)="placeOrder()">
+        {{'forms.modelPage.buyInOneClick'|translate}}
+      </button>
+      <button class="copy-link" (click)="copyLink()">
+        {{'forms.modelPage.copyLink'|translate}}
+      </button>
+    </div>
+  </div>
 </div>

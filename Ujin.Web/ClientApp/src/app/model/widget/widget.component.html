@@ -6,8 +6,8 @@
                 <span class="text">{{config.nameKey|translate}}</span>
             </div>
         </div>
-        <div class="images-conatiner" [@widgetImg]="imgAnimate"
-               (@widgetImg.done)="imgAnimateDone($event)">
+        <div class="images-conatiner" (swipeleft)="swipe(1)" (swiperight)="swipe(-1)"
+             [@widgetImg]="imgAnimate" (@widgetImg.done)="imgAnimateDone($event)">
             <img *ngFor="let index of imageIndexes" 
                  [src]="(currentImages || [])[index]" class="model-image" />
         </div>

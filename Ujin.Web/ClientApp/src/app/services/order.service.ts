@@ -34,7 +34,7 @@ export class OrderService {
   }
 
   public set justMadeOrder(val: boolean) {
-    return this._localStorageService.set(OrderService.justMadeOrderProp, val);
+    this._localStorageService.set(OrderService.justMadeOrderProp, val);
   }
 }
 

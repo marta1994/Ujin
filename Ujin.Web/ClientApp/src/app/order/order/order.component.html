@@ -27,11 +27,11 @@
       </span>
       <span class="call-promise">{{'forms.order.callPromice'|translate}}</span>
       <div class="form-group">
-        <div class="group" *ngFor="let propName of objectKeys(user.properties)">
-          <span class="form-label">{{user.properties[propName].labelKey|translate}}</span>
-          <app-input class="input" [errorState]="validationEnabled && !user.properties[propName].isValid"
-                     [(value)]="user.properties[propName].value" [errorMessageKey]="'forms.order.inputError'"
-                     [type]="user.properties[propName].inputType"></app-input>
+        <div class="group" *ngFor="let prop of userProps">
+          <span class="form-label">{{prop.labelKey|translate}}</span>
+          <app-input class="input" [errorState]="validationEnabled && !prop.isValid"
+                     [(value)]="prop.value" [errorMessageKey]="'forms.order.inputError'"
+                     [type]="prop.inputType"></app-input>
         </div>
       </div>
       <button class="submit" (click)="placeOrder()">{{'forms.order.submit'|translate}}</button>

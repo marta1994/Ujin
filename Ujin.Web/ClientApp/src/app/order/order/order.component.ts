@@ -8,6 +8,7 @@ import { LangService } from 'src/app/core/lang/lang.service';
 import { ArrayService } from 'src/app/services/array.service';
 import { OrderService, User } from 'src/app/services/order.service';
 import { timer, Observable, Subscription } from 'rxjs';
+import { StringProperty } from 'src/app/services/property';
 
 @Component({
   selector: 'app-order',
@@ -18,7 +19,6 @@ export class OrderComponent implements OnInit {
 
   private _products: ProductCount[];
 
-  public objectKeys = Object.keys;
   public user: User = new User();
   public validationEnabled: boolean = false;
   public showError: boolean = false;
@@ -78,6 +78,12 @@ export class OrderComponent implements OnInit {
         }
       });
     return true;
+  }
+
+
+  public get userProps(): StringProperty[] {
+    return Object.keys(this.user.properties).map(p => this.user.properties[p])
+      .filter(p => (p as StringProperty) != null).map(p => p as StringProperty);
   }
 
   public removeAllBySku(sku: string) {

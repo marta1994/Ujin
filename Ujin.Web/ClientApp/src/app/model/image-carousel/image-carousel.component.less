@@ -21,12 +21,15 @@
     }
 
     .side-image {
-      flex: 3;
+      flex: 0;
+      width: 0;
       padding: 30px 0;
       display: none;
 
       @media @desktop {
         display: block;
+        flex: 3;
+        width: auto;
       }
 
       &.left-image {
@@ -39,17 +42,22 @@
     }
 
     .main-image {
-      flex: 3;
       background-color: @accent-color;
       .set-box-shadow(@grey-color);
       z-index: 3;
       cursor: pointer;
       display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: box-shadow ease 0.3s;
+      width: 100%;
+      height: auto;
 
       @media @desktop {
         .set-border-radius(3px);
         flex: 4;
+        width: auto;
 
         img {
           .set-border-radius(3px);

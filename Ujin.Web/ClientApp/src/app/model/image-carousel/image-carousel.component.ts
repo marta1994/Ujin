@@ -15,7 +15,7 @@ import { DeviceService, DeviceType } from 'src/app/services/device.service';
         useAnimation(fadeOut, { params: { timing: 0.1 } })
       ),
       transition('* => in',
-        useAnimation(fadeIn, { params: { timing: 0.2 } })
+        useAnimation(fadeIn, { params: { timing: 0.5 } })
       ),
       state('loading', style({
         opacity: 0

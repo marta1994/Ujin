@@ -8,7 +8,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class OrderService {
 
-  private static justMadeOrderProp: string = "justMadeOrder";
+  private static recentOrderProp: string = "recentOrder";
 
   constructor(
     private _api: ApiService,
@@ -29,13 +29,18 @@ export class OrderService {
     });
   }
 
-  public get justMadeOrder(): boolean {
-    return this._localStorageService.get<boolean>(OrderService.justMadeOrderProp);
+  public get recentOrder(): IOrder {
+    return this._localStorageService.get<IOrder>(OrderService.recentOrderProp);
   }
 
-  public set justMadeOrder(val: boolean) {
-    this._localStorageService.set(OrderService.justMadeOrderProp, val);
+  public set recentOrder(order: IOrder) {
+    this._localStorageService.set(OrderService.recentOrderProp, order);
   }
+}
+
+export interface IOrder {
+  userEmail: string;
+  price: number;
 }
 
 export interface IOrderProduct {

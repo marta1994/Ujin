@@ -98,8 +98,8 @@ export class OrderComponent implements OnInit {
           this.orderErrorCase();
           return;
         }
+        this._orderService.recentOrder = { price: this.totalPrice, userEmail: this.user.email };
         this._cartService.clearCart();
-        this._orderService.justMadeOrder = true;
         this._langService.navigateTo('thank-you');
       },
       () => this.orderErrorCase())

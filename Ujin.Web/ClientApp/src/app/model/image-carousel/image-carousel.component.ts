@@ -60,10 +60,11 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   }
   
   public shift(pos: number) {
+    this._visibleImagesNum = this.device == DeviceType.Mobile ? 1 : 3;
     this._tempIndex = (this.currIndex + pos + this.images.length) % this.images.length;
     this.triggerAnimation();
   }
-
+  
   private triggerAnimation() {
     this.imgAnimate = ImageAnimate.out;
     this._animatedOutImgIndexes = [];
@@ -71,25 +72,30 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
   }
 
   private trySetNewImages() {
-    if (this._animatedOutImgIndexes.length != 3) return;
+    if (this._animatedOutImgIndexes.length != this._visibleImagesNum) return;
     this.currIndex = this._tempIndex;
     this.imgAnimate = ImageAnimate.loading;
-    [this.images[(this.currIndex + this.images.length - 1) % this.images.length],
+    var imgs = this.device == DeviceType.Mobile ?
+      [this.images[this.currIndex]] :
+      [this.images[(this.currIndex + this.images.length - 1) % this.images.length],
       this.images[this.currIndex],
-      this.images[(this.currIndex + 1) % this.images.length]].forEach((img, ind) => {
-        let image = new Image();
-        image.onload = () => this.onImageLoded(ind);
-        image.src = img;
-      });
+      this.images[(this.currIndex + 1) % this.images.length]];
+
+    imgs.forEach((img, ind) => {
+      let image = new Image();
+      image.onload = () => this.onImageLoded(ind);
+      image.src = img;
+    });
   }
 
+  private _visibleImagesNum: number;
   private _tempIndex: number;
   private _animatedOutImgIndexes: number[] = [];
   private _loadedImgIndexes: number[] = [];
 
   private onImageLoded(index: number) {
     if (this._loadedImgIndexes.indexOf(index) == -1) this._loadedImgIndexes.push(index);
-    if (this._loadedImgIndexes.length != 3) return;
+    if (this._loadedImgIndexes.length != this._visibleImagesNum) return;
     this.imgAnimate = ImageAnimate.in;
   }
 

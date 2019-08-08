@@ -35,15 +35,15 @@ export class ModelPageComponent implements OnInit {
     private _router: Router,
     private _langService: LangService
   ) {
-  }
-
-  ngOnInit() {
     this._activatedRoute.queryParams.subscribe(queryParams => {
       this.init();
     });
     this._activatedRoute.params.subscribe(routeParams => {
       this.init();
     });
+  }
+
+  ngOnInit() {
   }
 
   private init() {
@@ -57,7 +57,9 @@ export class ModelPageComponent implements OnInit {
       this.modelIdentifier = model.identifier;
       this.modelSku = model.sku;
       this.loadSkuInfo();
-    });
+    },
+      err =>
+        sku ? this._langService.navigateTo(`model/${identifier}`) : this._langService.navigateTo(''));
   }
 
   public modelChanged() {

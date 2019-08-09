@@ -39,6 +39,11 @@ namespace Ujin.Web
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 443;
+            });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMemoryCache();
 

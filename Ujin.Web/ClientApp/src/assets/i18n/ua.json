@@ -109,24 +109,26 @@
 		},
 		"modelConfig": {
 			"customOption": {
-				"ornament": {
-					"accordion": "Гармошка",
-					"bubbles": "Бульбашки",
-					"cheese": "Сир",
-					"doodles": "Кільця",
-					"dry": "Суша",
-					"elf": "Ельф",
-					"facet": "Грані",
-					"feather": "Перо",
-					"foil": "Фольга",
-					"plant": "Рослинки",
-					"sleeves": "Гільзи",
-					"snakes": "Змії",
-					"thread": "Нитки",
-					"tree": "Деревце",
-					"window": "Віконця",
-					"wreath": "Вінок"
-				}
+        "ornament": {
+          "accordion": "Гармошка",
+          "bubbles": "Бульбашки",
+          "cheese": "Сир",
+          "crater": "Кратер місяця",
+          "doodles": "Завитки",
+          "dry": "Сахара",
+          "elf": "Ельф",
+          "facet": "Грані світу",
+          "feather": "Жарптиця",
+          "foil": "Фольга",
+          "plant": "Рослинка",
+          "sleeves": "Полярна ніч",
+          "snakes": "Змії",
+          "thread": "Пісок",
+          "tree": "Деревце",
+          "bridge": "Місток",
+          "window": "Нефертіті",
+          "wreath": "Вінок"
+        }
 			},
 			"name": {
 				"characteristics": "Характеристики",

@@ -78,22 +78,24 @@
       },
       "customOption": {
         "ornament": {
-          "foil": "Фольга",
-          "doodles": "Кільця",
-          "feather": "Перо",
-          "bubbles": "Бульбашки",
           "accordion": "Гармошка",
-          "facet": "Грані",
-          "window": "Віконця",
-          "sleeves": "Гільзи",
-          "dry": "Суша",
-          "plant": "Рослинки",
+          "bubbles": "Бульбашки",
           "cheese": "Сир",
+          "crater": "Кратер місяця",
+          "doodles": "Завитки",
+          "dry": "Сахара",
           "elf": "Ельф",
-          "tree": "Деревце",
-          "wreath": "Вінок",
+          "facet": "Грані світу",
+          "feather": "Жарптиця",
+          "foil": "Фольга",
+          "plant": "Рослинка",
+          "sleeves": "Полярна ніч",
           "snakes": "Змії",
-          "thread": "Нитки"
+          "thread": "Пісок",
+          "tree": "Деревце",
+          "bridge": "Місток",
+          "window": "Нефертіті",
+          "wreath": "Вінок"
         }
       }
     }

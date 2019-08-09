@@ -4,13 +4,34 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
-<url>
-  <loc>https://ujin.org/</loc>
-  <lastmod>2019-05-12T11:20:22+00:00</lastmod>
-</url>
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/ov-rn</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
+
+  <!-- bgt-rn model -->
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/bgt-rn</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/bgt-rn?sku=bgt-rn_acc_gold585_am-ge-ba-vi-25-5_17</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/bgt-rn?sku=bgt-rn_fac_gold585_am-ge-ba-vi-25-5_17</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/bgt-rn?sku=bgt-rn_win_gold585_am-ge-ba-vi-25-5_17</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ujin.pp.ua/ua/model/bgt-rn?sku=bgt-rn_sle_gold585_am-ge-ba-vi-25-5_17</loc>
+    <lastmod>2019-08-08T11:20:22+00:00</lastmod>
+  </url>
 
 
 </urlset>

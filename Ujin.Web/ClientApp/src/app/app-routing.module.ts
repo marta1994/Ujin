@@ -4,6 +4,7 @@ import { LangComponent } from './core/lang/lang.component';
 import { ModelPageComponent } from './model/model-page/model-page.component';
 import { OrderComponent } from './order/order/order.component';
 import { ThankyouComponent } from './order/thankyou/thankyou.component';
+import { WrongPathComponent } from './core/wrong-path/wrong-path.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'wrong-path',
-        component: OrderComponent
+        component: WrongPathComponent
       },
       {
         path: '**',

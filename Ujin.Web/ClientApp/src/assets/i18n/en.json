@@ -50,6 +50,10 @@
     "thankYou": {
       "caption": "Thank you! Your order is created!",
       "text": "Your order is successfully created and is waiting to be processed by the operator of Ujin jewelry."
+    },
+    "wrongPath": {
+      "caption": "Looks like you have got lost",
+      "text": "Get back on a right path"
     }
   },
 	"gemstone": {

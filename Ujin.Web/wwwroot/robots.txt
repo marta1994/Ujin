@@ -1,2 +1,5 @@
 ﻿User-agent: *
-Disallow: 
+Disallow: /assets/images/widget/
+Disallow: /*/place-order
+Disallow: /*/thank-you
+Disallow: /*/wrong-path

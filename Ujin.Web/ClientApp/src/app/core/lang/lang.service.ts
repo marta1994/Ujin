@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class LangService {
 
   private readonly defaultLang: string = 'ua';
-  private readonly allLangs: string[] = ['ua', 'en'];
+  private readonly allLangs: string[] = ['ua']; //, 'en'
 
   constructor(
     private _translate: TranslateService,
@@ -26,7 +26,9 @@ export class LangService {
     if (this._translate.langs.indexOf(lang) < 0) {
       this.redirectToLang(this._translate.defaultLang);
     }
-    this._translate.use(lang);
+    else {
+      this._translate.use(lang);
+    }
   }
 
   public reRouteToLang(lang: string) {

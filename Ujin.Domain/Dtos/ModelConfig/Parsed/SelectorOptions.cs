@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ujin.Domain.Enums;
@@ -49,5 +50,23 @@ namespace Ujin.Domain.Dtos.ModelConfig.Parsed
         public List<GemstoneDto> GemstoneSource { get; set; }
 
         public List<MetalDto> MetalSource { get; set; }
+
+        public List<string> AllValues
+        {
+            get
+            {
+                switch(OptionsSource)
+                {
+                    case OptionsSource.Custom:
+                        return CustomOptions.Select(co => co.Identifier).ToList();
+                    case OptionsSource.Gemstone:
+                        return GemstoneSource.Select(gm => gm.Identifier).ToList();
+                    case OptionsSource.Metal:
+                        return MetalSource.Select(m => m.Identifier).ToList();
+                    default:
+                        throw new ApplicationException($"OptionsSource {OptionsSource} is not supported!");
+                }
+            }
+        }
     }
 }

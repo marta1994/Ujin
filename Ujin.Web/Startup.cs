@@ -60,6 +60,7 @@ namespace Ujin.Web
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();
+            services.AddScoped<SiteMapModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +83,8 @@ namespace Ujin.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(name: "sitemap", template: "sitemap.xml",
+                    defaults: new { controller = "Sitemap", action = "Index" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");

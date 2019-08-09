@@ -6,6 +6,7 @@ using Ujin.BusinessLogic.Services.Model;
 using Ujin.Domain.Dtos;
 using Ujin.Domain.Dtos.ModelConfig;
 using Ujin.Domain.Dtos.ModelConfig.Parsed;
+using Ujin.Domain.Enums;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
 using Ujin.Interfaces.Dao;
@@ -22,16 +23,20 @@ namespace Ujin.BusinessLogic.Services
 
         private readonly ModelParser _modelParser;
 
+        private readonly SiteMapModelService _siteMapModelService;
+
         public JewelryModelService(
             IJewelryModelDao jewelryModelDao,
             IParsedModelCache parsedModelCache,
             ModelParser modelParser,
-            IModelInfoCache modelInfoCache)
+            IModelInfoCache modelInfoCache,
+            SiteMapModelService siteMapModelService)
         {
             _jewelryModelDao = jewelryModelDao;
             _parsedModelCache = parsedModelCache;
             _modelParser = modelParser;
             _modelInfoCache = modelInfoCache;
+            _siteMapModelService = siteMapModelService;
         }
 
         public Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
@@ -43,6 +48,13 @@ namespace Ujin.BusinessLogic.Services
         {
             return _modelInfoCache.GetModelInfoBySku(sku);
         } 
+
+        public async Task<IEnumerable<SitemapModel>> LoadSitemapModels()
+        {
+            var models = (await _jewelryModelDao.LoadJewelryModels())
+                .Where(m => m.ModelState == JewelryModelState.Enabled).ToList();
+            return await Task.WhenAll(models.Select(m => _siteMapModelService.GetSitemapModel(m)));
+        }
 
         public async Task<List<string>> GetOrderedValues(string sku, string identifier)
         {

@@ -1,0 +1,68 @@
+@import '../../styles/common.less';
+
+.adven-wrapper {
+  background-color: @light-grey-color;
+  color: @dark-color;
+
+  .adven-header {
+    font-size: 24px;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .adven-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    align-items: flex-start;
+
+    @media screen and (min-width: 780px) {
+      flex-direction: row;
+    }
+
+    @media screen and (max-width: 780px) {
+      flex-direction: column;
+    }
+
+    .adventage {
+      display: inline-flex;
+      flex-direction: row;
+      padding: 20px;
+      max-width: 300px;
+
+      .order-holder {
+        padding: 10px;
+
+        .order-circle {
+          @circle-size: 50px;
+          @circle-font-size: 1.8rem;
+          font-size: @circle-font-size;
+          display: inline-flex;
+          width: @circle-size;
+          height: @circle-size;
+          .set-border-radius(50%);
+          align-items: center;
+          justify-content: center;
+          background-color: @accent-color;
+          color: @white-color;
+        }
+      }
+
+      .text {
+        display: inline-flex;
+        flex-direction: column;
+
+        .adven-title {
+          font-weight: 500;
+          padding: 10px 0;
+          font-size: 1.4rem;
+        }
+
+        .adven-description {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

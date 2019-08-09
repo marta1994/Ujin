@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
 import { InputComponent } from './input/input.component';
+import { AdventagesComponent } from './adventages/adventages.component';
 
 @NgModule({
   declarations:
@@ -23,7 +24,8 @@ import { InputComponent } from './input/input.component';
       MenuComponent,
       ModelInfoComponent,
       InfoNodeComponent,
-      InputComponent
+      InputComponent,
+      AdventagesComponent
     ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { InputComponent } from './input/input.component';
     FooterComponent,
     MenuComponent,
     ModelInfoComponent,
-    InputComponent
+    InputComponent,
+    AdventagesComponent
   ]
 })
 export class UiComponentsModule { }

@@ -1,10 +1,10 @@
 <div class="carousel-container" *ngIf="model && images && images.length >= 3">
-    <div class="images-container" (swipeleft)="shift(1)" (swiperight)="shift(-1)">
+    <div class="images-container" (swipeleft)="swipe(1)" (swiperight)="swipe(-1)">
         <div class="side-image image-wrapper left-image">
             <img [src]="images[(currIndex - 1 + imageIndexes.length) % imageIndexes.length]" 
                  [@mainImg]="imgAnimate" (@mainImg.done)="imgAnimateDone($event, (currIndex - 1 + imageIndexes.length) % imageIndexes.length)"/>
         </div>
-        <div class="main-image image-wrapper" (click)="shift(1)">
+        <div class="main-image image-wrapper" (click)="imgClick()">
             <img [src]="images[currIndex]" 
                  [@mainImg]="imgAnimate" (@mainImg.done)="imgAnimateDone($event, currIndex)"/>
         </div>
@@ -13,10 +13,10 @@
                  [@mainImg]="imgAnimate" (@mainImg.done)="imgAnimateDone($event, (currIndex + 1) % imageIndexes.length)"/>
         </div>
     </div>
-    <div class="arrow left-arrow" (click)="shift(-1)">
+    <div class="arrow left-arrow" (click)="arrowClick(-1)">
         <svg-icon src="assets/images/arrow.svg"></svg-icon>
     </div>
-    <div class="arrow right-arrow" (click)="shift(1)">
+    <div class="arrow right-arrow" (click)="arrowClick(1)">
         <svg-icon src="assets/images/arrow.svg"></svg-icon>
     </div>
 </div>

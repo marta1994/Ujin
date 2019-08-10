@@ -7,6 +7,8 @@ import { SeoService } from 'src/app/services/seo.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ModelService } from 'src/app/services/model.service';
 import { LangService } from 'src/app/core/lang/lang.service';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, ModelPageEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-model-page',
@@ -33,7 +35,8 @@ export class ModelPageComponent implements OnInit {
     private _translateService: TranslateService,
     private _cartService: CartService,
     private _router: Router,
-    private _langService: LangService
+    private _langService: LangService,
+    private _gaService: GaService
   ) {
     this._activatedRoute.queryParams.subscribe(queryParams => {
       this.init();
@@ -119,10 +122,12 @@ export class ModelPageComponent implements OnInit {
   public placeOrder() {
     this._cartService.addToCart(this.modelSku);
     this._langService.navigateTo("place-order");
+    this._gaService.sendEvent(EventCategory.ModelPage, ModelPageEvents.OrderClick);
   }
 
   public copyLink() {
     var url = window.location.href;
     this._clipboardService.copyToClipboard(url);
+    this._gaService.sendEvent(EventCategory.ModelPage, ModelPageEvents.CopyLinkClick);
   }
 }

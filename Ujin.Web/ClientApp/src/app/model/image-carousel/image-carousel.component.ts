@@ -4,6 +4,8 @@ import { trigger, transition, useAnimation, state, style } from '@angular/animat
 import { fadeIn, fadeOut } from 'ng-animate';
 import { ModelService } from 'src/app/services/model.service';
 import { DeviceService, DeviceType } from 'src/app/services/device.service';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, CarouselEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-image-carousel',
@@ -40,7 +42,8 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
 
   constructor(
     private _modelService: ModelService,
-    private _deviceService: DeviceService) { }
+    private _deviceService: DeviceService,
+    private _gaService: GaService) { }
 
   ngOnInit() {
   }
@@ -53,6 +56,24 @@ export class ImageCarouselComponent implements OnInit, OnChanges {
       });
     }
     this.sortImages();
+  }
+
+  public swipe(pos: number) {
+    this._gaService.sendEvent(EventCategory.Carousel,
+      pos > 0 ? CarouselEvents.SwipeNext : CarouselEvents.SwipePrev, `prevIndex_${this.currIndex}`);
+    this.shift(pos);
+  }
+
+  public arrowClick(pos: number) {
+    this._gaService.sendEvent(EventCategory.Carousel,
+      pos > 0 ? CarouselEvents.ArrowNextClick : CarouselEvents.ArrowPrevClick, `prevIndex_${this.currIndex}`);
+    this.shift(pos);
+  }
+
+  public imgClick() {
+    this._gaService.sendEvent(EventCategory.Carousel,
+      CarouselEvents.ImageClick, `prevIndex_${this.currIndex}`);
+    this.shift(1);
   }
 
   public get device(): DeviceType {

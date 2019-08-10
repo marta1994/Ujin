@@ -3,6 +3,8 @@ import { JewelryModel, Configuration, JewelryModelConfigType } from '../models';
 import { trigger, transition, useAnimation, state, style, animate } from '@angular/animations';
 import { fadeOut, fadeIn } from 'ng-animate';
 import { SelectorConfigComponent } from './selector-config/selector-config.component';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, WidgetEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-widget',
@@ -39,7 +41,7 @@ export class WidgetComponent implements OnInit, OnChanges {
 
   public imageIndexes: number[];
 
-  constructor(private _changeDetector: ChangeDetectorRef) { }
+  constructor(private _changeDetector: ChangeDetectorRef, private _gaService: GaService) { }
 
   ngOnInit() {
   }
@@ -69,6 +71,7 @@ export class WidgetComponent implements OnInit, OnChanges {
 
   public selectConfig(config: Configuration) {
     this.selectedConfig = config;
+    this._gaService.sendEvent(EventCategory.Widget, WidgetEvents.MenuClick, config.identifier);
   }
 
   public isSelected(config: Configuration): boolean {

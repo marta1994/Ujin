@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { OrderModule } from './order/order.module';
 import { WrongPathComponent } from './core/wrong-path/wrong-path.component';
+import { GoogleAnalyticsModule } from './google-analytics/google-analytics.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,6 +47,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     UiComponentsModule,
     OrderModule,
     AppRoutingModule,
+    GoogleAnalyticsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

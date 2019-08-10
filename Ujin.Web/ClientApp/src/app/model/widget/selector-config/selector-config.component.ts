@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { SelectorConfiguration, OptionsSource, Gemstone, NamedEntity, CustomOption } from '../../models';
 import { trigger, state, transition, style, animate } from '@angular/animations';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, WidgetEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-selector-config',
@@ -31,7 +33,7 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
 
   public selectedGem: Gemstone;
 
-  constructor() { }
+  constructor(private _gaService: GaService) { }
 
   ngOnInit() {
   }
@@ -100,6 +102,8 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
     if (this.configuration.value === identifier) return;
     this.configuration.value = identifier;
     this.onChange.emit(this.configuration.identifier);
+    this._gaService.sendEvent(EventCategory.Widget, WidgetEvents.SelectorOptionsClick,
+      `${this.configuration.identifier}_${identifier}`);
   }
 
   public selectGemClass(gemNode: GemNode) {
@@ -117,6 +121,8 @@ export class SelectorConfigComponent implements OnInit, OnChanges {
     this.selectedGem = gem;
     this.configuration.value = this.selectedGem.identifier;
     this.onChange.emit(this.configuration.identifier);
+    this._gaService.sendEvent(EventCategory.Widget, WidgetEvents.SelectorOptionsClick,
+      `${this.configuration.identifier}_${gem.identifier}`);
   }
 }
 

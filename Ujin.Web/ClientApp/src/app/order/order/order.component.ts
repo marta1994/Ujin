@@ -9,6 +9,8 @@ import { ArrayService } from 'src/app/services/array.service';
 import { OrderService, User } from 'src/app/services/order.service';
 import { timer, Observable, Subscription } from 'rxjs';
 import { StringProperty } from 'src/app/services/property';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, OrderPageEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-order',
@@ -32,7 +34,8 @@ export class OrderComponent implements OnInit {
     private _langService: LangService,
     private _arrService: ArrayService,
     private _orderService: OrderService,
-    private _translateService: TranslateService) { }
+    private _translateService: TranslateService,
+    private _gaService: GaService) { }
 
   public get products(): ProductCount[] {
     return this._products;
@@ -92,6 +95,7 @@ export class OrderComponent implements OnInit {
   }
 
   public placeOrder() {
+    this._gaService.sendEvent(EventCategory.OrderPage, OrderPageEvents.PlaceOrderClick, JSON.stringify(this.user.getJson()));
     this._orderService.makeAnOrder(this.user, this.products.map(p => { return { sku: p.sku, number: p.count } }), this.totalPrice)
       .then(res => {
         if (res === false) {

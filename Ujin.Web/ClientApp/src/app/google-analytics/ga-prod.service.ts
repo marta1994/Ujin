@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GaService } from './ga.service';
-import { EventCategory, WidgetEvents, CarouselEvents, ModelPageEvents, OrderPageEvents } from './events';
+import { EventCategory, WidgetEvents, CarouselEvents, ModelPageEvents, OrderPageEvents, CartEvents } from './events';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class GaProdService extends GaService {
 
   public sendEvent(
     evtCat: EventCategory,
-    event: WidgetEvents | ModelPageEvents | CarouselEvents | OrderPageEvents,
+    event: WidgetEvents | ModelPageEvents | CarouselEvents | OrderPageEvents | CartEvents,
     label: string = "",
     value: number = null) {
     if (!this.gtag) return;

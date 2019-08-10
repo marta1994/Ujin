@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { GaService } from '../google-analytics/ga.service';
+import { EventCategory, CartEvents } from '../google-analytics/events';
+
+declare function fbq(a, b, c);
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +12,9 @@ export class CartService {
 
   private static cartKey: string = "cart_products";
 
-  constructor(private _localStorageService: LocalStorageService) { }
+  constructor(
+    private _localStorageService: LocalStorageService,
+    private _gaService: GaService) { }
 
   public get products(): { [key: string]: ICartProduct; } {
     return this.cartProducts;
@@ -28,6 +34,15 @@ export class CartService {
     if (cartProds[sku] != null) cartProds[sku].count++;
     else cartProds[sku] = { sku: sku, count: 1 };
     this.cartProducts = cartProds;
+    this._gaService.sendEvent(EventCategory.Cart, CartEvents.AddProduct, sku);
+      fbq('track', 'AddToCart', {
+        contents: [
+          {
+            id: sku,
+            quantity: 1
+          }
+        ],
+      });
   }
 
   public removeFromCart(sku: string) {
@@ -36,6 +51,7 @@ export class CartService {
     cartProds[sku].count--;
     if (cartProds[sku].count == 0) cartProds[sku] = undefined;
     this.cartProducts = cartProds;
+    this._gaService.sendEvent(EventCategory.Cart, CartEvents.RemoveProduct, sku);
   }
 
   public removeAllBySku(sku: string) {
@@ -43,10 +59,12 @@ export class CartService {
     if (cartProds[sku] == null) return;
     cartProds[sku] = undefined;
     this.cartProducts = cartProds;
+    this._gaService.sendEvent(EventCategory.Cart, CartEvents.RemoveAllSku, sku);
   }
 
   public clearCart() {
     this.cartProducts = {};
+    this._gaService.sendEvent(EventCategory.Cart, CartEvents.Clear);
   }
 }
 

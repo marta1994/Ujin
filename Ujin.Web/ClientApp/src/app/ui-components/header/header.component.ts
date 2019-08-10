@@ -57,12 +57,10 @@ export class HeaderComponent  {
     if (Math.abs(this._currScrollPosition - window.pageYOffset) < 50) return;
     if (this._currScrollPosition > window.pageYOffset) {
       this._headerVisibility = VisibilityState.Visible;
-      console.log("header visible");
     }
     if (this._currScrollPosition < window.pageYOffset) {
       this._headerVisibility = VisibilityState.Hidden;
       this.clickout();
-      console.log("header hidden");
     }
     this._currScrollPosition = window.pageYOffset;
   }

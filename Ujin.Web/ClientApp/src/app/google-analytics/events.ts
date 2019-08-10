@@ -2,7 +2,8 @@ export enum EventCategory {
   Widget = "widget",
   ModelPage = "modelPage",
   Carousel = "carousel",
-  OrderPage = "orderPage"
+  OrderPage = "orderPage",
+  Cart = "cart"
 }
 
 export enum WidgetEvents {
@@ -23,6 +24,14 @@ export enum CarouselEvents {
   SwipeNext = "swipeNext",
   SwipePrev = "swipePrev",
 }
+
 export enum OrderPageEvents {
   PlaceOrderClick = "placeOrderClick",
+}
+
+export enum CartEvents {
+  AddProduct = "addProduct",
+  RemoveProduct = "removeProduct",
+  RemoveAllSku = "removeAllSku",
+  Clear = "clear"
 }

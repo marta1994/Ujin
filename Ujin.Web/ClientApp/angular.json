@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/loading.less",
               "src/styles.less"
             ],
             "scripts": []

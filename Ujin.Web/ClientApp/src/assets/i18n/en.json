@@ -32,7 +32,8 @@
     "navMenu": {
       "socialLinks": "Connect",
       "share": "Share",
-      "contacts": "Contacts"
+      "contacts": "Contacts",
+      "catalog": "Catalog"
     },
     "order": {
       "tittle": "Place order",

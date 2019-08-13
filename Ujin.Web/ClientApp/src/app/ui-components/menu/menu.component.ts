@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,13 @@ export class MenuComponent implements OnInit {
   @Output()
   public menuCloseActionHappened: EventEmitter<void> = new EventEmitter<void>();
 
+  constructor(private _translateService: TranslateService) { }
+
   ngOnInit() {
+  }
+
+  public get catalogLink(): string {
+    return `/${this._translateService.currentLang}/catalog`;
   }
 
   public actionHappened() {

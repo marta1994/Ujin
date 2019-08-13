@@ -1,5 +1,8 @@
 <div class="menu">
-  <div class="contacts-link">
+  <div class="link">
+    <a [routerLink]='[catalogLink]' (click)="actionHappened()">{{'forms.navMenu.catalog'|translate}}</a>
+  </div>
+  <div class="contacts-link link">
     <span (click)="goToContacts()">{{'forms.navMenu.contacts'|translate}}</span>
   </div>
   <div class="social social-share">

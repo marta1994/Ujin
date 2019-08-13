@@ -3,7 +3,9 @@ export enum EventCategory {
   ModelPage = "modelPage",
   Carousel = "carousel",
   OrderPage = "orderPage",
-  Cart = "cart"
+  Cart = "cart",
+  Catalog = "catalog",
+  Menu = "menu"
 }
 
 export enum WidgetEvents {
@@ -34,4 +36,13 @@ export enum CartEvents {
   RemoveProduct = "removeProduct",
   RemoveAllSku = "removeAllSku",
   Clear = "clear"
+}
+
+export enum CatalogEvents {
+  ModelClick = "modelClick"
+}
+
+export enum MenuEvents {
+  CatalogClick = "catalogClick",
+  ContactsClick = "contactsClick"
 }

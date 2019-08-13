@@ -1,14 +1,11 @@
 import {
   Component,
-  Injector,
   OnDestroy,
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

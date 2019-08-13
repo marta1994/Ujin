@@ -25,18 +25,22 @@ namespace Ujin.BusinessLogic.Services
 
         private readonly SiteMapModelService _siteMapModelService;
 
+        private readonly ICatalogModelsCache _catalogModelsCache;
+
         public JewelryModelService(
             IJewelryModelDao jewelryModelDao,
             IParsedModelCache parsedModelCache,
             ModelParser modelParser,
             IModelInfoCache modelInfoCache,
-            SiteMapModelService siteMapModelService)
+            SiteMapModelService siteMapModelService,
+            ICatalogModelsCache catalogModelsCache)
         {
             _jewelryModelDao = jewelryModelDao;
             _parsedModelCache = parsedModelCache;
             _modelParser = modelParser;
             _modelInfoCache = modelInfoCache;
             _siteMapModelService = siteMapModelService;
+            _catalogModelsCache = catalogModelsCache;
         }
 
         public Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
@@ -54,6 +58,11 @@ namespace Ujin.BusinessLogic.Services
             var models = (await _jewelryModelDao.LoadJewelryModels())
                 .Where(m => m.ModelState == JewelryModelState.Enabled).ToList();
             return await Task.WhenAll(models.Select(m => _siteMapModelService.GetSitemapModel(m)));
+        }
+
+        public Task<List<CatalogModel>> LoadCatalogModels()
+        {
+            return _catalogModelsCache.GetCatalogModels();
         }
 
         public async Task<List<string>> GetOrderedValues(string sku, string identifier)

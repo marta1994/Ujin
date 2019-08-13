@@ -5,6 +5,7 @@ import { ModelPageComponent } from './model/model-page/model-page.component';
 import { OrderComponent } from './order/order/order.component';
 import { ThankyouComponent } from './order/thankyou/thankyou.component';
 import { WrongPathComponent } from './core/wrong-path/wrong-path.component';
+import { AllModelsComponent } from './all-models/all-models/all-models.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'model/:id',
         component: ModelPageComponent
+      },
+      {
+        path: 'catalog',
+        component: AllModelsComponent
       },
       {
         path: 'place-order',

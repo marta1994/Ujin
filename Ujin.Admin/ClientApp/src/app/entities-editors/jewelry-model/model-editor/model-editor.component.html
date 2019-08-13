@@ -29,6 +29,10 @@
     <input class="value text-input" [(ngModel)]="jewelryModel.descriptionKey" type="text" />
   </div>
   <div class="name-value">
+    <span class="label">Картинка в каталозі</span>
+    <input class="value text-input" [(ngModel)]="jewelryModel.mainImage" type="text" />
+  </div>
+  <div class="name-value">
     <span class="label">Шаблон назви зображень</span>
     <app-images-editor [jewelryModel]="jewelryModel"></app-images-editor>
   </div>

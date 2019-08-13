@@ -10,7 +10,7 @@ namespace Ujin.BusinessLogic.Services.Cache
 {
     public class ModelInfoCache : IModelInfoCache
     {
-        private const string ModelPriceFormat = "model.price.{0}";
+        private const string ModelInfoFormat = "model.info.{0}";
 
         private readonly ICache _cache;
 
@@ -30,7 +30,7 @@ namespace Ujin.BusinessLogic.Services.Cache
 
         public Task<ModelInfo> GetModelInfoBySku(string sku)
         {
-            var key = string.Format(ModelPriceFormat, sku);
+            var key = string.Format(ModelInfoFormat, sku);
             return _cache.GetValue(key, async () =>
             {
                 var model = await _modelParser.ParseFromSku(sku);

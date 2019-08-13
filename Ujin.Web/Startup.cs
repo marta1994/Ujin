@@ -57,6 +57,7 @@ namespace Ujin.Web
             services.AddScoped<ICache, Cache>();
             services.AddScoped<IModelInfoCache, ModelInfoCache>();
             services.AddScoped<IParsedModelCache, ParsedModelCache>();
+            services.AddScoped<ICatalogModelsCache, CatalogModelsCache>();
             services.AddScoped<IJewelryModelService, JewelryModelService>();
             services.AddScoped<IModelImageService, ModelImageService>();
             services.AddScoped<ISkuDescriptionService, SkuDescriptionService>();

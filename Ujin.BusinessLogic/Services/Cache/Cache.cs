@@ -16,7 +16,10 @@ namespace Ujin.BusinessLogic.Services.Cache
 
         public Task<T> GetValue<T>(string key, Func<Task<T>> getValFunc)
         {
-            return _memoryCache.GetOrCreateAsync(key, ce => getValFunc());
+            return _memoryCache.GetOrCreateAsync(key, ce => {
+                ce.SetAbsoluteExpiration(new TimeSpan(48, 0, 0));
+                return getValFunc();
+                });
         }
     }
 }

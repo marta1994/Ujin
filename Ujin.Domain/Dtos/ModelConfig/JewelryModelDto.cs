@@ -16,6 +16,8 @@ namespace Ujin.Domain.Dtos.ModelConfig
 
         public string Identifier { get; set; }
 
+        public string MainImage { get; set; }
+
         public virtual List<ModelConfigurationDto> Configurations { get; set; }
 
         public string ImagesPattern { get; set; }

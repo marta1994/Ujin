@@ -1,0 +1,19 @@
+@import '../../styles/common.less';
+
+.all-models-wrapper {
+  padding-top: @mobile-header-height;
+  background-color: @white-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media @desktop {
+    padding-top: @desktop-header-height;
+  }
+
+  .link {
+    margin: 15px;
+  }
+}

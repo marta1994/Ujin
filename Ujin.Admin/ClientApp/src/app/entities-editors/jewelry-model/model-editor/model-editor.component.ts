@@ -44,6 +44,7 @@ export class ModelEditorComponent implements OnInit {
         nameKey: "jewelryModel.name.NEW_NAME",
         descriptionKey: "jewelryModel.description.NEW_NAME",
         identifier: "ID",
+        mainImage: "",
         imagesPattern: "[]",
         priceExpression: "0",
         weightExpression: "0",

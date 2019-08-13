@@ -3,6 +3,7 @@ export interface IJewelryModel {
   nameKey: string;
   descriptionKey: string;
   identifier: string;
+  mainImage: string;
   imagesPattern: string;
   priceExpression: string;
   weightExpression: string;
@@ -17,6 +18,7 @@ export class JewelryModel implements IJewelryModel {
     this.descriptionKey = jewelryModel.descriptionKey;
     this.id = jewelryModel.id;
     this.identifier = jewelryModel.identifier;
+    this.mainImage = jewelryModel.mainImage;
     this.imagesPattern = jewelryModel.imagesPattern;
     this.priceExpression = jewelryModel.priceExpression;
     this.weightExpression = jewelryModel.weightExpression;
@@ -28,6 +30,7 @@ export class JewelryModel implements IJewelryModel {
   public nameKey: string;
   public descriptionKey: string;
   public identifier: string;
+  public mainImage: string;
   public imagesPattern: string;
   public priceExpression: string;
   public weightExpression: string;

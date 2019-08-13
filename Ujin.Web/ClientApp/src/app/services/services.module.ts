@@ -9,6 +9,7 @@ import { CartService } from './cart.service';
 import { ModelService } from './model.service';
 import { ArrayService } from './array.service';
 import { OrderService } from './order.service';
+import { CatalogService } from './catalog.service';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { OrderService } from './order.service';
     CartService,
     ModelService,
     ArrayService,
-    OrderService
+    OrderService,
+    CatalogService
   ]
 })
 export class ServicesModule { }

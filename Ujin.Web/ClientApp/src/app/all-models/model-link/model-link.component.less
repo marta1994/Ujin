@@ -1,0 +1,26 @@
+@import '../../styles/common.less';
+
+.model-wrapper {
+  background-color: @light-grey-color;
+  .set-border-radius(3px);
+  .set-box-shadow(@grey-color);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+
+  .image {
+    width: 400px;
+    margin-bottom: 20px;
+  }
+
+  .caption {
+    font-size: 1.5rem;
+    color: @dark-color;
+  }
+
+  &:hover {
+    .set-box-shadow(@grey-color, 0 0 7px 4px);
+  }
+}

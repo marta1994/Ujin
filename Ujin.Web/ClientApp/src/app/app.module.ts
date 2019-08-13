@@ -16,6 +16,7 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
 import { OrderModule } from './order/order.module';
 import { WrongPathComponent } from './core/wrong-path/wrong-path.component';
 import { GoogleAnalyticsModule } from './google-analytics/google-analytics.module';
+import { AllModelsModule } from './all-models/all-models.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,6 +47,7 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
     ModelModule,
     UiComponentsModule,
     OrderModule,
+    AllModelsModule,
     AppRoutingModule,
     GoogleAnalyticsModule,
     TranslateModule.forRoot({

@@ -43,9 +43,11 @@ namespace Ujin.BusinessLogic.Services
             _catalogModelsCache = catalogModelsCache;
         }
 
-        public Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
+        public async Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
         {
-            return _parsedModelCache.GetParsedModelById(identifier);
+            var model = await _parsedModelCache.GetParsedModelById(identifier);
+            if (model.ModelState != JewelryModelState.Enabled) return null;
+            return model;
         }
 
         public Task<ModelInfo> GetModelInfo(string sku)

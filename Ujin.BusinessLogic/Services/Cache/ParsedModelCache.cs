@@ -39,8 +39,6 @@ namespace Ujin.BusinessLogic.Services.Cache
             return _cache.GetValue(key, async () => {
                 identifier = identifier.ToLower();
                 var model = await _jewelryModelDao.LoadJewelryModelByIdentifier(identifier);
-                if (model.ModelState != JewelryModelState.Enabled)
-                    return null;
                 await FillActualSelectorOptions(model);
                 return model;
             });

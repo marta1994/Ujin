@@ -1,7 +1,7 @@
 @import '../../styles/common.less';
 
 .model-wrapper {
-  background-color: @light-grey-color;
+  background-color: @light-accent-color;
   .set-border-radius(3px);
   .set-box-shadow(@grey-color);
   padding: 20px;
@@ -9,10 +9,16 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  transition: box-shadow ease 0.3s;
 
   .image {
-    width: 400px;
+    .set-border-radius(3px);
+    width: 100%;
     margin-bottom: 20px;
+
+    @media @desktop {
+      width: 280px;
+    }
   }
 
   .caption {

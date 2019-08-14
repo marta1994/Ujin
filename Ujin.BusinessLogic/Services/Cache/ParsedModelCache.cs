@@ -72,7 +72,7 @@ namespace Ujin.BusinessLogic.Services.Cache
                 .Cast<SelectorOptions>()
                 .Where(s => s.OptionsSource == OptionsSource.Metal)
                 .ToList();
-            if (metalConfigs.Count == 0) return null;
+            if (metalConfigs.Count == 0) return Task.FromResult(new List<MetalDto>());
             var allIds = metalConfigs.SelectMany(m => m.ExternalSourceIds).Distinct().ToList();
             return _metalDao.LoadMetaldByIds(allIds);
         }
@@ -85,7 +85,7 @@ namespace Ujin.BusinessLogic.Services.Cache
                 .Cast<SelectorOptions>()
                 .Where(s => s.OptionsSource == OptionsSource.Gemstone)
                 .ToList();
-            if (gemConfigs.Count == 0) return null;
+            if (gemConfigs.Count == 0) return Task.FromResult(new List<GemstoneDto>()); ;
             var allIds = gemConfigs.SelectMany(m => m.ExternalSourceIds).Distinct().ToList();
             return _gemstoneDao.LoadGemstonesByIds(allIds);
         }

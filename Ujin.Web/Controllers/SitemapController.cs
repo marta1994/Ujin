@@ -43,6 +43,10 @@ namespace Ujin.Web.Controllers
             }));
             return Content($@"<?xml version=""1.0"" encoding=""UTF-8""?>
                  <urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"">
+                    <url>
+                        <loc>https://{_appSettings.Host}/ua/catalog</loc>
+                        <lastmod>{ DateTime.Now.ToString("yyyy-MM-dd")}</lastmod>
+                    </url>
                     {urls}
                     </urlset>", "text/xml");
         }

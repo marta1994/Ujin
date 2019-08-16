@@ -38,6 +38,8 @@ namespace Ujin.Web.Controllers
     <url>
         <loc>{pagesPath}{m.Identifier}?sku={s}</loc>
         <lastmod>{ m.LastModified.ToString("yyyy-MM-dd")}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
     </url>";
                 }));
             }));
@@ -46,6 +48,8 @@ namespace Ujin.Web.Controllers
                     <url>
                         <loc>https://{_appSettings.Host}/ua/catalog</loc>
                         <lastmod>{ DateTime.Now.ToString("yyyy-MM-dd")}</lastmod>
+                        <changefreq>daily</changefreq>
+                        <priority>0.8</priority>
                     </url>
                     {urls}
                     </urlset>", "text/xml");

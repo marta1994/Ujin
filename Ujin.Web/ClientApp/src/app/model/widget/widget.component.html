@@ -1,11 +1,12 @@
 <div *ngIf="model" class="widget-wrapper">
     <div class="category-menu-and-image">
-        <div class="category-menu">
-            <div *ngFor="let config of model.configurations" class="menu-item" (click)="selectConfig(config)"
-                 [ngClass]="{'selected': isSelected(config)}" id="{{config.nameKey}}">
-                <span class="text">{{config.nameKey|translate}}</span>
-            </div>
+      <div class="category-menu" [ngClass]="{'visible': model.configurations.length > 1}">
+        <div *ngFor="let config of model.configurations" class="menu-item" (click)="selectConfig(config)"
+             [ngClass]="{'selected': isSelected(config)}"
+             id="{{config.nameKey}}">
+          <span class="text">{{config.nameKey|translate}}</span>
         </div>
+      </div>
         <div class="images-conatiner" (swipeleft)="swipe(1)" (swiperight)="swipe(-1)"
              [@widgetImg]="imgAnimate" (@widgetImg.done)="imgAnimateDone($event)">
             <img *ngFor="let index of imageIndexes" 

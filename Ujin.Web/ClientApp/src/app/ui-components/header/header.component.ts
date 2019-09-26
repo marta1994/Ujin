@@ -1,5 +1,8 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { TranslateService } from '@ngx-translate/core';
+import { GaService } from 'src/app/google-analytics/ga.service';
+import { EventCategory, HeaderEvents } from 'src/app/google-analytics/events';
 
 @Component({
   selector: 'app-header',
@@ -25,9 +28,17 @@ export class HeaderComponent  {
 
   public menuOpened: boolean = false;
 
-  public likeOpened: boolean = false;
+  constructor(
+    private _translateService: TranslateService,
+    private _gaService: GaService) { }
 
-  constructor() { }
+  public get catalogLink(): string {
+    return `/${this._translateService.currentLang}/catalog`;
+  }
+
+  public catalogClick() {
+    this._gaService.sendEvent(EventCategory.Header, HeaderEvents.CatalogClick);
+  }
 
   @HostBinding('@toggle')
   public get headerVisibility(): VisibilityState {
@@ -36,15 +47,10 @@ export class HeaderComponent  {
 
   public switchMenu() {
     this.menuOpened = !this.menuOpened;
-    this.likeOpened = false;
-  }
-
-  public switchLike(event) {
-    this.likeOpened = !this.likeOpened;
-    this.menuOpened = false;
   }
 
   public goToContacts() {
+    this._gaService.sendEvent(EventCategory.Header, HeaderEvents.ContactsClick);
     let el = document.getElementById("contacts");
     el.scrollIntoView();
   }
@@ -72,7 +78,6 @@ export class HeaderComponent  {
   @HostListener('document:click')
   public clickout() {
     this.menuOpened = false;
-    this.likeOpened = false;
   }
 
   public openedItemClick(event: MouseEvent) {

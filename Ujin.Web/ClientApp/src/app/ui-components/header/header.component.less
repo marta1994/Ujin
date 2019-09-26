@@ -100,7 +100,7 @@
       margin-right: 30px;
     }
 
-    .like-text {
+    .catalog-text {
       display: none;
 
       @media @desktop {
@@ -110,6 +110,7 @@
 
     .menu-item {
       border-right: 1px solid @light-grey-color;
+      color: @dark-color;
       padding: 0 10px;
       cursor: pointer;
       text-decoration: underline;
@@ -155,14 +156,14 @@
 
       @media @desktop {
         &:hover {
-          color: lighten(@dark-color, 30%);
+          color: lighten(@dark-color, 50%);
 
           .social-buttons {
             transform: scaleY(1);
           }
 
           .svg-holder ::ng-deep svg {
-            fill: lighten(@dark-color, 30%);
+            fill: lighten(@dark-color, 50%);
           }
         }
       }

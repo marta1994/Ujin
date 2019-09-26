@@ -8,14 +8,11 @@
     </label>
     <svg-icon src="/assets/images/ujin_logo.svg" class="logo-header"></svg-icon>
     <div class="right-menu-holder">
-      <span class="like-item menu-item">
-        <svg-icon class="svg-holder" src="/assets/images/heart.svg"
-                  (tap)="switchLike($event)" (click)="openedItemClick($event)"></svg-icon>
-        <span class="like-text">{{'forms.header.like'|translate}}</span>
-        <div class="social-buttons" [ngClass]="{'opened': likeOpened}">
-          <app-social [purpose]="'like'"></app-social>
-        </div>
-      </span>
+      <a class="catalog-item menu-item" [routerLink]='[catalogLink]'
+         (click)="catalogClick();openedItemClick($event)">
+        <svg-icon class="svg-holder" src="/assets/images/catalog.svg"></svg-icon>
+        <span class="catalog-text">{{'forms.navMenu.catalog'|translate}}</span>
+      </a>
       <span class="share-item menu-item mobile-hide">
         <svg-icon class="svg-holder" src="/assets/images/share.svg"></svg-icon>
         <span>{{'forms.header.share'|translate}}</span>

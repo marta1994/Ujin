@@ -5,7 +5,8 @@ export enum EventCategory {
   OrderPage = "orderPage",
   Cart = "cart",
   Catalog = "catalog",
-  Menu = "menu"
+  Menu = "menu",
+  Header = "header"
 }
 
 export enum WidgetEvents {
@@ -43,6 +44,11 @@ export enum CatalogEvents {
 }
 
 export enum MenuEvents {
+  CatalogClick = "catalogClick",
+  ContactsClick = "contactsClick"
+}
+
+export enum HeaderEvents {
   CatalogClick = "catalogClick",
   ContactsClick = "contactsClick"
 }

@@ -111,17 +111,17 @@
 		"modelConfig": {
 			"customOption": {
         "ornament": {
-          "accordion": "Гармошка",
-          "bubbles": "Бульбашки",
+          "accordion": "Зв'язок",
+          "bubbles": "Корали",
           "cheese": "Сир",
           "crater": "Кратер місяця",
-          "doodles": "Завитки",
+          "doodles": "Фрактал",
           "dry": "Сахара",
           "elf": "Ельф",
           "facet": "Грані світу",
           "feather": "Жарптиця",
-          "foil": "Фольга",
-          "plant": "Рослинка",
+          "foil": "Пристрасть",
+          "plant": "Едем",
           "sleeves": "Полярна ніч",
           "snakes": "Змії",
           "thread": "Пісок",
@@ -145,27 +145,27 @@
 				"weight": "Вага"
 			}
 		},
-		"name": {
-			"baguetteEarring": "Сережки 'Багет'",
-			"baguetteRing": "Кільце 'Багет'",
-			"cloudEarring": "Сережки 'Хмаринка'",
-			"coralEarring": "Сережки 'Корал'",
-			"floatEarring": "Сережки 'Поплавок'",
-			"flowerRing": "Кільце 'Квітка'",
-			"hedgehogRing": "Кільце 'Їжачок'",
-			"marquiseEarring": "Сережки 'Маркіз'",
-			"marquiseRing": "Кільце 'Маркіз'",
-			"ovalEarring": "Сережки 'Овал'",
-			"ovalRing": "Кільце 'Овал'",
-			"ribbonRing": "Кільце 'Стрічка'",
-			"roundEarring": "Сережки 'Круг'",
-			"roundRing": "Кільце 'Круг'",
-			"shapelessRing": "Кільце 'Хмаринка'",
-			"shellfishEarring": "Сережки 'Мушля'",
-			"squareEarring": "Сережки 'Квадрат'",
-			"squareRing": "Кільце 'Квадрат'",
-			"whirlwindRing": "Кільце 'Вихор'"
-		}
+    "name": {
+      "baguetteEarring": "Сережки 'Модерн'",
+      "baguetteRing": "Кільце 'Модерн'",
+      "cloudEarring": "Сережки 'Хмаринка'",
+      "coralEarring": "Сережки 'Корал'",
+      "floatEarring": "Сережки 'Захід сонця'",
+      "flowerRing": "Кільце 'Квітка'",
+      "hedgehogRing": "Кільце 'Їжачок'",
+      "marquiseEarring": "Сережки 'Маркіз'",
+      "marquiseRing": "Кільце 'Маркіз'",
+      "ovalEarring": "Сережки 'Гармонія'",
+      "ovalRing": "Кільце 'Гармонія'",
+      "ribbonRing": "Кільце 'Стрічка'",
+      "roundEarring": "Сережки 'Сяйво'",
+      "roundRing": "Кільце 'Сяйво'",
+      "shapelessRing": "Кільце 'Хмаринка'",
+      "shellfishEarring": "Сережки 'Мушля'",
+      "squareEarring": "Сережки 'Вечірня романтика'",
+      "squareRing": "Кільце 'Вечірня романтика'",
+      "whirlwindRing": "Кільце 'Вихор'"
+    }
 	},
 	"measure": {
 		"ct": "кар",

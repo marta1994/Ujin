@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" *ngFor="let img of imageList; index as j; trackBy: trackItems">
-    <app-hint-input [(value)]="imageList[j]" [hintSource]="imageHintSource"></app-hint-input>
+    <app-simple-hint-input [(value)]="imageList[j]" [hintSource]="imageHintSource"></app-simple-hint-input>
     <button class="button" (click)="delete(j)">Видалити</button>
   </div>
   <button class="button" (click)="addNew()">Додати картинку</button>

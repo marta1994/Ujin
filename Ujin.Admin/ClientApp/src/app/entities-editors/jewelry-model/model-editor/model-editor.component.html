@@ -6,6 +6,9 @@
       <button class="button" (click)="changeModelState()" *ngIf="jewelryModel.id > 0">
         {{jewelryModel.modelState == 1 ? 'Дизактивувати' : 'Активувати'}}
       </button>
+      <button class="button" (click)="updateModelSkuEnabledState()" *ngIf="jewelryModel.id > 0">
+        Оновити SKU Enable state
+      </button>
     </div>
   </div>
   <div class="name-value">
@@ -38,11 +41,11 @@
   </div>
   <div class="name-value">
     <span class="label">Формула обчислення ціни</span>
-    <app-hint-input [(value)]="jewelryModel.priceExpression" [hintSource]="priceHintSource"></app-hint-input>
+    <app-simple-hint-input [(value)]="jewelryModel.priceExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
   </div>
   <div class="name-value">
     <span class="label">Формула обчислення ваги</span>
-    <app-hint-input [(value)]="jewelryModel.weightExpression" [hintSource]="priceHintSource"></app-hint-input>
+    <app-simple-hint-input [(value)]="jewelryModel.weightExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
   </div>
   <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
   <div class="splitter"></div>

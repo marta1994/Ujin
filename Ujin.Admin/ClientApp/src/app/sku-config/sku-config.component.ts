@@ -160,12 +160,16 @@ class SkuDescription {
     this.sku = sku;
     this.images = sk ? sk.images : "[]";
     this.jewelryModelId = jModelId;
+    this.isEnabled = true;
+    this.useInCatalog = false;
   }
 
   public id: number;
   public sku: string;
   public images: string;
   public jewelryModelId: number;
+  public isEnabled: boolean;
+  public useInCatalog: boolean;
 }
 
 @Component({

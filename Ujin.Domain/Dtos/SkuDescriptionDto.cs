@@ -9,5 +9,9 @@
         public string Images { get; set; }
 
         public int JewelryModelId { get; set; }
+
+        public bool IsEnabled { get; set; }
+
+        public bool UseInCatalog { get; set; }
     }
 }

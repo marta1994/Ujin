@@ -43,5 +43,13 @@ namespace Ujin.Storage.Dao
             var entities = skuDescriptions.Select(g => _mapper.Map<SkuDescription>(g));
             return _dbContext.UpsertEntities(entities);
         }
+
+        public async Task SetEnabledValue(List<string> skus, bool isEnabled)
+        {
+            if (skus == null || !skus.Any()) return;
+            var skuDefs = await _dbContext.SkuDescriptions.Where(s => skus.Contains(s.Sku)).ToListAsync();
+            skuDefs.ForEach(sku => sku.IsEnabled = isEnabled);
+            await _dbContext.UpsertEntities(skuDefs);
+        }
     }
 }

@@ -34,6 +34,12 @@ namespace Ujin.Admin.Controllers
             return _skuDescriptionService.LoadSkuDescriptionsByModelId(modelId);
         }
 
+        [HttpPost("[action]")]
+        public Task UpdateModelSkusEnabledState([FromBody]int modelId)
+        {
+            return _skuDescriptionService.UpdateSkuEnabledStateForModel(modelId);
+        }
+
         [HttpGet("[action]")]
         public Task<SkuDescriptionDto> SkuDescription([FromQuery]string sku)
         {

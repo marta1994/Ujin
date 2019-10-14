@@ -13,6 +13,7 @@ import { SelectComponent } from './select/select.component';
 import { SelectTableComponent } from './select-table/select-table.component';
 import { HintInputComponent } from './hint-input/hint-input.component';
 import { HintTreeNodeComponent } from './hint-input/hint-tree-node.component';
+import { SimpleHintInputComponent } from './simple-hint-input/simple-hint-input.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { HintTreeNodeComponent } from './hint-input/hint-tree-node.component';
     SelectComponent,
     SelectTableComponent,
     HintInputComponent,
-    HintTreeNodeComponent
+    HintTreeNodeComponent,
+    SimpleHintInputComponent
   ],
   exports: [
     TableComponent,
@@ -43,7 +45,8 @@ import { HintTreeNodeComponent } from './hint-input/hint-tree-node.component';
     DoublePanelComponent,
     SelectComponent,
     SelectTableComponent,
-    HintInputComponent
+    HintInputComponent,
+    SimpleHintInputComponent
   ]
 })
 export class UiComponentsModule { }

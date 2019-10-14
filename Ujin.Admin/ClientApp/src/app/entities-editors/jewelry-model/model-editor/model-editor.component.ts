@@ -5,7 +5,7 @@ import { JewelryModelService } from '../jewelry-model.service';
 import { ITableConfig, ColumnType, IActionColumn } from 'src/app/ui-components/table/table.component';
 import { EnumService, NameValue } from 'src/app/services/enum.service';
 import { ArrayService } from 'src/app/services/array.service';
-import { IHintSource } from 'src/app/ui-components/hint-input/hint-input.component';
+import { IHintSource } from 'src/app/ui-components/simple-hint-input/simple-hint-input.component';
 import { SelectorOptions, OptionsSource } from '../model-config-editors/options-editor/options-editor.component';
 
 @Component({
@@ -217,5 +217,14 @@ export class ModelEditorComponent implements OnInit {
     this._arrayService.deleteItem(this.jewelryModel.configurations, config);
     if (this.modelConfig === config)
       this.modelConfig = null;
+  }
+
+  public updateModelSkuEnabledState() {
+    if (this.jewelryModel.id <= 0) return;
+    this._jewelryModelService.updateModelSkuEnabledState(this.jewelryModel.id)
+      .then(() => {
+        location.reload();
+      })
+      .catch(err => alert("Помилка при оновленні: " + err));
   }
 }

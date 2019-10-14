@@ -1,0 +1,41 @@
+@import '../../../common.less';
+
+.container {
+  .set-input-style();
+  display: flex;
+  flex-wrap: wrap;
+  font: inherit;
+  align-items: baseline;
+
+  .group-wrapper {
+    display: inline;
+
+    .text {
+      display: inline-block;
+      width: auto;
+      padding: 0;
+      margin: 0;
+      border: none;
+      outline: none;
+    }
+
+    .hint-text {
+      display: inline-block;
+      padding: 0 5px;
+      margin: 0 2px;
+      border: 1px solid @grey-color;
+      .set-border-radius(3px);
+      background-color: @light-pearl;
+    }
+  }
+
+  .button {
+    .set-button-style();
+    margin: 5px;
+  }
+}
+
+:host {
+  position: relative;
+  overflow: visible;
+}

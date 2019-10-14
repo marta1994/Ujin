@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JewelryModel, JewelryModelConfigType, ModelConfiguration } from '../../models';
-import { IHintSource } from 'src/app/ui-components/hint-input/hint-input.component';
+import { IHintSource } from 'src/app/ui-components/simple-hint-input/simple-hint-input.component';
 import { SelectorOptions, OptionsSource } from '../options-editor/options-editor.component';
 
 @Component({

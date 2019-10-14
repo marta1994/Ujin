@@ -39,7 +39,9 @@
   "metal": {
     "gold585": "Gold",
     "whiteGold585": "White gold",
-    "silver925": "Silver"
+    "silver925": "Silver",
+    "goldSilver925": "Позолочене срібло",
+    "rhodiumSilver925": "Родійоване срібло"
   },
   "modelConfig": {
     "configName": {

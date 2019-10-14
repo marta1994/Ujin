@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="input-view" *ngIf="!isEditMode">
+    <div *ngFor="let group of groups; index as i; trackBy: trackGroups"
+         [ngSwitch]="group.inputType" class="group-wrapper">
+      <span *ngSwitchCase="InputType.SimpleText" class="text">{{group.text}}</span>
+      <span *ngSwitchCase="InputType.HintInput" class="hint-text">{{group.hintedItem.fullName}}</span>
+    </div>
+  </div>
+  <div class="input-edit" *ngIf="isEditMode">
+    <textarea [(ngModel)]="value"></textarea>
+  </div>
+  <button class="button" (click)="switchEditMode()">
+    {{ isEditMode ? "Прийняти зміни" : "Редагувати"}}
+  </button>
+</div>

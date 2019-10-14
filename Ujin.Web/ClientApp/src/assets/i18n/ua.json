@@ -173,11 +173,13 @@
 		"mm": "мм",
 		"uah": "грн"
 	},
-	"metal": {
-		"gold585": "Золото",
-		"silver925": "Срібло",
-		"whiteGold585": "Біле золото"
-	},
+  "metal": {
+    "gold585": "Золото",
+    "silver925": "Срібло",
+    "whiteGold585": "Біле золото",
+    "goldSilver925": "Позолочене срібло",
+    "rhodiumSilver925": "Родійоване срібло"
+  },
 	"modelConfig": {
 		"configName": {
 			"Number": "Число",

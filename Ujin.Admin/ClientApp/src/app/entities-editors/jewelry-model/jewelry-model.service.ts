@@ -53,4 +53,12 @@ export class JewelryModelService {
           () => resolve(true),
           err => reject(err)));
   }
+
+  public updateModelSkuEnabledState(modelId: number): Promise<any> {
+    return new Promise((resolve, reject) =>
+      this._api.postData(`api/SkuData/UpdateModelSkusEnabledState`, modelId)
+        .then(
+          () => resolve(true),
+          err => reject(err)));
+  }
 }

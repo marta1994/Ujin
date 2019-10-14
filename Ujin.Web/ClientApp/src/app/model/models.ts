@@ -105,7 +105,7 @@ export class SelectorConfiguration extends Configuration {
         this.value = this.gemstoneSource[0].identifier;
         break;
       case OptionsSource.Metal:
-        this.value = this.metalSource[0].identifier;
+        this.value = this.metalSource.find(m => m.identifier == 'silver925') ? 'silver925' : this.metalSource[0].identifier;
         break;
     }
   }

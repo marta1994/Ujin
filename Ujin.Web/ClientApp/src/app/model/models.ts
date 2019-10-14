@@ -73,7 +73,13 @@ export class NumberConfiguration extends Configuration {
   }
 
   public setValue(configValue: string) {
-    this.value = +(!configValue ? this.min : configValue);
+    if (configValue) {
+      this.value = configValue;
+      return;
+    }
+    var stepsCount = Math.floor((this.max - this.min) / this.step / 2);
+
+    this.value = this.min + this.step * stepsCount;
   }
 
   public min: number;

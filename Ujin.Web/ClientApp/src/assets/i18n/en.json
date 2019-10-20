@@ -74,7 +74,10 @@
             }
         },
         "allModels": {
-            "header": "Catalog"
+            "header": "Catalog",
+            "sorting": "Sort",
+            "ascendingPrice": "Lower price first",
+            "descendingPrice": "Higher price first"
         },
         "wrongPath": {
             "caption": "Looks like you have got lost",

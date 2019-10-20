@@ -74,7 +74,10 @@
             }
         },
         "allModels": {
-            "header": "Каталог"
+            "header": "Каталог",
+            "sorting": "Сортувати:",
+            "ascendingPrice": "Спочатку найнижча ціна",
+            "descendingPrice": "Спочатку найвища ціна"
         },
         "wrongPath": {
             "caption": "Ой! Здається, ви потрапили не туди",

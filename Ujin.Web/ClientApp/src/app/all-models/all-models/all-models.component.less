@@ -2,7 +2,7 @@
 
 .all-models-wrapper {
     padding-top: @mobile-header-height;
-    background-color: @white-color;
+    background-color: @light-grey-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,6 +11,8 @@
 
     @media @desktop {
         padding-top: @desktop-header-height;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 
     .cards-holder {
@@ -21,15 +23,63 @@
         justify-content: center;
 
         @media @desktop {
-            padding-left: 30px;
-            padding-right: 30px;
             flex-direction: row;
         }
     }
 
-    .header {
-        color: @dark-color;
-        font-size: 3rem;
+    .header-container {
+        display: flex;
+        flex-direction: column;
+
+        @media @desktop {
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header {
+            color: @dark-color;
+            font-size: 3rem;
+        }
+
+        .ordering-container {
+
+            .label {
+                font-size: 1rem;
+                font-weight: 300;
+                display: block;
+                margin-bottom: 5px;
+
+                @media @desktop {
+                    display: inline;
+                    margin-bottom: 0;
+                    margin-right: 10px;
+                }
+            }
+
+            .button {
+                .set-primary-button();
+                .set-border-radius(0);
+                background-color: @light-accent-color;
+                border: none;
+                font-size: 1.15rem;
+                height: 30px;
+                cursor: pointer;
+                padding: 5px;
+
+                &.ascending {
+                    border-top-left-radius: 15px;
+                    border-bottom-left-radius: 15px;
+                    border-right: 1px solid @dark-color;
+                }
+
+                &.descending {
+                    border-top-right-radius: 15px;
+                    border-bottom-right-radius: 15px;
+                }
+            }
+        }
     }
 
     .link {

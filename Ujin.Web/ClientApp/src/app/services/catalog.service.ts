@@ -25,7 +25,7 @@ export interface ICatalogModel {
     sku: string;
     modelIdentifier: string;
     imagePath: string;
-    price: string;
+    price: number;
     displayNameParts: string[];
     descriptionParts: string[];
 }

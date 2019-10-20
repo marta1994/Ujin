@@ -3,6 +3,8 @@ import { ICatalogModel, CatalogService } from 'src/app/services/catalog.service'
 import { SeoService } from 'src/app/services/seo.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { GaService } from '../../google-analytics/ga.service';
+import { EventCategory, CatalogEvents } from '../../google-analytics/events';
 
 @Component({
     selector: 'app-all-models',
@@ -14,10 +16,11 @@ export class AllModelsComponent implements OnInit {
     public models: ICatalogModel[] = [];
 
     constructor(
-        private _catalogService: CatalogService,
-        private _seoService: SeoService,
-        private _translateService: TranslateService,
-        private _router: Router) {
+        private readonly _catalogService: CatalogService,
+        private readonly _seoService: SeoService,
+        private readonly _translateService: TranslateService,
+        private readonly _gaService: GaService,
+        private readonly _router: Router) {
         this._catalogService.loadCatalogModels()
             .then(models => this.models = models);
         this.setMeta();
@@ -39,5 +42,6 @@ export class AllModelsComponent implements OnInit {
 
     public sortByPrice(ascending: boolean) {
         this.models = this.models.sort((mod1, mod2) => (ascending ? 1 : -1) * (mod1.price - mod2.price));
+        this._gaService.sendEvent(EventCategory.Catalog, CatalogEvents.SortByPrice, ascending ? "ascending" : "descending");
     }
 }

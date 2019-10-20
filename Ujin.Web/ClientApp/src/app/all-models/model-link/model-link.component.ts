@@ -43,7 +43,7 @@ export class ModelLinkComponent implements OnInit {
     }
 
     public modelClick() {
-        this._gaService.sendEvent(EventCategory.Catalog, CatalogEvents.ModelClick, this.link);
+        this._gaService.sendEvent(EventCategory.Catalog, CatalogEvents.ModelClick, this.link + "?sku=" + this.model.sku);
     }
 
     private setTranslatedValues() {

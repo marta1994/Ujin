@@ -40,7 +40,8 @@ export enum CartEvents {
 }
 
 export enum CatalogEvents {
-  ModelClick = "modelClick"
+    ModelClick = "modelClick",
+    SortByPrice = "sortByPrice"
 }
 
 export enum MenuEvents {

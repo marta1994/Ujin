@@ -1,3 +1,6 @@
 <div class="all-models-wrapper">
-    <app-model-link *ngFor="let model of models" [model]="model" class="link"></app-model-link>
+    <h1 class="header">{{'forms.allModels.header'|translate}}</h1>
+    <div class="cards-holder">
+        <app-model-link *ngFor="let model of models" [model]="model" class="link"></app-model-link>
+    </div>
 </div>

@@ -10,6 +10,8 @@ namespace Ujin.Interfaces.Dao
 
         Task<SkuDescriptionDto> LoadSkuDescription(string sku);
 
+        Task<List<SkuDescriptionDto>> LoadCatalogSkus();
+
         Task SaveSkuDescriptions(List<SkuDescriptionDto> skuDescriptions);
 
         Task SetEnabledValue(List<string> skus, bool isEnabled);

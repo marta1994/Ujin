@@ -12,8 +12,6 @@ namespace Ujin.Interfaces
 
         Task<IEnumerable<SitemapModel>> LoadSitemapModels();
 
-        Task<List<CatalogModel>> LoadCatalogModels();
-
         Task<JewelryModelDto> LoadJewelryModelById(int id);
 
         Task<ModelInfo> GetModelInfo(string sku);

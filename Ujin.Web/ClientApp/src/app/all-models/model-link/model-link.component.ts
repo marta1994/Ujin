@@ -5,31 +5,55 @@ import { GaService } from 'src/app/google-analytics/ga.service';
 import { EventCategory, CatalogEvents } from 'src/app/google-analytics/events';
 
 @Component({
-  selector: 'app-model-link',
-  templateUrl: './model-link.component.html',
-  styleUrls: ['./model-link.component.less']
+    selector: 'app-model-link',
+    templateUrl: './model-link.component.html',
+    styleUrls: ['./model-link.component.less']
 })
 export class ModelLinkComponent implements OnInit {
 
-  @Input()
-  public model: ICatalogModel;
+    private _model: ICatalogModel;
+    
+    public get model(): ICatalogModel {
+        return this._model;
+    }
+    @Input()
+    public set model(val: ICatalogModel) {
+        if (this._model === val) return;
+        this._model = val;
+        this.setTranslatedValues();
+    }
 
-  constructor(
-    private readonly _translateService: TranslateService,
-    private readonly _gaService: GaService) { }
+    public translatedName: string;
 
-  ngOnInit() {
-  }
+    public translatedDescription: string;
 
-  public get link(): string {
-    return this.model ? `/${this._translateService.currentLang}/model/${this.model.identifier}` : "";
-  }
+    constructor(
+        private readonly _translateService: TranslateService,
+        private readonly _gaService: GaService) { }
 
-  public get imgLink(): string {
-    return this.model ? `/assets/images/${this.model.imagePath}` : "";
-  }
+    ngOnInit() {
+    }
 
-  public modelClick() {
-    this._gaService.sendEvent(EventCategory.Catalog, CatalogEvents.ModelClick, this.link);
-  }
+    public get link(): string {
+        return this.model ? `/${this._translateService.currentLang}/model/${this.model.modelIdentifier}` : "";
+    }
+
+    public get imgLink(): string {
+        return this.model ? `/assets/images/sku/${this.model.imagePath}` : "";
+    }
+
+    public modelClick() {
+        this._gaService.sendEvent(EventCategory.Catalog, CatalogEvents.ModelClick, this.link);
+    }
+
+    private setTranslatedValues() {
+        var allKeys = this.model.displayNameParts.concat(this.model.descriptionParts);
+        this._translateService.get(allKeys)
+            .subscribe(translated => {
+                var names = this.model.displayNameParts.map(name => translated[name]);
+                var descriptions = this.model.descriptionParts.map(desc => translated[desc]);
+                this.translatedName = names[names.length - 1];
+                this.translatedDescription = descriptions.join(", ");
+            });
+    }
 }

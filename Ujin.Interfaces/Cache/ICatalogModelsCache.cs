@@ -6,6 +6,6 @@ namespace Ujin.Interfaces.Cache
 {
     public interface ICatalogModelsCache
     {
-        Task<List<CatalogModel>> GetCatalogModels();
+        Task<List<CatalogItem>> GetCatalogModels();
     }
 }

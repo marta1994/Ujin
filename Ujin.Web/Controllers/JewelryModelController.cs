@@ -87,6 +87,6 @@ namespace Ujin.Web.Server.Controllers
         public Task<ModelInfo> GetModelInfo([FromQuery]string sku) => _jewelryModelService.GetModelInfo(sku);
 
         [HttpGet("[action]")]
-        public Task<List<CatalogModel>> GetCatalogModels() => _jewelryModelService.LoadCatalogModels();
+        public Task<List<CatalogItem>> GetCatalogModels() => _skuDescriptionService.LoadCatalogModels();
     }
 }

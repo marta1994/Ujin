@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Ujin.BusinessLogic.Services.Model;
 using Ujin.Domain.Dtos;
 using Ujin.Interfaces;
+using Ujin.Interfaces.Cache;
 using Ujin.Interfaces.Dao;
 
 namespace Ujin.BusinessLogic.Services
@@ -15,12 +16,16 @@ namespace Ujin.BusinessLogic.Services
 
         private readonly ModelParser _modelParser;
 
+        private readonly ICatalogModelsCache _catalogModelsCache;
+
         public SkuDescriptionService(
             ISkuDescriptionDao skuDescriptionDao,
-            ModelParser modelParser)
+            ModelParser modelParser,
+            ICatalogModelsCache catalogModelsCache)
         {
             _skuDescriptionDao = skuDescriptionDao;
             _modelParser = modelParser;
+            _catalogModelsCache = catalogModelsCache;
         }
 
         public async Task<List<SkuDescriptionDto>> LoadSkuDescriptionsByModelId(int modelId)
@@ -36,6 +41,11 @@ namespace Ujin.BusinessLogic.Services
         public Task SaveSkuDescriptions(List<SkuDescriptionDto> skuDescriptions)
         {
             return _skuDescriptionDao.SaveSkuDescriptions(skuDescriptions);
+        }
+
+        public Task<List<CatalogItem>> LoadCatalogModels()
+        {
+            return _catalogModelsCache.GetCatalogModels();
         }
 
         public async Task UpdateSkuEnabledStateForModel(int modelId)

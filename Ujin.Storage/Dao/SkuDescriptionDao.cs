@@ -21,6 +21,14 @@ namespace Ujin.Storage.Dao
             _mapper = mapper;
         }
 
+        public Task<List<SkuDescriptionDto>> LoadCatalogSkus()
+        {
+            return _dbContext.SkuDescriptions
+                .Where(s => s.UseInCatalog == true)
+                .Select(s => _mapper.Map<SkuDescriptionDto>(s))
+                .ToListAsync();
+        }
+
         public Task<List<SkuDescriptionDto>> LoadSkuDescriptionsByModelId(int modelId)
         {
             return _dbContext.SkuDescriptions

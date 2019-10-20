@@ -1,4 +1,10 @@
-<a class="model-wrapper" [routerLink]='[link]' (click)="modelClick()">
-  <img [src]="imgLink" class="image"/>
-  <span class="caption">{{model.nameKey|translate}}</span>
+<a class="model-wrapper" [routerLink]='[link]' [queryParams]="{sku: model.sku}" (click)="modelClick()">
+    <div class="image-holder">
+        <img [src]="imgLink" class="image" />
+    </div>
+    <span class="caption">{{translatedName}}</span>
+    <span class="info-container">
+        <span class="price">{{model.price}}{{' '}}{{'measure.uah'|translate}}</span>
+        <span class="description">{{translatedDescription}}</span>
+    </span>
 </a>

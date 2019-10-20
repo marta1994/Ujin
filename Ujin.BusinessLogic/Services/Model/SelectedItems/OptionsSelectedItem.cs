@@ -19,6 +19,26 @@ namespace Ujin.BusinessLogic.Services.Model.SelectedItems
             _value = ParseValue(value);
         }
 
+        public OptionsSource OptionsSource => _options.OptionsSource;
+
+        public string ValueNameKey
+        {
+            get
+            {
+                switch (_options.OptionsSource)
+                {
+                    case OptionsSource.Metal:
+                        return ((MetalDto)_value).NameKey;
+                    case OptionsSource.Gemstone:
+                        return ((GemstoneDto)_value).GemstoneClass.NameKey;
+                    case OptionsSource.Custom:
+                        return ((CustomOption)_value).NameKey;
+                    default:
+                        throw new ApplicationException($"Unsupported optSource: '{_options.OptionsSource}'");
+                }
+            }
+        }
+
         public override ModelInfoNode Info
         {
             get

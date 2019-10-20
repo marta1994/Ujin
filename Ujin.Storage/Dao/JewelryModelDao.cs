@@ -39,7 +39,7 @@ namespace Ujin.Storage.Dao
                 .Include(m => m.Configurations)
                 .ToListAsync()).FirstOrDefault();
             _dbContext.Entry(model).State = EntityState.Detached;
-            foreach (var config in model.Configurations)
+            foreach (var config in model.Configurations.ToList())
                 _dbContext.Entry(config).State = EntityState.Detached;
 
             return _mapper.Map<JewelryModelDto>(model);
@@ -53,7 +53,7 @@ namespace Ujin.Storage.Dao
                 .ToListAsync()).FirstOrDefault();
             if (model == null) return null;
             _dbContext.Entry(model).State = EntityState.Detached;
-            foreach (var config in model.Configurations)
+            foreach (var config in model.Configurations.ToList())
                 _dbContext.Entry(config).State = EntityState.Detached;
 
             return _mapper.Map<ParsedJewelryModel>(model);

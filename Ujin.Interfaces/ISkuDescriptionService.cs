@@ -12,6 +12,8 @@ namespace Ujin.Interfaces
 
         Task SaveSkuDescriptions(List<SkuDescriptionDto> skuDescriptions);
 
+        Task<List<CatalogItem>> LoadCatalogModels();
+
         Task UpdateSkuEnabledStateForModel(int modelId);
     }
 }

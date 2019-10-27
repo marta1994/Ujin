@@ -9,40 +9,40 @@ import { AllModelsComponent } from './all-models/all-models/all-models.component
 
 
 const routes: Routes = [
-  {
-    path: ':lang',
-    component: LangComponent,
-    children: [
-      {
-        path: 'model/:id',
-        component: ModelPageComponent
-      },
-      {
-        path: 'catalog',
-        component: AllModelsComponent
-      },
-      {
-        path: 'place-order',
-        component: OrderComponent
-      },
-      {
-        path: 'thank-you',
-        component: ThankyouComponent
-      },
-      {
-        path: 'wrong-path',
-        component: WrongPathComponent
-      },
-      {
+    {
+        path: ':lang',
+        component: LangComponent,
+        children: [
+            {
+                path: 'model/:id',
+                component: ModelPageComponent
+            },
+            {
+                path: 'catalog',
+                component: AllModelsComponent
+            },
+            {
+                path: 'place-order',
+                component: OrderComponent
+            },
+            {
+                path: 'thank-you',
+                component: ThankyouComponent
+            },
+            {
+                path: 'wrong-path',
+                component: WrongPathComponent
+            },
+            {
+                path: '**',
+                redirectTo: 'catalog'
+            }
+        ]
+    },
+    {
         path: '**',
-        redirectTo: 'model/ov-rn'
-      }
-    ]
-  },
-  {
-    path: '**',
-    redirectTo: 'ua/model/ov-rn'
-  }
+        redirectTo: 'ua/model/catalog'
+    }
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@
       <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
       <div class="price-conatiner">
         <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
-        <button class="buy-in-one-click" (click)="placeOrder()">
+        <button class="buy-in-one-click" (click)="addToCart()">
           {{'forms.modelPage.buyInOneClick'|translate}}
         </button>
         <button class="copy-link" (click)="copyLink()">
@@ -24,7 +24,7 @@
     <h1 *ngIf="model" class="model-name">{{model.nameKey|translate}}</h1>
     <div class="price-conatiner">
       <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
-      <button class="buy-in-one-click" (click)="placeOrder()">
+      <button class="buy-in-one-click" (click)="addToCart()">
         {{'forms.modelPage.buyInOneClick'|translate}}
       </button>
       <button class="copy-link" (click)="copyLink()">
@@ -40,7 +40,7 @@
     <div class="description" [innerHTML]="'forms.modelPage.description'|translate"></div>
     <div class="price-conatiner">
       <label class="price" *ngIf="modelInfo">{{modelInfo.price}}{{' '}}{{'measure.uah'|translate}}</label>
-      <button class="buy-in-one-click" (click)="placeOrder()">
+      <button class="buy-in-one-click" (click)="addToCart()">
         {{'forms.modelPage.buyInOneClick'|translate}}
       </button>
       <button class="copy-link" (click)="copyLink()">

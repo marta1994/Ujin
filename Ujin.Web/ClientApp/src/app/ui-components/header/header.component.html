@@ -8,21 +8,19 @@
     </label>
     <svg-icon src="/assets/images/ujin_logo.svg" class="logo-header"></svg-icon>
     <div class="right-menu-holder">
-      <a class="catalog-item menu-item" [routerLink]='[catalogLink]'
-         (click)="catalogClick();openedItemClick($event)">
-        <svg-icon class="svg-holder" src="/assets/images/catalog.svg"></svg-icon>
-        <span class="catalog-text">{{'forms.navMenu.catalog'|translate}}</span>
-      </a>
-      <span class="share-item menu-item mobile-hide">
-        <svg-icon class="svg-holder" src="/assets/images/share.svg"></svg-icon>
-        <span>{{'forms.header.share'|translate}}</span>
-        <div class="social-buttons">
-          <app-social [purpose]="'share'"></app-social>
-        </div>
-      </span>
-      <span class="contacts-item menu-item mobile-hide">
-        <span (click)="goToContacts()">{{'forms.header.contacts'|translate}}</span>
-      </span>
+        <a class="cart-item menu-item" [routerLink]='[cartLink]'
+           (click)="cartClick();openedItemClick($event)">
+            <svg-icon class="svg-holder" src="/assets/images/cart.svg"></svg-icon>
+            <span class="catalog-text">{{'forms.navMenu.cart'|translate}}</span>
+        </a>
+        <a class="catalog-item menu-item" [routerLink]='[catalogLink]'
+           (click)="catalogClick();openedItemClick($event)">
+            <svg-icon class="svg-holder" src="/assets/images/catalog.svg"></svg-icon>
+            <span class="catalog-text">{{'forms.navMenu.catalog'|translate}}</span>
+        </a>
+        <span class="contacts-item menu-item mobile-hide">
+            <span (click)="goToContacts()">{{'forms.header.contacts'|translate}}</span>
+        </span>
     </div>
   </div>
 </div>

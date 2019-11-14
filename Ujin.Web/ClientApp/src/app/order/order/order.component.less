@@ -1,183 +1,209 @@
 @import '../../styles/common.less';
 
-.order-wrapper {
-  padding-top: @mobile-header-height;
-
-  @media @desktop {
-    padding-top: @desktop-header-height;
-  }
-
-  .header {
-    font-size: 2em;
-    font-weight: 400;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    margin: 30px 0 0;
-  }
-
-  .products-and-form {
+.wrapper-no-products {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    align-items: center;
+    margin-top: @mobile-header-height;
 
     @media @desktop {
-      flex-direction: row;
+        margin-top: @desktop-header-height;
     }
 
-    .products {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      margin: 10px 20px;
+    .caption {
+        display: inline-block;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 80px 20px 60px;
+    }
 
-      .product-wrapper {
+    .text {
+        .set-default-button();
+        font-size: 1.5rem;
+        margin: 50px 20px;
+        text-decoration: none;
+    }
+}
+
+.order-wrapper {
+    padding-top: @mobile-header-height;
+
+    @media @desktop {
+        padding-top: @desktop-header-height;
+    }
+
+    .header {
+        font-size: 2em;
+        font-weight: 400;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin: 30px 0 0;
+    }
+
+    .products-and-form {
         display: flex;
-        flex-direction: column;
-        position: relative;
+        flex-direction: column-reverse;
 
         @media @desktop {
-          flex-direction: row;
+            flex-direction: row;
         }
 
-        padding: 10px;
-        margin: 15px 0;
-        .set-border-radius(3px);
-        border: 0px solid @accent-color;
-        background-color: @light-grey-color;
-        .set-box-shadow(@grey-color);
-
-        .delete-button {
-          position: absolute;
-          top: 5px;
-          right: 5px;
-          z-index: 3;
-          .set-svg-button(30px);
-        }
-
-        .images-container {
-          position: relative;
-
-          img {
-            position: absolute;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-
-            @media @desktop {
-              width: 300px;
-            }
-
-            &:first-child {
-              position: relative;
-            }
-          }
-        }
-
-        .model-info {
-          margin-left: 10px;
-        }
-
-        .main-info {
-          margin-top: 40px;
-
-          .prop-val {
+        .products {
             display: flex;
-            font-size: 1.2em;
-            font-weight: 400;
+            align-items: stretch;
+            flex-direction: column;
+            justify-content: space-around;
+            margin: 10px 20px;
 
-            .label {
-              display: inline-block;
-              padding-right: 5px;
-            }
+            .product-wrapper {
+                display: flex;
+                flex-direction: column;
+                position: relative;
 
-            .value {
-              font-weight: 600;
+                @media @desktop {
+                    flex-direction: row;
+                }
+
+                padding: 10px;
+                margin: 15px 0;
+                .set-border-radius(3px);
+                border: 0px solid @accent-color;
+                background-color: @white-color;
+                .set-box-shadow(@grey-color);
+
+                .delete-button {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    z-index: 3;
+                    .set-svg-button(30px);
+                }
+
+                .images-container {
+                    position: relative;
+
+                    img {
+                        position: absolute;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        width: 100%;
+
+                        @media @desktop {
+                            width: 300px;
+                        }
+
+                        &:first-child {
+                            position: relative;
+                        }
+                    }
+                }
+
+                .model-info {
+                    margin-left: 10px;
+                }
+
+                .main-info {
+                    margin-top: 40px;
+
+                    .prop-val {
+                        display: flex;
+                        font-size: 1.2em;
+                        font-weight: 400;
+
+                        .label {
+                            display: inline-block;
+                            padding-right: 5px;
+                        }
+
+                        .value {
+                            font-weight: 600;
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+
+        .form {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+
+            .total-price {
+                font-size: 1.3rem;
+                font-weight: 500;
+                margin-bottom: 15px;
+            }
+
+            .call-promise {
+                display: block;
+                max-width: 100%;
+                width: 300px;
+                font-size: 1rem;
+                margin-bottom: 7px;
+                text-align: center;
+            }
+
+            .form-group {
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .group {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+
+                    .form-label {
+                        font-size: 0.9rem;
+                        color: @dark-color;
+                    }
+
+                    .input {
+                        margin-top: 5px;
+                        width: 300px;
+
+                        ::ng-deep input {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+
+            .submit {
+                .set-primary-button();
+                margin-bottom: 5px;
+            }
+
+            .form-error {
+                display: block;
+                max-width: 100%;
+                width: 300px;
+                color: @red-color;
+                font-size: 0.9rem;
+                transform: scaleY(0);
+                transition: transform ease 0.3s;
+
+                &.shown {
+                    transform: scaleY(1);
+                }
+            }
+
+            .conditions {
+                margin-top: 10px;
+                display: block;
+                max-width: 100%;
+                width: 300px;
+                font-size: 1rem;
+                padding-bottom: 20px;
+            }
+        }
     }
-
-    .form {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-
-      .total-price {
-        font-size: 1.3rem;
-        font-weight: 500;
-        margin-bottom: 15px;
-      }
-
-      .call-promise {
-        display: block;
-        max-width: 100%;
-        width: 300px;
-        font-size: 1rem;
-        margin-bottom: 7px;
-        text-align: center;
-      }
-
-      .form-group {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .group {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 10px;
-
-          .form-label {
-            font-size: 0.9rem;
-            color: @dark-color;
-          }
-
-          .input {
-            margin-top: 5px;
-            width: 300px;
-
-            ::ng-deep input {
-              font-size: 1.3rem;
-            }
-          }
-        }
-      }
-
-      .submit {
-        .set-primary-button();
-        margin-bottom: 5px;
-      }
-
-      .form-error {
-        display: block;
-        max-width: 100%;
-        width: 300px;
-        color: @red-color;
-        font-size: 0.9rem;
-        transform: scaleY(0);
-        transition: transform ease 0.3s;
-
-        &.shown {
-          transform: scaleY(1);
-        }
-      }
-
-      .conditions {
-        margin-top: 10px;
-        display: block;
-        max-width: 100%;
-        width: 300px;
-        font-size: 1rem;
-        padding-bottom: 20px;
-      }
-    }
-  }
 }

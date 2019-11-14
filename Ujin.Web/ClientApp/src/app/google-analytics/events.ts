@@ -16,7 +16,7 @@ export enum WidgetEvents {
 }
 
 export enum ModelPageEvents {
-  OrderClick = "orderClick",
+  AddToCart = "addToCart",
   CopyLinkClick = "copyLinkClick"
 }
 
@@ -52,6 +52,7 @@ export enum MenuEvents {
 }
 
 export enum HeaderEvents {
-  CatalogClick = "catalogClick",
-  ContactsClick = "contactsClick"
+    CatalogClick = "catalogClick",
+    ContactsClick = "contactsClick",
+    CartClick = "cartClick"
 }

@@ -10,6 +10,8 @@ import { LangService } from 'src/app/core/lang/lang.service';
 import { GaService } from 'src/app/google-analytics/ga.service';
 import { EventCategory, ModelPageEvents } from 'src/app/google-analytics/events';
 
+declare function fbq(a, b, c);
+
 @Component({
     selector: 'app-model-page',
     templateUrl: './model-page.component.html',
@@ -119,10 +121,18 @@ export class ModelPageComponent implements OnInit {
         return "assets/images/sku/" + this.model.skuDescriptions[minInd].images[0];
     }
 
-    public placeOrder() {
+    public addToCart() {
         this._cartService.addToCart(this.modelSku);
         this._langService.navigateTo("place-order");
-        this._gaService.sendEvent(EventCategory.ModelPage, ModelPageEvents.OrderClick);
+        this._gaService.sendEvent(EventCategory.ModelPage, ModelPageEvents.AddToCart);
+        fbq('track', 'AddToCart', {
+            content_name: 'Jewelry',
+            content_category: 'All',
+            content_ids: [this.modelSku],
+            content_type: 'product',
+            value: this.modelInfo.price,
+            currency: '980',
+        });
     }
 
     public copyLink() {

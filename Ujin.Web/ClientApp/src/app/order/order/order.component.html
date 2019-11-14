@@ -1,4 +1,8 @@
-<div class="order-wrapper">
+<div class="wrapper-no-products" *ngIf="!products || products.length === 0">
+    <span class="caption">{{'forms.order.noItems.caption'|translate}}</span>
+    <a [routerLink]="[catalogLink]" class="text">{{'forms.order.noItems.text'|translate}}</a>
+</div>
+<div class="order-wrapper" *ngIf="products && products.length > 0">
   <span class="header">{{'forms.order.yourOrder'|translate}}</span>
   <div class="products-and-form">
     <div class="products">

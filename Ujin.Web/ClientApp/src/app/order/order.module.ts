@@ -7,20 +7,22 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { ServicesModule } from '../services/services.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [OrderComponent, ThankyouComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    UiComponentsModule,
-    ServicesModule,
-    AngularSvgIconModule,
-    TranslateModule.forChild()
-  ],
-  exports: [
-    OrderComponent,
-    ThankyouComponent
-  ]
+    declarations: [OrderComponent, ThankyouComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        UiComponentsModule,
+        ServicesModule,
+        AngularSvgIconModule,
+        RouterModule.forChild([]),
+        TranslateModule.forChild()
+    ],
+    exports: [
+        OrderComponent,
+        ThankyouComponent
+    ]
 })
 export class OrderModule { }

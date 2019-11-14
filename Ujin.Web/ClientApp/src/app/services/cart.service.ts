@@ -35,14 +35,6 @@ export class CartService {
     else cartProds[sku] = { sku: sku, count: 1 };
     this.cartProducts = cartProds;
     this._gaService.sendEvent(EventCategory.Cart, CartEvents.AddProduct, sku);
-      fbq('track', 'AddToCart', {
-        contents: [
-          {
-            id: sku,
-            quantity: 1
-          }
-        ],
-      });
   }
 
   public removeFromCart(sku: string) {

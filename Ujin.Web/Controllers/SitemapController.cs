@@ -51,6 +51,18 @@ namespace Ujin.Web.Controllers
                         <changefreq>daily</changefreq>
                         <priority>0.8</priority>
                     </url>
+                    <url>
+                        <loc>https://{_appSettings.Host}/ua/shipment-payment</loc>
+                        <lastmod>{ DateTime.Now.ToString("yyyy-MM-dd")}</lastmod>
+                        <changefreq>weekly</changefreq>
+                        <priority>0.3</priority>
+                    </url>
+                    <url>
+                        <loc>https://{_appSettings.Host}/ua/size-measure</loc>
+                        <lastmod>{ DateTime.Now.ToString("yyyy-MM-dd")}</lastmod>
+                        <changefreq>weekly</changefreq>
+                        <priority>0.3</priority>
+                    </url>
                     {urls}
                     </urlset>", "text/xml");
         }

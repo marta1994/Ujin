@@ -1,4 +1,5 @@
-<div class="all-models-wrapper">
+<app-loading *ngIf="!models"></app-loading>
+<div class="all-models-wrapper" *ngIf="models">
     <div class="header-container">
         <h1 class="header">{{'forms.allModels.header'|translate}}</h1>
         <span class="ordering-container">

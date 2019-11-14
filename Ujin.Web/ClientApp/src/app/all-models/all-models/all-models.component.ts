@@ -13,7 +13,7 @@ import { EventCategory, CatalogEvents } from '../../google-analytics/events';
 })
 export class AllModelsComponent implements OnInit {
 
-    public models: ICatalogModel[] = [];
+    public models: ICatalogModel[];
 
     constructor(
         private readonly _catalogService: CatalogService,

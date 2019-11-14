@@ -51,7 +51,7 @@ const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'ua/model/catalog'
+        redirectTo: 'ua/catalog'
     }
 ];
 

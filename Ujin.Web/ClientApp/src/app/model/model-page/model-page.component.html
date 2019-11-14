@@ -1,4 +1,5 @@
-<div class="model-page-container">
+<app-loading *ngIf="!model || !modelInfo"></app-loading>
+<div class="model-page-container"  *ngIf="model && modelInfo">
   <div class="widget-and-info-container">
     <div class="widget-container">
       <app-widget [model]="model" [currentImages]="currentImages"

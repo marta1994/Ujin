@@ -13,37 +13,40 @@ import { RouterModule } from '@angular/router';
 import { ModelInfoComponent, InfoNodeComponent } from './model-info/model-info.component';
 import { InputComponent } from './input/input.component';
 import { AdventagesComponent } from './adventages/adventages.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations:
-    [
-      SliderComponent,
-      SocialComponent,
-      HeaderComponent,
-      FooterComponent,
-      MenuComponent,
-      ModelInfoComponent,
-      InfoNodeComponent,
-      InputComponent,
-      AdventagesComponent
+    declarations:
+        [
+            SliderComponent,
+            SocialComponent,
+            HeaderComponent,
+            FooterComponent,
+            MenuComponent,
+            ModelInfoComponent,
+            InfoNodeComponent,
+            InputComponent,
+            AdventagesComponent,
+            LoadingComponent
+        ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ServicesModule,
+        AngularSvgIconModule,
+        TranslateModule.forChild(),
+        RouterModule.forChild([])
     ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ServicesModule,
-    AngularSvgIconModule,
-    TranslateModule.forChild(),
-    RouterModule.forChild([])
-  ],
-  exports: [
-    SliderComponent,
-    SocialComponent,
-    HeaderComponent,
-    FooterComponent,
-    MenuComponent,
-    ModelInfoComponent,
-    InputComponent,
-    AdventagesComponent
-  ]
+    exports: [
+        SliderComponent,
+        SocialComponent,
+        HeaderComponent,
+        FooterComponent,
+        MenuComponent,
+        ModelInfoComponent,
+        InputComponent,
+        AdventagesComponent,
+        LoadingComponent
+    ]
 })
 export class UiComponentsModule { }

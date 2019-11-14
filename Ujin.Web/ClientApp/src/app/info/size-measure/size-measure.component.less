@@ -41,6 +41,8 @@
             padding: 20px;
         }
 
+        @circle-size: 50px;
+
         .snippet-container {
             display: inline-flex;
             flex-direction: row;
@@ -51,7 +53,6 @@
                 padding: 10px;
 
                 .order-circle {
-                    @circle-size: 50px;
                     @circle-font-size: 1.8rem;
                     font-size: @circle-font-size;
                     display: inline-flex;
@@ -78,6 +79,11 @@
                 .text {
                     font-size: 1.4rem;
                     line-height: 2rem;
+                    margin-left: -@circle-size;
+
+                    @media @desktop {
+                        margin-left: 0;
+                    }
                 }
             }
         }

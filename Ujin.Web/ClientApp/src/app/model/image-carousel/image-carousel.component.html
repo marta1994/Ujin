@@ -13,10 +13,10 @@
                  [@mainImg]="imgAnimate" (@mainImg.done)="imgAnimateDone($event, (currIndex + 1) % imageIndexes.length)"/>
         </div>
     </div>
-    <div class="arrow left-arrow" (click)="arrowClick(-1)">
+    <div class="arrow left-arrow" (click)="arrowClick(-1)" *ngIf="differentImangesCount > 1">
         <svg-icon src="assets/images/arrow.svg"></svg-icon>
     </div>
-    <div class="arrow right-arrow" (click)="arrowClick(1)">
+    <div class="arrow right-arrow" (click)="arrowClick(1)" *ngIf="differentImangesCount > 1">
         <svg-icon src="assets/images/arrow.svg"></svg-icon>
     </div>
 </div>

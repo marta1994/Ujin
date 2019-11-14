@@ -1,0 +1,10 @@
+<div class="container">
+    <h2 class="main-title">{{"forms.shipment.mainTitle"|translate}}</h2>
+    <h3 class="subtitle">{{"forms.shipment.subTitle"|translate}}</h3>
+    <div class="description-container">
+        <div *ngFor="let snippet of textSnippets"  class="snippet-container">
+            <span class="point">{{snippet.title|translate}}</span>
+            <div class="text" [innerHTML]="snippet.text|translate"></div>
+        </div>
+    </div>
+</div>

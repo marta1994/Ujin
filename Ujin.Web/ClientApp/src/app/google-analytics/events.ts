@@ -45,8 +45,10 @@ export enum CatalogEvents {
 }
 
 export enum MenuEvents {
-  CatalogClick = "catalogClick",
-  ContactsClick = "contactsClick"
+    CatalogClick = "catalogClick",
+    ContactsClick = "contactsClick",
+    ShipmentClick = "shipmentPaymentClick",
+    SizeClick = "sizeMeasureClick",
 }
 
 export enum HeaderEvents {

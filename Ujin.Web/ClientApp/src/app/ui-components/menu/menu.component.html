@@ -1,16 +1,22 @@
 <div class="menu">
-  <div class="link">
-    <a [routerLink]='[catalogLink]' (click)="catalogClick()">{{'forms.navMenu.catalog'|translate}}</a>
-  </div>
-  <div class="contacts-link link">
-    <span (click)="goToContacts()">{{'forms.navMenu.contacts'|translate}}</span>
-  </div>
-  <div class="social social-share">
-    <span class="share-text">{{'forms.navMenu.share'|translate}}</span>
-    <app-social [purpose]="'share'" [direction]="'horizontal'" [size]="'40px'"></app-social>
-  </div>
-  <div class="social social-links">
-    <span class="share-text">{{'forms.navMenu.socialLinks'|translate}}</span>
-    <app-social [purpose]="'like'" [direction]="'horizontal'" [size]="'40px'"></app-social>
-  </div>
+    <div class="link catalog text-link">
+        <a [routerLink]='[catalogLink]' (click)="catalogClick()">{{'forms.navMenu.catalog'|translate}}</a>
+    </div>
+    <div class="link shipment text-link">
+        <a [routerLink]='[shipmentLink]' (click)="shipmentClick()">{{'forms.navMenu.shipmentPayment'|translate}}</a>
+    </div>
+    <div class="link size text-link">
+        <a [routerLink]='[sizeLink]' (click)="sizeClick()">{{'forms.navMenu.sizeMeasure'|translate}}</a>
+    </div>
+    <div class="contacts-link link">
+        <span (click)="goToContacts()">{{'forms.navMenu.contacts'|translate}}</span>
+    </div>
+    <div class="social social-share">
+        <span class="share-text">{{'forms.navMenu.share'|translate}}</span>
+        <app-social [purpose]="'share'" [direction]="'horizontal'" [size]="'40px'"></app-social>
+    </div>
+    <div class="social social-links">
+        <span class="share-text">{{'forms.navMenu.socialLinks'|translate}}</span>
+        <app-social [purpose]="'like'" [direction]="'horizontal'" [size]="'40px'"></app-social>
+    </div>
 </div>

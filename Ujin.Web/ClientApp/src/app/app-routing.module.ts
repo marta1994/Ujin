@@ -6,6 +6,8 @@ import { OrderComponent } from './order/order/order.component';
 import { ThankyouComponent } from './order/thankyou/thankyou.component';
 import { WrongPathComponent } from './core/wrong-path/wrong-path.component';
 import { AllModelsComponent } from './all-models/all-models/all-models.component';
+import { ShipmentPaymentComponent } from './info/shipment-payment/shipment-payment.component';
+import { SizeMeasureComponent } from './info/size-measure/size-measure.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,14 @@ const routes: Routes = [
             {
                 path: 'place-order',
                 component: OrderComponent
+            },
+            {
+                path: 'shipment-payment',
+                component: ShipmentPaymentComponent
+            },
+            {
+                path: 'size-measure',
+                component: SizeMeasureComponent
             },
             {
                 path: 'thank-you',

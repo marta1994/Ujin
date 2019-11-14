@@ -1,0 +1,15 @@
+<div class="container">
+    <h1 class="main-title">{{"forms.sizeMeasure.mainTitle"|translate}}</h1>
+    <h2 class="subtitle">{{"forms.sizeMeasure.subTitle"|translate}}</h2>
+    <div class="description-container">
+        <div *ngFor="let snippet of textSnippets" class="snippet-container">
+            <div class="order-holder">
+                <span class="order-circle">{{snippet.order}}</span>
+            </div>
+            <div class="text-holder">
+                <span class="point">{{snippet.title|translate}}</span>
+                <div class="text">{{snippet.text|translate}}</div>
+            </div>
+        </div>
+    </div>
+</div>

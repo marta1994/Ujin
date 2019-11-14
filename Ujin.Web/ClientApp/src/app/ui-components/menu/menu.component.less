@@ -1,33 +1,39 @@
 @import '../../styles/common.less';
 
 .menu {
-  width: 100%;
-  height: auto;
-  padding-bottom: 40px;
-  background-color: @light-accent-color;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  .link {
-    color: @dark-color;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-
-    span,a {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-
-  .social {
-    margin-top: 25px;
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
+    background-color: @light-accent-color;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
+
+    .link {
+        color: @dark-color;
+        font-size: 1.3rem;
+        font-weight: 300;
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+
+        span, a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &.text-link {
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+    }
+
+    .social {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

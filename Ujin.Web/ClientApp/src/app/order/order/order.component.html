@@ -3,46 +3,52 @@
     <a [routerLink]="[catalogLink]" class="text">{{'forms.order.noItems.text'|translate}}</a>
 </div>
 <div class="order-wrapper" *ngIf="products && products.length > 0">
-  <span class="header">{{'forms.order.yourOrder'|translate}}</span>
-  <div class="products-and-form">
-    <div class="products">
-      <div *ngFor="let product of products" class="product-wrapper">
-        <svg-icon class="delete-button" *ngIf="products.length > 1" src="assets/images/close.svg"
-                  (click)="removeAllBySku(product.sku)"></svg-icon>
-        <div class="images-container">
-          <img *ngFor="let img of product.images" [src]="img" class="model-image" />
+    <span class="header">{{'forms.order.yourOrder'|translate}}</span>
+    <div class="products-and-form">
+        <div class="products">
+            <div *ngFor="let product of products" class="product-wrapper">
+                <svg-icon class="delete-button" src="assets/images/close.svg" (click)="removeAllBySku(product.sku)"></svg-icon>
+                <div class="images-container">
+                    <img *ngFor="let img of product.images" [src]="img" class="model-image" />
+                </div>
+                <app-model-info class="model-info" *ngIf="product.model" [modelInfo]="product.model" [showPrice]="true"></app-model-info>
+                <div class="main-info">
+                    <div class="prop-val">
+                        <span class="label">{{'forms.order.count'|translate}}:</span>
+                        <span class="value">
+                            <span class="control" [ngClass]="{'disabled': product.count <= 1}"
+                                  (click)="removeOne(product)">-</span>
+                            <span class="text">
+                                {{product.count}}
+                            </span>
+                            <span class="control" (click)="addOne(product)">+</span>
+                        </span>
+                    </div>
+                    <div class="prop-val">
+                        <span class="label">{{'forms.order.totalPrice'|translate}}:</span>
+                        <span class="value text">{{product.totalPrice}}{{' '}}{{'measure.uah'|translate}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <app-model-info class="model-info" *ngIf="product.model" [modelInfo]="product.model" [showPrice]="true"></app-model-info>
-        <div class="main-info">
-          <div class="prop-val">
-            <span class="label">{{'forms.order.count'|translate}}:</span>
-            <span class="value">{{product.count}}</span>
-          </div>
-          <div class="prop-val">
-            <span class="label">{{'forms.order.totalPrice'|translate}}:</span>
-            <span class="value">{{product.totalPrice}}{{' '}}{{'measure.uah'|translate}}</span>
-          </div>
+        <div class="form">
+            <span class="total-price">
+                {{'forms.order.orderPrice'|translate}}{{': ' + totalPrice + ' '}}{{'measure.uah'|translate}}
+            </span>
+            <span class="call-promise">{{'forms.order.callPromice'|translate}}</span>
+            <div class="form-group">
+                <div class="group" *ngFor="let prop of userProps">
+                    <span class="form-label">{{prop.labelKey|translate}}</span>
+                    <app-input class="input" [errorState]="validationEnabled && !prop.isValid"
+                               [(value)]="prop.value" [errorMessageKey]="'forms.order.inputError'"
+                               [type]="prop.inputType"></app-input>
+                </div>
+            </div>
+            <button class="submit" (click)="placeOrder()">{{'forms.order.submit'|translate}}</button>
+            <span class="form-error" [ngClass]="{'shown': showError}">
+                {{'forms.order.formError'|translate}}
+            </span>
+            <span class="conditions">{{'forms.order.conditions'|translate}}</span>
         </div>
-      </div>
     </div>
-    <div class="form">
-      <span class="total-price">
-        {{'forms.order.orderPrice'|translate}}{{': ' + totalPrice + ' '}}{{'measure.uah'|translate}}
-      </span>
-      <span class="call-promise">{{'forms.order.callPromice'|translate}}</span>
-      <div class="form-group">
-        <div class="group" *ngFor="let prop of userProps">
-          <span class="form-label">{{prop.labelKey|translate}}</span>
-          <app-input class="input" [errorState]="validationEnabled && !prop.isValid"
-                     [(value)]="prop.value" [errorMessageKey]="'forms.order.inputError'"
-                     [type]="prop.inputType"></app-input>
-        </div>
-      </div>
-      <button class="submit" (click)="placeOrder()">{{'forms.order.submit'|translate}}</button>
-      <span class="form-error" [ngClass]="{'shown': showError}">
-        {{'forms.order.formError'|translate}}
-      </span>
-      <span class="conditions">{{'forms.order.conditions'|translate}}</span>
-    </div>
-  </div>
 </div>

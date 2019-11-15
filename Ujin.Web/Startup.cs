@@ -16,6 +16,7 @@ using Ujin.Domain;
 using Ujin.Interfaces;
 using Ujin.Interfaces.Cache;
 using Ujin.Storage;
+using Ujin.Web.Models;
 
 namespace Ujin.Web
 {
@@ -62,7 +63,14 @@ namespace Ujin.Web
             services.AddScoped<IModelImageService, ModelImageService>();
             services.AddScoped<ISkuDescriptionService, SkuDescriptionService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IMailSender, MailSender>();
+            if (appSettings.MailSettings.SmtpSettings.Host == "localhost")
+            {
+                services.AddScoped<IMailSender, DummyMailSender>();
+            }
+            else
+            {
+                services.AddScoped<IMailSender, MailSender>();
+            }
             services.AddScoped<ModelParser>();
             services.AddScoped<VariablesEvaluator>();
             services.AddScoped<ExpressionCalculatorService>();

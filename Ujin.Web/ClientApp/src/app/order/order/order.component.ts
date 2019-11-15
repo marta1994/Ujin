@@ -97,6 +97,17 @@ export class OrderComponent implements OnInit {
         this._arrService.removeByCond(this._products, p => p.sku === sku);
     }
 
+    public addOne(product: ProductCount) {
+        this._cartService.addToCart(product.sku);
+        product.count++;
+    }
+
+    public removeOne(product: ProductCount) {
+        if (product.count <= 1) return;
+        this._cartService.removeFromCart(product.sku);
+        product.count--;
+    }
+
     public placeOrder() {
         this._gaService.sendEvent(EventCategory.OrderPage, OrderPageEvents.PlaceOrderClick, JSON.stringify(this.user.getJson()));
         this._orderService.makeAnOrder(this.user, this.products.map(p => { return { sku: p.sku, number: p.count } }), this.totalPrice)

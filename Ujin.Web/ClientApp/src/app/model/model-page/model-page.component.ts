@@ -131,7 +131,7 @@ export class ModelPageComponent implements OnInit {
             content_ids: [this.modelSku],
             content_type: 'product',
             value: this.modelInfo.price,
-            currency: '980',
+            currency: 'UAH',
         });
     }
 

@@ -11,5 +11,7 @@
         public string SerializedProduct { get; set; }
 
         public int Number { get; set; }
+
+        public string ProductLink { get; set; }
     }
 }

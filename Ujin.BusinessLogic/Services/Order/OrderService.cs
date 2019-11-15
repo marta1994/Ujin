@@ -57,6 +57,7 @@ namespace Ujin.BusinessLogic.Services.Order
             foreach(var prod in orderedProducts)
             {
                 prod.SerializedProduct = JsonConvert.SerializeObject(models[prod.Sku], Formatting.Indented);
+                prod.ProductLink = $"https://ujin.org/ua/model/{models[prod.Sku].Identifier}?sku={prod.Sku}";
             }
 
             var order = new OrderDto
@@ -80,19 +81,20 @@ namespace Ujin.BusinessLogic.Services.Order
         private string GenerateMailMessage(OrderDto order, UserDto user)
         {
             return $@"
-There was a new order placed by a user at Ujin jewelry.
+    There was a new order placed by a user at Ujin jewelry.
 
-User name: {user.Name},
-User email: {user.Email},
-User phone number: {user.Phone},
-User surname: {user.Surname};
+    User name: {user.Name},
+    User email: {user.Email},
+    User phone number: {user.Phone},
+    User surname: {user.Surname};
 
-Price: {order.Price} uah,
-Advance: {order.Advance} uah,
+    Price: {order.Price} uah,
+    Advance: {order.Advance} uah,
 
-Order Information: 
-{string.Join(";\r\n", order.OrderedProducts.Select(op => $"Sku: {op.Sku}, Number: {op.Number}, Data: {op.SerializedProduct}"))}
-                    ";
+    Order Information: 
+        {string.Join(";\r\n\r\n", order.OrderedProducts.Select(
+            op => $"Sku: {op.Sku},      \r\n Number of items: {op.Number},      \r\n Product link: {op.ProductLink}"))}
+                            ";
         }
     }
 }

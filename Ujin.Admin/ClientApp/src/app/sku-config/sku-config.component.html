@@ -39,19 +39,23 @@
   </div>
 </div>
 <div class="sku-configurable" *ngIf="skuDescription">
-  <div class="prop-value">
-    <label class="label">Ідентифікатор:</label>
-    <label class="val">{{skuDescription.sku}}</label>
-  </div>
-  <button class="button" (click)="saveSkuDescription()">Зберегти конфігурацію ідентифікатора</button>
-  <div class="prop-value">
-    <label class="label">Зображення:</label>
-    <div class="val">
-      <div class="image" *ngFor="let img of skuImages;let index = index;trackBy:trackByIndex;">
-        <input class="value" type="text" [(ngModel)]="skuImages[index]" [ngModelOptions]="{ updateOn: 'blur' }"/>
-        <button class="button" (click)="deleteImage(index)">Видалити</button>
-      </div>
+    <div class="prop-value">
+        <label class="label">Ідентифікатор:</label>
+        <label class="val">{{skuDescription.sku}}</label>
     </div>
-  </div>
-  <button class="button" (click)="addImage()">Додати зображення</button>
+    <button class="button" (click)="saveSkuDescription()">Зберегти конфігурацію ідентифікатора</button>
+    <div class="prop-value">
+        <label class="label">Використовувати в каталозі:</label>
+        <input type="checkbox" [(ngModel)]="skuDescription.useInCatalog" class="val" />
+    </div>
+    <div class="prop-value">
+        <label class="label">Зображення:</label>
+        <div class="val">
+            <div class="image" *ngFor="let img of skuImages;let index = index;trackBy:trackByIndex;">
+                <input class="value" type="text" [(ngModel)]="skuImages[index]" [ngModelOptions]="{ updateOn: 'blur' }" />
+                <button class="button" (click)="deleteImage(index)">Видалити</button>
+            </div>
+        </div>
+    </div>
+    <button class="button" (click)="addImage()">Додати зображення</button>
 </div>

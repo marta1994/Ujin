@@ -12,6 +12,8 @@ namespace Ujin.Domain.Dtos
 
         public decimal Price { get; set; }
 
+        public string Tags { get; set; }
+
         public List<string> DisplayNameParts { get; set; }
         
         public List<string> DescriptionParts { get; set; }

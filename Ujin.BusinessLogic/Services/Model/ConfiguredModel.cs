@@ -47,6 +47,8 @@ namespace Ujin.BusinessLogic.Services.Model
 
         public string NameKey => _model.NameKey;
 
+        public string Tags => _model.Tags;
+
         public string Sku => string.Join(_expressionTerms.SkuSeparator,
                     new[] { Identifier }.Concat(Configs.Select(c => c.SelectedItem.SkuValue)));
 

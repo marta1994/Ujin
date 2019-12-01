@@ -10,6 +10,8 @@ namespace Ujin.Web.Server.Models.Jewelry
 
         public int ImagesCount { get; set; }
 
+        public string Tags { get; set; }
+
         public List<SkuDescription> SkuDescriptions { get; set; }
 
         public virtual List<Configuration> Configurations { get; set; }

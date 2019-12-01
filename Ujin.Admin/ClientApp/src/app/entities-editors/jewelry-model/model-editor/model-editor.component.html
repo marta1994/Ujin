@@ -1,93 +1,97 @@
 <div class="container" *ngIf="jewelryModel">
-  <div class="header">
-    <h2>{{jewelryModel.id <= 0 ? 'Додавання нової ' : 'Редагування '}}моделі</h2>
-    <div>
-      <span class="model-state-label">Стан моделі: {{jewelryModel.modelStateNameKey}}</span>
-      <button class="button" (click)="changeModelState()" *ngIf="jewelryModel.id > 0">
-        {{jewelryModel.modelState == 1 ? 'Дизактивувати' : 'Активувати'}}
-      </button>
-      <button class="button" (click)="updateModelSkuEnabledState()" *ngIf="jewelryModel.id > 0">
-        Оновити SKU Enable state
-      </button>
-    </div>
-  </div>
-  <div class="name-value">
-    <span class="label">Id</span>
-    <span class="value">{{jewelryModel.id}}</span>
-  </div>
-  <div class="name-value">
-    <span class="label">Ідентифікатор</span>
-    <input class="value text-input" [(ngModel)]="jewelryModel.identifier" type="text" />
-  </div>
-  <div class="name-value">
-    <span class="label">Ключ назви</span>
-    <input class="value text-input" [(ngModel)]="jewelryModel.nameKey" type="text" />
-  </div>
-  <div class="name-value">
-    <span class="label">Назва зі словника</span>
-    <span class="value">{{jewelryModel.nameKey | translate}}</span>
-  </div>
-  <div class="name-value">
-    <span class="label">Ключ опису</span>
-    <input class="value text-input" [(ngModel)]="jewelryModel.descriptionKey" type="text" />
-  </div>
-  <div class="name-value">
-    <span class="label">Шаблон назви зображень</span>
-    <app-images-editor [jewelryModel]="jewelryModel"></app-images-editor>
-  </div>
-  <div class="name-value">
-    <span class="label">Формула обчислення ціни</span>
-    <app-simple-hint-input [(value)]="jewelryModel.priceExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
-  </div>
-  <div class="name-value">
-    <span class="label">Формула обчислення ваги</span>
-    <app-simple-hint-input [(value)]="jewelryModel.weightExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
-  </div>
-  <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
-  <div class="splitter"></div>
-  <h3>Конфігурації моделі</h3>
-  <div class="model-config-container">
-    <app-double-panel [disabled]="!modelConfig" [firstOpened]="!isEditPanelOpened">
-      <div first-content class="table-container">
-        <app-table [dataSource]="jewelryModel.configurations" [tableConfig]="tableConfig">
-        </app-table>
-        <button class="add-new button" (click)="addNew()">Додати ще один</button>
-        <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
-      </div>
-
-      <div second-content>
-        <div class="model-config-instance" *ngIf="modelConfig">
-          <div class="model-config-container">
-            <div class="name-value">
-              <span class="label">Id</span>
-              <span class="value">{{modelConfig.id}}</span>
-            </div>
-            <div class="name-value">
-              <span class="label">Ідентифікатор</span>
-              <input class="value text-input" [(ngModel)]="modelConfig.identifier" type="text" />
-            </div>
-            <div class="name-value">
-              <span class="label">Ключ назви</span>
-              <input class="value text-input" [(ngModel)]="modelConfig.nameKey" type="text" />
-            </div>
-            <div class="name-value">
-              <span class="label">Назва зі словника</span>
-              <span class="value">{{modelConfig.nameKey | translate}}</span>
-            </div>
-            <div class="name-value">
-              <span class="label">Тип конфігурації</span>
-              <span *ngIf="modelConfig.id > 0" class="value">{{modelConfig.configurationTypeNameKey | translate}}</span>
-              <app-select *ngIf="modelConfig.id <= 0" class="value" [translated]="true"
-                          [(model)]="modelConfig.configurationType" [options]="configTypes"
-                          [valueProperty]="'value'" [nameProperty]="'name'"></app-select>
-            </div>
-            <div [ngSwitch]="modelConfig.configurationType">
-              <app-number-editor *ngSwitchCase="JewelryModelConfigType.Number" [modelConfig]="modelConfig"></app-number-editor>
-              <app-options-editor *ngSwitchCase="JewelryModelConfigType.Options" [modelConfig]="modelConfig"></app-options-editor>
-            </div>
-          </div>
+    <div class="header">
+        <h2>{{jewelryModel.id <= 0 ? 'Додавання нової ' : 'Редагування '}}моделі</h2>
+        <div>
+            <span class="model-state-label">Стан моделі: {{jewelryModel.modelStateNameKey}}</span>
+            <button class="button" (click)="changeModelState()" *ngIf="jewelryModel.id > 0">
+                {{jewelryModel.modelState == 1 ? 'Дизактивувати' : 'Активувати'}}
+            </button>
+            <button class="button" (click)="updateModelSkuEnabledState()" *ngIf="jewelryModel.id > 0">
+                Оновити SKU Enable state
+            </button>
         </div>
-      </div>
-    </app-double-panel>
-  </div>
+    </div>
+    <div class="name-value">
+        <span class="label">Id</span>
+        <span class="value">{{jewelryModel.id}}</span>
+    </div>
+    <div class="name-value">
+        <span class="label">Ідентифікатор</span>
+        <input class="value text-input" [(ngModel)]="jewelryModel.identifier" type="text" />
+    </div>
+    <div class="name-value">
+        <span class="label">Ключ назви</span>
+        <input class="value text-input" [(ngModel)]="jewelryModel.nameKey" type="text" />
+    </div>
+    <div class="name-value">
+        <span class="label">Назва зі словника</span>
+        <span class="value">{{jewelryModel.nameKey | translate}}</span>
+    </div>
+    <div class="name-value">
+        <span class="label">Ключ опису</span>
+        <input class="value text-input" [(ngModel)]="jewelryModel.descriptionKey" type="text" />
+    </div>
+    <div class="name-value">
+        <span class="label">Таги</span>
+        <app-tags-editor class="value" [(tags)]="jewelryModel.tags" [hintTags]="allTags"></app-tags-editor>
+    </div>
+    <div class="name-value">
+        <span class="label">Шаблон назви зображень</span>
+        <app-images-editor [jewelryModel]="jewelryModel"></app-images-editor>
+    </div>
+    <div class="name-value">
+        <span class="label">Формула обчислення ціни</span>
+        <app-simple-hint-input [(value)]="jewelryModel.priceExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
+    </div>
+    <div class="name-value">
+        <span class="label">Формула обчислення ваги</span>
+        <app-simple-hint-input [(value)]="jewelryModel.weightExpression" [hintSource]="priceHintSource"></app-simple-hint-input>
+    </div>
+    <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
+    <div class="splitter"></div>
+    <h3>Конфігурації моделі</h3>
+    <div class="model-config-container">
+        <app-double-panel [disabled]="!modelConfig" [firstOpened]="!isEditPanelOpened">
+            <div first-content class="table-container">
+                <app-table [dataSource]="jewelryModel.configurations" [tableConfig]="tableConfig">
+                </app-table>
+                <button class="add-new button" (click)="addNew()">Додати ще один</button>
+                <button class="save button" (click)="saveModel()">Зберегти всі зміни</button>
+            </div>
+
+            <div second-content>
+                <div class="model-config-instance" *ngIf="modelConfig">
+                    <div class="model-config-container">
+                        <div class="name-value">
+                            <span class="label">Id</span>
+                            <span class="value">{{modelConfig.id}}</span>
+                        </div>
+                        <div class="name-value">
+                            <span class="label">Ідентифікатор</span>
+                            <input class="value text-input" [(ngModel)]="modelConfig.identifier" type="text" />
+                        </div>
+                        <div class="name-value">
+                            <span class="label">Ключ назви</span>
+                            <input class="value text-input" [(ngModel)]="modelConfig.nameKey" type="text" />
+                        </div>
+                        <div class="name-value">
+                            <span class="label">Назва зі словника</span>
+                            <span class="value">{{modelConfig.nameKey | translate}}</span>
+                        </div>
+                        <div class="name-value">
+                            <span class="label">Тип конфігурації</span>
+                            <span *ngIf="modelConfig.id > 0" class="value">{{modelConfig.configurationTypeNameKey | translate}}</span>
+                            <app-select *ngIf="modelConfig.id <= 0" class="value" [translated]="true"
+                                        [(model)]="modelConfig.configurationType" [options]="configTypes"
+                                        [valueProperty]="'value'" [nameProperty]="'name'"></app-select>
+                        </div>
+                        <div [ngSwitch]="modelConfig.configurationType">
+                            <app-number-editor *ngSwitchCase="JewelryModelConfigType.Number" [modelConfig]="modelConfig"></app-number-editor>
+                            <app-options-editor *ngSwitchCase="JewelryModelConfigType.Options" [modelConfig]="modelConfig"></app-options-editor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-double-panel>
+    </div>
 </div>

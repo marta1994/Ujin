@@ -14,39 +14,42 @@ import { SelectTableComponent } from './select-table/select-table.component';
 import { HintInputComponent } from './hint-input/hint-input.component';
 import { HintTreeNodeComponent } from './hint-input/hint-tree-node.component';
 import { SimpleHintInputComponent } from './simple-hint-input/simple-hint-input.component';
+import { TagsEditorComponent } from './tags-editor/tags-editor.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    ColorPickerModule,
-    AngularSvgIconModule
-  ],
-  declarations: [
-    TableComponent,
-    CollapsiblePanelComponent,
-    DoublePanelComponent,
-    SelectComponent,
-    SelectTableComponent,
-    HintInputComponent,
-    HintTreeNodeComponent,
-    SimpleHintInputComponent
-  ],
-  exports: [
-    TableComponent,
-    CollapsiblePanelComponent,
-    DoublePanelComponent,
-    SelectComponent,
-    SelectTableComponent,
-    HintInputComponent,
-    SimpleHintInputComponent
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        ColorPickerModule,
+        AngularSvgIconModule
+    ],
+    declarations: [
+        TableComponent,
+        CollapsiblePanelComponent,
+        DoublePanelComponent,
+        SelectComponent,
+        SelectTableComponent,
+        HintInputComponent,
+        HintTreeNodeComponent,
+        SimpleHintInputComponent,
+        TagsEditorComponent
+    ],
+    exports: [
+        TableComponent,
+        CollapsiblePanelComponent,
+        DoublePanelComponent,
+        SelectComponent,
+        SelectTableComponent,
+        HintInputComponent,
+        SimpleHintInputComponent,
+        TagsEditorComponent
+    ]
 })
 export class UiComponentsModule { }

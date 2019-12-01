@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="tags-container">
+        <div class="tag" *ngFor="let tag of parsedTags; index as i; trackBy: track">
+            <span class="text">{{tag}}</span>
+            <svg-icon class="delete-button" src="assets/images/close.svg" (click)="removeTag(i)"></svg-icon>
+        </div>
+    </div>
+    <input type="text" [(ngModel)]="currentTag" (input)="currentTagChange()"/>
+    <div class="hint-container" *ngIf="currentTag && currentTag.length">
+        <div class="hint" *ngFor="let hint of currentHint" (click)="selectHint(hint)">
+            <span class="text">{{hint}}</span>
+        </div>
+    </div>
+</div>

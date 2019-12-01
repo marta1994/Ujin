@@ -23,5 +23,7 @@ namespace Ujin.Interfaces
         Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier);
 
         Task<List<string>> GetOrderedValues(string sku, string identifier);
+
+        Task<List<string>> LoadAllTags();
     }
 }

@@ -48,5 +48,11 @@ namespace Ujin.Admin.Controllers
         {
             return _jewelryModelService.SetEnabledState(modelId, false);
         }
+
+        [HttpGet("[action]")]
+        public Task<List<string>> LoadAllTags()
+        {
+            return _jewelryModelService.LoadAllTags();
+        }
     }
 }

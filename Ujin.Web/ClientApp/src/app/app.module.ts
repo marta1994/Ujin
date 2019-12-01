@@ -32,44 +32,44 @@ export class FixVericalScrollHammerConfig extends HammerGestureConfig {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LangComponent,
-    WrongPathComponent,
-    SizeMeasureComponent,
-    ShipmentPaymentComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule.withServerTransition({
-      appId: 'ujin' 
-    }),
-    HttpClientModule,
-    BrowserTransferStateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ModelModule,
-    UiComponentsModule,
-    OrderModule,
-    AllModelsModule,
-    AppRoutingModule,
-    GoogleAnalyticsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [
-    TranslateModule,
-    LangService,
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: FixVericalScrollHammerConfig
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LangComponent,
+        WrongPathComponent,
+        SizeMeasureComponent,
+        ShipmentPaymentComponent
+    ],
+    imports: [
+        CommonModule,
+        BrowserModule.withServerTransition({
+            appId: 'ujin'
+        }),
+        HttpClientModule,
+        BrowserTransferStateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ModelModule,
+        UiComponentsModule,
+        OrderModule,
+        AllModelsModule,
+        AppRoutingModule,
+        GoogleAnalyticsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
+    ],
+    providers: [
+        TranslateModule,
+        LangService,
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: FixVericalScrollHammerConfig
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

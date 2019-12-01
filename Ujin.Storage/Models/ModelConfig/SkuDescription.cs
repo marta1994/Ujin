@@ -13,5 +13,7 @@
         public bool IsEnabled { get; set; }
 
         public bool UseInCatalog { get; set; }
+
+        public string Tags { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+@import '../../../common.less';
+
+.container {
+    .tags-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .tag {
+            @size-tag: 13px;
+            border: 1px solid @black-color;
+            background-color: @light-pearl;
+            font-size: @size-tag;
+            padding: 5px;
+            margin: 2px 5px;
+            .set-border-radius(3px);
+
+            .delete-button {
+                .set-svg-button(@size-tag);
+            }
+        }
+    }
+
+    .hint-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .hint {
+            @size-hint: 13px;
+            border: 1px solid @black-color;
+            background-color: @light-pearl;
+            font-size: @size-hint;
+            padding: 5px;
+            margin: 2px 5px;
+            cursor: pointer;
+            .set-border-radius(3px);
+        }
+    }
+}

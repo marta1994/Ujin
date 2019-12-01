@@ -11,6 +11,8 @@ namespace Ujin.Domain.Dtos.ModelConfig.Parsed
 
         public string Identifier { get; set; }
 
+        public string Tags { get; set; }
+
         public virtual List<ParsedModelConfig> Configurations { get; set; }
 
         public string ImagesPattern { get; set; }

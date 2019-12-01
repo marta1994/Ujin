@@ -77,3 +77,20 @@
   height: @size;
   width: @size;
 }
+
+.set-svg-button(@size, @color: @black-color, @hover-color: @grey-color) {
+    width: @size;
+    height: @size;
+    cursor: pointer;
+
+    ::ng-deep svg {
+        fill: @color;
+        width: 100%;
+        height: 100%;
+        transition: fill ease 0.3s;
+    }
+
+    &:hover ::ng-deep svg {
+        fill: @hover-color
+    }
+}

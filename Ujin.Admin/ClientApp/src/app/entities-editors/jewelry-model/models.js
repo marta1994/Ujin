@@ -10,6 +10,7 @@ var JewelryModel = /** @class */ (function () {
         this.imagesPattern = jewelryModel.imagesPattern;
         this.priceExpression = jewelryModel.priceExpression;
         this.weightExpression = jewelryModel.weightExpression;
+        this.tags = jewelryModel.tags;
         this.modelState = jewelryModel.modelState;
         this.configurations = jewelryModel.configurations.map(function (c) { return new ModelConfiguration(c, _this); });
     }

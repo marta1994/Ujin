@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ujin.Domain.Dtos;
 using Ujin.Interfaces;
 
 namespace Ujin.Admin.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SkuDataController : ControllerBase

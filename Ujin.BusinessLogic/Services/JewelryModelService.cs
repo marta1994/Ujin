@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Ujin.BusinessLogic.Services
 
         private readonly IModelInfoCache _modelInfoCache;
 
+        private readonly ICatalogModelsCache _catalogModelsCache;
+
         private readonly ModelParser _modelParser;
 
         private readonly SiteMapModelService _siteMapModelService;
@@ -30,13 +33,15 @@ namespace Ujin.BusinessLogic.Services
             IParsedModelCache parsedModelCache,
             ModelParser modelParser,
             IModelInfoCache modelInfoCache,
-            SiteMapModelService siteMapModelService)
+            SiteMapModelService siteMapModelService,
+            ICatalogModelsCache catalogModelsCache)
         {
             _jewelryModelDao = jewelryModelDao;
             _parsedModelCache = parsedModelCache;
             _modelParser = modelParser;
             _modelInfoCache = modelInfoCache;
             _siteMapModelService = siteMapModelService;
+            _catalogModelsCache = catalogModelsCache;
         }
 
         public async Task<ParsedJewelryModel> GetActiveJewelryModelByIdentifier(string identifier)
@@ -65,6 +70,15 @@ namespace Ujin.BusinessLogic.Services
                 throw new ApplicationException($"Could not parse sku '{sku}' for model '{identifier}'");
             return confModel.Configs.OrderBy(c => c.Order)
                 .Select(c => c.SelectedItem.SkuValue).ToList();
+        }
+
+        public async Task<List<string>> LoadAllTags()
+        {
+            var catalogModels = await _catalogModelsCache.GetCatalogModels();
+            var skuTags = catalogModels.SelectMany(cm => JsonConvert.DeserializeObject<List<string>>(cm.Tags));
+            var allModels = await LoadJewelryModels();
+            var modelTags = allModels.SelectMany(cm => JsonConvert.DeserializeObject<List<string>>(cm.Tags));
+            return skuTags.Concat(modelTags).Select(t => t.ToLowerInvariant()).Distinct().ToList();
         }
 
         public Task<JewelryModelDto> LoadJewelryModelById(int id)

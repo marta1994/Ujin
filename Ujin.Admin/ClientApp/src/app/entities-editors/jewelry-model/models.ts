@@ -1,42 +1,45 @@
 export interface IJewelryModel {
-  id: number;
-  nameKey: string;
-  descriptionKey: string;
-  identifier: string;
-  imagesPattern: string;
-  priceExpression: string;
-  weightExpression: string;
-  modelState: JewelryModelState;
-  configurations: IModelConfiguration[];
+    id: number;
+    nameKey: string;
+    descriptionKey: string;
+    identifier: string;
+    imagesPattern: string;
+    priceExpression: string;
+    weightExpression: string;
+    tags: string;
+    modelState: JewelryModelState;
+    configurations: IModelConfiguration[];
 }
 
 export class JewelryModel implements IJewelryModel {
 
-  constructor(jewelryModel: IJewelryModel) {
-    this.nameKey = jewelryModel.nameKey;
-    this.descriptionKey = jewelryModel.descriptionKey;
-    this.id = jewelryModel.id;
-    this.identifier = jewelryModel.identifier;
-    this.imagesPattern = jewelryModel.imagesPattern;
-    this.priceExpression = jewelryModel.priceExpression;
-    this.weightExpression = jewelryModel.weightExpression;
-    this.modelState = jewelryModel.modelState;
-    this.configurations = jewelryModel.configurations.map(c => new ModelConfiguration(c, this));
-  }
+    constructor(jewelryModel: IJewelryModel) {
+        this.nameKey = jewelryModel.nameKey;
+        this.descriptionKey = jewelryModel.descriptionKey;
+        this.id = jewelryModel.id;
+        this.identifier = jewelryModel.identifier;
+        this.imagesPattern = jewelryModel.imagesPattern;
+        this.priceExpression = jewelryModel.priceExpression;
+        this.weightExpression = jewelryModel.weightExpression;
+        this.tags = jewelryModel.tags;
+        this.modelState = jewelryModel.modelState;
+        this.configurations = jewelryModel.configurations.map(c => new ModelConfiguration(c, this));
+    }
 
-  public id: number;
-  public nameKey: string;
-  public descriptionKey: string;
-  public identifier: string;
-  public imagesPattern: string;
-  public priceExpression: string;
-  public weightExpression: string;
-  public modelState: JewelryModelState;
-  public configurations: ModelConfiguration[];
+    public id: number;
+    public nameKey: string;
+    public descriptionKey: string;
+    public identifier: string;
+    public imagesPattern: string;
+    public priceExpression: string;
+    public weightExpression: string;
+    public tags: string;
+    public modelState: JewelryModelState;
+    public configurations: ModelConfiguration[];
 
-  public get modelStateNameKey(): string {
-    return JewelryModelState[this.modelState];
-  }
+    public get modelStateNameKey(): string {
+        return JewelryModelState[this.modelState];
+    }
 }
 
 export interface IModelConfiguration {

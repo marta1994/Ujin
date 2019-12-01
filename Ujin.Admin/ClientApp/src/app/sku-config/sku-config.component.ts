@@ -32,6 +32,8 @@ export class SkuConfigComponent {
 
     public skuImages: string[];
 
+    public allTags: string[];
+
     constructor(
         private _api: ApiService,
         _jewelryModelService: JewelryModelService,
@@ -59,6 +61,13 @@ export class SkuConfigComponent {
                     });
                 });
             });
+
+        _jewelryModelService.loadAllTags()
+            .then(tags => this.allTags = tags);
+    }
+
+    public get selectedModelTags(): string {
+        return JSON.parse(this.selectedJewelryModel.tags).join(", ");
     }
 
     public deleteImage(index: number) {
@@ -71,6 +80,8 @@ export class SkuConfigComponent {
 
     public saveSkuDescription() {
         this.skuDescription.images = JSON.stringify(this.skuImages);
+        var allTags: string[] = JSON.parse(this.skuDescription.tags).concat(JSON.parse(this.selectedJewelryModel.tags));
+        this.skuDescription.tags = JSON.stringify(allTags.filter((el, ind) => allTags.indexOf(el) === ind));
         this._api.postData(`/api/SkuData/SaveSkuDescriptions/`, [this.skuDescription])
             .then(res => location.reload())
             .catch(err => alert(err));
@@ -117,7 +128,7 @@ export class SkuConfigComponent {
             .then(res => this.modelInfo = new ModelInfo(res));
         this._api.loadData<SkuDescription>(`/api/SkuData/SkuDescription/?sku=${sku}`)
             .then(res => {
-                this.skuDescription = new SkuDescription(res, sku, this.selectedJewelryModel.id);
+                this.skuDescription = new SkuDescription(res, sku, this.selectedJewelryModel);
                 this.skuImages = JSON.parse(this.skuDescription.images);
             });
     }
@@ -155,11 +166,12 @@ export class ModelInfoNode {
 
 class SkuDescription {
 
-    constructor(sk: SkuDescription, sku: string, jModelId: number) {
+    constructor(sk: SkuDescription, sku: string, jModel: JewelryModel) {
         this.id = sk ? sk.id : -1;
         this.sku = sku;
         this.images = sk ? sk.images : "[]";
-        this.jewelryModelId = jModelId;
+        this.jewelryModelId = jModel.id;
+        this.tags = sk ? this.getTags(sk.tags, jModel.tags) : "[]";
         this.isEnabled = sk ? sk.isEnabled : true;
         this.useInCatalog = sk ? sk.useInCatalog : false;
     }
@@ -169,7 +181,14 @@ class SkuDescription {
     public images: string;
     public jewelryModelId: number;
     public isEnabled: boolean;
+    public tags: string;
     public useInCatalog: boolean;
+
+    private getTags(skuTags: string, jModelTags: string): string {
+        var skuT: string[] = JSON.parse(skuTags);
+        var jModelT: string[] = JSON.parse(jModelTags);
+        return JSON.stringify(skuT.filter(t => jModelT.indexOf(t) < 0));
+    }
 }
 
 @Component({

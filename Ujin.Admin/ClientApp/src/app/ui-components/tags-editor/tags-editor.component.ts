@@ -57,18 +57,24 @@ export class TagsEditorComponent implements OnInit {
 
     public currentTagChange() {
         if (this.currentTag.endsWith(" ")) {
-            let trimmed = this.currentTag.trim();
-            if (trimmed.length == 0) return;
-            this.parsedTags.push(trimmed.toLowerCase());
-            this.tags = JSON.stringify(this.parsedTags);
-            this.currentTag = "";
+            this.addTag(this.currentTag);
             return;
         }
         this.currentHint = this.filteredHint.filter(h => h.startsWith(this.currentTag.toLowerCase()));
     }
 
     public selectHint(hint: string) {
-        this.parsedTags.push(hint);
+        this.addTag(hint);
+    }
+
+    private addTag(tag: string) {
+        let trimmed = tag.trim().toLowerCase();
+        if (trimmed.length == 0) return;
+        if (this.parsedTags.indexOf(trimmed) >= 0) {
+            this.currentTag = "";
+            return;
+        }
+        this.parsedTags.push(trimmed);
         this.tags = JSON.stringify(this.parsedTags);
         this.currentTag = "";
     }

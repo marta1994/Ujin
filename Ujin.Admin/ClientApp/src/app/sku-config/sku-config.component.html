@@ -45,6 +45,14 @@
     </div>
     <button class="button" (click)="saveSkuDescription()">Зберегти конфігурацію ідентифікатора</button>
     <div class="prop-value">
+        <span class="label">Таги з моделі</span>
+        <span class="value">{{selectedModelTags}}</span>
+    </div>
+    <div class="prop-value">
+        <span class="label">Таги</span>
+        <app-tags-editor class="value" [(tags)]="skuDescription.tags" [hintTags]="allTags"></app-tags-editor>
+    </div>
+    <div class="prop-value">
         <label class="label">Використовувати в каталозі:</label>
         <input type="checkbox" [(ngModel)]="skuDescription.useInCatalog" class="val" />
     </div>

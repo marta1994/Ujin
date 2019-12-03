@@ -18,7 +18,7 @@ export class AllModelsComponent implements OnInit {
 
     public sortFilterModel: SortFilterModel = { filterTags: [], priceSortOptions: SortOption.None };
 
-    private _models: ICatalogModel[] = [];
+    private _models: ICatalogModel[];
 
     public SortOption = SortOption;
 
@@ -116,6 +116,7 @@ export class AllModelsComponent implements OnInit {
     }
 
     private filterAndSort() {
+        if (!this._models) return;
         this.filteredModels = this._models;
         this.filterByTags();
         this.sort();

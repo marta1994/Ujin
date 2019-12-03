@@ -2,6 +2,15 @@
     <div class="link catalog text-link">
         <a [routerLink]='[catalogLink]' (click)="catalogClick()">{{'forms.navMenu.catalog'|translate}}</a>
     </div>
+    <div class="link catalog text-link">
+        <a [routerLink]='[catalogLink]' [queryParams]="{tags: 'ring'}" (click)="catalogClick('ring')">{{'forms.navMenu.rings'|translate}}</a>
+    </div>
+    <div class="link catalog text-link">
+        <a [routerLink]='[catalogLink]' [queryParams]="{tags: 'earring'}" (click)="catalogClick('earring')">{{'forms.navMenu.earrings'|translate}}</a>
+    </div>
+    <div class="link catalog text-link">
+        <a [routerLink]='[catalogLink]' [queryParams]="{tags: 'pousette'}" (click)="catalogClick('pousette')">{{'forms.navMenu.poussette'|translate}}</a>
+    </div>
     <div class="link shipment text-link">
         <a [routerLink]='[shipmentLink]' (click)="shipmentClick()">{{'forms.navMenu.shipmentPayment'|translate}}</a>
     </div>

@@ -32,9 +32,9 @@ export class MenuComponent implements OnInit {
         return `/${this._translateService.currentLang}/size-measure`;
     }
 
-    public catalogClick() {
+    public catalogClick(tag: string = null) {
         this.actionHappened();
-        this._gaService.sendEvent(EventCategory.Menu, MenuEvents.CatalogClick);
+        this._gaService.sendEvent(EventCategory.Menu, MenuEvents.CatalogClick, tag);
     }
 
     public shipmentClick() {

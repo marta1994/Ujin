@@ -14,7 +14,7 @@ import { ArrayService } from '../../services/array.service';
 })
 export class AllModelsComponent implements OnInit {
 
-    public filteredModels: ICatalogModel[] = [];
+    public filteredModels: ICatalogModel[];
 
     public sortFilterModel: SortFilterModel = { filterTags: [], priceSortOptions: SortOption.None };
 

@@ -28,4 +28,5 @@ export interface ICatalogModel {
     price: number;
     displayNameParts: string[];
     descriptionParts: string[];
+    tags: string[];
 }

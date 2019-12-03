@@ -1,18 +1,20 @@
-<app-loading *ngIf="!models"></app-loading>
-<div class="all-models-wrapper" *ngIf="models">
+<app-loading *ngIf="!filteredModels"></app-loading>
+<div class="all-models-wrapper" *ngIf="filteredModels">
     <div class="header-container">
         <h1 class="header">{{'forms.allModels.header'|translate}}</h1>
         <span class="ordering-container">
             <span class="label">{{'forms.allModels.sorting'|translate}}</span>
-            <button class="button ascending" (click)="sortByPrice(true)">
+            <button class="button ascending" (click)="triggerSortByPrice(true)"
+                    [ngClass]="{'active': sortFilterModel.priceSortOptions == SortOption.Ascending}">
                 {{'forms.allModels.ascendingPrice'|translate}}
             </button>
-            <button class="button descending" (click)="sortByPrice(false)">
+            <button class="button descending" (click)="triggerSortByPrice(false)"
+                    [ngClass]="{'active': sortFilterModel.priceSortOptions == SortOption.Descending}">
                 {{'forms.allModels.descendingPrice'|translate}}
             </button>
         </span>
     </div>
     <div class="cards-holder">
-        <app-model-link *ngFor="let model of models" [model]="model" class="link"></app-model-link>
+        <app-model-link *ngFor="let model of filteredModels" [model]="model" class="link"></app-model-link>
     </div>
 </div>

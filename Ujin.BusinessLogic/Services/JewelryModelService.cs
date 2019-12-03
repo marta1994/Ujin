@@ -75,7 +75,7 @@ namespace Ujin.BusinessLogic.Services
         public async Task<List<string>> LoadAllTags()
         {
             var catalogModels = await _catalogModelsCache.GetCatalogModels();
-            var skuTags = catalogModels.SelectMany(cm => JsonConvert.DeserializeObject<List<string>>(cm.Tags));
+            var skuTags = catalogModels.SelectMany(cm => cm.Tags);
             var allModels = await LoadJewelryModels();
             var modelTags = allModels.SelectMany(cm => JsonConvert.DeserializeObject<List<string>>(cm.Tags));
             return skuTags.Concat(modelTags).Select(t => t.ToLowerInvariant()).Distinct().ToList();

@@ -78,6 +78,7 @@ export class ModelPageComponent implements OnInit {
                 relativeTo: this._activatedRoute,
                 queryParams: queryParams,
                 queryParamsHandling: "merge",
+                skipLocationChange: true
             });
     }
 

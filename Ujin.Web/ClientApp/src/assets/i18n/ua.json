@@ -164,7 +164,11 @@
                     "tree": "Деревце",
                     "bridge": "Місток",
                     "window": "Нефертіті",
-                    "wreath": "Вінок"
+                    "wreath": "Вінок",
+                    "doublePont": "Пара",
+                    "tripplePoint": "Трикутник",
+                    "starPoint": "Танець",
+                    "rhombusPoint": "Баланс"
                 }
             },
             "name": {
@@ -205,7 +209,8 @@
             "iceCreamEarring": "Сережки 'Солоденька'",
             "spiralEarring": "Сережки 'Равлик'",
             "acuteShellEarring": "Сережки 'Морська таємниця'",
-            "mirrorEarring": "Сережки 'Русалонька'"
+            "mirrorEarring": "Сережки 'Русалонька'",
+            "geometryEarring": "Сережки 'Зв`язок'"
         }
     },
     "measure": {

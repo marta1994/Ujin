@@ -77,8 +77,7 @@ export class ModelPageComponent implements OnInit {
             {
                 relativeTo: this._activatedRoute,
                 queryParams: queryParams,
-                queryParamsHandling: "merge",
-                skipLocationChange: true
+                queryParamsHandling: "merge"
             });
     }
 
@@ -137,7 +136,7 @@ export class ModelPageComponent implements OnInit {
     }
 
     public copyLink() {
-        var url = window.location.href;
+        var url = window.location.host + this._router.url;
         this._clipboardService.copyToClipboard(url);
         this._gaService.sendEvent(EventCategory.ModelPage, ModelPageEvents.CopyLinkClick);
     }

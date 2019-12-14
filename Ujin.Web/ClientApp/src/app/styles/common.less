@@ -7,6 +7,7 @@
 @white-color: #ffffff;
 @accent-color: #5CA2A2;
 @red-color: #ff4848;
+@red-button-color: #ff715e;
 @green-color: #3aeb51;
 
 @font: 'Roboto', sans-serif;
@@ -80,6 +81,16 @@
     color: lighten(@dark-color, 5%);
     background-color: lighten(@accent-color, 15%);
   }
+}
+
+.set-action-button() {
+    .set-primary-button();
+    background-color: @red-button-color;
+
+    &:hover, &:active, &.active {
+        color: lighten(@dark-color, 5%);
+        background-color: lighten(@red-button-color, 15%);
+    }
 }
 
 .set-noselect() {

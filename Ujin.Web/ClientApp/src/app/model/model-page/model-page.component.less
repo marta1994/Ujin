@@ -2,140 +2,140 @@
 
 .model-page-container {
 
-  .widget-and-info-container {
-    display: flex;
-    flex-direction: column;
-    background-color: @dark-color;
+    .widget-and-info-container {
+        display: flex;
+        flex-direction: column;
+        background-color: @dark-color;
 
-    @media @desktop {
-      flex-direction: row;
+        @media @desktop {
+            flex-direction: row;
+        }
+
+        .widget-container {
+            padding: 30px 0;
+            padding-top: 30px + @mobile-header-height;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @media @desktop {
+                flex: 7;
+                padding: 30px;
+                padding-top: 20px + @desktop-header-height;
+            }
+
+            app-widget {
+                width: 600px;
+                display: block;
+            }
+        }
+
+        .info-container {
+            display: none;
+
+            @media @desktop {
+                display: block;
+            }
+        }
     }
 
-    .widget-container {
-      padding: 30px 0;
-      padding-top: 30px + @mobile-header-height;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      @media @desktop {
-        flex: 7;
-        padding: 30px;
-        padding-top: 20px + @desktop-header-height;
-      }
-
-      app-widget {
-        width: 600px;
-        display: block;
-      }
+    @media @desktop {
+        .mobile-info-container {
+            display: none;
+        }
     }
 
     .info-container {
-      display: none;
+        background-color: @white-color;
+        padding: 30px;
 
-      @media @desktop {
-        display: block;
-      }
-    }
-  }
-
-  @media @desktop {
-    .mobile-info-container {
-      display: none;
-    }
-  }
-
-  .info-container {
-    background-color: @white-color;
-    padding: 30px;
-
-    @media @desktop {
-      flex: 4;
-      padding-top: 10px + @desktop-header-height;
-    }
-
-    .model-name {
-      font-size: 2.5em;
-      font-weight: 500;
-      padding-bottom: 15px;
-      padding-left: 30px;
-      border-bottom: 1px solid @grey-color;
-    }
-
-    .price-conatiner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-
-      .price {
-        font-size: 2em;
-        font-weight: 700;
-        color: @dark-color;
-        margin-top: 10px;
-      }
-
-      .buy-in-one-click {
-        .set-primary-button();
-        margin-left: 20px;
-        margin-top: 10px;
-      }
-
-      .copy-link {
-        .set-default-button();
-        margin-left: 20px;
-        margin-top: 10px;
-        flex: 1;
-      }
-    }
-
-    @media @desktop {
-      flex: 5;
-    }
-  }
-
-  .description {
-    margin: 20px 0;
-    padding: 10px;
-    background-color: @light-grey-color;
-
-    ::ng-deep {
-      p {
-        font-size: 1.3em;
-        font-weight: 500;
-      }
-
-      ul {
-        font-size: 1.2em;
-        padding-left: 20px;
-
-        li {
-          display: block;
-          padding: 5px 0;
+        @media @desktop {
+            flex: 4;
+            padding-top: 10px + @desktop-header-height;
         }
-      }
+
+        .model-name {
+            font-size: 2.5em;
+            font-weight: 500;
+            padding-bottom: 15px;
+            padding-left: 30px;
+            border-bottom: 1px solid @grey-color;
+        }
+
+        .price-conatiner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            .price {
+                font-size: 2em;
+                font-weight: 700;
+                color: @dark-color;
+                margin-top: 10px;
+            }
+
+            .buy-in-one-click {
+                .set-action-button();
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+
+            .copy-link {
+                .set-default-button();
+                margin-left: 20px;
+                margin-top: 10px;
+                flex: 1;
+            }
+        }
+
+        @media @desktop {
+            flex: 5;
+        }
     }
-  }
 
-  .text-container {
-    background-color: @white-color;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    .description {
+        margin: 20px 0;
+        padding: 10px;
+        background-color: @light-grey-color;
 
-    .text-holder {
-      text-align: justify;
+        ::ng-deep {
+            p {
+                font-size: 1.3em;
+                font-weight: 500;
+            }
 
-      @media @desktop {
-        text-align: center;
-      }
+            ul {
+                font-size: 1.2em;
+                padding-left: 20px;
 
-      color: @dark-color;
-      padding: 40px 40px;
-      max-width: 900px;
-      font-size: 1.3rem;
-      line-height: 1.8rem;
+                li {
+                    display: block;
+                    padding: 5px 0;
+                }
+            }
+        }
     }
-  }
+
+    .text-container {
+        background-color: @white-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        .text-holder {
+            text-align: justify;
+
+            @media @desktop {
+                text-align: center;
+            }
+
+            color: @dark-color;
+            padding: 40px 40px;
+            max-width: 900px;
+            font-size: 1.3rem;
+            line-height: 1.8rem;
+        }
+    }
 }

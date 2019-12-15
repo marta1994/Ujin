@@ -34,6 +34,16 @@ export class SkuConfigComponent {
 
     public allTags: string[];
 
+    public allLabels: string[] = (() => {
+        var res = [];
+        for (var key in ProductLabel) {
+            if (!isNaN((+key))) {
+                res.push(ProductLabel[key]);
+            }
+        }
+        return res;
+    })();
+
     constructor(
         private _api: ApiService,
         _jewelryModelService: JewelryModelService,
@@ -132,6 +142,16 @@ export class SkuConfigComponent {
                 this.skuImages = JSON.parse(this.skuDescription.images);
             });
     }
+
+    public labelsClick(label: string) {
+        var enumVal = ProductLabel[label];
+        this.skuDescription.productLabel = this.skuDescription.productLabel ^ enumVal;
+    }
+
+    public isLabelActive(label: string): boolean {
+        var enumVal = ProductLabel[label];
+        return (this.skuDescription.productLabel & enumVal) ? true : false;
+    }
 }
 
 export class ModelInfo {
@@ -174,6 +194,7 @@ class SkuDescription {
         this.tags = sk ? this.getTags(sk.tags, jModel.tags) : "[]";
         this.isEnabled = sk ? sk.isEnabled : true;
         this.useInCatalog = sk ? sk.useInCatalog : false;
+        this.productLabel = sk ? sk.productLabel : 0;
     }
 
     public id: number;
@@ -182,6 +203,7 @@ class SkuDescription {
     public jewelryModelId: number;
     public isEnabled: boolean;
     public tags: string;
+    public productLabel: ProductLabel;
     public useInCatalog: boolean;
 
     private getTags(skuTags: string, jModelTags: string): string {
@@ -189,6 +211,11 @@ class SkuDescription {
         var jModelT: string[] = JSON.parse(jModelTags);
         return JSON.stringify(skuT.filter(t => jModelT.indexOf(t) < 0));
     }
+}
+
+export enum ProductLabel {
+    TopSells = 1,
+    NewProduct = 2
 }
 
 @Component({

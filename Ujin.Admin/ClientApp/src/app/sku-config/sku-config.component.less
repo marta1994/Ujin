@@ -24,18 +24,28 @@
 }
 
 .prop-value {
-  margin-bottom: 20px;
-  display: flex;
+    margin-bottom: 20px;
+    display: flex;
 
-  .label {
-    display: inline-block;
-    width: 130px;
-    margin-right: 10px;
-  }
+    .label {
+        display: inline-block;
+        width: 130px;
+        margin-right: 10px;
+    }
 
-  .value {
-    .set-input-style();
-    cursor: pointer;
-    margin-left: 10px;
-  }
+    .value {
+        .set-input-style();
+        cursor: pointer;
+        margin-left: 10px;
+
+        .product-label {
+            padding: 5px;
+            margin-right: 7px;
+            .set-border-radius(3px);
+
+            &.active {
+                background-color: @light-grey-color;
+            }
+        }
+    }
 }

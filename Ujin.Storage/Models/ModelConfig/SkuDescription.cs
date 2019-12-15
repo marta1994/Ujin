@@ -1,4 +1,6 @@
-﻿namespace Ujin.Storage.Models.ModelConfig
+﻿using Ujin.Domain.Enums;
+
+namespace Ujin.Storage.Models.ModelConfig
 {
     internal class SkuDescription: BaseModel
     {
@@ -15,5 +17,7 @@
         public bool UseInCatalog { get; set; }
 
         public string Tags { get; set; }
+
+        public ProductLabel ProductLabel { get; set; }
     }
 }

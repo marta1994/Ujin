@@ -53,6 +53,7 @@ namespace Ujin.BusinessLogic.Services.Cache
                     Sku = sku.Sku,
                     ModelIdentifier = model.Identifier,
                     Tags = JsonConvert.DeserializeObject<List<string>>(sku.Tags),
+                    ProductLabel = sku.ProductLabel,
                     Price = await _expressionCalculatorService.CalculateExpression(model.PriceExpression, model),
                     ImagePath = JsonConvert.DeserializeObject<List<string>>(sku.Images)?.FirstOrDefault(),
                     DisplayNameParts = GetNameParts(model),

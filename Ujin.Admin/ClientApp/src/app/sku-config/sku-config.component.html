@@ -54,7 +54,16 @@
     </div>
     <div class="prop-value">
         <label class="label">Використовувати в каталозі:</label>
-        <input type="checkbox" [(ngModel)]="skuDescription.useInCatalog" class="val" />
+        <input type="checkbox" [(ngModel)]="skuDescription.useInCatalog" class="value" />
+    </div>
+    <div class="prop-value">
+        <label class="label">Позначення:</label>
+        <div class="value">
+            <span *ngFor="let label of allLabels" class="product-label"
+                  (click)="labelsClick(label)" [ngClass]="{'active': isLabelActive(label)}">
+                {{label}}
+            </span>
+        </div>
     </div>
     <div class="prop-value">
         <label class="label">Зображення:</label>

@@ -1,4 +1,6 @@
-﻿namespace Ujin.Domain.Dtos
+﻿using Ujin.Domain.Enums;
+
+namespace Ujin.Domain.Dtos
 {
     public class SkuDescriptionDto
     {
@@ -15,5 +17,7 @@
         public bool UseInCatalog { get; set; }
 
         public string Tags { get; set; }
+
+        public ProductLabel ProductLabel { get; set; }
     }
 }

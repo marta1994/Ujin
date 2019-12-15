@@ -29,4 +29,10 @@ export interface ICatalogModel {
     displayNameParts: string[];
     descriptionParts: string[];
     tags: string[];
+    productLabel: number;
+}
+
+export enum ProductLabel {
+    TopSells = 1,
+    NewProduct = 2
 }

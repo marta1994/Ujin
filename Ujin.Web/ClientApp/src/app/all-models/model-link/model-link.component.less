@@ -7,10 +7,39 @@
     padding: 20px;
     align-items: center;
     justify-content: center;
+    position: relative;
     display: flex;
     flex-direction: column;
     transition: box-shadow ease 0.3s;
     text-decoration: none;
+
+    .label-wrapper {
+        @size: 130px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: @size;
+        width: @size;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        .label {
+            padding: 5px;
+            width: @size;
+            transform: translate(28px, -28px) rotate(45deg);
+            text-align: center;
+
+            &.red {
+                background-color: @red-button-color;
+                color: @white-color;
+            }
+
+            &.yellow {
+                background-color: @yellow-color;
+            }
+        }
+    }
 
     .image-holder {
         width: 100%;

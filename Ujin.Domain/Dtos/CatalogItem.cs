@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ujin.Domain.Enums;
 
 namespace Ujin.Domain.Dtos
 {
@@ -13,6 +14,8 @@ namespace Ujin.Domain.Dtos
         public decimal Price { get; set; }
 
         public List<string> Tags { get; set; }
+
+        public ProductLabel ProductLabel { get; set; }
 
         public List<string> DisplayNameParts { get; set; }
         

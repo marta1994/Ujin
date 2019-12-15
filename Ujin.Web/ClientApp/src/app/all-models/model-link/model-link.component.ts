@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ICatalogModel } from 'src/app/services/catalog.service';
+import { ICatalogModel, ProductLabel } from 'src/app/services/catalog.service';
 import { TranslateService } from '@ngx-translate/core';
 import { GaService } from 'src/app/google-analytics/ga.service';
 import { EventCategory, CatalogEvents } from 'src/app/google-analytics/events';
@@ -26,6 +26,8 @@ export class ModelLinkComponent implements OnInit {
     public translatedName: string;
 
     public translatedDescription: string;
+
+    public ProductLabel = ProductLabel;
 
     constructor(
         private readonly _translateService: TranslateService,
@@ -55,5 +57,15 @@ export class ModelLinkComponent implements OnInit {
                 this.translatedName = names[names.length - 1];
                 this.translatedDescription = descriptions.join(", ");
             });
+    }
+
+    public get label(): ProductLabel {
+        if (this._model.productLabel & ProductLabel.TopSells) {
+            return ProductLabel.TopSells;
+        }
+        if (this._model.productLabel & ProductLabel.NewProduct) {
+            return ProductLabel.NewProduct;
+        }
+        return 0;
     }
 }

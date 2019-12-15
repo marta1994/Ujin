@@ -1,4 +1,14 @@
 <a class="model-wrapper" [routerLink]='[link]' [queryParams]="{sku: model.sku}" (click)="modelClick()">
+    <div class="label-wrapper" *ngIf="label == ProductLabel.TopSells">
+        <div class="label red">
+            {{'forms.allModels.topSales'|translate}}
+        </div>
+    </div>
+    <div class="label-wrapper" *ngIf="label == ProductLabel.NewProduct">
+        <div class="label yellow">
+            {{'forms.allModels.newProduct'|translate}}
+        </div>
+    </div>
     <div class="image-holder">
         <img [src]="imgLink" class="image" />
     </div>
